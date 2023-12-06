@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace GS_Factura
 {
-    public partial class GS_RegistroProducto : Form
+    public partial class GS_RP_ADD : Form
     {
-        public GS_RegistroProducto()
+        public GS_RP_ADD()
         {
             InitializeComponent();
-        }
-
-        private void btnAñadirProducto_Click(object sender, EventArgs e)
-        {
-            GS_RP_ADD gS_RP_ADD = new GS_RP_ADD();
-            gS_RP_ADD.ShowDialog();
-
         }
     }
 }
