@@ -217,6 +217,7 @@
             this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptmfotouser.TabIndex = 6;
             this.ptmfotouser.TabStop = false;
+            this.ptmfotouser.Click += new System.EventHandler(this.ptmfotouser_Click);
             // 
             // panelDashOut
             // 
@@ -255,6 +256,7 @@
             this.btnCerrarsesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCerrarsesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCerrarsesion.UseVisualStyleBackColor = false;
+            this.btnCerrarsesion.Click += new System.EventHandler(this.btnCerrarsesion_Click);
             // 
             // panelLayoutForms
             // 
@@ -341,7 +343,7 @@
             this.btnMenu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnMenu.FlatAppearance.BorderSize = 0;
             this.btnMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SpringGreen;
+            this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(125)))));
             this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenu.IconChar = FontAwesome.Sharp.IconChar.Navicon;
             this.btnMenu.IconColor = System.Drawing.Color.White;
@@ -353,6 +355,7 @@
             this.btnMenu.Size = new System.Drawing.Size(41, 33);
             this.btnMenu.TabIndex = 23;
             this.btnMenu.UseVisualStyleBackColor = false;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // panelLayourMaximizar
             // 
@@ -380,7 +383,7 @@
             this.btn_minimizar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_minimizar.FlatAppearance.BorderSize = 0;
             this.btn_minimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btn_minimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btn_minimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(125)))));
             this.btn_minimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_minimizar.ForeColor = System.Drawing.Color.White;
             this.btn_minimizar.IconChar = FontAwesome.Sharp.IconChar.Minus;
@@ -394,6 +397,7 @@
             this.btn_minimizar.Size = new System.Drawing.Size(33, 33);
             this.btn_minimizar.TabIndex = 7;
             this.btn_minimizar.UseVisualStyleBackColor = false;
+            this.btn_minimizar.Click += new System.EventHandler(this.btn_minimizar_Click);
             // 
             // btn_cerrar
             // 
@@ -401,7 +405,7 @@
             this.btn_cerrar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_cerrar.FlatAppearance.BorderSize = 0;
             this.btn_cerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btn_cerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btn_cerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkRed;
             this.btn_cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cerrar.ForeColor = System.Drawing.Color.White;
             this.btn_cerrar.IconChar = FontAwesome.Sharp.IconChar.Xmark;
@@ -415,6 +419,7 @@
             this.btn_cerrar.Size = new System.Drawing.Size(34, 33);
             this.btn_cerrar.TabIndex = 5;
             this.btn_cerrar.UseVisualStyleBackColor = false;
+            this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
             // 
             // btn_maximizar
             // 
@@ -422,7 +427,7 @@
             this.btn_maximizar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_maximizar.FlatAppearance.BorderSize = 0;
             this.btn_maximizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btn_maximizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btn_maximizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(125)))));
             this.btn_maximizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_maximizar.ForeColor = System.Drawing.Color.White;
             this.btn_maximizar.IconChar = FontAwesome.Sharp.IconChar.ObjectUngroup;
@@ -436,6 +441,7 @@
             this.btn_maximizar.Size = new System.Drawing.Size(33, 33);
             this.btn_maximizar.TabIndex = 6;
             this.btn_maximizar.UseVisualStyleBackColor = false;
+            this.btn_maximizar.Click += new System.EventHandler(this.btn_maximizar_Click);
             // 
             // Form1
             // 
@@ -451,6 +457,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISTEMA DE FACTURACIÓN";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panelLayoutMenu.ResumeLayout(false);
             this.panelDashCenter.ResumeLayout(false);
             this.panelDashHead.ResumeLayout(false);
@@ -466,9 +473,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel panelLayoutMenu;
-        private System.Windows.Forms.Panel panelDashCenter;
         private System.Windows.Forms.Panel panelDashHead;
         private System.Windows.Forms.Panel panelDashOut;
         private System.Windows.Forms.TableLayoutPanel panelLayoutForms;
@@ -488,6 +492,8 @@
         private FontAwesome.Sharp.IconButton btnProductos;
         private FontAwesome.Sharp.IconButton btnRegistro;
         public System.Windows.Forms.Panel panelForms;
+        public System.Windows.Forms.TableLayoutPanel panelLayoutMenu;
+        public System.Windows.Forms.Panel panelDashCenter;
     }
 }
 

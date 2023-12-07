@@ -83,6 +83,12 @@
     <Compile Include="GS-GeneraFactura.Designer.cs">
       <DependentUpon>GS-GeneraFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="GS-Inicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GS-Inicio.Designer.cs">
+      <DependentUpon>GS-Inicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="GS-RegistroCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GS-GeneraFactura.resx">
       <DependentUpon>GS-GeneraFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GS-Inicio.resx">
+      <DependentUpon>GS-Inicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GS-RegistroCliente.resx">
       <DependentUpon>GS-RegistroCliente.cs</DependentUpon>
