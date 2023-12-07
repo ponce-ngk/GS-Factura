@@ -31,8 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelLayoutMenu = new System.Windows.Forms.TableLayoutPanel();
             this.panelDashCenter = new System.Windows.Forms.Panel();
+            this.btnVenta = new FontAwesome.Sharp.IconButton();
+            this.btnProductos = new FontAwesome.Sharp.IconButton();
+            this.btnRegistro = new FontAwesome.Sharp.IconButton();
             this.panelDashHead = new System.Windows.Forms.Panel();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.ptmfotouser = new RJCodeAdvance.RJControls.RJCircularPictureBox();
             this.panelDashOut = new System.Windows.Forms.Panel();
+            this.btnCerrarsesion = new FontAwesome.Sharp.IconButton();
             this.panelLayoutForms = new System.Windows.Forms.TableLayoutPanel();
             this.panelForms = new System.Windows.Forms.Panel();
             this.panelLayoutFormsHead = new System.Windows.Forms.TableLayoutPanel();
@@ -41,31 +47,25 @@
             this.panelButtomDash = new System.Windows.Forms.Panel();
             this.btnMenu = new FontAwesome.Sharp.IconButton();
             this.panelLayourMaximizar = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_minimizar = new FontAwesome.Sharp.IconButton();
             this.btn_cerrar = new FontAwesome.Sharp.IconButton();
             this.btn_maximizar = new FontAwesome.Sharp.IconButton();
-            this.btn_minimizar = new FontAwesome.Sharp.IconButton();
-            this.btnCerrarsesion = new FontAwesome.Sharp.IconButton();
-            this.ptmfotouser = new RJCodeAdvance.RJControls.RJCircularPictureBox();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.btnVenta = new FontAwesome.Sharp.IconButton();
-            this.btnProductos = new FontAwesome.Sharp.IconButton();
-            this.btnRegistro = new FontAwesome.Sharp.IconButton();
             this.panelLayoutMenu.SuspendLayout();
             this.panelDashCenter.SuspendLayout();
             this.panelDashHead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).BeginInit();
             this.panelDashOut.SuspendLayout();
             this.panelLayoutForms.SuspendLayout();
             this.panelLayoutFormsHead.SuspendLayout();
             this.panelDashHeadCenter.SuspendLayout();
             this.panelButtomDash.SuspendLayout();
             this.panelLayourMaximizar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLayoutMenu
             // 
             this.panelLayoutMenu.ColumnCount = 1;
-            this.panelLayoutMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
+            this.panelLayoutMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
             this.panelLayoutMenu.Controls.Add(this.panelDashCenter, 0, 1);
             this.panelLayoutMenu.Controls.Add(this.panelDashHead, 0, 0);
             this.panelLayoutMenu.Controls.Add(this.panelDashOut, 0, 2);
@@ -92,6 +92,84 @@
             this.panelDashCenter.Size = new System.Drawing.Size(149, 538);
             this.panelDashCenter.TabIndex = 0;
             // 
+            // btnVenta
+            // 
+            this.btnVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btnVenta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVenta.FlatAppearance.BorderSize = 0;
+            this.btnVenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVenta.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVenta.ForeColor = System.Drawing.Color.White;
+            this.btnVenta.IconChar = FontAwesome.Sharp.IconChar.MoneyBillTransfer;
+            this.btnVenta.IconColor = System.Drawing.Color.White;
+            this.btnVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVenta.IconSize = 30;
+            this.btnVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVenta.Location = new System.Drawing.Point(0, 3);
+            this.btnVenta.Name = "btnVenta";
+            this.btnVenta.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.btnVenta.Size = new System.Drawing.Size(149, 56);
+            this.btnVenta.TabIndex = 20;
+            this.btnVenta.Tag = "venta";
+            this.btnVenta.Text = "   Facturar";
+            this.btnVenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVenta.UseVisualStyleBackColor = false;
+            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
+            // 
+            // btnProductos
+            // 
+            this.btnProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btnProductos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProductos.FlatAppearance.BorderSize = 0;
+            this.btnProductos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProductos.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductos.ForeColor = System.Drawing.Color.White;
+            this.btnProductos.IconChar = FontAwesome.Sharp.IconChar.LayerGroup;
+            this.btnProductos.IconColor = System.Drawing.Color.White;
+            this.btnProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnProductos.IconSize = 30;
+            this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProductos.Location = new System.Drawing.Point(0, 65);
+            this.btnProductos.Name = "btnProductos";
+            this.btnProductos.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.btnProductos.Size = new System.Drawing.Size(149, 56);
+            this.btnProductos.TabIndex = 21;
+            this.btnProductos.Tag = "productos";
+            this.btnProductos.Text = "   R. Productos";
+            this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnProductos.UseVisualStyleBackColor = false;
+            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
+            // 
+            // btnRegistro
+            // 
+            this.btnRegistro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btnRegistro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegistro.FlatAppearance.BorderSize = 0;
+            this.btnRegistro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnRegistro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistro.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistro.ForeColor = System.Drawing.Color.White;
+            this.btnRegistro.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
+            this.btnRegistro.IconColor = System.Drawing.Color.White;
+            this.btnRegistro.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRegistro.IconSize = 30;
+            this.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegistro.Location = new System.Drawing.Point(0, 127);
+            this.btnRegistro.Name = "btnRegistro";
+            this.btnRegistro.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnRegistro.Size = new System.Drawing.Size(149, 56);
+            this.btnRegistro.TabIndex = 19;
+            this.btnRegistro.Tag = "registro";
+            this.btnRegistro.Text = "  Registros";
+            this.btnRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRegistro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRegistro.UseVisualStyleBackColor = false;
+            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
+            // 
             // panelDashHead
             // 
             this.panelDashHead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(17)))), ((int)(((byte)(91)))));
@@ -104,6 +182,42 @@
             this.panelDashHead.Size = new System.Drawing.Size(149, 100);
             this.panelDashHead.TabIndex = 1;
             // 
+            // lblNombre
+            // 
+            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNombre.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.ForeColor = System.Drawing.Color.White;
+            this.lblNombre.Location = new System.Drawing.Point(2, 79);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(10);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(150, 14);
+            this.lblNombre.TabIndex = 7;
+            this.lblNombre.Text = "Admin";
+            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ptmfotouser
+            // 
+            this.ptmfotouser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ptmfotouser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptmfotouser.BackgroundImage")));
+            this.ptmfotouser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ptmfotouser.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
+            this.ptmfotouser.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.ptmfotouser.BorderColor2 = System.Drawing.Color.HotPink;
+            this.ptmfotouser.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.ptmfotouser.BorderSize = 2;
+            this.ptmfotouser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ptmfotouser.GradientAngle = 50F;
+            this.ptmfotouser.Location = new System.Drawing.Point(42, 10);
+            this.ptmfotouser.Name = "ptmfotouser";
+            this.ptmfotouser.Size = new System.Drawing.Size(68, 68);
+            this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptmfotouser.TabIndex = 6;
+            this.ptmfotouser.TabStop = false;
+            // 
             // panelDashOut
             // 
             this.panelDashOut.BackColor = System.Drawing.Color.RosyBrown;
@@ -114,6 +228,33 @@
             this.panelDashOut.Name = "panelDashOut";
             this.panelDashOut.Size = new System.Drawing.Size(149, 35);
             this.panelDashOut.TabIndex = 2;
+            // 
+            // btnCerrarsesion
+            // 
+            this.btnCerrarsesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnCerrarsesion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarsesion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCerrarsesion.FlatAppearance.BorderSize = 0;
+            this.btnCerrarsesion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnCerrarsesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarsesion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarsesion.ForeColor = System.Drawing.Color.White;
+            this.btnCerrarsesion.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
+            this.btnCerrarsesion.IconColor = System.Drawing.Color.White;
+            this.btnCerrarsesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCerrarsesion.IconSize = 30;
+            this.btnCerrarsesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCerrarsesion.Location = new System.Drawing.Point(0, 0);
+            this.btnCerrarsesion.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCerrarsesion.Name = "btnCerrarsesion";
+            this.btnCerrarsesion.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnCerrarsesion.Size = new System.Drawing.Size(149, 35);
+            this.btnCerrarsesion.TabIndex = 24;
+            this.btnCerrarsesion.Tag = "perfiles";
+            this.btnCerrarsesion.Text = " Cerrar Sesión";
+            this.btnCerrarsesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCerrarsesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCerrarsesion.UseVisualStyleBackColor = false;
             // 
             // panelLayoutForms
             // 
@@ -233,6 +374,27 @@
             this.panelLayourMaximizar.Size = new System.Drawing.Size(100, 33);
             this.panelLayourMaximizar.TabIndex = 2;
             // 
+            // btn_minimizar
+            // 
+            this.btn_minimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btn_minimizar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_minimizar.FlatAppearance.BorderSize = 0;
+            this.btn_minimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_minimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btn_minimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_minimizar.ForeColor = System.Drawing.Color.White;
+            this.btn_minimizar.IconChar = FontAwesome.Sharp.IconChar.Minus;
+            this.btn_minimizar.IconColor = System.Drawing.Color.White;
+            this.btn_minimizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_minimizar.IconSize = 20;
+            this.btn_minimizar.Location = new System.Drawing.Point(0, 0);
+            this.btn_minimizar.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_minimizar.Name = "btn_minimizar";
+            this.btn_minimizar.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.btn_minimizar.Size = new System.Drawing.Size(33, 33);
+            this.btn_minimizar.TabIndex = 7;
+            this.btn_minimizar.UseVisualStyleBackColor = false;
+            // 
             // btn_cerrar
             // 
             this.btn_cerrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
@@ -275,168 +437,6 @@
             this.btn_maximizar.TabIndex = 6;
             this.btn_maximizar.UseVisualStyleBackColor = false;
             // 
-            // btn_minimizar
-            // 
-            this.btn_minimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btn_minimizar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_minimizar.FlatAppearance.BorderSize = 0;
-            this.btn_minimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btn_minimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btn_minimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_minimizar.ForeColor = System.Drawing.Color.White;
-            this.btn_minimizar.IconChar = FontAwesome.Sharp.IconChar.Minus;
-            this.btn_minimizar.IconColor = System.Drawing.Color.White;
-            this.btn_minimizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_minimizar.IconSize = 20;
-            this.btn_minimizar.Location = new System.Drawing.Point(0, 0);
-            this.btn_minimizar.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_minimizar.Name = "btn_minimizar";
-            this.btn_minimizar.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.btn_minimizar.Size = new System.Drawing.Size(33, 33);
-            this.btn_minimizar.TabIndex = 7;
-            this.btn_minimizar.UseVisualStyleBackColor = false;
-            // 
-            // btnCerrarsesion
-            // 
-            this.btnCerrarsesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnCerrarsesion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCerrarsesion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCerrarsesion.FlatAppearance.BorderSize = 0;
-            this.btnCerrarsesion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnCerrarsesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarsesion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrarsesion.ForeColor = System.Drawing.Color.White;
-            this.btnCerrarsesion.IconChar = FontAwesome.Sharp.IconChar.SignOutAlt;
-            this.btnCerrarsesion.IconColor = System.Drawing.Color.White;
-            this.btnCerrarsesion.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCerrarsesion.IconSize = 30;
-            this.btnCerrarsesion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCerrarsesion.Location = new System.Drawing.Point(0, 0);
-            this.btnCerrarsesion.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCerrarsesion.Name = "btnCerrarsesion";
-            this.btnCerrarsesion.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnCerrarsesion.Size = new System.Drawing.Size(149, 35);
-            this.btnCerrarsesion.TabIndex = 24;
-            this.btnCerrarsesion.Tag = "perfiles";
-            this.btnCerrarsesion.Text = " Cerrar Sesión";
-            this.btnCerrarsesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCerrarsesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCerrarsesion.UseVisualStyleBackColor = false;
-            // 
-            // ptmfotouser
-            // 
-            this.ptmfotouser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ptmfotouser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptmfotouser.BackgroundImage")));
-            this.ptmfotouser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ptmfotouser.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            this.ptmfotouser.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.ptmfotouser.BorderColor2 = System.Drawing.Color.HotPink;
-            this.ptmfotouser.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            this.ptmfotouser.BorderSize = 2;
-            this.ptmfotouser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ptmfotouser.GradientAngle = 50F;
-            this.ptmfotouser.Location = new System.Drawing.Point(42, 10);
-            this.ptmfotouser.Name = "ptmfotouser";
-            this.ptmfotouser.Size = new System.Drawing.Size(68, 68);
-            this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptmfotouser.TabIndex = 6;
-            this.ptmfotouser.TabStop = false;
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNombre.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.White;
-            this.lblNombre.Location = new System.Drawing.Point(2, 79);
-            this.lblNombre.Margin = new System.Windows.Forms.Padding(10);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(150, 14);
-            this.lblNombre.TabIndex = 7;
-            this.lblNombre.Text = "Admin";
-            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnVenta
-            // 
-            this.btnVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.btnVenta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVenta.FlatAppearance.BorderSize = 0;
-            this.btnVenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btnVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVenta.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVenta.ForeColor = System.Drawing.Color.White;
-            this.btnVenta.IconChar = FontAwesome.Sharp.IconChar.MoneyBillTransfer;
-            this.btnVenta.IconColor = System.Drawing.Color.White;
-            this.btnVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVenta.IconSize = 30;
-            this.btnVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVenta.Location = new System.Drawing.Point(0, 3);
-            this.btnVenta.Name = "btnVenta";
-            this.btnVenta.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.btnVenta.Size = new System.Drawing.Size(149, 56);
-            this.btnVenta.TabIndex = 20;
-            this.btnVenta.Tag = "venta";
-            this.btnVenta.Text = "   Facturar";
-            this.btnVenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVenta.UseVisualStyleBackColor = false;
-            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
-            // 
-            // btnProductos
-            // 
-            this.btnProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.btnProductos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnProductos.FlatAppearance.BorderSize = 0;
-            this.btnProductos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btnProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProductos.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProductos.ForeColor = System.Drawing.Color.White;
-            this.btnProductos.IconChar = FontAwesome.Sharp.IconChar.LayerGroup;
-            this.btnProductos.IconColor = System.Drawing.Color.White;
-            this.btnProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnProductos.IconSize = 30;
-            this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductos.Location = new System.Drawing.Point(0, 65);
-            this.btnProductos.Name = "btnProductos";
-            this.btnProductos.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnProductos.Size = new System.Drawing.Size(149, 56);
-            this.btnProductos.TabIndex = 21;
-            this.btnProductos.Tag = "productos";
-            this.btnProductos.Text = "   R. Productos";
-            this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnProductos.UseVisualStyleBackColor = false;
-            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
-            // 
-            // btnRegistro
-            // 
-            this.btnRegistro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.btnRegistro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegistro.FlatAppearance.BorderSize = 0;
-            this.btnRegistro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btnRegistro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistro.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistro.ForeColor = System.Drawing.Color.White;
-            this.btnRegistro.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
-            this.btnRegistro.IconColor = System.Drawing.Color.White;
-            this.btnRegistro.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRegistro.IconSize = 30;
-            this.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistro.Location = new System.Drawing.Point(0, 127);
-            this.btnRegistro.Name = "btnRegistro";
-            this.btnRegistro.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnRegistro.Size = new System.Drawing.Size(149, 56);
-            this.btnRegistro.TabIndex = 19;
-            this.btnRegistro.Tag = "registro";
-            this.btnRegistro.Text = "  Registros";
-            this.btnRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRegistro.UseVisualStyleBackColor = false;
-            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,6 +446,7 @@
             this.Controls.Add(this.panelLayoutForms);
             this.Controls.Add(this.panelLayoutMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISTEMA DE FACTURACIÓN";
@@ -453,13 +454,13 @@
             this.panelLayoutMenu.ResumeLayout(false);
             this.panelDashCenter.ResumeLayout(false);
             this.panelDashHead.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).EndInit();
             this.panelDashOut.ResumeLayout(false);
             this.panelLayoutForms.ResumeLayout(false);
             this.panelLayoutFormsHead.ResumeLayout(false);
             this.panelDashHeadCenter.ResumeLayout(false);
             this.panelButtomDash.ResumeLayout(false);
             this.panelLayourMaximizar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).EndInit();
             this.ResumeLayout(false);
 
         }
