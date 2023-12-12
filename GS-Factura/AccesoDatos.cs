@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 
 namespace GS_Factura
 {
@@ -27,26 +27,12 @@ namespace GS_Factura
         }
 
 
-        public SqlConnection AbrirConexion()
+        public static SqlConnection abrirConexion()
         {
-            try
-            {
-                if (conexion == null)
-
-
-                if (conexion.State != System.Data.ConnectionState.Open)
-                {
-                    conexion.Open();
-                }
-
-                return true;
-                //return conexion;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
+            string cadena = string.Format(cadenaConexion);
+            SqlConnection oCon = new SqlConnection(cadena);
+            oCon.Open();
+            return oCon;
         }
 
         public void CerrarConexion()
@@ -100,6 +86,26 @@ namespace GS_Factura
             }
             return oDS;
 
+        }
+
+        public static DataTable llenartablaparabuscar(string consul)
+        {
+            DataTable tabla = new DataTable();
+            try
+            {
+                abrirConexion();
+                tabla = new DataTable();
+                string consultar = consul;
+                SqlCommand comando = new SqlCommand(consultar, abrirConexion());
+                SqlDataAdapter data = new SqlDataAdapter(comando);
+                data.Fill(tabla);
+                return tabla;
+            }
+            catch (Exception sms1)
+            {
+                MessageBox.Show(sms1.Message);
+                return tabla;
+            }
         }
 
     }
