@@ -35,21 +35,21 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.iconButton6 = new FontAwesome.Sharp.IconButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtnombreproducto = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.txtpreciounitario = new System.Windows.Forms.TextBox();
             this.panel17 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
-            this.txtcantidadproducto = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnGuardarPorducto = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.lblidproducto = new System.Windows.Forms.Label();
+            this.txtcantidadproducto = new RJCodeAdvance.RJControls.RJTextBox();
+            this.txtpreciounitario = new RJCodeAdvance.RJControls.RJTextBox();
+            this.txtnombreproducto = new RJCodeAdvance.RJControls.RJTextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -132,10 +132,10 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Controls.Add(this.txtnombreproducto);
             this.panel10.Controls.Add(this.lblidproducto);
             this.panel10.Controls.Add(this.iconButton6);
             this.panel10.Controls.Add(this.label9);
-            this.panel10.Controls.Add(this.txtnombreproducto);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Margin = new System.Windows.Forms.Padding(0);
@@ -175,21 +175,6 @@
             this.label9.Text = "Nombre del Producto: (requerido)";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtnombreproducto
-            // 
-            this.txtnombreproducto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtnombreproducto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtnombreproducto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtnombreproducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtnombreproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombreproducto.ForeColor = System.Drawing.Color.DimGray;
-            this.txtnombreproducto.Location = new System.Drawing.Point(74, 49);
-            this.txtnombreproducto.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.txtnombreproducto.Name = "txtnombreproducto";
-            this.txtnombreproducto.Size = new System.Drawing.Size(461, 39);
-            this.txtnombreproducto.TabIndex = 20;
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
@@ -209,9 +194,9 @@
             // panel15
             // 
             this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Controls.Add(this.txtpreciounitario);
             this.panel15.Controls.Add(this.label10);
             this.panel15.Controls.Add(this.iconButton1);
-            this.panel15.Controls.Add(this.txtpreciounitario);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(278, 0);
             this.panel15.Margin = new System.Windows.Forms.Padding(0);
@@ -253,27 +238,12 @@
             this.iconButton1.TabIndex = 1;
             this.iconButton1.UseVisualStyleBackColor = false;
             // 
-            // txtpreciounitario
-            // 
-            this.txtpreciounitario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtpreciounitario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtpreciounitario.Enabled = false;
-            this.txtpreciounitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpreciounitario.ForeColor = System.Drawing.Color.DimGray;
-            this.txtpreciounitario.Location = new System.Drawing.Point(72, 49);
-            this.txtpreciounitario.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.txtpreciounitario.Name = "txtpreciounitario";
-            this.txtpreciounitario.Size = new System.Drawing.Size(191, 39);
-            this.txtpreciounitario.TabIndex = 16;
-            this.txtpreciounitario.Text = "00,00";
-            this.txtpreciounitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.Color.White;
+            this.panel17.Controls.Add(this.txtcantidadproducto);
             this.panel17.Controls.Add(this.label4);
             this.panel17.Controls.Add(this.iconButton10);
-            this.panel17.Controls.Add(this.txtcantidadproducto);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel17.Location = new System.Drawing.Point(0, 0);
             this.panel17.Margin = new System.Windows.Forms.Padding(0);
@@ -314,21 +284,6 @@
             this.iconButton10.Size = new System.Drawing.Size(50, 45);
             this.iconButton10.TabIndex = 1;
             this.iconButton10.UseVisualStyleBackColor = false;
-            // 
-            // txtcantidadproducto
-            // 
-            this.txtcantidadproducto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtcantidadproducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtcantidadproducto.Enabled = false;
-            this.txtcantidadproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcantidadproducto.ForeColor = System.Drawing.Color.DimGray;
-            this.txtcantidadproducto.Location = new System.Drawing.Point(64, 49);
-            this.txtcantidadproducto.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
-            this.txtcantidadproducto.Name = "txtcantidadproducto";
-            this.txtcantidadproducto.Size = new System.Drawing.Size(197, 39);
-            this.txtcantidadproducto.TabIndex = 16;
-            this.txtcantidadproducto.Text = "00,00";
-            this.txtcantidadproducto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel3
             // 
@@ -400,6 +355,72 @@
             this.lblidproducto.Text = "label14";
             this.lblidproducto.Visible = false;
             // 
+            // txtcantidadproducto
+            // 
+            this.txtcantidadproducto.BackColor = System.Drawing.SystemColors.Window;
+            this.txtcantidadproducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtcantidadproducto.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtcantidadproducto.BorderRadius = 0;
+            this.txtcantidadproducto.BorderSize = 2;
+            this.txtcantidadproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtcantidadproducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtcantidadproducto.Location = new System.Drawing.Point(70, 49);
+            this.txtcantidadproducto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtcantidadproducto.Multiline = false;
+            this.txtcantidadproducto.Name = "txtcantidadproducto";
+            this.txtcantidadproducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtcantidadproducto.PasswordChar = false;
+            this.txtcantidadproducto.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtcantidadproducto.PlaceholderText = "00,00";
+            this.txtcantidadproducto.Size = new System.Drawing.Size(184, 47);
+            this.txtcantidadproducto.TabIndex = 35;
+            this.txtcantidadproducto.Texts = "";
+            this.txtcantidadproducto.UnderlinedStyle = false;
+            // 
+            // txtpreciounitario
+            // 
+            this.txtpreciounitario.BackColor = System.Drawing.SystemColors.Window;
+            this.txtpreciounitario.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtpreciounitario.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtpreciounitario.BorderRadius = 0;
+            this.txtpreciounitario.BorderSize = 2;
+            this.txtpreciounitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtpreciounitario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtpreciounitario.Location = new System.Drawing.Point(78, 49);
+            this.txtpreciounitario.Margin = new System.Windows.Forms.Padding(4);
+            this.txtpreciounitario.Multiline = false;
+            this.txtpreciounitario.Name = "txtpreciounitario";
+            this.txtpreciounitario.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtpreciounitario.PasswordChar = false;
+            this.txtpreciounitario.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtpreciounitario.PlaceholderText = "00,00";
+            this.txtpreciounitario.Size = new System.Drawing.Size(184, 47);
+            this.txtpreciounitario.TabIndex = 36;
+            this.txtpreciounitario.Texts = "";
+            this.txtpreciounitario.UnderlinedStyle = false;
+            // 
+            // txtnombreproducto
+            // 
+            this.txtnombreproducto.BackColor = System.Drawing.SystemColors.Window;
+            this.txtnombreproducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtnombreproducto.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtnombreproducto.BorderRadius = 0;
+            this.txtnombreproducto.BorderSize = 2;
+            this.txtnombreproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtnombreproducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtnombreproducto.Location = new System.Drawing.Point(78, 49);
+            this.txtnombreproducto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtnombreproducto.Multiline = false;
+            this.txtnombreproducto.Name = "txtnombreproducto";
+            this.txtnombreproducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtnombreproducto.PasswordChar = false;
+            this.txtnombreproducto.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtnombreproducto.PlaceholderText = "Nombre del Producto";
+            this.txtnombreproducto.Size = new System.Drawing.Size(462, 47);
+            this.txtnombreproducto.TabIndex = 37;
+            this.txtnombreproducto.Texts = "";
+            this.txtnombreproducto.UnderlinedStyle = false;
+            // 
             // GS_RP_ADD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -437,20 +458,20 @@
         private System.Windows.Forms.Panel panel10;
         private FontAwesome.Sharp.IconButton iconButton6;
         private System.Windows.Forms.Label label9;
-        public System.Windows.Forms.TextBox txtnombreproducto;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Label label10;
         private FontAwesome.Sharp.IconButton iconButton1;
-        public System.Windows.Forms.TextBox txtpreciounitario;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Label label4;
         private FontAwesome.Sharp.IconButton iconButton10;
-        public System.Windows.Forms.TextBox txtcantidadproducto;
         private System.Windows.Forms.Panel panel4;
         private FontAwesome.Sharp.IconButton btncloseLote;
         private System.Windows.Forms.Panel panel3;
         public FontAwesome.Sharp.IconButton btnGuardarPorducto;
         public System.Windows.Forms.Label lblidproducto;
+        private RJCodeAdvance.RJControls.RJTextBox txtcantidadproducto;
+        private RJCodeAdvance.RJControls.RJTextBox txtnombreproducto;
+        private RJCodeAdvance.RJControls.RJTextBox txtpreciounitario;
     }
 }
