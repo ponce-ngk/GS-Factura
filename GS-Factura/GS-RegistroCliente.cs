@@ -21,5 +21,10 @@ namespace GS_Factura
         {
 
         }
+
+        private void btnlimpiardatos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
