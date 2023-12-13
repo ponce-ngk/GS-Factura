@@ -16,5 +16,10 @@ namespace GS_Factura
         {
             InitializeComponent();
         }
+
+        private void btncloseLote_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -63,6 +63,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Controls.Add(this.panel2);
@@ -126,6 +127,7 @@
             this.btncloseLote.TabIndex = 34;
             this.btncloseLote.Text = "         Volver";
             this.btncloseLote.UseVisualStyleBackColor = false;
+            this.btncloseLote.Click += new System.EventHandler(this.btncloseLote_Click);
             // 
             // panel10
             // 
@@ -403,7 +405,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCoral;
-            this.ClientSize = new System.Drawing.Size(766, 249);
+            this.ClientSize = new System.Drawing.Size(1149, 374);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
