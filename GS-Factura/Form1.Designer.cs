@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelLayoutMenu = new System.Windows.Forms.TableLayoutPanel();
             this.panelDashCenter = new System.Windows.Forms.Panel();
+            this.btnBuscaFactura = new FontAwesome.Sharp.IconButton();
             this.btnVenta = new FontAwesome.Sharp.IconButton();
             this.btnProductos = new FontAwesome.Sharp.IconButton();
             this.btnRegistro = new FontAwesome.Sharp.IconButton();
@@ -50,7 +51,6 @@
             this.btn_minimizar = new FontAwesome.Sharp.IconButton();
             this.btn_cerrar = new FontAwesome.Sharp.IconButton();
             this.btn_maximizar = new FontAwesome.Sharp.IconButton();
-            this.btnBuscaFactura = new FontAwesome.Sharp.IconButton();
             this.panelLayoutMenu.SuspendLayout();
             this.panelDashCenter.SuspendLayout();
             this.panelDashHead.SuspendLayout();
@@ -93,6 +93,32 @@
             this.panelDashCenter.Name = "panelDashCenter";
             this.panelDashCenter.Size = new System.Drawing.Size(149, 538);
             this.panelDashCenter.TabIndex = 0;
+            // 
+            // btnBuscaFactura
+            // 
+            this.btnBuscaFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btnBuscaFactura.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscaFactura.FlatAppearance.BorderSize = 0;
+            this.btnBuscaFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnBuscaFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscaFactura.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscaFactura.ForeColor = System.Drawing.Color.White;
+            this.btnBuscaFactura.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassChart;
+            this.btnBuscaFactura.IconColor = System.Drawing.Color.White;
+            this.btnBuscaFactura.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscaFactura.IconSize = 30;
+            this.btnBuscaFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscaFactura.Location = new System.Drawing.Point(0, 189);
+            this.btnBuscaFactura.Name = "btnBuscaFactura";
+            this.btnBuscaFactura.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnBuscaFactura.Size = new System.Drawing.Size(149, 56);
+            this.btnBuscaFactura.TabIndex = 22;
+            this.btnBuscaFactura.Tag = "registro";
+            this.btnBuscaFactura.Text = "  Facturas";
+            this.btnBuscaFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscaFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBuscaFactura.UseVisualStyleBackColor = false;
+            this.btnBuscaFactura.Click += new System.EventHandler(this.btnBuscaFactura_Click);
             // 
             // btnVenta
             // 
@@ -444,31 +470,6 @@
             this.btn_maximizar.TabIndex = 6;
             this.btn_maximizar.UseVisualStyleBackColor = false;
             this.btn_maximizar.Click += new System.EventHandler(this.btn_maximizar_Click);
-            // 
-            // btnBuscaFactura
-            // 
-            this.btnBuscaFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.btnBuscaFactura.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscaFactura.FlatAppearance.BorderSize = 0;
-            this.btnBuscaFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btnBuscaFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscaFactura.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscaFactura.ForeColor = System.Drawing.Color.White;
-            this.btnBuscaFactura.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassChart;
-            this.btnBuscaFactura.IconColor = System.Drawing.Color.White;
-            this.btnBuscaFactura.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBuscaFactura.IconSize = 30;
-            this.btnBuscaFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscaFactura.Location = new System.Drawing.Point(0, 189);
-            this.btnBuscaFactura.Name = "btnBuscaFactura";
-            this.btnBuscaFactura.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnBuscaFactura.Size = new System.Drawing.Size(149, 56);
-            this.btnBuscaFactura.TabIndex = 22;
-            this.btnBuscaFactura.Tag = "registro";
-            this.btnBuscaFactura.Text = "  Facturas";
-            this.btnBuscaFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscaFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBuscaFactura.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 

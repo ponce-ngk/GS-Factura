@@ -95,6 +95,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GS-BuscaFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GS-BuscaFactura.Designer.cs">
+      <DependentUpon>GS-BuscaFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="GS-Factura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GS-BuscaFactura.resx">
+      <DependentUpon>GS-BuscaFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GS-Factura.resx">
       <DependentUpon>GS-Factura.cs</DependentUpon>
