@@ -26,5 +26,10 @@ namespace GS_Factura
         {
 
         }
+
+        private void btnEliminarCliente_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
