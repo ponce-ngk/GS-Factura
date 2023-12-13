@@ -115,5 +115,11 @@ namespace GS_Factura
             AbrirFormEnPanel(new GS_Inicio());
             return;
         }
+
+        private void btnBuscaFactura_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new GS_BuscaFactura());
+            return;
+        }
     }
 }
