@@ -16,5 +16,11 @@ namespace GS_Factura
         {
             InitializeComponent();
         }
+
+        private void GS_Factura_Load(object sender, EventArgs e)
+        {
+
+            this.reportViewer1.RefreshReport();
+        }
     }
 }
