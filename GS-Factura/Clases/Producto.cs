@@ -45,8 +45,10 @@ class CrudProducto
         {
             using (SqlConnection conex = AccesoDatos.abrirConexion())
             {
-                SqlCommand comando = new SqlCommand(string.Format("exec sp_Insertar_CLIENTE '{0}','{1}','{2}','{3}'",
-                                pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);
+                //SqlCommand comando = new SqlCommand(string.Format("exec sp_Insertar_CLIENTE '{0}','{1}','{2}','{3}'",
+                //                pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);
+                SqlCommand comando = new SqlCommand(string.Format("exec sp_Insertar_PRODUCTO " +
+                    "('"+pProducto.PRODUCTO1+"',"+pProducto.PRECIO_UNITARIO1+","+pProducto.STOTCK1+")"),conex);
                 retorno = comando.ExecuteNonQuery();
                 conex.Close();
 
@@ -60,15 +62,17 @@ class CrudProducto
         }
     }
 
-    public static int ActualizarClient(Producto pProducto)
+    public static int ActualizarProducto(Producto pProducto)
     {
         int retorno = 0;
         try
         {
             using (SqlConnection conex = AccesoDatos.abrirConexion())
             {
-                SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_CLIENTE '{0}','{1}','{2}','{3}','{4}'",
-                                pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);
+                //SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_CLIENTE '{0}','{1}','{2}','{3}','{4}'",
+                //                pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);
+                SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_PRODUCTO " +
+                    "("+pProducto.IDPRODUCTO1+",'" + pProducto.PRODUCTO1 + "'," + pProducto.PRECIO_UNITARIO1 + "," + pProducto.STOTCK1 + ")"), conex);
                 retorno = comando.ExecuteNonQuery();
                 conex.Close();
 
@@ -82,15 +86,16 @@ class CrudProducto
         }
     }
 
-    public static int EliminarClient(Producto pProducto)
+    public static int EliminarProducto(Producto pProducto)
     {
         int retorno = 0;
         try
         {
             using (SqlConnection conex = AccesoDatos.abrirConexion())
             {
-                SqlCommand comando = new SqlCommand(string.Format("exec sp_eliminar_CLIENTE '{0}','{1}'",
-                                pProducto.IDPRODUCTO1, pProducto.ESTADO1), conex);
+                //SqlCommand comando = new SqlCommand(string.Format("exec sp_eliminar_CLIENTE '{0}','{1}'",
+                //                pProducto.IDPRODUCTO1, pProducto.ESTADO1), conex);
+                SqlCommand comando = new SqlCommand(string.Format("exec sp_eliminar_PRODUCTO ("+pProducto.IDPRODUCTO1 +")"), conex);
                 retorno = comando.ExecuteNonQuery();
                 conex.Close();
 
