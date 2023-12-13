@@ -16,17 +16,7 @@ namespace GS_Factura
         {
             InitializeComponent();
             AccesoDatos fr = new AccesoDatos();
-            dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("select IDCLIENTE, CEDULA, NOMBRE, FECHA_NACIMIENTO from CLIENTE");
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btnlimpiardatos_Click(object sender, EventArgs e)
-        {
-
+            dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("select IDCLIENTE, CEDULA, NOMBRE, APELLIDOS, FECHA_NACIMIENTO from CLIENTE");
         }
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
