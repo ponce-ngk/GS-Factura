@@ -15,6 +15,8 @@ namespace GS_Factura
         public GS_RegistroCliente()
         {
             InitializeComponent();
+            AccesoDatos fr = new AccesoDatos();
+            dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("select IDCLIENTE, CEDULA, NOMBRE, FECHA_NACIMIENTO from CLIENTE");
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
