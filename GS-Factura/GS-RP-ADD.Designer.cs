@@ -415,7 +415,7 @@
             this.txtnombreproducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.txtnombreproducto.PasswordChar = false;
             this.txtnombreproducto.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtnombreproducto.PlaceholderText = "Nombre del Producto.";
+            this.txtnombreproducto.PlaceholderText = "Nombre del Producto";
             this.txtnombreproducto.Size = new System.Drawing.Size(462, 47);
             this.txtnombreproducto.TabIndex = 37;
             this.txtnombreproducto.Texts = "";
