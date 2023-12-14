@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -43,7 +43,7 @@
             this.panel19 = new System.Windows.Forms.Panel();
             this.btnGuardarDueño = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dtpCliente = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaCliente = new System.Windows.Forms.DateTimePicker();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -179,6 +179,7 @@
             this.btnlimpiardatos.TabIndex = 12;
             this.btnlimpiardatos.Text = "         Limpiar Datos";
             this.btnlimpiardatos.UseVisualStyleBackColor = false;
+            this.btnlimpiardatos.Click += new System.EventHandler(this.btnlimpiardatos_Click);
             // 
             // panel21
             // 
@@ -267,6 +268,7 @@
             this.btnEditarCliente.TabIndex = 11;
             this.btnEditarCliente.Text = "         Actualizar";
             this.btnEditarCliente.UseVisualStyleBackColor = false;
+            this.btnEditarCliente.Click += new System.EventHandler(this.btnEditarCliente_Click);
             // 
             // panel19
             // 
@@ -302,10 +304,11 @@
             this.btnGuardarDueño.TabIndex = 10;
             this.btnGuardarDueño.Text = "         Guardar";
             this.btnGuardarDueño.UseVisualStyleBackColor = false;
+            this.btnGuardarDueño.Click += new System.EventHandler(this.btnGuardarDueño_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dtpCliente);
+            this.panel1.Controls.Add(this.dtpFechaCliente);
             this.panel1.Controls.Add(this.iconButton1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -315,14 +318,14 @@
             this.panel1.Size = new System.Drawing.Size(434, 75);
             this.panel1.TabIndex = 5;
             // 
-            // dtpCliente
+            // dtpFechaCliente
             // 
-            this.dtpCliente.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpCliente.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpCliente.Location = new System.Drawing.Point(46, 32);
-            this.dtpCliente.Name = "dtpCliente";
-            this.dtpCliente.Size = new System.Drawing.Size(375, 29);
-            this.dtpCliente.TabIndex = 19;
+            this.dtpFechaCliente.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaCliente.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaCliente.Location = new System.Drawing.Point(46, 32);
+            this.dtpFechaCliente.Name = "dtpFechaCliente";
+            this.dtpFechaCliente.Size = new System.Drawing.Size(375, 29);
+            this.dtpFechaCliente.TabIndex = 19;
             // 
             // iconButton1
             // 
@@ -625,11 +628,12 @@
             this.dgvClientes.ReadOnly = true;
             this.dgvClientes.RowHeadersVisible = false;
             this.dgvClientes.RowHeadersWidth = 51;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvClientes.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvClientes.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClientes.Size = new System.Drawing.Size(865, 219);
             this.dgvClientes.TabIndex = 113;
+            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
             // GS_RegistroCliente
             // 
@@ -681,7 +685,7 @@
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox txtnombrescliente;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker dtpCliente;
+        private System.Windows.Forms.DateTimePicker dtpFechaCliente;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -703,7 +707,7 @@
         private System.Windows.Forms.Panel panel21;
         private FontAwesome.Sharp.IconButton btnEliminarCliente;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dgvClientes;
     }
 }
