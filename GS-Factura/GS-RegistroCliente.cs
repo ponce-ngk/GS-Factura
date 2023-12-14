@@ -75,7 +75,7 @@ namespace GS_Factura
                 pClientes.Apellido = txtapellidoscliente.Text;
                 pClientes.FechaNA = dtpFechaCliente.Text;
 
-
+                //MessageBox.Show("Hola mundo");
                 int resultado = CrudCliente.ActualizarClient(pClientes);
 
                 if (resultado > 0)
