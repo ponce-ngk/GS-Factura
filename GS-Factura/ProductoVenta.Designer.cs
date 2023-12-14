@@ -277,7 +277,7 @@
             this.txtpreciounitario.Name = "txtpreciounitario";
             this.txtpreciounitario.Size = new System.Drawing.Size(170, 34);
             this.txtpreciounitario.TabIndex = 16;
-            this.txtpreciounitario.Text = "00,00";
+            this.txtpreciounitario.Text = "1,2";
             this.txtpreciounitario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel17
