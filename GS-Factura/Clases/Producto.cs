@@ -19,6 +19,11 @@ namespace GS_Factura.Clases
         string PRECIO_UNITARIO;
         string STOTCK;
         char ESTADO;
+
+        public Producto()
+        {
+        }
+
         public Producto(int iDPRODUCTO, string pRODUCTO, string pRECIO_UNITARIO, string sTOTCK, char eSTADO)
         {
             IDPRODUCTO = iDPRODUCTO;
@@ -48,10 +53,9 @@ class CrudProducto
                 //SqlCommand comando = new SqlCommand(string.Format("exec sp_Insertar_CLIENTE '{0}','{1}','{2}','{3}'",
                 //                pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);
                 SqlCommand comando = new SqlCommand(string.Format("exec sp_Insertar_PRODUCTO " +
-                    "('"+pProducto.PRODUCTO1+"',"+pProducto.PRECIO_UNITARIO1+","+pProducto.STOTCK1+")"),conex);
+                    ""+pProducto.PRODUCTO1+","+pProducto.PRECIO_UNITARIO1+","+pProducto.STOTCK1+""),conex);
                 retorno = comando.ExecuteNonQuery();
                 conex.Close();
-
             }
             return retorno;
         }
@@ -72,10 +76,9 @@ class CrudProducto
                 //SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_CLIENTE '{0}','{1}','{2}','{3}','{4}'",
                 //                pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);
                 SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_PRODUCTO " +
-                    "("+pProducto.IDPRODUCTO1+",'" + pProducto.PRODUCTO1 + "'," + pProducto.PRECIO_UNITARIO1 + "," + pProducto.STOTCK1 + ")"), conex);
+                    ""+pProducto.IDPRODUCTO1+"," + pProducto.PRODUCTO1 + "," + pProducto.PRECIO_UNITARIO1 + "," + pProducto.STOTCK1 + ""), conex);
                 retorno = comando.ExecuteNonQuery();
                 conex.Close();
-
             }
             return retorno;
         }
@@ -95,10 +98,9 @@ class CrudProducto
             {
                 //SqlCommand comando = new SqlCommand(string.Format("exec sp_eliminar_CLIENTE '{0}','{1}'",
                 //                pProducto.IDPRODUCTO1, pProducto.ESTADO1), conex);
-                SqlCommand comando = new SqlCommand(string.Format("exec sp_eliminar_PRODUCTO ("+pProducto.IDPRODUCTO1 +")"), conex);
+                SqlCommand comando = new SqlCommand(string.Format("exec sp_eliminar_PRODUCTO "+pProducto.IDPRODUCTO1 +""), conex);
                 retorno = comando.ExecuteNonQuery();
                 conex.Close();
-
             }
             return retorno;
         }

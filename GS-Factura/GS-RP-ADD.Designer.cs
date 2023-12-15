@@ -33,23 +33,23 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btncloseLote = new FontAwesome.Sharp.IconButton();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.txtnombreproducto = new RJCodeAdvance.RJControls.RJTextBox();
+            this.lblidproducto = new System.Windows.Forms.Label();
             this.iconButton6 = new FontAwesome.Sharp.IconButton();
             this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.txtpreciounitario = new RJCodeAdvance.RJControls.RJTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.txtcantidadproducto = new RJCodeAdvance.RJControls.RJTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnGuardarPorducto = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblidproducto = new System.Windows.Forms.Label();
-            this.txtcantidadproducto = new RJCodeAdvance.RJControls.RJTextBox();
-            this.txtpreciounitario = new RJCodeAdvance.RJControls.RJTextBox();
-            this.txtnombreproducto = new RJCodeAdvance.RJControls.RJTextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -143,6 +143,39 @@
             this.panel10.Size = new System.Drawing.Size(556, 126);
             this.panel10.TabIndex = 1;
             // 
+            // txtnombreproducto
+            // 
+            this.txtnombreproducto.BackColor = System.Drawing.SystemColors.Window;
+            this.txtnombreproducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtnombreproducto.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtnombreproducto.BorderRadius = 0;
+            this.txtnombreproducto.BorderSize = 2;
+            this.txtnombreproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtnombreproducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtnombreproducto.Location = new System.Drawing.Point(78, 49);
+            this.txtnombreproducto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtnombreproducto.Multiline = false;
+            this.txtnombreproducto.Name = "txtnombreproducto";
+            this.txtnombreproducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtnombreproducto.PasswordChar = false;
+            this.txtnombreproducto.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtnombreproducto.PlaceholderText = "Nombre del Producto";
+            this.txtnombreproducto.Size = new System.Drawing.Size(462, 47);
+            this.txtnombreproducto.TabIndex = 37;
+            this.txtnombreproducto.Texts = "";
+            this.txtnombreproducto.UnderlinedStyle = false;
+            // 
+            // lblidproducto
+            // 
+            this.lblidproducto.AutoSize = true;
+            this.lblidproducto.Location = new System.Drawing.Point(478, 20);
+            this.lblidproducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblidproducto.Name = "lblidproducto";
+            this.lblidproducto.Size = new System.Drawing.Size(60, 20);
+            this.lblidproducto.TabIndex = 23;
+            this.lblidproducto.Text = "label14";
+            this.lblidproducto.Visible = false;
+            // 
             // iconButton6
             // 
             this.iconButton6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
@@ -204,6 +237,28 @@
             this.panel15.Size = new System.Drawing.Size(279, 126);
             this.panel15.TabIndex = 7;
             // 
+            // txtpreciounitario
+            // 
+            this.txtpreciounitario.BackColor = System.Drawing.SystemColors.Window;
+            this.txtpreciounitario.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtpreciounitario.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtpreciounitario.BorderRadius = 0;
+            this.txtpreciounitario.BorderSize = 2;
+            this.txtpreciounitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtpreciounitario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtpreciounitario.Location = new System.Drawing.Point(78, 49);
+            this.txtpreciounitario.Margin = new System.Windows.Forms.Padding(4);
+            this.txtpreciounitario.Multiline = false;
+            this.txtpreciounitario.Name = "txtpreciounitario";
+            this.txtpreciounitario.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtpreciounitario.PasswordChar = false;
+            this.txtpreciounitario.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtpreciounitario.PlaceholderText = "00,00";
+            this.txtpreciounitario.Size = new System.Drawing.Size(184, 47);
+            this.txtpreciounitario.TabIndex = 36;
+            this.txtpreciounitario.Texts = "";
+            this.txtpreciounitario.UnderlinedStyle = false;
+            // 
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -250,6 +305,28 @@
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(278, 126);
             this.panel17.TabIndex = 6;
+            // 
+            // txtcantidadproducto
+            // 
+            this.txtcantidadproducto.BackColor = System.Drawing.SystemColors.Window;
+            this.txtcantidadproducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtcantidadproducto.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtcantidadproducto.BorderRadius = 0;
+            this.txtcantidadproducto.BorderSize = 2;
+            this.txtcantidadproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtcantidadproducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtcantidadproducto.Location = new System.Drawing.Point(70, 49);
+            this.txtcantidadproducto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtcantidadproducto.Multiline = false;
+            this.txtcantidadproducto.Name = "txtcantidadproducto";
+            this.txtcantidadproducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtcantidadproducto.PasswordChar = false;
+            this.txtcantidadproducto.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.txtcantidadproducto.PlaceholderText = "00,00";
+            this.txtcantidadproducto.Size = new System.Drawing.Size(184, 47);
+            this.txtcantidadproducto.TabIndex = 35;
+            this.txtcantidadproducto.Texts = "";
+            this.txtcantidadproducto.UnderlinedStyle = false;
             // 
             // label4
             // 
@@ -320,6 +397,7 @@
             this.btnGuardarPorducto.TabIndex = 11;
             this.btnGuardarPorducto.Text = "         Guardar";
             this.btnGuardarPorducto.UseVisualStyleBackColor = false;
+            this.btnGuardarPorducto.Click += new System.EventHandler(this.btnGuardarPorducto_Click);
             // 
             // panel2
             // 
@@ -343,83 +421,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "FORMULARIO DE REGISTRO DEL PRODUCTO";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblidproducto
-            // 
-            this.lblidproducto.AutoSize = true;
-            this.lblidproducto.Location = new System.Drawing.Point(478, 20);
-            this.lblidproducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblidproducto.Name = "lblidproducto";
-            this.lblidproducto.Size = new System.Drawing.Size(60, 20);
-            this.lblidproducto.TabIndex = 23;
-            this.lblidproducto.Text = "label14";
-            this.lblidproducto.Visible = false;
-            // 
-            // txtcantidadproducto
-            // 
-            this.txtcantidadproducto.BackColor = System.Drawing.SystemColors.Window;
-            this.txtcantidadproducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtcantidadproducto.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtcantidadproducto.BorderRadius = 0;
-            this.txtcantidadproducto.BorderSize = 2;
-            this.txtcantidadproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtcantidadproducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtcantidadproducto.Location = new System.Drawing.Point(70, 49);
-            this.txtcantidadproducto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtcantidadproducto.Multiline = false;
-            this.txtcantidadproducto.Name = "txtcantidadproducto";
-            this.txtcantidadproducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtcantidadproducto.PasswordChar = false;
-            this.txtcantidadproducto.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtcantidadproducto.PlaceholderText = "00,00";
-            this.txtcantidadproducto.Size = new System.Drawing.Size(184, 47);
-            this.txtcantidadproducto.TabIndex = 35;
-            this.txtcantidadproducto.Texts = "";
-            this.txtcantidadproducto.UnderlinedStyle = false;
-            // 
-            // txtpreciounitario
-            // 
-            this.txtpreciounitario.BackColor = System.Drawing.SystemColors.Window;
-            this.txtpreciounitario.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtpreciounitario.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtpreciounitario.BorderRadius = 0;
-            this.txtpreciounitario.BorderSize = 2;
-            this.txtpreciounitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtpreciounitario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtpreciounitario.Location = new System.Drawing.Point(78, 49);
-            this.txtpreciounitario.Margin = new System.Windows.Forms.Padding(4);
-            this.txtpreciounitario.Multiline = false;
-            this.txtpreciounitario.Name = "txtpreciounitario";
-            this.txtpreciounitario.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtpreciounitario.PasswordChar = false;
-            this.txtpreciounitario.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtpreciounitario.PlaceholderText = "00,00";
-            this.txtpreciounitario.Size = new System.Drawing.Size(184, 47);
-            this.txtpreciounitario.TabIndex = 36;
-            this.txtpreciounitario.Texts = "";
-            this.txtpreciounitario.UnderlinedStyle = false;
-            // 
-            // txtnombreproducto
-            // 
-            this.txtnombreproducto.BackColor = System.Drawing.SystemColors.Window;
-            this.txtnombreproducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtnombreproducto.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtnombreproducto.BorderRadius = 0;
-            this.txtnombreproducto.BorderSize = 2;
-            this.txtnombreproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtnombreproducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtnombreproducto.Location = new System.Drawing.Point(78, 49);
-            this.txtnombreproducto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtnombreproducto.Multiline = false;
-            this.txtnombreproducto.Name = "txtnombreproducto";
-            this.txtnombreproducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtnombreproducto.PasswordChar = false;
-            this.txtnombreproducto.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtnombreproducto.PlaceholderText = "Nombre del Producto";
-            this.txtnombreproducto.Size = new System.Drawing.Size(462, 47);
-            this.txtnombreproducto.TabIndex = 37;
-            this.txtnombreproducto.Texts = "";
-            this.txtnombreproducto.UnderlinedStyle = false;
             // 
             // GS_RP_ADD
             // 
