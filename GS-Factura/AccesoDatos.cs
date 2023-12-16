@@ -12,7 +12,7 @@ namespace GS_Factura
 {
     internal class AccesoDatos
     {
-        private SqlConnection conexion;
+        private static SqlConnection conexion;
         private SqlDataAdapter oDA;
         private DataSet oDS;
         private SqlCommand ocom;
@@ -23,19 +23,34 @@ namespace GS_Factura
             // Cadena de conexión a la base de datos
 
             // Crear objeto SqlConnection
-            conexion = new SqlConnection(cadenaConexion);
         }
+
+
+        //public static SqlConnection abrirConexion()
+        //{
+        //    string cadena = string.Format(cadenaConexion);
+        //    SqlConnection oCon = new SqlConnection(cadena);
+        //    oCon.Open();
+        //    return oCon;
+        //}
 
 
         public static SqlConnection abrirConexion()
         {
-            string cadena = string.Format(cadenaConexion);
-            SqlConnection oCon = new SqlConnection(cadena);
-            oCon.Open();
-            return oCon;
+            try
+            {
+                SqlConnection oCon = new SqlConnection(cadenaConexion);
+                oCon.Open();
+                return oCon;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null; // Devuelve null en caso de error.
+            }
         }
 
-        public void CerrarConexion()
+        public static void CerrarConexion(SqlConnection conexion)
         {
             try
             {
@@ -54,39 +69,52 @@ namespace GS_Factura
         {
             try
             {
-                ocom = new SqlCommand(Sentencia, conexion);
-                ocom.ExecuteNonQuery();
-                CerrarConexion();
+                using (SqlConnection conexion = abrirConexion())
+                {
+                    using (SqlCommand ocom = new SqlCommand(Sentencia, conexion))
+                    {
+                        ocom.ExecuteNonQuery();
+                    }
+                }
+
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al ejecutar la consulta: " + ex.Message);
                 return false;
             }
         }
 
         public DataSet retornaRegistros(string Sentencia)
         {
+            DataSet oDS = new DataSet();
+
             if (Sentencia.Length > 0)
             {
                 try
                 {
-                    ocom = new SqlCommand(Sentencia, conexion);
-                    oDA = new SqlDataAdapter(ocom);
-                    oDS = new DataSet();
-                    oDA.Fill(oDS, "dtRetorna");
-                    CerrarConexion();
+                    using (SqlConnection conexion = abrirConexion())
+                    {
+                        using (SqlCommand ocom = new SqlCommand(Sentencia, conexion))
+                        {
+                            using (SqlDataAdapter oDA = new SqlDataAdapter(ocom))
+                            {
+                                oDA.Fill(oDS, "dtRetorna");
+                            }
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Error al ejecutar la consulta: " + ex.Message);
                     oDS = null;
                 }
             }
-            return oDS;
 
+            return oDS;
         }
+
 
         public static DataTable llenartablaparabuscar(string consul)
         {
