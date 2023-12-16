@@ -46,6 +46,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.lblcontadorcedulaCliente = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txtSearchCliente = new System.Windows.Forms.TextBox();
             this.btnvalidarCliente = new FontAwesome.Sharp.IconButton();
@@ -71,6 +72,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.btnConfirmarVenta = new FontAwesome.Sharp.IconButton();
             this.panel88 = new System.Windows.Forms.Panel();
             this.lbl_V_cantidad = new System.Windows.Forms.Label();
             this.label191 = new System.Windows.Forms.Label();
@@ -102,7 +104,6 @@
             this.btnañadirVenta = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tmtDate = new System.Windows.Forms.Timer(this.components);
-            this.btnConfirmarVenta = new FontAwesome.Sharp.IconButton();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel14.SuspendLayout();
             this.panel20.SuspendLayout();
@@ -287,6 +288,7 @@
             // 
             this.panel18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel18.Controls.Add(this.lblcontadorcedulaCliente);
             this.panel18.Controls.Add(this.label15);
             this.panel18.Controls.Add(this.txtSearchCliente);
             this.panel18.Controls.Add(this.btnvalidarCliente);
@@ -295,6 +297,18 @@
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(253, 47);
             this.panel18.TabIndex = 0;
+            // 
+            // lblcontadorcedulaCliente
+            // 
+            this.lblcontadorcedulaCliente.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblcontadorcedulaCliente.AutoSize = true;
+            this.lblcontadorcedulaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcontadorcedulaCliente.Location = new System.Drawing.Point(232, 0);
+            this.lblcontadorcedulaCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblcontadorcedulaCliente.Name = "lblcontadorcedulaCliente";
+            this.lblcontadorcedulaCliente.Size = new System.Drawing.Size(17, 17);
+            this.lblcontadorcedulaCliente.TabIndex = 46;
+            this.lblcontadorcedulaCliente.Text = "0";
             // 
             // label15
             // 
@@ -321,6 +335,7 @@
             this.txtSearchCliente.Name = "txtSearchCliente";
             this.txtSearchCliente.Size = new System.Drawing.Size(211, 26);
             this.txtSearchCliente.TabIndex = 25;
+            this.txtSearchCliente.TextChanged += new System.EventHandler(this.txtSearchCliente_TextChanged);
             this.txtSearchCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchCliente_KeyPress);
             // 
             // btnvalidarCliente
@@ -651,6 +666,35 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(711, 65);
             this.panel11.TabIndex = 0;
+            // 
+            // btnConfirmarVenta
+            // 
+            this.btnConfirmarVenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfirmarVenta.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnConfirmarVenta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfirmarVenta.Enabled = false;
+            this.btnConfirmarVenta.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnConfirmarVenta.FlatAppearance.BorderSize = 0;
+            this.btnConfirmarVenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.btnConfirmarVenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.btnConfirmarVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmarVenta.Font = new System.Drawing.Font("Arial Rounded MT Bold", 29F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmarVenta.ForeColor = System.Drawing.Color.White;
+            this.btnConfirmarVenta.IconChar = FontAwesome.Sharp.IconChar.Shopify;
+            this.btnConfirmarVenta.IconColor = System.Drawing.Color.White;
+            this.btnConfirmarVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnConfirmarVenta.IconSize = 65;
+            this.btnConfirmarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConfirmarVenta.Location = new System.Drawing.Point(259, 0);
+            this.btnConfirmarVenta.Margin = new System.Windows.Forms.Padding(0);
+            this.btnConfirmarVenta.Name = "btnConfirmarVenta";
+            this.btnConfirmarVenta.Size = new System.Drawing.Size(201, 65);
+            this.btnConfirmarVenta.TabIndex = 13;
+            this.btnConfirmarVenta.Text = "     Cerrar Venta";
+            this.btnConfirmarVenta.UseVisualStyleBackColor = false;
+            this.btnConfirmarVenta.Visible = false;
+            this.btnConfirmarVenta.Click += new System.EventHandler(this.btnConfirmarVenta_Click);
             // 
             // panel88
             // 
@@ -1097,35 +1141,6 @@
             this.tmtDate.Enabled = true;
             this.tmtDate.Tick += new System.EventHandler(this.tmtDate_Tick);
             // 
-            // btnConfirmarVenta
-            // 
-            this.btnConfirmarVenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfirmarVenta.BackColor = System.Drawing.Color.Brown;
-            this.btnConfirmarVenta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConfirmarVenta.Enabled = false;
-            this.btnConfirmarVenta.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnConfirmarVenta.FlatAppearance.BorderSize = 0;
-            this.btnConfirmarVenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.btnConfirmarVenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightCoral;
-            this.btnConfirmarVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmarVenta.Font = new System.Drawing.Font("Arial Rounded MT Bold", 29F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmarVenta.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmarVenta.IconChar = FontAwesome.Sharp.IconChar.Shopify;
-            this.btnConfirmarVenta.IconColor = System.Drawing.Color.White;
-            this.btnConfirmarVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnConfirmarVenta.IconSize = 65;
-            this.btnConfirmarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfirmarVenta.Location = new System.Drawing.Point(259, 0);
-            this.btnConfirmarVenta.Margin = new System.Windows.Forms.Padding(0);
-            this.btnConfirmarVenta.Name = "btnConfirmarVenta";
-            this.btnConfirmarVenta.Size = new System.Drawing.Size(201, 65);
-            this.btnConfirmarVenta.TabIndex = 13;
-            this.btnConfirmarVenta.Text = "     Cerrar Venta";
-            this.btnConfirmarVenta.UseVisualStyleBackColor = false;
-            this.btnConfirmarVenta.Visible = false;
-            this.btnConfirmarVenta.Click += new System.EventHandler(this.btnConfirmarVenta_Click);
-            // 
             // GS_GeneraFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1245,5 +1260,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducto;
         private FontAwesome.Sharp.IconButton btnConfirmarVenta;
+        public System.Windows.Forms.Label lblcontadorcedulaCliente;
     }
 }

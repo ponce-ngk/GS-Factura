@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using GS_Factura.Clases;
+
 
 namespace GS_Factura
 {
     public partial class GS_GeneraFactura : Form
     {
+
         public GS_GeneraFactura()
         {
             InitializeComponent();
@@ -20,19 +25,43 @@ namespace GS_Factura
         private void btnvalidarCliente_Click(object sender, EventArgs e)
         {
 
-
-
             try
             {
+                string consultaSQL = "select CEDULA,NOMBRE,APELLIDOS from [dbo].[CLIENTE] WHERE CEDULA  = @CedulaPerson";
+
                 if (string.IsNullOrEmpty(txtSearchCliente.Text))
                 {
                     MessageBox.Show("El campo Cédula del Cliente está vacío. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (int.Parse(txtSearchCliente.Text) != 10)
+                else if (int.Parse(lblcontadorcedulaCliente.Text) != 10)
                 {
                     MessageBox.Show("El campo Cedula del Cliente no contiene 10 caracteres. Por favor, Ingrese todo los digitos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
+                }
+                else if (CrudCliente.VerificarExistenciaRegistros(consultaSQL, txtSearchCliente.Text))
+                {
+                    //representante1validado = true;
+
+                    MessageBox.Show("El Cliente ha sido encontrado en la base de datos. Puede proceder a guardar la información.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    Cliente cliente = CrudCliente.MostrarDatosCliente(@"select CEDULA, NOMBRE, APELLIDOS from [dbo].[CLIENTE] WHERE CEDULA =  '" + txtSearchCliente.Text + "'");
+
+                    if (cliente != null)
+                    {
+                        // Asignación de valores a las etiquetas
+                        lblcedulacliente.Text = cliente.Cedula;
+                        lblnombrecliente.Text = cliente.Nombre;
+                        lblApellidocliente.Text = cliente.Apellido;
+                    }
+
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("La cédula del Cliente no se encuentra en la base de datos. Por favor, ingrese una cédula válida", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                 }
             }
             catch (Exception ex)
@@ -41,7 +70,9 @@ namespace GS_Factura
             }
 
         }
+
         
+
 
         private void txtSearchCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -82,7 +113,7 @@ namespace GS_Factura
         }
 
 
-        public void ejecutaproductos(
+        public void ejecutaproductos(string idproduct,
             string nombreproducto, string cantidadproducto,
             string preciproducto)
         {
@@ -96,7 +127,7 @@ namespace GS_Factura
 
             total = Math.Round(total, 2);
 
-                 dtgVenta.Rows.Add(null, 1, nombreproducto,
+                 dtgVenta.Rows.Add(null, idproduct, nombreproducto,
                  cantidadproducto, preciproducto,  total.ToString("0.00"));
 
             this.GestionarFuncionalidadDtgVenta();
@@ -277,7 +308,7 @@ namespace GS_Factura
                     dtgVenta.Enabled = true;
                     btnañadirVenta.Enabled = true;
                     btnConfirmarVenta.Text = "     Cerrar Venta";
-                    btnConfirmarVenta.BackColor = Color.Brown;
+                    btnConfirmarVenta.BackColor = Color.ForestGreen;
                 }
             }
             else
@@ -289,11 +320,15 @@ namespace GS_Factura
                     dtgVenta.Enabled = false;
                     btnañadirVenta.Enabled = false;
                     btnConfirmarVenta.Text = "  Cancelar Proceso de Pago";
-                    btnConfirmarVenta.BackColor = Color.Green;
+                    btnConfirmarVenta.BackColor = Color.Red;
                     return;
                 }
             }
         }
-        
+
+        private void txtSearchCliente_TextChanged(object sender, EventArgs e)
+        {
+            this.lblcontadorcedulaCliente.Text = txtSearchCliente.Text.Length.ToString();
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Collections;
 using System.Windows;
 using GS_Factura.Clases;
 using GS_Factura;
+using System.Security.Cryptography.X509Certificates;
 
 namespace GS_Factura.Clases
 {
@@ -108,6 +109,64 @@ class CrudCliente
         {
             MessageBox.Show(sms.Message);
             return retorno;
+        }
+    }
+
+
+   
+
+
+    public static bool VerificarExistenciaRegistros(string consultaSQL, string verificaridentificador)
+    {
+        try
+        {
+            using (SqlConnection conexion = AccesoDatos.abrirConexion())
+            {
+                using (SqlCommand command = new SqlCommand(consultaSQL, conexion))
+                {
+                    command.Parameters.AddWithValue("@CedulaPerson", verificaridentificador);
+                    string cedulaExistente = (string)command.ExecuteScalar();
+                    return cedulaExistente != null;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error al ejecutar la consulta: " + ex.Message);
+            return false;
+        }
+    }
+
+    public static Cliente MostrarDatosCliente(string sentencia)
+    {
+        try
+        {
+            SqlCommand command = new SqlCommand(sentencia, AccesoDatos.abrirConexion());
+            SqlDataReader lectora_sentencia = command.ExecuteReader();
+
+            if (lectora_sentencia.Read())
+            {
+                Cliente datosCliente = new Cliente
+                {
+                    Cedula = lectora_sentencia["CEDULA"].ToString(),
+                    Nombre = lectora_sentencia["NOMBRE"].ToString(),
+                    Apellido = lectora_sentencia["APELLIDOS"].ToString()
+                };
+
+                lectora_sentencia.Close();
+                return datosCliente;
+            }
+            else
+            {
+                lectora_sentencia.Close();
+                MessageBox.Show("No se encontraron datos para el cliente.");
+                return null;
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error al ejecutar la consulta: " + ex.Message);
+            return null;
         }
     }
 }
