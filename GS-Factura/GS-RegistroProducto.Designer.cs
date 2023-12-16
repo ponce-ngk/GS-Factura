@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -50,18 +50,17 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.txtnombreproducto = new RJCodeAdvance.RJControls.RJTextBox();
-            this.lblidproducto = new System.Windows.Forms.Label();
-            this.iconButton6 = new FontAwesome.Sharp.IconButton();
-            this.label9 = new System.Windows.Forms.Label();
-            this.iconButton10 = new FontAwesome.Sharp.IconButton();
-            this.txtcantidadproducto = new RJCodeAdvance.RJControls.RJTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtpreciounitario = new RJCodeAdvance.RJControls.RJTextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtIdProducto = new RJCodeAdvance.RJControls.RJTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.iconButton10 = new FontAwesome.Sharp.IconButton();
+            this.iconButton6 = new FontAwesome.Sharp.IconButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtpreciounitario = new System.Windows.Forms.TextBox();
+            this.txtcantidadproducto = new System.Windows.Forms.TextBox();
+            this.txtIdProducto = new System.Windows.Forms.TextBox();
+            this.txtnombreproducto = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -91,8 +90,8 @@
             this.dgvProductos.ReadOnly = true;
             this.dgvProductos.RowHeadersVisible = false;
             this.dgvProductos.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductos.Size = new System.Drawing.Size(1662, 576);
             this.dgvProductos.TabIndex = 114;
@@ -272,7 +271,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 486F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1662, 140);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
@@ -349,7 +348,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1671, 70);
             this.tableLayoutPanel2.TabIndex = 115;
             // 
@@ -398,17 +397,16 @@
             // 
             this.panel10.BackColor = System.Drawing.Color.White;
             this.panel10.Controls.Add(this.txtIdProducto);
-            this.panel10.Controls.Add(this.label3);
             this.panel10.Controls.Add(this.txtpreciounitario);
+            this.panel10.Controls.Add(this.label3);
             this.panel10.Controls.Add(this.label10);
             this.panel10.Controls.Add(this.iconButton1);
             this.panel10.Controls.Add(this.label4);
-            this.panel10.Controls.Add(this.txtcantidadproducto);
             this.panel10.Controls.Add(this.iconButton10);
-            this.panel10.Controls.Add(this.txtnombreproducto);
-            this.panel10.Controls.Add(this.lblidproducto);
             this.panel10.Controls.Add(this.iconButton6);
             this.panel10.Controls.Add(this.label9);
+            this.panel10.Controls.Add(this.txtcantidadproducto);
+            this.panel10.Controls.Add(this.txtnombreproducto);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Margin = new System.Windows.Forms.Padding(0);
@@ -416,38 +414,87 @@
             this.panel10.Size = new System.Drawing.Size(1662, 124);
             this.panel10.TabIndex = 2;
             // 
-            // txtnombreproducto
+            // label3
             // 
-            this.txtnombreproducto.BackColor = System.Drawing.SystemColors.Window;
-            this.txtnombreproducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtnombreproducto.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtnombreproducto.BorderRadius = 0;
-            this.txtnombreproducto.BorderSize = 2;
-            this.txtnombreproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtnombreproducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtnombreproducto.Location = new System.Drawing.Point(344, 55);
-            this.txtnombreproducto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtnombreproducto.Multiline = false;
-            this.txtnombreproducto.Name = "txtnombreproducto";
-            this.txtnombreproducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtnombreproducto.PasswordChar = false;
-            this.txtnombreproducto.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtnombreproducto.PlaceholderText = "Nombre del Producto";
-            this.txtnombreproducto.Size = new System.Drawing.Size(517, 47);
-            this.txtnombreproducto.TabIndex = 37;
-            this.txtnombreproducto.Texts = "";
-            this.txtnombreproducto.UnderlinedStyle = false;
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(4, 19);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 27);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "ID:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblidproducto
+            // label10
             // 
-            this.lblidproducto.AutoSize = true;
-            this.lblidproducto.Location = new System.Drawing.Point(744, 26);
-            this.lblidproducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblidproducto.Name = "lblidproducto";
-            this.lblidproducto.Size = new System.Drawing.Size(60, 20);
-            this.lblidproducto.TabIndex = 23;
-            this.lblidproducto.Text = "label14";
-            this.lblidproducto.Visible = false;
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label10.Location = new System.Drawing.Point(1058, 19);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(193, 27);
+            this.label10.TabIndex = 43;
+            this.label10.Text = "Precio Unitario: ";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.iconButton1.Enabled = false;
+            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Donate;
+            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 27;
+            this.iconButton1.Location = new System.Drawing.Point(1055, 55);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(56, 45);
+            this.iconButton1.TabIndex = 42;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(812, 19);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 27);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "Stock:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // iconButton10
+            // 
+            this.iconButton10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconButton10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.iconButton10.Enabled = false;
+            this.iconButton10.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.iconButton10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.iconButton10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.iconButton10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconButton10.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
+            this.iconButton10.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
+            this.iconButton10.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton10.IconSize = 27;
+            this.iconButton10.Location = new System.Drawing.Point(800, 57);
+            this.iconButton10.Margin = new System.Windows.Forms.Padding(0);
+            this.iconButton10.Name = "iconButton10";
+            this.iconButton10.Size = new System.Drawing.Size(50, 45);
+            this.iconButton10.TabIndex = 39;
+            this.iconButton10.UseVisualStyleBackColor = false;
             // 
             // iconButton6
             // 
@@ -481,154 +528,46 @@
             this.label9.Text = "Nombre del Producto: (requerido)";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // iconButton10
+            // txtpreciounitario
             // 
-            this.iconButton10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconButton10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.iconButton10.Enabled = false;
-            this.iconButton10.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.iconButton10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.iconButton10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.iconButton10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.iconButton10.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
-            this.iconButton10.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
-            this.iconButton10.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton10.IconSize = 27;
-            this.iconButton10.Location = new System.Drawing.Point(800, 57);
-            this.iconButton10.Margin = new System.Windows.Forms.Padding(0);
-            this.iconButton10.Name = "iconButton10";
-            this.iconButton10.Size = new System.Drawing.Size(50, 45);
-            this.iconButton10.TabIndex = 39;
-            this.iconButton10.UseVisualStyleBackColor = false;
+            this.txtpreciounitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtpreciounitario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtpreciounitario.Location = new System.Drawing.Point(1331, 55);
+            this.txtpreciounitario.Multiline = true;
+            this.txtpreciounitario.Name = "txtpreciounitario";
+            this.txtpreciounitario.Size = new System.Drawing.Size(139, 47);
+            this.txtpreciounitario.TabIndex = 47;
             // 
             // txtcantidadproducto
             // 
-            this.txtcantidadproducto.BackColor = System.Drawing.SystemColors.Window;
-            this.txtcantidadproducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtcantidadproducto.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtcantidadproducto.BorderRadius = 0;
-            this.txtcantidadproducto.BorderSize = 2;
             this.txtcantidadproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtcantidadproducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtcantidadproducto.Location = new System.Drawing.Point(1066, 53);
-            this.txtcantidadproducto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtcantidadproducto.Multiline = false;
+            this.txtcantidadproducto.Location = new System.Drawing.Point(1063, 54);
+            this.txtcantidadproducto.Multiline = true;
             this.txtcantidadproducto.Name = "txtcantidadproducto";
-            this.txtcantidadproducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtcantidadproducto.PasswordChar = false;
-            this.txtcantidadproducto.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtcantidadproducto.PlaceholderText = "00,00";
-            this.txtcantidadproducto.Size = new System.Drawing.Size(184, 47);
-            this.txtcantidadproducto.TabIndex = 40;
-            this.txtcantidadproducto.Texts = "";
-            this.txtcantidadproducto.UnderlinedStyle = false;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(893, 19);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 27);
-            this.label4.TabIndex = 41;
-            this.label4.Text = "Stock:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtpreciounitario
-            // 
-            this.txtpreciounitario.BackColor = System.Drawing.SystemColors.Window;
-            this.txtpreciounitario.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtpreciounitario.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtpreciounitario.BorderRadius = 0;
-            this.txtpreciounitario.BorderSize = 2;
-            this.txtpreciounitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtpreciounitario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtpreciounitario.Location = new System.Drawing.Point(1327, 57);
-            this.txtpreciounitario.Margin = new System.Windows.Forms.Padding(4);
-            this.txtpreciounitario.Multiline = false;
-            this.txtpreciounitario.Name = "txtpreciounitario";
-            this.txtpreciounitario.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtpreciounitario.PasswordChar = false;
-            this.txtpreciounitario.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtpreciounitario.PlaceholderText = "00,00";
-            this.txtpreciounitario.Size = new System.Drawing.Size(184, 47);
-            this.txtpreciounitario.TabIndex = 44;
-            this.txtpreciounitario.Texts = "";
-            this.txtpreciounitario.UnderlinedStyle = false;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(1113, 19);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(193, 27);
-            this.label10.TabIndex = 43;
-            this.label10.Text = "Precio Unitario: ";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.iconButton1.Enabled = false;
-            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Donate;
-            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 27;
-            this.iconButton1.Location = new System.Drawing.Point(1055, 55);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(56, 45);
-            this.iconButton1.TabIndex = 42;
-            this.iconButton1.UseVisualStyleBackColor = false;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(4, 19);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 27);
-            this.label3.TabIndex = 45;
-            this.label3.Text = "ID:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtcantidadproducto.Size = new System.Drawing.Size(187, 47);
+            this.txtcantidadproducto.TabIndex = 48;
             // 
             // txtIdProducto
             // 
-            this.txtIdProducto.BackColor = System.Drawing.SystemColors.Window;
-            this.txtIdProducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtIdProducto.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtIdProducto.BorderRadius = 0;
-            this.txtIdProducto.BorderSize = 2;
             this.txtIdProducto.Enabled = false;
             this.txtIdProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtIdProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtIdProducto.Location = new System.Drawing.Point(195, 57);
-            this.txtIdProducto.Margin = new System.Windows.Forms.Padding(4);
-            this.txtIdProducto.Multiline = false;
+            this.txtIdProducto.Multiline = true;
             this.txtIdProducto.Name = "txtIdProducto";
-            this.txtIdProducto.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txtIdProducto.PasswordChar = false;
-            this.txtIdProducto.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txtIdProducto.PlaceholderText = "";
             this.txtIdProducto.Size = new System.Drawing.Size(60, 47);
-            this.txtIdProducto.TabIndex = 46;
-            this.txtIdProducto.Texts = "";
-            this.txtIdProducto.UnderlinedStyle = false;
+            this.txtIdProducto.TabIndex = 49;
+            // 
+            // txtnombreproducto
+            // 
+            this.txtnombreproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtnombreproducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtnombreproducto.Location = new System.Drawing.Point(344, 55);
+            this.txtnombreproducto.Multiline = true;
+            this.txtnombreproducto.Name = "txtnombreproducto";
+            this.txtnombreproducto.Size = new System.Drawing.Size(518, 47);
+            this.txtnombreproducto.TabIndex = 50;
             // 
             // GS_RegistroProducto
             // 
@@ -683,17 +622,16 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel10;
-        private RJCodeAdvance.RJControls.RJTextBox txtnombreproducto;
-        public System.Windows.Forms.Label lblidproducto;
         private FontAwesome.Sharp.IconButton iconButton6;
         private System.Windows.Forms.Label label9;
         private FontAwesome.Sharp.IconButton iconButton10;
-        private RJCodeAdvance.RJControls.RJTextBox txtcantidadproducto;
         private System.Windows.Forms.Label label4;
-        private RJCodeAdvance.RJControls.RJTextBox txtpreciounitario;
         private System.Windows.Forms.Label label10;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Label label3;
-        private RJCodeAdvance.RJControls.RJTextBox txtIdProducto;
+        private System.Windows.Forms.TextBox txtpreciounitario;
+        private System.Windows.Forms.TextBox txtcantidadproducto;
+        private System.Windows.Forms.TextBox txtIdProducto;
+        private System.Windows.Forms.TextBox txtnombreproducto;
     }
 }

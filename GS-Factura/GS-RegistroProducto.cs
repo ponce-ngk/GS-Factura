@@ -19,22 +19,20 @@ namespace GS_Factura
             LlenarLimpiar();
         }
         public void LlenarLimpiar() {
-                txtcantidadproducto.Texts = "";
-                txtnombreproducto.Texts = "";
-                txtpreciounitario.Texts = "";
-            txtIdProducto.Texts = "";
+                txtcantidadproducto.Text = "";
+                txtnombreproducto.Text = "";
+            txtpreciounitario.Text = "";
+            txtIdProducto.Text = "";
             dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
         }
         private void btnAñadirProducto_Click(object sender, EventArgs e)
         {
-            //GS_RP_ADD gS_RP_ADD = new GS_RP_ADD();
-            //gS_RP_ADD.ShowDialog();
-            if (txtcantidadproducto.Texts != "" && txtnombreproducto.Texts != "" && txtpreciounitario.Texts != "")
+            if (txtcantidadproducto.Text != "" && txtnombreproducto.Text != "" && txtpreciounitario.Text != "")
             {
                 Producto pProducto = new Producto();
-                pProducto.PRODUCTO1 = txtnombreproducto.Texts;
-                pProducto.STOTCK1 = txtcantidadproducto.Texts;
-                pProducto.PRECIO_UNITARIO1 = txtpreciounitario.Texts;
+                pProducto.PRODUCTO1 = txtnombreproducto.Text;
+                pProducto.STOTCK1 = txtcantidadproducto.Text;
+                pProducto.PRECIO_UNITARIO1 = txtpreciounitario.Text;
 
                 int resultado = CrudProducto.AgregarProducto(pProducto);
 
@@ -56,13 +54,13 @@ namespace GS_Factura
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (txtnombreproducto.Texts != "" && txtpreciounitario.Texts != "" && txtpreciounitario.Texts != "")
+            if (txtnombreproducto.Text != "" && txtpreciounitario.Text != "" && txtcantidadproducto.Text != "")
             {
                 Producto pProducto = new Producto();
-                pProducto.IDPRODUCTO1 = int.Parse(txtIdProducto.Texts);
-                pProducto.PRODUCTO1 = txtnombreproducto.Texts;
-                pProducto.STOTCK1 = txtcantidadproducto.Texts;
-                pProducto.PRECIO_UNITARIO1 = txtpreciounitario.Texts;
+                pProducto.IDPRODUCTO1 = int.Parse(txtIdProducto.Text);
+                pProducto.PRODUCTO1 = txtnombreproducto.Text;
+                pProducto.STOTCK1 = txtcantidadproducto.Text;
+                pProducto.PRECIO_UNITARIO1 = txtpreciounitario.Text;
                 int resultado = CrudProducto.ActualizarProducto(pProducto);
 
                 if (resultado > 0)
@@ -87,18 +85,10 @@ namespace GS_Factura
             try
             {
                 
-                txtIdProducto.Texts = dgvProductos.CurrentRow.Cells[0].Value.ToString();
-                //txtIdProducto.PlaceholderText = dgvProductos.CurrentRow.Cells[0].Value.ToString();
-                
-                txtnombreproducto.Texts = dgvProductos.CurrentRow.Cells[1].Value.ToString();
-                //txtnombreproducto.PlaceholderText = dgvProductos.CurrentRow.Cells[1].Value.ToString();
-                
-                txtpreciounitario.Texts = dgvProductos.CurrentRow.Cells[2].Value.ToString();
-                //txtpreciounitario.PlaceholderText = dgvProductos.CurrentRow.Cells[2].Value.ToString();
-               
-                txtcantidadproducto.Texts = dgvProductos.CurrentRow.Cells[3].Value.ToString();
-                //txtcantidadproducto.PlaceholderText = dgvProductos.CurrentRow.Cells[3].Value.ToString();
-                
+                txtIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
+                txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
+                txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
+                txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -108,10 +98,10 @@ namespace GS_Factura
 
         private void btn_Eliminar_Click(object sender, EventArgs e)
         {
-            if (txtIdProducto.Texts != "" )
+            if (txtIdProducto.Text != "" )
             {
                 Producto pProducto = new Producto();
-                pProducto.IDPRODUCTO1 = int.Parse(txtIdProducto.Texts);
+                pProducto.IDPRODUCTO1 = int.Parse(txtIdProducto.Text);
                 pProducto.ESTADO1 = '0';
                 int resultado = CrudProducto.EliminarProducto(pProducto);
 

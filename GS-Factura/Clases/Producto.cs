@@ -75,8 +75,8 @@ class CrudProducto
             {
                 //SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_CLIENTE '{0}','{1}','{2}','{3}','{4}'",
                 //                pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);
-                SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_PRODUCTO " +
-                    ""+pProducto.IDPRODUCTO1+"," + pProducto.PRODUCTO1 + "," + pProducto.PRECIO_UNITARIO1 + "," + pProducto.STOTCK1 + ""), conex);
+                SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_PRODUCTO "+pProducto.IDPRODUCTO1+","+pProducto.PRODUCTO1+","+pProducto.PRECIO_UNITARIO1+","+pProducto.STOTCK1+""), conex);
+                //SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_PRODUCTO "+pProducto.IDPRODUCTO1+"," + pProducto.PRODUCTO1 + "," + pProducto.PRECIO_UNITARIO1 + "," + pProducto.STOTCK1 + ""), conex);
                 retorno = comando.ExecuteNonQuery();
                 conex.Close();
             }
