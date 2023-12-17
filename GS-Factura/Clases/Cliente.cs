@@ -139,8 +139,8 @@ class CrudCliente
 
     public static Cliente MostrarDatosCliente(string sentencia)
     {
-        try
-        {
+        //try
+        //{
             SqlCommand command = new SqlCommand(sentencia, AccesoDatos.abrirConexion());
             SqlDataReader lectora_sentencia = command.ExecuteReader();
 
@@ -148,6 +148,7 @@ class CrudCliente
             {
                 Cliente datosCliente = new Cliente
                 {
+                    IdCliente = int.Parse(lectora_sentencia["IDCLIENTE"].ToString()),
                     Cedula = lectora_sentencia["CEDULA"].ToString(),
                     Nombre = lectora_sentencia["NOMBRE"].ToString(),
                     Apellido = lectora_sentencia["APELLIDOS"].ToString()
@@ -162,11 +163,11 @@ class CrudCliente
                 MessageBox.Show("No se encontraron datos para el cliente.");
                 return null;
             }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Error al ejecutar la consulta: " + ex.Message);
-            return null;
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    MessageBox.Show("Error al ejecutar la consulta: " + ex.Message);
+        //    return null;
+        //}
     }
 }
