@@ -118,18 +118,12 @@ namespace GS_Factura
                 {
                     return;
                 }
-                //if ( decimal.Parse(txtcantidadproducto.Text) > decimal.Parse(lblcantidadactualproducto.Text))
-                //{
-                //    MessageBox.Show("La cantidad colocada sobre pasa al stock del producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    txtcantidadproducto.Text = "0";
-                //    return;
-                //}
+             
 
                 pasarproducto(lblidproducto.Text, txtnombreproducto.Text,
                    txtcantidadproducto.Text, txtpreciounitario.Text);
 
-                //pasarproducto(txtnombreproducto.Text,
-                //   txtcantidadproducto.Text, txtpreciounitario.Text);
+          
                 this.Hide();
 
 
