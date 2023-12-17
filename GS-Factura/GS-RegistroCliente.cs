@@ -22,7 +22,6 @@ namespace GS_Factura
             AccesoDatos fr = new AccesoDatos();
             dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
             dtpFechaCliente.CustomFormat = "yyyy-MM-dd";
-            dtpFechaCliente. = true;
         }
 
         private void btnGuardarDueño_Click(object sender, EventArgs e)
