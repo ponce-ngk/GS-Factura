@@ -54,7 +54,7 @@ namespace GS_Factura
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
-            if (txtnombreproducto.Text != "" && txtpreciounitario.Text != "" && txtcantidadproducto.Text != "")
+            if (txtnombreproducto.Text != "" || txtpreciounitario.Text != "" || txtcantidadproducto.Text != "")
             {
                 Producto pProducto = new Producto();
                 pProducto.IDPRODUCTO1 = int.Parse(txtIdProducto.Text);

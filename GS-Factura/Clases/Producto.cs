@@ -73,9 +73,9 @@ class CrudProducto
         {
             using (SqlConnection conex = AccesoDatos.abrirConexion())
             {
-                //SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_CLIENTE '{0}','{1}','{2}','{3}','{4}'",
-                //                pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);
-                SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_PRODUCTO "+pProducto.IDPRODUCTO1+","+pProducto.PRODUCTO1+","+pProducto.PRECIO_UNITARIO1+","+pProducto.STOTCK1+""), conex);
+                //SqlCommand comando = new SqlCommand(string.Format("UPDATE PRODUCTO SET PRODUCTO = "+pProducto.PRODUCTO1+", PRECIO_UNITARIO="+pProducto.PRECIO_UNITARIO1+", STOCK="+pProducto.STOTCK1+" WHERE IDPRODUCTO = "+pProducto.IDPRODUCTO1+""), conex);
+                SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_PRODUCTO " +
+                    "" + pProducto.IDPRODUCTO1 + "," + pProducto.PRODUCTO1 + "," + pProducto.PRECIO_UNITARIO1 + "," + pProducto.STOTCK1 + ""), conex);
                 //SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_PRODUCTO "+pProducto.IDPRODUCTO1+"," + pProducto.PRODUCTO1 + "," + pProducto.PRECIO_UNITARIO1 + "," + pProducto.STOTCK1 + ""), conex);
                 retorno = comando.ExecuteNonQuery();
                 conex.Close();
