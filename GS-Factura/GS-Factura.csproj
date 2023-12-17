@@ -83,7 +83,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccesoDatos.cs" />
+    <Compile Include="Clases\AccesoDatos.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Producto.cs" />
     <Compile Include="Form1.cs">

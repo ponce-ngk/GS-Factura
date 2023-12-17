@@ -17,7 +17,6 @@ namespace GS_Factura
 {
     public partial class GS_GeneraFactura : Form
     {
-
         public GS_GeneraFactura()
         {
             InitializeComponent();
@@ -25,7 +24,6 @@ namespace GS_Factura
 
         private void btnvalidarCliente_Click(object sender, EventArgs e)
         {
-
             try
             {
                 string consultaSQL = "select CEDULA,NOMBRE,APELLIDOS from [dbo].[CLIENTE] WHERE CEDULA  = @CedulaPerson";
@@ -73,9 +71,6 @@ namespace GS_Factura
 
         }
 
-        
-
-
         private void txtSearchCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Si la tecla presionada no es un número y no es una tecla de control como Backspace o Delete
@@ -89,7 +84,6 @@ namespace GS_Factura
 
             }
         }
-
         private void tmtDate_Tick(object sender, EventArgs e)
         {
             lblFingresoVenta.Text = DateTime.Now.ToShortDateString();
@@ -114,22 +108,17 @@ namespace GS_Factura
             }
         }
 
-
         public void ejecutaproductos(string idproduct,
             string nombreproducto, string cantidadproducto,
             string preciproducto)
         {
-
             int cantidad = int.Parse(cantidadproducto);
             decimal precio = decimal.Parse(preciproducto);
            
             // Calculamos el total
             decimal total = precio * cantidad;
-;
 
             total = Math.Round(total, 2);
-
-
 
             if (VerificarRestaPDataLotes(idproduct, nombreproducto))
             {
@@ -138,16 +127,12 @@ namespace GS_Factura
                 this.GestionarFuncionalidadDtgVenta();
                 this.VerificarFilasEnDataGridView();
             }
-
-
         }
-
 
         public bool VerificarRestaPDataLotes(string idproducto, string nomproducto)
         {
             try
             {
-
                 foreach (DataGridViewRow recorrerdata in dtgVenta.Rows)
                 {
                     if (idproducto.ToString() == recorrerdata.Cells["IdProducto"].Value.ToString() && nomproducto == recorrerdata.Cells["NombreProducto"].Value.ToString())
@@ -155,7 +140,6 @@ namespace GS_Factura
                         MessageBox.Show("Producto ya se encuentra agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         return false;
                     }
-
                 }
                 return true;
             }
@@ -165,10 +149,6 @@ namespace GS_Factura
                 throw;
             }
         }
-
-
-
-
 
         private void dtgVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -185,7 +165,6 @@ namespace GS_Factura
                         this.VerificarFilasEnDataGridView();
 
                     }
-
                 }
             }
             catch (Exception ex)
@@ -221,7 +200,6 @@ namespace GS_Factura
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
 
@@ -241,10 +219,6 @@ namespace GS_Factura
                 totalproductos += decimal.Parse(recorrerdata.Cells["TotalProducto"].Value.ToString());
                 sumcantidadproductos += int.Parse(recorrerdata.Cells["StockProducto"].Value.ToString());
             }
-
-
-
-
 
             // Calculamos el subtotal (sin descuento ni IVA)
             subtotalCompra = totalproductos;
@@ -282,7 +256,6 @@ namespace GS_Factura
             DialogResult respuesta = MessageBox.Show("Deseas realizar esta venta? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
-
                 try
                 {
                     DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
@@ -318,12 +291,10 @@ namespace GS_Factura
                 {
                     MessageBox.Show(ex.Message);
                 }
-
             }
         }
         public void xmlVenta(string Detalle)
         {
-
             try
             {
                 using (SqlConnection conexion = AccesoDatos.abrirConexion())
@@ -334,25 +305,19 @@ namespace GS_Factura
                         //cmd.Parameters.Add("@Compra", SqlDbType.Int).Direction = ParameterDirection.Output;
                         cmd.CommandType = CommandType.StoredProcedure;
 
-
                         cmd.ExecuteNonQuery();
                     } // El bloque using cerrará automáticamente el comando.
 
                     MessageBox.Show("El registro ha sido exitoso. Recuerda ingresar en la caja y realizar los movimientos de ingreso y egreso de manera correcta.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LimpiarDatosVenta();
                 }
-        }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-}
-
-
-
-
-
+        }
 
         public void LimpiarDatosVenta()
         {
@@ -373,7 +338,6 @@ namespace GS_Factura
             this.VerificarFilasEnDataGridView();
         }
 
-
         private void VerificarFilasEnDataGridView()
         {
             if (dtgVenta.Rows.Count > 0)
@@ -389,10 +353,6 @@ namespace GS_Factura
                 btnConfirmarVenta.Enabled = false;
             }
         }
-
-
-
-
 
         private void btncancelarventa_Click(object sender, EventArgs e)
         {
@@ -565,12 +525,6 @@ namespace GS_Factura
                 // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
                 e.Handled = true;
             }
-
-
-
-
-
-
         }
 
         private void cklistConsumidorFinal_CheckedChanged(object sender, EventArgs e)
