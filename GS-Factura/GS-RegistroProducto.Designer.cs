@@ -50,6 +50,8 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.txtIdProducto = new System.Windows.Forms.TextBox();
+            this.txtpreciounitario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
@@ -57,9 +59,7 @@
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
             this.iconButton6 = new FontAwesome.Sharp.IconButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtpreciounitario = new System.Windows.Forms.TextBox();
             this.txtcantidadproducto = new System.Windows.Forms.TextBox();
-            this.txtIdProducto = new System.Windows.Forms.TextBox();
             this.txtnombreproducto = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.panel8.SuspendLayout();
@@ -309,6 +309,7 @@
             this.txtbuscarproducto.TabIndex = 38;
             this.txtbuscarproducto.Texts = "";
             this.txtbuscarproducto.UnderlinedStyle = false;
+            this.txtbuscarproducto._TextChanged += new System.EventHandler(this.txtbuscarproducto__TextChanged);
             // 
             // iconButton15
             // 
@@ -413,6 +414,27 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1662, 124);
             this.panel10.TabIndex = 2;
+            // 
+            // txtIdProducto
+            // 
+            this.txtIdProducto.Enabled = false;
+            this.txtIdProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtIdProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtIdProducto.Location = new System.Drawing.Point(195, 57);
+            this.txtIdProducto.Multiline = true;
+            this.txtIdProducto.Name = "txtIdProducto";
+            this.txtIdProducto.Size = new System.Drawing.Size(60, 47);
+            this.txtIdProducto.TabIndex = 49;
+            // 
+            // txtpreciounitario
+            // 
+            this.txtpreciounitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtpreciounitario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtpreciounitario.Location = new System.Drawing.Point(1331, 55);
+            this.txtpreciounitario.Multiline = true;
+            this.txtpreciounitario.Name = "txtpreciounitario";
+            this.txtpreciounitario.Size = new System.Drawing.Size(139, 47);
+            this.txtpreciounitario.TabIndex = 47;
             // 
             // label3
             // 
@@ -528,16 +550,6 @@
             this.label9.Text = "Nombre del Producto: (requerido)";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtpreciounitario
-            // 
-            this.txtpreciounitario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtpreciounitario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtpreciounitario.Location = new System.Drawing.Point(1331, 55);
-            this.txtpreciounitario.Multiline = true;
-            this.txtpreciounitario.Name = "txtpreciounitario";
-            this.txtpreciounitario.Size = new System.Drawing.Size(139, 47);
-            this.txtpreciounitario.TabIndex = 47;
-            // 
             // txtcantidadproducto
             // 
             this.txtcantidadproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
@@ -547,17 +559,6 @@
             this.txtcantidadproducto.Name = "txtcantidadproducto";
             this.txtcantidadproducto.Size = new System.Drawing.Size(187, 47);
             this.txtcantidadproducto.TabIndex = 48;
-            // 
-            // txtIdProducto
-            // 
-            this.txtIdProducto.Enabled = false;
-            this.txtIdProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtIdProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtIdProducto.Location = new System.Drawing.Point(195, 57);
-            this.txtIdProducto.Multiline = true;
-            this.txtIdProducto.Name = "txtIdProducto";
-            this.txtIdProducto.Size = new System.Drawing.Size(60, 47);
-            this.txtIdProducto.TabIndex = 49;
             // 
             // txtnombreproducto
             // 
