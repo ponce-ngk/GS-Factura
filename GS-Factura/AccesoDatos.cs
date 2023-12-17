@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using GS_Factura.Clases;
 
 namespace GS_Factura
 {
@@ -136,6 +137,23 @@ namespace GS_Factura
             }
         }
 
+        public DataTable retornaClientebuscar(string buscar)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                abrirConexion();
+                SqlCommand cmd = new SqlCommand("SELECT IDCLIENTE AS ID, RTRIM(CEDULA) AS Cedula, RTRIM(NOMBRE) AS Nombre, RTRIM(APELLIDOS) AS Apellido, FECHA_NACIMIENTO AS 'Fecha Nacimiento', CASE Estado WHEN 0 THEN 'Eliminado' WHEN 1 THEN 'Activo' END AS Estado FROM CLIENTE WHERE (CEDULA like '" + buscar + "%' or NOMBRE LIKE('" + buscar + "%') OR APELLIDOS LIKE '" + buscar + "%') AND Estado = 1;", abrirConexion());
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception sms)
+            {
+                MessageBox.Show(sms.Message);
+                return dt;
+            }
+        }
     }
 
 }

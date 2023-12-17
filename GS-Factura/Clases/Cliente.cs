@@ -75,8 +75,8 @@ class CrudCliente
         {
             using (SqlConnection conex = AccesoDatos.abrirConexion())
             {
-                SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_CLIENTE {0},'{1}','{2}','{3}'",
-                                pClientes.Cedula, pClientes.Nombre, pClientes.Apellido, pClientes.FechaNA), conex);
+                SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_CLIENTE {0},'{1}','{2}','{3}','{4}'",
+                                pClientes.IdCliente,pClientes.Cedula, pClientes.Nombre, pClientes.Apellido, pClientes.FechaNA), conex);
                 retorno = comando.ExecuteNonQuery();
                 conex.Close();
 
@@ -111,10 +111,6 @@ class CrudCliente
             return retorno;
         }
     }
-
-
-   
-
 
     public static bool VerificarExistenciaRegistros(string consultaSQL, string verificaridentificador)
     {
