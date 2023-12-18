@@ -561,6 +561,7 @@
             this.btnEliminarCliente.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEliminarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnEliminarCliente.UseVisualStyleBackColor = false;
+            this.btnEliminarCliente.Click += new System.EventHandler(this.btnEliminarCliente_Click);
             // 
             // panel14
             // 
@@ -597,6 +598,7 @@
             this.btnlimpiardatos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnlimpiardatos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnlimpiardatos.UseVisualStyleBackColor = false;
+            this.btnlimpiardatos.Click += new System.EventHandler(this.btnlimpiardatos_Click);
             // 
             // panel9
             // 
@@ -632,6 +634,7 @@
             this.btnEditarCliente.Text = "Actualizar";
             this.btnEditarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnEditarCliente.UseVisualStyleBackColor = false;
+            this.btnEditarCliente.Click += new System.EventHandler(this.btnEditarCliente_Click);
             // 
             // panel7
             // 
@@ -667,6 +670,7 @@
             this.btnGuardarDueño.Text = "Guardar";
             this.btnGuardarDueño.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnGuardarDueño.UseVisualStyleBackColor = false;
+            this.btnGuardarDueño.Click += new System.EventHandler(this.btnGuardarDueño_Click);
             // 
             // panel16
             // 
