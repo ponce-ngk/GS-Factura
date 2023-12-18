@@ -239,7 +239,7 @@ namespace GS_Factura
 
         private void txtnombrescliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || e.KeyChar == (char)Keys.Back))
             {
                 e.Handled = true;
             }
@@ -247,7 +247,7 @@ namespace GS_Factura
 
         private void txtapellidoscliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || e.KeyChar == (char)Keys.Back))
             {
                 e.Handled = true;
             }
