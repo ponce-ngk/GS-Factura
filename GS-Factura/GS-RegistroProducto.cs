@@ -23,9 +23,65 @@ namespace GS_Factura
             txtnombreproducto.Text = "";
             txtpreciounitario.Text = "";
             txtIdProducto.Text = "";
+            txtbuscarproducto.Texts = "";
             dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
         }
-        private void btnAñadirProducto_Click(object sender, EventArgs e)
+
+        private void dgvProductos_Click(object sender, EventArgs e)
+        {
+            try
+            {                
+                txtIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
+                txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
+                txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
+                txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void txtbuscarproducto__TextChanged(object sender, EventArgs e)
+        {
+            dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+                ("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) AS PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO," +
+                "RTRIM(STOCK) AS STOCK from PRODUCTO WHERE ESTADO = 1 and PRODUCTO like '" + txtbuscarproducto.Texts+"%'");
+        }
+
+        private void txtbuscarproducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+                if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
+        }
+
+        private void txtnombreproducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtcantidadproducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar) || e.KeyChar == '.') && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtpreciounitario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar) || e.KeyChar == '.') && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
             if (txtcantidadproducto.Text != "" && txtnombreproducto.Text != "" && txtpreciounitario.Text != "")
             {
@@ -47,7 +103,7 @@ namespace GS_Factura
                         MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     LlenarLimpiar();
-                }                
+                }
             }
             else
             {
@@ -55,7 +111,36 @@ namespace GS_Factura
             }
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e)
+        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        {
+            if (txtIdProducto.Text != "")
+            {
+                DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres eliminar estos datos?", "Confirmar eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmacion == DialogResult.Yes)
+                {
+                    Producto pProducto = new Producto();
+                    pProducto.IDPRODUCTO1 = int.Parse(txtIdProducto.Text);
+                    pProducto.ESTADO1 = '0';
+                    int resultado = CrudProducto.EliminarProducto(pProducto);
+
+                    if (resultado > 0)
+                    {
+                        MessageBox.Show("Los datos de Eliminaron correctamente", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    LlenarLimpiar();
+                }
+            }
+            else
+            {
+                MessageBox.Show("campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnActualizarProducto_Click(object sender, EventArgs e)
         {
             if (txtnombreproducto.Text != "" && txtpreciounitario.Text != "" && txtcantidadproducto.Text != "")
             {
@@ -87,59 +172,9 @@ namespace GS_Factura
             }
         }
 
-        private void dgvProductos_Click(object sender, EventArgs e)
-        {
-            try
-            {                
-                txtIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
-                txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
-                txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
-                txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btn_Eliminar_Click(object sender, EventArgs e)
-        {
-            if (txtIdProducto.Text != "" )
-            {
-                DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres eliminar estos datos?", "Confirmar eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirmacion == DialogResult.Yes)
-                {
-                    Producto pProducto = new Producto();
-                    pProducto.IDPRODUCTO1 = int.Parse(txtIdProducto.Text);
-                    pProducto.ESTADO1 = '0';
-                    int resultado = CrudProducto.EliminarProducto(pProducto);
-
-                    if (resultado > 0)
-                    {
-                        MessageBox.Show("Los datos de Eliminaron correctamente", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    LlenarLimpiar();
-                }                
-            }
-            else
-            {
-                MessageBox.Show("campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void panel6_Click(object sender, EventArgs e)
+        private void btnLimpiarProducto_Click(object sender, EventArgs e)
         {
             LlenarLimpiar();
-        }
-        private void txtbuscarproducto__TextChanged(object sender, EventArgs e)
-        {
-            dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
-                ("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) AS PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO," +
-                "RTRIM(STOCK) AS STOCK from PRODUCTO WHERE ESTADO = 1 and PRODUCTO like '" + txtbuscarproducto.Texts+"%'");
         }
     }
 }
