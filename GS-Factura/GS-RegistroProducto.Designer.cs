@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -87,17 +89,35 @@
             this.dgvProductos.AllowUserToResizeRows = false;
             this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProductos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProductos.Location = new System.Drawing.Point(0, 347);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProductos.RowHeadersVisible = false;
             this.dgvProductos.RowHeadersWidth = 51;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductos.Size = new System.Drawing.Size(1662, 550);
+            this.dgvProductos.Size = new System.Drawing.Size(1717, 550);
             this.dgvProductos.TabIndex = 114;
             this.dgvProductos.Click += new System.EventHandler(this.dgvProductos_Click);
             // 
@@ -105,10 +125,10 @@
             // 
             this.panel8.Controls.Add(this.panel7);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(1152, 0);
+            this.panel8.Location = new System.Drawing.Point(1191, 0);
             this.panel8.Margin = new System.Windows.Forms.Padding(0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(169, 166);
+            this.panel8.Size = new System.Drawing.Size(175, 166);
             this.panel8.TabIndex = 1;
             // 
             // panel7
@@ -119,7 +139,7 @@
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Margin = new System.Windows.Forms.Padding(0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(169, 166);
+            this.panel7.Size = new System.Drawing.Size(175, 166);
             this.panel7.TabIndex = 3;
             // 
             // lbleliminar
@@ -132,7 +152,7 @@
             this.lbleliminar.Location = new System.Drawing.Point(13, 98);
             this.lbleliminar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbleliminar.Name = "lbleliminar";
-            this.lbleliminar.Size = new System.Drawing.Size(148, 40);
+            this.lbleliminar.Size = new System.Drawing.Size(154, 40);
             this.lbleliminar.TabIndex = 39;
             this.lbleliminar.Text = "Actualizar";
             this.lbleliminar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -142,10 +162,10 @@
             this.panel9.Controls.Add(this.btnEliminarProducto);
             this.panel9.Controls.Add(this.label6);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(1321, 0);
+            this.panel9.Location = new System.Drawing.Point(1366, 0);
             this.panel9.Margin = new System.Windows.Forms.Padding(0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(169, 166);
+            this.panel9.Size = new System.Drawing.Size(175, 166);
             this.panel9.TabIndex = 2;
             // 
             // label6
@@ -158,7 +178,7 @@
             this.label6.Location = new System.Drawing.Point(10, 98);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 40);
+            this.label6.Size = new System.Drawing.Size(145, 40);
             this.label6.TabIndex = 39;
             this.label6.Text = "Eliminar";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -168,10 +188,10 @@
             this.panel1.Controls.Add(this.btnLimpiarProducto);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(1490, 0);
+            this.panel1.Location = new System.Drawing.Point(1541, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(172, 166);
+            this.panel1.Size = new System.Drawing.Size(176, 166);
             this.panel1.TabIndex = 3;
             // 
             // label2
@@ -184,7 +204,7 @@
             this.label2.Location = new System.Drawing.Point(27, 98);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 40);
+            this.label2.Size = new System.Drawing.Size(117, 40);
             this.label2.TabIndex = 39;
             this.label2.Text = "Limpiar";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -209,7 +229,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 166F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1662, 166);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1717, 166);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // panel4
@@ -217,10 +237,10 @@
             this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.btnAgregarProducto);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(980, 0);
+            this.panel4.Location = new System.Drawing.Point(1013, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(172, 166);
+            this.panel4.Size = new System.Drawing.Size(178, 166);
             this.panel4.TabIndex = 4;
             // 
             // panel6
@@ -232,7 +252,7 @@
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(980, 120);
+            this.panel6.Size = new System.Drawing.Size(1013, 120);
             this.panel6.TabIndex = 0;
             // 
             // txtbuscarproducto
@@ -279,17 +299,18 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.DarkGray;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(125)))));
             this.panel3.Controls.Add(this.tableLayoutPanel2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 290);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1662, 57);
+            this.panel3.Size = new System.Drawing.Size(1717, 57);
             this.panel3.TabIndex = 116;
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(125)))));
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
@@ -329,7 +350,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1662, 124);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1717, 124);
             this.tableLayoutPanel3.TabIndex = 117;
             // 
             // panel2
@@ -339,7 +360,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1662, 124);
+            this.panel2.Size = new System.Drawing.Size(1717, 124);
             this.panel2.TabIndex = 3;
             // 
             // panel10
@@ -360,7 +381,7 @@
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Margin = new System.Windows.Forms.Padding(0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1662, 124);
+            this.panel10.Size = new System.Drawing.Size(1717, 124);
             this.panel10.TabIndex = 2;
             // 
             // txtIdProducto
@@ -391,7 +412,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(4, 19);
+            this.label3.Location = new System.Drawing.Point(59, 19);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 27);
@@ -405,7 +426,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(1058, 19);
+            this.label10.Location = new System.Drawing.Point(1113, 19);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(193, 27);
@@ -426,7 +447,7 @@
             this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 27;
-            this.iconButton1.Location = new System.Drawing.Point(1055, 55);
+            this.iconButton1.Location = new System.Drawing.Point(1110, 55);
             this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(56, 45);
@@ -439,7 +460,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(812, 19);
+            this.label4.Location = new System.Drawing.Point(867, 19);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 27);
@@ -460,7 +481,7 @@
             this.iconButton10.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
             this.iconButton10.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton10.IconSize = 27;
-            this.iconButton10.Location = new System.Drawing.Point(800, 57);
+            this.iconButton10.Location = new System.Drawing.Point(855, 57);
             this.iconButton10.Margin = new System.Windows.Forms.Padding(0);
             this.iconButton10.Name = "iconButton10";
             this.iconButton10.Size = new System.Drawing.Size(50, 45);
@@ -537,7 +558,7 @@
             this.btnAgregarProducto.IconColor = System.Drawing.Color.White;
             this.btnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarProducto.IconSize = 40;
-            this.btnAgregarProducto.Location = new System.Drawing.Point(41, 9);
+            this.btnAgregarProducto.Location = new System.Drawing.Point(44, 9);
             this.btnAgregarProducto.Margin = new System.Windows.Forms.Padding(0);
             this.btnAgregarProducto.Name = "btnAgregarProducto";
             this.btnAgregarProducto.Size = new System.Drawing.Size(90, 92);
@@ -557,7 +578,7 @@
             this.label5.Location = new System.Drawing.Point(14, 98);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(150, 40);
+            this.label5.Size = new System.Drawing.Size(156, 40);
             this.label5.TabIndex = 40;
             this.label5.Text = "Agregar";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -578,7 +599,7 @@
             this.btnEliminarProducto.IconColor = System.Drawing.Color.White;
             this.btnEliminarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnEliminarProducto.IconSize = 40;
-            this.btnEliminarProducto.Location = new System.Drawing.Point(37, 9);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(40, 9);
             this.btnEliminarProducto.Margin = new System.Windows.Forms.Padding(0);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
             this.btnEliminarProducto.Size = new System.Drawing.Size(90, 92);
@@ -604,7 +625,7 @@
             this.btnActualizarProducto.IconColor = System.Drawing.Color.White;
             this.btnActualizarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnActualizarProducto.IconSize = 40;
-            this.btnActualizarProducto.Location = new System.Drawing.Point(36, 9);
+            this.btnActualizarProducto.Location = new System.Drawing.Point(39, 9);
             this.btnActualizarProducto.Margin = new System.Windows.Forms.Padding(0);
             this.btnActualizarProducto.Name = "btnActualizarProducto";
             this.btnActualizarProducto.Size = new System.Drawing.Size(90, 92);
@@ -630,7 +651,7 @@
             this.btnLimpiarProducto.IconColor = System.Drawing.Color.White;
             this.btnLimpiarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnLimpiarProducto.IconSize = 40;
-            this.btnLimpiarProducto.Location = new System.Drawing.Point(40, 9);
+            this.btnLimpiarProducto.Location = new System.Drawing.Point(42, 9);
             this.btnLimpiarProducto.Margin = new System.Windows.Forms.Padding(0);
             this.btnLimpiarProducto.Name = "btnLimpiarProducto";
             this.btnLimpiarProducto.Size = new System.Drawing.Size(90, 92);
@@ -645,7 +666,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1662, 897);
+            this.ClientSize = new System.Drawing.Size(1717, 897);
             this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.tableLayoutPanel3);
