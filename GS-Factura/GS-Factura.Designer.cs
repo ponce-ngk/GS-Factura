@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.reporteFactura = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
-            // reportViewer1
+            // reporteFactura
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(798, 580);
-            this.reportViewer1.TabIndex = 0;
+            this.reporteFactura.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reporteFactura.Location = new System.Drawing.Point(0, 0);
+            this.reporteFactura.Name = "reporteFactura";
+            this.reporteFactura.ServerReport.BearerToken = null;
+            this.reporteFactura.Size = new System.Drawing.Size(798, 580);
+            this.reporteFactura.TabIndex = 0;
             // 
             // GS_Factura
             // 
@@ -46,8 +46,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(798, 580);
-            this.Controls.Add(this.reportViewer1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Controls.Add(this.reporteFactura);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GS_Factura";
             this.Text = "GS_Factura";
             this.Load += new System.EventHandler(this.GS_Factura_Load);
@@ -57,6 +57,6 @@
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private Microsoft.Reporting.WinForms.ReportViewer reporteFactura;
     }
 }

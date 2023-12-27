@@ -565,14 +565,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="id_producto">
+                    <Textbox Name="IDFACTURA">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>0001</Value>
+                              <Value>=Fields!IDFACTURA.Value</Value>
                               <Style>
                                 <FontFamily>Segoe UI Semibold</FontFamily>
                               </Style>
@@ -583,7 +583,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>id_producto</rd:DefaultName>
+                      <rd:DefaultName>IDFACTURA</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -603,14 +603,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Cantidad">
+                    <Textbox Name="CANTIDAD">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>5</Value>
+                              <Value>=Fields!CANTIDAD.Value</Value>
                               <Style>
                                 <FontFamily>Segoe UI Semibold</FontFamily>
                               </Style>
@@ -621,7 +621,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Cantidad</rd:DefaultName>
+                      <rd:DefaultName>CANTIDAD</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -641,14 +641,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Descripcion">
+                    <Textbox Name="PRODUCTO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>PRUEBA DE PRODUCTO 1</Value>
+                              <Value>=Fields!PRODUCTO.Value</Value>
                               <Style>
                                 <FontFamily>Segoe UI Semibold</FontFamily>
                               </Style>
@@ -659,7 +659,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Descripcion</rd:DefaultName>
+                      <rd:DefaultName>PRODUCTO</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -679,14 +679,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Precio_Unitario">
+                    <Textbox Name="PRECIO_UNITARIO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>$ 1,25</Value>
+                              <Value>=Fields!PRECIO_UNITARIO.Value</Value>
                               <Style>
                                 <FontFamily>Segoe UI Semibold</FontFamily>
                                 <Format>0.00;(0.00)</Format>
@@ -698,7 +698,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Precio_Unitario</rd:DefaultName>
+                      <rd:DefaultName>PRECIO_UNITARIO</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -718,14 +718,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Importe_Total">
+                    <Textbox Name="TOTAL">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>$ 5,50</Value>
+                              <Value>=Fields!TOTAL.Value</Value>
                               <Style>
                                 <FontFamily>Segoe UI Semibold</FontFamily>
                                 <Format>0.00;(0.00)</Format>
@@ -737,7 +737,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Importe_Total</rd:DefaultName>
+                      <rd:DefaultName>TOTAL</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -790,312 +790,6 @@
           </Border>
         </Style>
       </Tablix>
-      <Tablix Name="tabla_DT_Precio">
-        <TablixCorner>
-          <TablixCornerRows>
-            <TablixCornerRow>
-              <TablixCornerCell>
-                <CellContents>
-                  <Textbox Name="Textbox26">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>SUBTOTAL</Value>
-                            <Style>
-                              <FontFamily>Segoe UI Variable Text Semibold</FontFamily>
-                              <FontSize>11pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox26</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Color>White</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <BottomBorder>
-                        <Width>1pt</Width>
-                      </BottomBorder>
-                      <BackgroundColor>White</BackgroundColor>
-                      <VerticalAlign>Middle</VerticalAlign>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixCornerCell>
-            </TablixCornerRow>
-          </TablixCornerRows>
-        </TablixCorner>
-        <TablixBody>
-          <TablixColumns>
-            <TablixColumn>
-              <Width>3.09694cm</Width>
-            </TablixColumn>
-          </TablixColumns>
-          <TablixRows>
-            <TablixRow>
-              <Height>1.08286cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="iva">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>$ 0.12</Value>
-                              <Style>
-                                <FontFamily>Segoe UI Variable Display Semib</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>0.00;(0.00)</Format>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>iva</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>None</Style>
-                        </Border>
-                        <BottomBorder>
-                          <Width>1pt</Width>
-                        </BottomBorder>
-                        <VerticalAlign>Middle</VerticalAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-            <TablixRow>
-              <Height>1.08286cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="total_pagar1">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>$ 5.87</Value>
-                              <Style>
-                                <FontFamily>Segoe UI Variable Display Semib</FontFamily>
-                                <FontSize>11pt</FontSize>
-                                <Format>0.00;(0.00)</Format>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>total_pagar1</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>None</Style>
-                        </Border>
-                        <BackgroundColor>#0d52e6</BackgroundColor>
-                        <VerticalAlign>Middle</VerticalAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-          </TablixRows>
-        </TablixBody>
-        <TablixColumnHierarchy>
-          <TablixMembers>
-            <TablixMember>
-              <Group Name="subtotal">
-                <GroupExpressions>
-                  <GroupExpression>=Fields!subtotal.Value</GroupExpression>
-                </GroupExpressions>
-              </Group>
-              <SortExpressions>
-                <SortExpression>
-                  <Value>=Fields!subtotal.Value</Value>
-                </SortExpression>
-              </SortExpressions>
-              <TablixHeader>
-                <Size>1.08286cm</Size>
-                <CellContents>
-                  <Textbox Name="subtotal">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>$ 5.75</Value>
-                            <Style>
-                              <FontFamily>Segoe UI Variable Display Semib</FontFamily>
-                              <FontSize>11pt</FontSize>
-                              <Format>0.00;(0.00)</Format>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>subtotal</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <BottomBorder>
-                        <Width>1pt</Width>
-                      </BottomBorder>
-                      <VerticalAlign>Middle</VerticalAlign>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
-            </TablixMember>
-          </TablixMembers>
-        </TablixColumnHierarchy>
-        <TablixRowHierarchy>
-          <TablixMembers>
-            <TablixMember>
-              <TablixHeader>
-                <Size>3.09694cm</Size>
-                <CellContents>
-                  <Textbox Name="Textbox28">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>IVA</Value>
-                            <Style>
-                              <FontFamily>Segoe UI Variable Text Semibold</FontFamily>
-                              <FontSize>11pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox28</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Color>White</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <BottomBorder>
-                        <Width>1pt</Width>
-                      </BottomBorder>
-                      <BackgroundColor>White</BackgroundColor>
-                      <VerticalAlign>Middle</VerticalAlign>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
-            </TablixMember>
-            <TablixMember>
-              <TablixHeader>
-                <Size>3.09694cm</Size>
-                <CellContents>
-                  <Textbox Name="Textbox34">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>TOTAL</Value>
-                            <Style>
-                              <FontFamily>Segoe UI Variable Display Semib</FontFamily>
-                              <FontSize>11pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                              <Color>White</Color>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox34</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Color>White</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <BackgroundColor>#0d52e6</BackgroundColor>
-                      <VerticalAlign>Middle</VerticalAlign>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
-            </TablixMember>
-          </TablixMembers>
-        </TablixRowHierarchy>
-        <DataSetName>DataSet2</DataSetName>
-        <Top>22.16175cm</Top>
-        <Left>12.32744cm</Left>
-        <Height>3.24858cm</Height>
-        <Width>6.19388cm</Width>
-        <ZIndex>12</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <VerticalAlign>Top</VerticalAlign>
-        </Style>
-      </Tablix>
     </ReportItems>
     <Height>28.2575cm</Height>
     <Style />
@@ -1112,6 +806,81 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSetFactura">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>f9e2fd10-bf2d-4840-9e04-77d484135a63</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>DataSetFactura</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="IDFACTURA">
+          <DataField>IDFACTURA</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CEDULA">
+          <DataField>CEDULA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NOMBRE">
+          <DataField>NOMBRE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="APELLIDOS">
+          <DataField>APELLIDOS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FECHA">
+          <DataField>FECHA</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="IDPRODUCTO">
+          <DataField>IDPRODUCTO</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="CANTIDAD">
+          <DataField>CANTIDAD</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="PRODUCTO">
+          <DataField>PRODUCTO</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PRECIO_UNITARIO">
+          <DataField>PRECIO_UNITARIO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SUBTOTAL">
+          <DataField>SUBTOTAL</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SUBTOTAL1">
+          <DataField>SUBTOTAL1</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TOTAL">
+          <DataField>TOTAL</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSetFactura</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\kevin\source\repos\GS-Factura\GS-Factura\DataSetFactura.xsd</rd:SchemaPath>
+        <rd:TableName>DataTable1</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>DataTable1TableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <EmbeddedImages>
     <EmbeddedImage Name="FACTURAcopia">
       <MIMEType>image/jpeg</MIMEType>
