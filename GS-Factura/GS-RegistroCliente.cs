@@ -174,14 +174,6 @@ namespace GS_Factura
                 txtnombrescliente.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
                 txtapellidoscliente.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
                 dtpFechaCliente.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
-                /*if (dgvClientes.CurrentRow.Cells[5].Value.ToString() == "Activo")
-                {
-                    radioButton2.Checked = true;
-                }
-                else
-                {
-                    radioButton1.Checked = true;
-                }*/
             }
             catch (Exception ex)
             {
