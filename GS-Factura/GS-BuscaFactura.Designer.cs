@@ -30,10 +30,10 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.txtcedulaCliente = new System.Windows.Forms.TextBox();
-            this.btnvalidarCliente = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtcedulaCliente = new System.Windows.Forms.TextBox();
+            this.btn_busca_factura = new FontAwesome.Sharp.IconButton();
+            this.rptFacturaBuscar = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -43,7 +43,7 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.reportViewer1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.rptFacturaBuscar, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -58,7 +58,7 @@
             this.panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtcedulaCliente);
-            this.panel1.Controls.Add(this.btnvalidarCliente);
+            this.panel1.Controls.Add(this.btn_busca_factura);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -66,14 +66,15 @@
             this.panel1.Size = new System.Drawing.Size(782, 40);
             this.panel1.TabIndex = 0;
             // 
-            // reportViewer1
+            // label1
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.Location = new System.Drawing.Point(3, 43);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(776, 495);
-            this.reportViewer1.TabIndex = 1;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(203, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(156, 13);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Ingrese el numero de factura";
             // 
             // txtcedulaCliente
             // 
@@ -90,33 +91,33 @@
             this.txtcedulaCliente.Size = new System.Drawing.Size(159, 23);
             this.txtcedulaCliente.TabIndex = 27;
             // 
-            // btnvalidarCliente
+            // btn_busca_factura
             // 
-            this.btnvalidarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.btnvalidarCliente.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnvalidarCliente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnvalidarCliente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnvalidarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnvalidarCliente.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnvalidarCliente.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
-            this.btnvalidarCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnvalidarCliente.IconSize = 20;
-            this.btnvalidarCliente.Location = new System.Drawing.Point(9, 10);
-            this.btnvalidarCliente.Margin = new System.Windows.Forms.Padding(0);
-            this.btnvalidarCliente.Name = "btnvalidarCliente";
-            this.btnvalidarCliente.Size = new System.Drawing.Size(23, 23);
-            this.btnvalidarCliente.TabIndex = 26;
-            this.btnvalidarCliente.UseVisualStyleBackColor = false;
+            this.btn_busca_factura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.btn_busca_factura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btn_busca_factura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_busca_factura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn_busca_factura.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_busca_factura.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btn_busca_factura.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
+            this.btn_busca_factura.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_busca_factura.IconSize = 20;
+            this.btn_busca_factura.Location = new System.Drawing.Point(9, 10);
+            this.btn_busca_factura.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_busca_factura.Name = "btn_busca_factura";
+            this.btn_busca_factura.Size = new System.Drawing.Size(23, 23);
+            this.btn_busca_factura.TabIndex = 26;
+            this.btn_busca_factura.UseVisualStyleBackColor = false;
+            this.btn_busca_factura.Click += new System.EventHandler(this.btn_busca_factura_Click);
             // 
-            // label1
+            // rptFacturaBuscar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(194, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 13);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Ingrese el numero de factura";
+            this.rptFacturaBuscar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rptFacturaBuscar.Location = new System.Drawing.Point(3, 43);
+            this.rptFacturaBuscar.Name = "rptFacturaBuscar";
+            this.rptFacturaBuscar.ServerReport.BearerToken = null;
+            this.rptFacturaBuscar.Size = new System.Drawing.Size(776, 495);
+            this.rptFacturaBuscar.TabIndex = 1;
             // 
             // GS_BuscaFactura
             // 
@@ -140,9 +141,9 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private Microsoft.Reporting.WinForms.ReportViewer rptFacturaBuscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtcedulaCliente;
-        private FontAwesome.Sharp.IconButton btnvalidarCliente;
+        private FontAwesome.Sharp.IconButton btn_busca_factura;
     }
 }
