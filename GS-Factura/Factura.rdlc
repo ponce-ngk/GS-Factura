@@ -2,18 +2,6 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Image Name="FondoFactura">
-        <Source>Embedded</Source>
-        <Value>FACTURAcopia</Value>
-        <Sizing>FitProportional</Sizing>
-        <Height>28.2575cm</Height>
-        <Width>19.69485cm</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Image>
       <Textbox Name="txtNombre">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -31,11 +19,10 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>5.06222cm</Top>
+        <Top>1.22493cm</Top>
         <Left>1.09415cm</Left>
         <Height>0.6cm</Height>
         <Width>1.90293cm</Width>
-        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -54,18 +41,18 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>120700000-9</Value>
+                <Value>=First(Fields!CEDULA.Value, "DataSet1")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>4.18cm</Top>
+        <Top>0.66021cm</Top>
         <Left>3.77318cm</Left>
         <Height>0.6cm</Height>
         <Width>4.48219cm</Width>
-        <ZIndex>2</ZIndex>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -94,11 +81,11 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>4.18cm</Top>
+        <Top>0.66021cm</Top>
         <Left>1.09415cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5732cm</Width>
-        <ZIndex>3</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -127,11 +114,11 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>5.96208cm</Top>
+        <Top>1.80729cm</Top>
         <Left>1.09415cm</Left>
         <Height>0.6cm</Height>
         <Width>1.90293cm</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -150,18 +137,18 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Nombre1 Nombre2</Value>
+                <Value>=First(Fields!NOMBRE.Value, "DataSet1")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>5.06222cm</Top>
+        <Top>1.22493cm</Top>
         <Left>3.1029cm</Left>
         <Height>0.6cm</Height>
         <Width>6.09615cm</Width>
-        <ZIndex>5</ZIndex>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -190,11 +177,11 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>5.45028cm</Top>
-        <Left>11.82719cm</Left>
+        <Top>1.61299cm</Top>
+        <Left>11.19219cm</Left>
         <Height>0.6cm</Height>
         <Width>2.92355cm</Width>
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -224,11 +211,11 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>4.18cm</Top>
-        <Left>11.86247cm</Left>
+        <Top>0.66021cm</Top>
+        <Left>11.22747cm</Left>
         <Height>0.9175cm</Height>
         <Width>3.65556cm</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -247,18 +234,18 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Apellido1 Apellido2</Value>
+                <Value>=First(Fields!APELLIDOS.Value, "DataSet1")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>5.96208cm</Top>
+        <Top>1.80729cm</Top>
         <Left>3.06763cm</Left>
         <Height>0.6cm</Height>
         <Width>6.09615cm</Width>
-        <ZIndex>8</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -277,18 +264,18 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>26/04/2023    20:36:00</Value>
+                <Value>=First(Fields!FECHA.Value, "DataSet1")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>5.45028cm</Top>
-        <Left>14.82129cm</Left>
+        <Top>1.61299cm</Top>
+        <Left>14.18629cm</Left>
         <Height>0.6cm</Height>
         <Width>3.70003cm</Width>
-        <ZIndex>9</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -307,7 +294,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>00000001</Value>
+                <Value>=First(Fields!IDFACTURA.Value, "DataSet1")</Value>
                 <Style>
                   <FontFamily />
                   <FontSize>18pt</FontSize>
@@ -319,11 +306,11 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-        <Top>4.18cm</Top>
-        <Left>15.62386cm</Left>
+        <Top>0.66021cm</Top>
+        <Left>14.98886cm</Left>
         <Height>0.9175cm</Height>
         <Width>3.00329cm</Width>
-        <ZIndex>10</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Color>White</Color>
@@ -565,14 +552,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="IDFACTURA">
+                    <Textbox Name="IDPRODUCTO">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!IDFACTURA.Value</Value>
+                              <Value>=Fields!IDPRODUCTO.Value</Value>
                               <Style>
                                 <FontFamily>Segoe UI Semibold</FontFamily>
                               </Style>
@@ -583,7 +570,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>IDFACTURA</rd:DefaultName>
+                      <rd:DefaultName>IDPRODUCTO</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -718,14 +705,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TOTAL">
+                    <Textbox Name="SUBTOTAL">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!TOTAL.Value</Value>
+                              <Value>=Fields!SUBTOTAL.Value</Value>
                               <Style>
                                 <FontFamily>Segoe UI Semibold</FontFamily>
                                 <Format>0.00;(0.00)</Format>
@@ -737,7 +724,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>TOTAL</rd:DefaultName>
+                      <rd:DefaultName>SUBTOTAL</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -779,10 +766,300 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>6.73847cm</Top>
+        <Top>3.21868cm</Top>
         <Left>1.09415cm</Left>
         <Height>2.44354cm</Height>
         <Width>17.42717cm</Width>
+        <ZIndex>10</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+      <Tablix Name="tabla_dt_factura2">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.97027cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>3.21244cm</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>1.22177cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox14">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>S.TOTAL</Value>
+                              <Style>
+                                <FontFamily>Segoe UI Variable Display Semib</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox13</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>Solid</Style>
+                          <Width>1.2pt</Width>
+                        </Border>
+                        <BackgroundColor>#0d52e6</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox20">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=First(Fields!SUBTOTAL1.Value, "DataSet1")</Value>
+                              <Style>
+                                <FontFamily>Segoe UI Variable Display Semib</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox19</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>Solid</Style>
+                          <Width>1.2pt</Width>
+                        </Border>
+                        <BackgroundColor>White</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>1.22177cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox40">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>IVA</Value>
+                              <Style>
+                                <FontFamily>Segoe UI Variable Display Semib</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox40</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>Solid</Style>
+                          <Width>1.2pt</Width>
+                        </Border>
+                        <BackgroundColor>#0d52e6</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox41">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>12%</Value>
+                              <Style>
+                                <FontFamily>Segoe UI Variable Display Semib</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox41</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>Solid</Style>
+                          <Width>1.2pt</Width>
+                        </Border>
+                        <BackgroundColor>White</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>1.36729cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox42">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>TOTAL</Value>
+                              <Style>
+                                <FontFamily>Segoe UI Variable Display Semib</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox42</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>Solid</Style>
+                          <Width>1.2pt</Width>
+                        </Border>
+                        <BackgroundColor>#0d52e6</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox43">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=First(Fields!TOTAL.Value, "DataSet1")</Value>
+                              <Style>
+                                <FontFamily>Segoe UI Variable Display Semib</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox43</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>Solid</Style>
+                          <Width>1.2pt</Width>
+                        </Border>
+                        <BackgroundColor>White</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DataSet1</DataSetName>
+        <Top>8.75205cm</Top>
+        <Left>13.33861cm</Left>
+        <Height>3.81083cm</Height>
+        <Width>5.18271cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -790,12 +1067,96 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="txt_fact3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>GRACIAS POR SU COMPRA</Value>
+                <Style>
+                  <FontStyle>Italic</FontStyle>
+                  <FontFamily />
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Color>#0d52e6</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>11.96288cm</Top>
+        <Left>1.09415cm</Left>
+        <Height>0.6cm</Height>
+        <Width>8.76202cm</Width>
+        <ZIndex>12</ZIndex>
+        <Style>
+          <Border>
+            <Color>White</Color>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>28.2575cm</Height>
+    <Height>13.17625cm</Height>
     <Style />
   </Body>
   <Width>19.74777cm</Width>
   <Page>
+    <PageHeader>
+      <Height>2.54896cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="txt_fact2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>GS_FACTURA</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Segoe UI Black</FontFamily>
+                    <FontSize>36pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Color>White</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.57312cm</Top>
+          <Left>0.77665cm</Left>
+          <Height>1.63188cm</Height>
+          <Width>9.07952cm</Width>
+          <Style>
+            <Border>
+              <Color>White</Color>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+        <BackgroundColor>#0d52e6</BackgroundColor>
+      </Style>
+    </PageHeader>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>

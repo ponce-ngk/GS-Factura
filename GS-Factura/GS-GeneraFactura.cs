@@ -317,6 +317,10 @@ namespace GS_Factura
                     MessageBox.Show(ex.Message);
                 }
             }
+
+            GS_Factura frm = new GS_Factura();
+            frm.Show();
+
         }
 
         // Este método procesa la venta almacenando la información en la base de datos.

@@ -19,84 +19,63 @@ namespace GS_Factura
         {
             InitializeComponent();
         }
-
-        AccesoDatos conexion_sql = new AccesoDatos();
-        DataSet oDS = new DataSet();
+        AccesoDatos Datos = new AccesoDatos();
         private void GS_Factura_Load(object sender, EventArgs e)
         {
-            SqlConnection conexion = null;
+            int maxIdVenta = ObtenerMaxIdVenta();
+
+
 
             try
             {
-                // Llamar al método de tu clase AccesoDatos para realizar la consulta
-                conexion = AccesoDatos.abrirConexion();
+                string consulta = "Select  F.IDFACTURA, c.CEDULA, C.NOMBRE, C.APELLIDOS, " +
+                    "F.FECHA, DF.IDPRODUCTO, DF.CANTIDAD,\r\nP.PRODUCTO, P.PRECIO_UNITARIO, " +
+                    "DF.SUBTOTAL, F.SUBTOTAL, F.TOTAL from FACTURA \r\nas " +
+                    "F inner join DETALLE_FACTURA as DF on " +
+                    "F.IDFACTURA = DF.IDFACTURA\r\ninner join CLIENTE as C on " +
+                    "f.IDCLIENTE = c.IDCLIENTE\r\ninner join PRODUCTO as P on" +
+                    " DF.IDPRODUCTO = P.IDPRODUCTO\r\nwhere f.IDFACTURA = "+maxIdVenta+ ""; // Reemplaza TU_TABLA con el nombre de tu tabla
+                DataTable datos = AccesoDatos.retornaRegistros(consulta);
 
-                string consulta = "SELECT MAX(IDFACTURA) FROM FACTURA";
-                SqlCommand cmd = new SqlCommand(consulta, conexion);
+                // Configurar el informe
+                reporteFactura.LocalReport.ReportPath = "factura.rdlc"; // Asegúrate de que coincida con el nombre de tu informe
+                ReportDataSource dataSource = new ReportDataSource("DataSet1", datos); // Reemplaza "DataSet1" con el nombre de tu conjunto de datos en el informe
+                reporteFactura.LocalReport.DataSources.Add(dataSource);
 
-                // Ejecutar la consulta y obtener el resultado
-                object resultado = cmd.ExecuteScalar();
+                // Actualizar el informe
+                reporteFactura.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-                // Verificar si el resultado no es nulo
-                if (resultado != null && resultado != DBNull.Value)
+        private int ObtenerMaxIdVenta()
+        {
+            int maxIdVenta = 0;
+
+            try
+            {
+                using (SqlConnection conexion = AccesoDatos.abrirConexion())
                 {
-                    // Convertir el resultado a un tipo adecuado (int en este caso)
-                    int maxIdVenta = Convert.ToInt32(resultado);
+                    string consulta = "SELECT MAX(IDFACTURA) FROM FACTURA";
+                    SqlCommand cmd = new SqlCommand(consulta, conexion);
 
-                }
-                else
-                {
-                    // El resultado fue nulo o DBNull.Value
-                    MessageBox.Show("No se encontraron registros en la tabla 'venta'.");
+                    object resultado = cmd.ExecuteScalar();
+
+                    if (resultado != null && resultado != DBNull.Value)
+                    {
+                        maxIdVenta = Convert.ToInt32(resultado);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al obtener el máximo id_venta: " + ex.Message);
             }
-            finally
-            {
-                // Asegurarse de cerrar la conexión después de usarla
-                if (conexion != null)
-                {
-                    AccesoDatos.CerrarConexion(conexion);
-                }
-            }
-        }
 
-
-        public void cargarReporte(string cadena)
-        {
-            try
-            {
-                conexion_sql.AbrirConexion1();
-
-                ReportDataSource dataset = new ReportDataSource();
-                reporteFactura.LocalReport.DataSources.Clear();
-                oDS = conexion_sql.retornaRegistros(cadena);
-
-                this.reporteFactura.RefreshReport();
-                reporteFactura.LocalReport.ReportEmbeddedResource = "Factura.rdlc";
-                try
-                {
-                    dataset = new ReportDataSource("DataSet1", oDS.Tables[0]);
-                }
-                catch
-                {
-                    MessageBox.Show("Error al generar reporte");
-                    conexion_sql.CerrarConexion1();
-                }
-                reporteFactura.LocalReport.DataSources.Add(dataset);
-                reporteFactura.LocalReport.Refresh();
-                reporteFactura.RefreshReport();
-                conexion_sql.CerrarConexion1();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex);
-                conexion_sql.CerrarConexion1();
-            }
+            return maxIdVenta;
         }
     }
 }

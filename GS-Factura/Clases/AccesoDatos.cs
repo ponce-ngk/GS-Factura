@@ -91,68 +91,27 @@ namespace GS_Factura
             }
         }
 
-        public DataSet retornaRegistros(string Sentencia)
+        public static DataTable retornaRegistros(string Sentencia)
         {
-            if (Sentencia.Length > 0)
-            {
-                try
-                {
-                    SqlConnection oCon = new SqlConnection(cadenaConexion);
-                    oCon.Open();
-                    ocom = new SqlCommand(Sentencia, oCon);
-                    oDA = new SqlDataAdapter(ocom);
-                    oDS = new DataSet();
-                    oDA.Fill(oDS, "dtRetorna");
-                    oCon.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    oDS = null;
-                }
-            }
-            return oDS;
-
-        }
-        public SqlConnection AbrirConexion1()
-        {
+            DataTable dt = new DataTable();
             try
             {
-                if (conexion == null)
-                {
-                    conexion = new SqlConnection(cadenaConexion);
-                }
-
-                if (conexion.State != System.Data.ConnectionState.Open)
-                {
-                    conexion.Open();
-                }
-
-                return conexion;
+                SqlConnection oCon = abrirConexion(); // Utiliza el método abrirConexion para obtener la conexión.
+                SqlCommand ocom = new SqlCommand(Sentencia, oCon);
+                SqlDataAdapter oDA = new SqlDataAdapter(ocom);
+                oDA.Fill(dt);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return null;
+                dt = null;
             }
+
+            return dt;
         }
 
-        public void CerrarConexion1()
-        {
-            try
-            {
-                if (conexion.State == System.Data.ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
 
     }
-
+        
 }
