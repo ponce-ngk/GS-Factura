@@ -20,20 +20,7 @@ namespace GS_Factura
         private static string cadenaConexion = "Server = . ;Database= FACTURAS ; User Id = sa ; Password = 1234;";
 
         public AccesoDatos()
-        {
-            // Cadena de conexión a la base de datos
-
-            // Crear objeto SqlConnection
-        }
-
-
-        //public static SqlConnection abrirConexion()
-        //{
-        //    string cadena = string.Format(cadenaConexion);
-        //    SqlConnection oCon = new SqlConnection(cadena);
-        //    oCon.Open();
-        //    return oCon;
-        //}
+        { }
 
 
         public static SqlConnection abrirConexion()
@@ -65,57 +52,6 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
             }
         }
-
-        public bool ejecutarSQL(string Sentencia)
-        {
-            try
-            {
-                using (SqlConnection conexion = abrirConexion())
-                {
-                    using (SqlCommand ocom = new SqlCommand(Sentencia, conexion))
-                    {
-                        ocom.ExecuteNonQuery();
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al ejecutar la consulta: " + ex.Message);
-                return false;
-            }
-        }
-
-        public DataSet retornaRegistros(string Sentencia)
-        {
-            DataSet oDS = new DataSet();
-
-            if (Sentencia.Length > 0)
-            {
-                try
-                {
-                    using (SqlConnection conexion = abrirConexion())
-                    {
-                        using (SqlCommand ocom = new SqlCommand(Sentencia, conexion))
-                        {
-                            using (SqlDataAdapter oDA = new SqlDataAdapter(ocom))
-                            {
-                                oDA.Fill(oDS, "dtRetorna");
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al ejecutar la consulta: " + ex.Message);
-                    oDS = null;
-                }
-            }
-
-            return oDS;
-        }
-
 
         public static DataTable llenartablaparabuscar(string consul)
         {
