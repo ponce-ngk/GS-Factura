@@ -15,10 +15,9 @@ namespace GS_Factura
     {
 
 
-        //public delegate void pasarformFactura(string nameproduct,
-        //string cantidadproducto, string preciproducto);
 
 
+        // Declaración del delegado
         public delegate void pasarformFactura(string idproducto, string nameproduct,
                 string cantidadproducto, string preciproducto);
 
@@ -38,6 +37,8 @@ namespace GS_Factura
             this.Close();
         }
 
+        // Este método se ejecuta cuando el campo de nombre de producto recibe el foco.
+
         private void txtnombreproducto_Enter(object sender, EventArgs e)
         {
             try
@@ -55,12 +56,15 @@ namespace GS_Factura
             }
         }
 
+        // Este método se ejecuta cuando el campo de nombre de producto pierde el foco.
         private void txtnombreproducto_Leave(object sender, EventArgs e)
         {
             try
             {
                 if (txtnombreproducto.Text == "")
                 {
+                    // Restaura el texto predeterminado y el color del texto.
+
                     txtnombreproducto.Text = "Nombre del Producto....";
                     txtnombreproducto.ForeColor = Color.DimGray;
                 }
@@ -75,7 +79,7 @@ namespace GS_Factura
 
 
 
-
+        //recibe el foco
         private void txtcantidadproducto_Enter(object sender, EventArgs e)
         {
             try
@@ -92,11 +96,13 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
             }
         }
-
+        //pierde el foco.
         private void txtcantidadproducto_Leave(object sender, EventArgs e)
         {
             try
             {
+                // Si el texto está vacío, lo cambia a "0" y establece el color del texto a gris oscuro
+
                 if (txtcantidadproducto.Text == "")
                 {
                     txtcantidadproducto.Text = "0";
@@ -110,6 +116,7 @@ namespace GS_Factura
             }
         }
 
+        // Método asociado al evento Click del botón btnGuardarPorducto
         private void btnGuardarPorducto_Click(object sender, EventArgs e)
         {
             try
@@ -118,12 +125,11 @@ namespace GS_Factura
                 {
                     return;
                 }
-             
 
+                // Llama al método asociado al delegado pasarformFactura
                 pasarproducto(lblidproducto.Text, txtnombreproducto.Text,
                    txtcantidadproducto.Text, txtpreciounitario.Text);
-
-          
+                // Oculta la ventana actual
                 this.Hide();
 
 
@@ -165,6 +171,7 @@ namespace GS_Factura
             }
         }
 
+        // Este método se ejecuta cuando el campo de búsqueda de productos recibe el foco.
         private void txtbuscarproducto_Enter(object sender, EventArgs e)
         {
             try
@@ -182,12 +189,14 @@ namespace GS_Factura
             }
         }
 
+        // Este método se ejecuta cuando el campo de búsqueda de productos pierde el foco.
         private void txtbuscarproducto_Leave(object sender, EventArgs e)
         {
             try
             {
                 if (txtbuscarproducto.Text == "")
                 {
+                        // Restaura el texto predeterminado y el color del texto.
                     txtbuscarproducto.Text = "Busca Nombre del Producto...";
                     txtbuscarproducto.ForeColor = Color.DimGray;
                 }
@@ -199,6 +208,9 @@ namespace GS_Factura
             }
         }
 
+
+        // Este método se ejecuta cuando cambia el texto en el campo de búsqueda de productos.
+
         private void txtbuscarproducto_TextChanged(object sender, EventArgs e)
         {
             if (txtbuscarproducto.Text != "" && txtbuscarproducto.Text != "Busca Nombre del Producto...")
@@ -206,6 +218,8 @@ namespace GS_Factura
 
                 try
                 {
+                    // Sentencia SQL para extraer información de productos que coincidan con el texto de búsqueda.
+
                     string sentenciaextraer = @"select IDPRODUCTO 
                     as ID, PRODUCTO, PRECIO_UNITARIO AS PRECIO_UNITARIO,
                     STOCK from [dbo].[PRODUCTO]
@@ -229,22 +243,24 @@ namespace GS_Factura
         {
             try
             {
-
+                //limpia las columnas
                 dtgventaproducto.Columns.Clear();
+                // Abre una conexión a la base de datos utilizando el objeto AccesoDatos
                 using (SqlConnection conexion = AccesoDatos.abrirConexion())
                 {
                     using (SqlDataAdapter sentenciadata = new SqlDataAdapter(sentencia, conexion))
                     {
                         DataTable asiganardata = new DataTable();
                         sentenciadata.Fill(asiganardata);
+                        // Asigna el DataTable como origen de datos para el DataGridView
 
                         dtgventaproducto.DataSource = asiganardata;
                     } // sentenciadata se libera automáticamente al salir del bloque using
                 }
+                // Ajusta el ancho de la columna con el nombre "Id"
 
                 dtgventaproducto.Columns["Id"].Width = 42;
-                //dtgventaproducto.Columns["Stock"].Width = 52;
-                //dtgventaproducto.Columns["IdLote"].Visible = false;
+         
 
             }
             catch (Exception ex)
@@ -253,6 +269,7 @@ namespace GS_Factura
             }
         }
 
+        //todos los datos que se encuentra en la fila del data que dio clic pasa a  los campos como txt o label
         private void dtgventaproducto_DoubleClick(object sender, EventArgs e)
         {
             try
@@ -262,6 +279,8 @@ namespace GS_Factura
                 txtnombreproducto.Text = dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[1].Value.ToString();
                 txtpreciounitario.Text = dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[2].Value.ToString();
                 lblcantidadactualproducto.Text = dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[3].Value.ToString();
+                // Muestra el texto y el control que indica la cantidad actual
+
                 lbltextocantidad.Text = "Cantidad Actual:";
                 lblcantidadactualproducto.Visible = true;
             }
@@ -274,6 +293,7 @@ namespace GS_Factura
 
         private void txtcantidadproducto_TextChanged(object sender, EventArgs e)
         {
+            // Verifica si el texto en txtcantidadproducto no está vacío y la cantidad ingresada es mayor que la cantidad actual
             if (txtcantidadproducto.Text != "" && decimal.Parse(txtcantidadproducto.Text) > decimal.Parse(lblcantidadactualproducto.Text))
             {
                 MessageBox.Show("La cantidad colocada sobre pasa al stock del producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
