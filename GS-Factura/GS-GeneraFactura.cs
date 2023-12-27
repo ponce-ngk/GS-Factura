@@ -20,6 +20,14 @@ namespace GS_Factura
         public GS_GeneraFactura()
         {
             InitializeComponent();
+            this.cargarnumerofactura();
+        }
+
+        public void cargarnumerofactura()
+        {
+            SqlCommand command = new SqlCommand("select top 1 IDFACTURA from FACTURA order by IDFACTURA desc", AccesoDatos.abrirConexion());
+            string result = command.ExecuteScalar().ToString().PadLeft(6, '0');
+            lblnumerofactura.Text = "001-" + result;
         }
 
         // Este método se ejecuta al hacer clic en el botón de validar cliente.
@@ -192,6 +200,8 @@ namespace GS_Factura
             {
                 if (e.ColumnIndex >= 0 && this.dtgVenta.Columns[e.ColumnIndex].Name == "Eliminarfila" && e.RowIndex >= 0)
                 {
+                    e.CellStyle.BackColor = Color.Red;
+
                     e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
                     // Ajusta las dimensiones del icono para hacer el botón más pequeño
@@ -266,6 +276,7 @@ namespace GS_Factura
         // Este método se ejecuta al hacer clic en el botón de vender.
         private void btnVender_Click(object sender, EventArgs e)
         {
+            
             DialogResult respuesta = MessageBox.Show("Deseas realizar esta venta? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
@@ -299,6 +310,7 @@ namespace GS_Factura
                     // Combina los elementos XML de venta y detalle de venta en una consulta.
                     string consulta = Venta.ToString() + detalle_venta.ToString();
                     xmlVenta(consulta);
+                    this.cargarnumerofactura();
                 }
                 catch (Exception ex)
                 {
@@ -322,7 +334,7 @@ namespace GS_Factura
                         cmd.ExecuteNonQuery();
                     } // El bloque using cerrará automáticamente el comando.
 
-                    MessageBox.Show("El registro ha sido exitoso. Recuerda ingresar en la caja y realizar los movimientos de ingreso y egreso de manera correcta.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("La venta ha sido exitosa.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LimpiarDatosVenta();
                 }
             }

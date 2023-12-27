@@ -221,7 +221,7 @@ namespace GS_Factura
                     // Sentencia SQL para extraer información de productos que coincidan con el texto de búsqueda.
 
                     string sentenciaextraer = @"select IDPRODUCTO 
-                    as ID, PRODUCTO, PRECIO_UNITARIO AS PRECIO_UNITARIO,
+                    as IDPRODUCTO, PRODUCTO, PRECIO_UNITARIO AS PRECIO_UNITARIO,
                     STOCK from [dbo].[PRODUCTO]
                     where PRODUCTO LIKE '" + txtbuscarproducto.Text + "%'";
 
@@ -235,7 +235,7 @@ namespace GS_Factura
             }
             else if (txtbuscarproducto.Text == "")
             {
-                dtgventaproducto.Columns.Clear();
+                dtgventaproducto.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
             }
         }
 
@@ -259,7 +259,7 @@ namespace GS_Factura
                 }
                 // Ajusta el ancho de la columna con el nombre "Id"
 
-                dtgventaproducto.Columns["Id"].Width = 42;
+                dtgventaproducto.Columns["IDPRODUCTO"].Width = 42;
          
 
             }
@@ -274,7 +274,6 @@ namespace GS_Factura
         {
             try
             {
-
                 lblidproducto.Text = dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[0].Value.ToString();
                 txtnombreproducto.Text = dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[1].Value.ToString();
                 txtpreciounitario.Text = dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[2].Value.ToString();
@@ -299,6 +298,11 @@ namespace GS_Factura
                 MessageBox.Show("La cantidad colocada sobre pasa al stock del producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtcantidadproducto.Text = "0";
             }
+        }
+
+        private void ProductoVenta_Load(object sender, EventArgs e)
+        {
+            dtgventaproducto.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
         }
     }
 }
