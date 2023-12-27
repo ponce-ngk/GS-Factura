@@ -197,7 +197,7 @@ namespace GS_Factura
                     // Ajusta las dimensiones del icono para hacer el botón más pequeño
                     int iconWidth = 30;
                     int iconHeight = 30;
-                    //extrae la imagen remove.ico  imagen
+                    //extrae la imagen remove.ico  imagen ico
                     //Icon icoAtomico = new Icon(Environment.CurrentDirectory + @"\\remove.ico", iconWidth, iconHeight);
 
                     Icon icoAtomico = new Icon(Properties.Resources.remove, iconWidth, iconHeight);
