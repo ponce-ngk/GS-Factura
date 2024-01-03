@@ -15,8 +15,18 @@ namespace GS_Factura
     {
         public GS_RegistroProducto()
         {
+
             InitializeComponent();
+            BloqueoControlesInicial();
             LlenarLimpiar();
+        }
+        public void BloqueoControlesInicial()
+        {
+            dgvProductos.CurrentCell = null;
+            btnActualizarProducto.Visible = false;
+            btnEliminarProducto.Visible = false;
+            lblActualizar.Visible = false;
+            lblEliminar.Visible = false;
         }
 
         //Funcion de Borrar datos en el textbox y el llenado del data Grid con datos actualizar
@@ -24,20 +34,30 @@ namespace GS_Factura
             txtcantidadproducto.Text = "";
             txtnombreproducto.Text = "";
             txtpreciounitario.Text = "";
-            txtIdProducto.Text = "";
+            txtpreciounitario.Text = "";
             txtbuscarproducto.Texts = "";
+            lblIdProducto.Text = "";
             dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
+            dgvProductos.CurrentCell = null;
         }
 
         private void dgvProductos_Click(object sender, EventArgs e)
         {
             //Asignacion de datos de la BD al DataGrid
+            BloqueoClickDgv();
             try
-            {                
-                txtIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
-                txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
-                txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
-                txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
+            {
+                if(dgvProductos.CurrentCell == null)
+                {
+                    MessageBox.Show("Debe de seleccionar un celda con informacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    lblIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
+                    txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
+                    txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
+                    txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -119,7 +139,7 @@ namespace GS_Factura
             //caso contrario advierte que estan vacios los txt
             else
             {
-                MessageBox.Show("campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe de llenar todos los Campos Requeridos para Agregar un Nuevo Producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -127,7 +147,7 @@ namespace GS_Factura
         {
             //Eliminar un producto
             //Verifica si los txt no estan vacios
-            if (txtIdProducto.Text != "")
+            if (lblIdProducto.Text != "")
             {
                 //Pregunta si esta de acuerdo en eliminar un producto
                 DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres eliminar estos datos?", "Confirmar eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -135,7 +155,7 @@ namespace GS_Factura
                 {
                     //si presiona si procede con la eliminacion 
                     Producto pProducto = new Producto();
-                    pProducto.IDPRODUCTO1 = int.Parse(txtIdProducto.Text);
+                    pProducto.IDPRODUCTO1 = int.Parse(lblIdProducto.Text);
                     pProducto.ESTADO1 = '0';
                     int resultado = CrudProducto.EliminarProducto(pProducto);
 
@@ -148,12 +168,13 @@ namespace GS_Factura
                         MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     LlenarLimpiar();
+                    BloqueoControles();
                 }
             }
             //caso contrario advierte que estan vacios los txt
             else
             {
-                MessageBox.Show("campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe de seleccionar un producto para ser Eliminando", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -169,7 +190,7 @@ namespace GS_Factura
                 {
                     //si presiona si procede con la Modificacion
                     Producto pProducto = new Producto();
-                    pProducto.IDPRODUCTO1 = int.Parse(txtIdProducto.Text);
+                    pProducto.IDPRODUCTO1 = int.Parse(lblIdProducto.Text);
                     pProducto.PRODUCTO1 = txtnombreproducto.Text;
                     pProducto.STOTCK1 = txtcantidadproducto.Text;
                     pProducto.PRECIO_UNITARIO1 = txtpreciounitario.Text;
@@ -185,18 +206,38 @@ namespace GS_Factura
                     }
 
                     LlenarLimpiar();
+                    BloqueoControles();
                 }
             }
             //caso contrario advierte que estan vacios los txt
             else
             {
-                MessageBox.Show("campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe de seleccionar un producto para ser Actualizado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //Funcion para Limpiar todos los campos en caso de no querrer lo escrito.
         private void btnLimpiarProducto_Click(object sender, EventArgs e)
         {
             LlenarLimpiar();
+            BloqueoControles();
+        }
+        public void BloqueoControles()
+        {
+            btnActualizarProducto.Visible = false;
+            btnEliminarProducto.Visible = false;
+            lblActualizar.Visible = false;
+            lblEliminar.Visible = false;
+            btnAgregarProducto.Visible = true;
+            lblAgregar.Visible = true;
+        }
+        public void BloqueoClickDgv()
+        {
+            btnAgregarProducto.Visible = false;
+            btnActualizarProducto.Visible = true;
+            btnEliminarProducto.Visible = true;
+            lblAgregar.Visible = false;
+            lblActualizar.Visible = true;
+            lblEliminar.Visible = true;
         }
     }
 }

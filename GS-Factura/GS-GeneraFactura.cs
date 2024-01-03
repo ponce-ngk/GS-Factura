@@ -27,6 +27,10 @@ namespace GS_Factura
         {
             SqlCommand command = new SqlCommand("select top 1 IDFACTURA from FACTURA order by IDFACTURA desc", AccesoDatos.abrirConexion());
             string result = command.ExecuteScalar().ToString().PadLeft(6, '0');
+            if (result== "")
+            {
+                result = "0";
+            }
             lblnumerofactura.Text = "001-" + result;
         }
 
