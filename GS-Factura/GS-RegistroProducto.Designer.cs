@@ -28,14 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.btnActualizarProducto = new FontAwesome.Sharp.IconButton();
-            this.lblActualizar = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.btnEliminarProducto = new FontAwesome.Sharp.IconButton();
             this.lblEliminar = new System.Windows.Forms.Label();
@@ -71,9 +67,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
             this.lblIdProducto = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.lblActualizar = new System.Windows.Forms.Label();
+            this.btnActualizarProducto = new FontAwesome.Sharp.IconButton();
+            this.panel8 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
-            this.panel8.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -88,6 +86,8 @@
             this.panel5.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvProductos
@@ -98,99 +98,37 @@
             this.dgvProductos.AllowUserToResizeRows = false;
             this.dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProductos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProductos.Location = new System.Drawing.Point(0, 348);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dgvProductos.RowHeadersVisible = false;
             this.dgvProductos.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductos.Size = new System.Drawing.Size(1386, 440);
             this.dgvProductos.TabIndex = 114;
             this.dgvProductos.Click += new System.EventHandler(this.dgvProductos_Click);
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.panel7);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(960, 0);
-            this.panel8.Margin = new System.Windows.Forms.Padding(0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(141, 166);
-            this.panel8.TabIndex = 1;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.btnActualizarProducto);
-            this.panel7.Controls.Add(this.lblActualizar);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Margin = new System.Windows.Forms.Padding(0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(141, 166);
-            this.panel7.TabIndex = 3;
-            // 
-            // btnActualizarProducto
-            // 
-            this.btnActualizarProducto.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnActualizarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(110)))), ((int)(((byte)(254)))));
-            this.btnActualizarProducto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActualizarProducto.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnActualizarProducto.FlatAppearance.BorderSize = 0;
-            this.btnActualizarProducto.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnActualizarProducto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.btnActualizarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarProducto.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarProducto.ForeColor = System.Drawing.Color.Black;
-            this.btnActualizarProducto.IconChar = FontAwesome.Sharp.IconChar.RotateForward;
-            this.btnActualizarProducto.IconColor = System.Drawing.Color.White;
-            this.btnActualizarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnActualizarProducto.IconSize = 40;
-            this.btnActualizarProducto.Location = new System.Drawing.Point(22, 9);
-            this.btnActualizarProducto.Margin = new System.Windows.Forms.Padding(0);
-            this.btnActualizarProducto.Name = "btnActualizarProducto";
-            this.btnActualizarProducto.Size = new System.Drawing.Size(90, 92);
-            this.btnActualizarProducto.TabIndex = 6;
-            this.btnActualizarProducto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnActualizarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnActualizarProducto.UseVisualStyleBackColor = false;
-            this.btnActualizarProducto.Click += new System.EventHandler(this.btnActualizarProducto_Click);
-            // 
-            // lblActualizar
-            // 
-            this.lblActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblActualizar.BackColor = System.Drawing.Color.Transparent;
-            this.lblActualizar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActualizar.ForeColor = System.Drawing.Color.DimGray;
-            this.lblActualizar.Location = new System.Drawing.Point(14, 98);
-            this.lblActualizar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblActualizar.Name = "lblActualizar";
-            this.lblActualizar.Size = new System.Drawing.Size(120, 40);
-            this.lblActualizar.TabIndex = 39;
-            this.lblActualizar.Text = "Actualizar";
-            this.lblActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel9
             // 
@@ -741,6 +679,68 @@
             this.lblIdProducto.Text = "ID: ";
             this.lblIdProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.btnActualizarProducto);
+            this.panel7.Controls.Add(this.lblActualizar);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Margin = new System.Windows.Forms.Padding(0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(141, 166);
+            this.panel7.TabIndex = 3;
+            // 
+            // lblActualizar
+            // 
+            this.lblActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblActualizar.BackColor = System.Drawing.Color.Transparent;
+            this.lblActualizar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActualizar.ForeColor = System.Drawing.Color.DimGray;
+            this.lblActualizar.Location = new System.Drawing.Point(14, 98);
+            this.lblActualizar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblActualizar.Name = "lblActualizar";
+            this.lblActualizar.Size = new System.Drawing.Size(120, 40);
+            this.lblActualizar.TabIndex = 39;
+            this.lblActualizar.Text = "Actualizar";
+            this.lblActualizar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnActualizarProducto
+            // 
+            this.btnActualizarProducto.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnActualizarProducto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(110)))), ((int)(((byte)(254)))));
+            this.btnActualizarProducto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActualizarProducto.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnActualizarProducto.FlatAppearance.BorderSize = 0;
+            this.btnActualizarProducto.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnActualizarProducto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnActualizarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarProducto.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizarProducto.ForeColor = System.Drawing.Color.Black;
+            this.btnActualizarProducto.IconChar = FontAwesome.Sharp.IconChar.RotateForward;
+            this.btnActualizarProducto.IconColor = System.Drawing.Color.White;
+            this.btnActualizarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnActualizarProducto.IconSize = 40;
+            this.btnActualizarProducto.Location = new System.Drawing.Point(22, 9);
+            this.btnActualizarProducto.Margin = new System.Windows.Forms.Padding(0);
+            this.btnActualizarProducto.Name = "btnActualizarProducto";
+            this.btnActualizarProducto.Size = new System.Drawing.Size(90, 92);
+            this.btnActualizarProducto.TabIndex = 6;
+            this.btnActualizarProducto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnActualizarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnActualizarProducto.UseVisualStyleBackColor = false;
+            this.btnActualizarProducto.Click += new System.EventHandler(this.btnActualizarProducto_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.panel7);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(960, 0);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(141, 166);
+            this.panel8.TabIndex = 1;
+            // 
             // GS_RegistroProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -756,8 +756,6 @@
             this.Name = "GS_RegistroProducto";
             this.Text = "GS_RegistroProducto";
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
-            this.panel8.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -776,15 +774,14 @@
             this.panel11.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         public System.Windows.Forms.DataGridView dgvProductos;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label lblActualizar;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label lblEliminar;
         private System.Windows.Forms.Panel panel1;
@@ -810,7 +807,6 @@
         private System.Windows.Forms.Label lblAgregar;
         private FontAwesome.Sharp.IconButton btnAgregarProducto;
         private FontAwesome.Sharp.IconButton btnEliminarProducto;
-        private FontAwesome.Sharp.IconButton btnActualizarProducto;
         private FontAwesome.Sharp.IconButton btnLimpiarProducto;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Panel panel5;
@@ -821,5 +817,9 @@
         public System.Windows.Forms.TextBox txtpreciounitario;
         private System.Windows.Forms.Label lblIdProducto;
         private System.Windows.Forms.Label lblProducto;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel7;
+        private FontAwesome.Sharp.IconButton btnActualizarProducto;
+        private System.Windows.Forms.Label lblActualizar;
     }
 }

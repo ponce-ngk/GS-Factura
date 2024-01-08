@@ -55,20 +55,14 @@ namespace GS_Factura
             if (panelLayoutMenu.Width == 48)
             {
                 panelLayoutMenu.Width = 149;
-
                 ptmfotouser.Visible = true;
                 lblNombre.Visible = true;
-
             }
             else
             {
-
                 panelLayoutMenu.Width = 48;
-
                 ptmfotouser.Visible = false;
                 lblNombre.Visible = false;
-
-
             }
         }
 
@@ -103,9 +97,9 @@ namespace GS_Factura
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            panelLayoutMenu.Width = 48;
-            ptmfotouser.Visible = false;
-            lblNombre.Visible = false;
+            panelLayoutMenu.Width = 149;
+            ptmfotouser.Visible = true;
+            lblNombre.Visible = true;
             AbrirFormEnPanel(new GS_Inicio());
             return;
         }
