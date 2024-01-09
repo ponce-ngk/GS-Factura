@@ -18,7 +18,7 @@ namespace GS_Factura
 
             InitializeComponent();
             BloqueoControlesInicial();
-            LlenarLimpiar();
+            //Limpiar();
         }
         public void BloqueoControlesInicial()
         {
@@ -30,29 +30,36 @@ namespace GS_Factura
         }
 
         //Funcion de Borrar datos en el textbox y el llenado del data Grid con datos actualizar
-        public void LlenarLimpiar() {
+        public void Limpiar() {
             txtcantidadproducto.Text = "";
             txtnombreproducto.Text = "";
             txtpreciounitario.Text = "";
             txtpreciounitario.Text = "";
             txtbuscarproducto.Texts = "";
             lblIdProducto.Text = "";
+            
+        }
+        public void LlenarData()
+        {
             dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
             dgvProductos.CurrentCell = null;
         }
-
         private void dgvProductos_Click(object sender, EventArgs e)
         {
             //Asignacion de datos de la BD al DataGrid
-            BloqueoClickDgv();
+            
             try
             {
                 if(dgvProductos.CurrentCell == null)
                 {
-                    MessageBox.Show("Debe de seleccionar un celda con informacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //BloqueoClickDgv();
+                    BloqueoControles();
+                    //MessageBox.Show("Debe de seleccionar un celda con informacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                 }
                 else
                 {
+                    BloqueoClickDgv();
                     lblIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
                     txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
                     txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
@@ -67,9 +74,9 @@ namespace GS_Factura
         private void txtbuscarproducto__TextChanged(object sender, EventArgs e)
         {
             //Busqueda de Producto por el nombre al momento de digitalizar el nombre del producto
-            dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
-                ("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) AS PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO," +
-                "RTRIM(STOCK) AS STOCK from PRODUCTO WHERE ESTADO = 1 and PRODUCTO like '" + txtbuscarproducto.Texts+"%'");
+            //dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+            //    ("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) AS PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO," +
+            //    "RTRIM(STOCK) AS STOCK from PRODUCTO WHERE ESTADO = 1 and PRODUCTO like '" + txtbuscarproducto.Texts+"%'");
         }
 
         private void txtbuscarproducto_KeyPress(object sender, KeyPressEventArgs e)
@@ -78,7 +85,14 @@ namespace GS_Factura
                 if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
                 {
                     e.Handled = true;
-                }
+                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+              ("EXEC BuscarProducto '" + txtbuscarproducto.Texts + "'");
+            }
+            else if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                
+            }
         }
 
         private void txtnombreproducto_KeyPress(object sender, KeyPressEventArgs e)
@@ -133,7 +147,8 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    LlenarLimpiar();
+                    LlenarData();
+                    Limpiar();
                 }
             }
             //caso contrario advierte que estan vacios los txt
@@ -167,7 +182,8 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    LlenarLimpiar();
+                    LlenarData();
+                    Limpiar();
                     BloqueoControles();
                 }
             }
@@ -204,8 +220,9 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-
-                    LlenarLimpiar();
+                    LlenarData();
+                    Limpiar();
+                    LlenarData();
                     BloqueoControles();
                 }
             }
@@ -218,7 +235,7 @@ namespace GS_Factura
         //Funcion para Limpiar todos los campos en caso de no querrer lo escrito.
         private void btnLimpiarProducto_Click(object sender, EventArgs e)
         {
-            LlenarLimpiar();
+            Limpiar();
             BloqueoControles();
         }
         public void BloqueoControles()
@@ -238,6 +255,17 @@ namespace GS_Factura
             lblAgregar.Visible = false;
             lblActualizar.Visible = true;
             lblEliminar.Visible = true;
+        }
+
+        private void txtbuscarproducto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Llamar al método para buscar productos
+                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+               ("EXEC BuscarProducto '" + txtbuscarproducto.Texts + "'");
+            }
+            
         }
     }
 }

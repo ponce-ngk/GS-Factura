@@ -19,11 +19,30 @@ namespace GS_Factura
         public GS_RegistroCliente()
         {
             InitializeComponent();
+            BloqueoControlesInicial();
             AccesoDatos fr = new AccesoDatos();
             // Se llena el DataGridView con los datos de los clientes al cargar el formulario
             dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
             // Se establece el formato personalizado de la fecha en el control DateTimePicker para poderlo guardar
             dtpFechaCliente.CustomFormat = "yyyy-MM-dd";
+        }
+        public void BloqueoControlesInicial()
+        {
+            dgvClientes.CurrentCell = null;
+            btnEditarCliente.Visible = false;
+            btnEliminarCliente.Visible = false;
+        }
+        public void BloqueoControles()
+        {
+            btnEditarCliente.Visible = false;
+            btnEliminarCliente.Visible = false;
+            btnGuardar.Visible = true;
+        }
+        public void BloqueoClickDgv()
+        {
+            btnGuardar.Visible = false;
+            btnEditarCliente.Visible = true;
+            btnEliminarCliente.Visible = true;
         }
 
         private void btnGuardarDueño_Click(object sender, EventArgs e)
@@ -64,6 +83,7 @@ namespace GS_Factura
                     
                     // Se actualiza el DataGridView y se limpian los campos
                     dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
+                    BloqueoControles();
                     LimpiarCampos();
                 }
             }
@@ -108,6 +128,7 @@ namespace GS_Factura
 
                     // Actualizar el DataGridView y limpiar los campos
                     dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
+                    BloqueoControles();
                     LimpiarCampos();
                 }
             }
@@ -148,6 +169,7 @@ namespace GS_Factura
 
                     // Actualizar el DataGridView y limpiar los campos
                     dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
+                    BloqueoControles();
                     LimpiarCampos();
                 }
                 // Si el usuario elige 'No', no se hace nada
@@ -168,15 +190,24 @@ namespace GS_Factura
         {
             try
             {
-                // Mostrar los datos de la fila seleccionada en los campos correspondientes
-                txtidcliente.Text = dgvClientes.CurrentRow.Cells[0].Value.ToString();
-                txtcedulacliente.Text = dgvClientes.CurrentRow.Cells[1].Value.ToString();
-                txtnombrescliente.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
-                txtapellidoscliente.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
-                dtpFechaCliente.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
+                if(dgvClientes.CurrentCell == null)
+                {
+                    BloqueoControles();
+                }
+                else
+                {
+                    BloqueoClickDgv();
+                    // Mostrar los datos de la fila seleccionada en los campos correspondientes
+                    txtidcliente.Text = dgvClientes.CurrentRow.Cells[0].Value.ToString();
+                    txtcedulacliente.Text = dgvClientes.CurrentRow.Cells[1].Value.ToString();
+                    txtnombrescliente.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
+                    txtapellidoscliente.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
+                    dtpFechaCliente.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
+                }
             }
             catch (Exception ex)
             {
+                
                 MessageBox.Show(ex.Message);
             }
         }
@@ -184,6 +215,7 @@ namespace GS_Factura
         private void btnlimpiardatos_Click(object sender, EventArgs e)
         {            
             LimpiarCampos();
+            BloqueoControles();
         }
 
         private void txtcedulacliente_KeyUp(object sender, KeyEventArgs e)
