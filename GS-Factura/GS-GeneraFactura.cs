@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using GS_Factura.Clases;
 using System.Xml.Linq;
+using FontAwesome.Sharp;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace GS_Factura
@@ -21,17 +23,26 @@ namespace GS_Factura
         {
             InitializeComponent();
             this.cargarnumerofactura();
+
         }
 
         public void cargarnumerofactura()
         {
-            SqlCommand command = new SqlCommand("select top 1 IDFACTURA from FACTURA order by IDFACTURA desc", AccesoDatos.abrirConexion());
-            string result = command.ExecuteScalar().ToString().PadLeft(6, '0');
-            if (result== "")
+            try
             {
-                result = "0";
+
+                SqlCommand command = new SqlCommand("SELECT ISNULL(MAX(IDFACTURA), 0) FROM FACTURA", AccesoDatos.abrirConexion());
+                string result = command.ExecuteScalar().ToString().PadLeft(6, '0');
+                lblnumerofactura.Text = "001-" + result;
             }
-            lblnumerofactura.Text = "001-" + result;
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+          
         }
 
         // Este método se ejecuta al hacer clic en el botón de validar cliente.
@@ -110,7 +121,8 @@ namespace GS_Factura
                 ProductoVenta formPRODUCT = new ProductoVenta();
                 // Asigna un evento delegado para pasar información entre formularios
                 formPRODUCT.pasarproducto += new ProductoVenta.pasarformFactura(ejecutaproductos);
-                formPRODUCT.ShowDialog();
+                formPRODUCT.Show();
+
             }
             catch (Exception ex)
             {
@@ -145,6 +157,7 @@ namespace GS_Factura
                 // Verifica las filas en el DataGridView (puede haber algún tipo de validación)
                 this.VerificarFilasEnDataGridView();
             }
+
         }
 
         // Este método verifica si un producto ya ha sido agregado a la DataGridView en la aplicación.
@@ -214,7 +227,7 @@ namespace GS_Factura
                     //extrae la imagen remove.ico  imagen ico
                     //Icon icoAtomico = new Icon(Environment.CurrentDirectory + @"\\remove.ico", iconWidth, iconHeight);
 
-                    Icon icoAtomico = new Icon(Properties.Resources.remove, iconWidth, iconHeight);
+                    System.Drawing.Icon  icoAtomico = new System.Drawing.Icon(Properties.Resources.remove, iconWidth, iconHeight);
 
                     e.Graphics.DrawIcon(icoAtomico, e.CellBounds.Left + (e.CellBounds.Width - iconWidth) / 2, e.CellBounds.Top + (e.CellBounds.Height - iconHeight) / 2);
 
@@ -410,6 +423,18 @@ namespace GS_Factura
                 return;
             }
 
+
+            foreach (DataGridViewRow recorrerdata in dtgVenta.Rows)
+            {
+                // Compara el ID y el nombre del producto con los valores en la fila actual.
+
+                if (int.Parse(recorrerdata.Cells["StockProducto"].Value.ToString()) <= 0 )
+                {
+                    MessageBox.Show("Falta agregar la cantidad al Producto de Id: "+ recorrerdata.Cells["IdProducto"].Value.ToString() + "", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+
             if (btnConfirmarVenta.Text == "  Cancelar Proceso de Pago")
             {
                 DialogResult respuestaCancelacion = MessageBox.Show("Deseas Cancelar al Proceso de Pago? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -592,5 +617,81 @@ namespace GS_Factura
              
             }
         }
+
+        private void dtgVenta_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            this.cantidadDataGriedview();
+        }
+
+        public void cantidadDataGriedview()
+        {
+            try
+            {
+                if (dtgVenta.CurrentRow.Cells[3].Value.ToString() != "" || dtgVenta.Rows.Count != 0)
+                {
+
+                    decimal stock;
+                    int id_product = int.Parse(dtgVenta.CurrentRow.Cells[1].Value.ToString());
+                    //int id_fract = int.Parse(dtg_v_factura.CurrentRow.Cells[1].Value.ToString());  
+                    using (SqlCommand montrarprodC = new SqlCommand("SELECT STOCK FROM PRODUCTO WHERE IDPRODUCTO = @id_product", AccesoDatos.abrirConexion()))
+                    {
+                        montrarprodC.Parameters.AddWithValue("@id_product", id_product);
+
+                        stock = Convert.ToDecimal(montrarprodC.ExecuteScalar());
+                        if (decimal.Parse(dtgVenta.CurrentRow.Cells[3].Value.ToString()) > stock)
+                        {
+                            dtgVenta.CurrentRow.Cells[3].Value = 0;
+                            MessageBox.Show("Producto no dispone de ese stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            this.CalcularCantidadData();
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+
+        }
+
+
+
+        public void CalcularCantidadData()
+        {
+
+            try
+            {
+                decimal cantidad = decimal.Parse(dtgVenta.CurrentRow.Cells[3].Value.ToString());
+                decimal precio = decimal.Parse(dtgVenta.CurrentRow.Cells[4].Value.ToString());
+
+                // Calculamos el total del producto
+                decimal total = precio * cantidad;
+
+                // Redondea el total a dos decimales
+                total = Math.Round(total, 2);
+
+
+                dtgVenta.CurrentRow.Cells[5].Value = total.ToString("0.00");
+
+
+
+                this.GestionarFuncionalidadDtgVenta();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+
+        }
+
+       
     }
+
 }
