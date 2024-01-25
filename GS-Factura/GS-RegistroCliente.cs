@@ -184,6 +184,8 @@ namespace GS_Factura
             txtnombrescliente.Text = "";
             txtapellidoscliente.Text = "";
             dtpFechaCliente.Text = date.ToString();
+            txt_Buscar.Text = "";
+            dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
         }
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -291,6 +293,20 @@ namespace GS_Factura
             if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || e.KeyChar == (char)Keys.Back))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btn_Buscar_Click(object sender, EventArgs e)
+        {
+            dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
+         
+        }
+
+        private void txt_Buscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
             }
         }
     }
