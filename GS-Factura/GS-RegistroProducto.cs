@@ -19,7 +19,7 @@ namespace GS_Factura
             InitializeComponent();
             BloqueoControlesInicial();
             //LlenarData();
-            
+            Limpiar();
             dgvProductos.CurrentCell = null;
         }
         public void BloqueoControlesInicial()
@@ -39,6 +39,14 @@ namespace GS_Factura
             txtpreciounitario.Text = "";
             txtbuscarproducto.Texts = "";
             lblIdProducto.Text = "";
+            if(dgvProductos.RowCount != 0)
+            {
+                dgvProductos.Rows.RemoveAt(0);
+            }
+            else
+            {
+
+            }
             
         }
         
@@ -76,6 +84,14 @@ namespace GS_Factura
         }
         private void txtbuscarproducto__TextChanged(object sender, EventArgs e)
         {
+            if(txtbuscarproducto.Texts != "")
+            {
+                //dgvProductos.Rows.RemoveAt(0);
+            }
+            else
+            {
+                dgvProductos.CurrentCell = null;
+            }
             //Busqueda de Producto por el nombre al momento de digitalizar el nombre del producto
             //dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
             //    ("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) AS PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO," +
@@ -156,7 +172,7 @@ namespace GS_Factura
                         MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     dgvProductos.CurrentCell = null;
-                    LlenarData();
+                    //LlenarData();
                     BloqueoControles();
                     Limpiar();
                 }
@@ -193,7 +209,7 @@ namespace GS_Factura
                         MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     dgvProductos.CurrentCell = null;
-                    LlenarData();
+                    //LlenarData();
                     BloqueoControles();
                     Limpiar();
                 }
@@ -232,7 +248,7 @@ namespace GS_Factura
                         MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     dgvProductos.CurrentCell = null;
-                    LlenarData();
+                    //LlenarData();
                     BloqueoControles();
                     Limpiar();
                 }
