@@ -248,7 +248,6 @@ namespace GS_Factura
         {
             Limpiar();
             BloqueoControles();
-            LimpiarDGV();
             dgvProductos.CurrentCell = null;
         }
         public void BloqueoControles()
