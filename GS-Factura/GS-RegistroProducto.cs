@@ -18,7 +18,9 @@ namespace GS_Factura
 
             InitializeComponent();
             BloqueoControlesInicial();
-            //Limpiar();
+            //LlenarData();
+            
+            dgvProductos.CurrentCell = null;
         }
         public void BloqueoControlesInicial()
         {
@@ -39,6 +41,7 @@ namespace GS_Factura
             lblIdProducto.Text = "";
             
         }
+        
         public void LlenarData()
         {
             dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
@@ -111,6 +114,11 @@ namespace GS_Factura
             {
                 e.Handled = true;
             }
+            else if((e.KeyChar) == 13)
+            {
+                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+               ("EXEC BuscarProducto '" + txtbuscarproducto.Texts + "'");
+            }
         }
 
         private void txtpreciounitario_KeyPress(object sender, KeyPressEventArgs e)
@@ -147,7 +155,9 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
+                    dgvProductos.CurrentCell = null;
                     LlenarData();
+                    BloqueoControles();
                     Limpiar();
                 }
             }
@@ -182,9 +192,10 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
+                    dgvProductos.CurrentCell = null;
                     LlenarData();
-                    Limpiar();
                     BloqueoControles();
+                    Limpiar();
                 }
             }
             //caso contrario advierte que estan vacios los txt
@@ -220,10 +231,10 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    LlenarData();
-                    Limpiar();
+                    dgvProductos.CurrentCell = null;
                     LlenarData();
                     BloqueoControles();
+                    Limpiar();
                 }
             }
             //caso contrario advierte que estan vacios los txt
@@ -237,6 +248,8 @@ namespace GS_Factura
         {
             Limpiar();
             BloqueoControles();
+            LimpiarDGV();
+            dgvProductos.CurrentCell = null;
         }
         public void BloqueoControles()
         {
@@ -259,6 +272,7 @@ namespace GS_Factura
 
         private void txtbuscarproducto_KeyDown(object sender, KeyEventArgs e)
         {
+            
             if (e.KeyCode == Keys.Enter)
             {
                 // Llamar al método para buscar productos
