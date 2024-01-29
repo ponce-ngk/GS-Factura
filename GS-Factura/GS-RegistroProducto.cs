@@ -49,7 +49,6 @@ namespace GS_Factura
             }
             
         }
-        
         public void LlenarData()
         {
             dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
@@ -105,7 +104,7 @@ namespace GS_Factura
                 {
                     e.Handled = true;
                 dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
-              ("EXEC BuscarProducto '" + txtbuscarproducto.Texts + "'");
+              ("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
             }
             else if (e.KeyChar == (char)(Keys.Enter))
             {
@@ -292,7 +291,7 @@ namespace GS_Factura
             {
                 // Llamar al método para buscar productos
                 dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
-               ("EXEC BuscarProducto '" + txtbuscarproducto.Texts + "'");
+               ("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
             }
             
         }

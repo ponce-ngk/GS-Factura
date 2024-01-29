@@ -222,51 +222,51 @@ namespace GS_Factura
 
         private void txtcedulacliente_KeyUp(object sender, KeyEventArgs e)
         {
-            try
-            {
-                // Buscar clientes por cédula mientras se escribe en el campo de texto
-                AccesoDatos.abrirConexion();
-                AccesoDatos rt = new AccesoDatos();
-                // se llena la tabla con el resultando que traiga el metodo retornaClientebuscar
-                dgvClientes.DataSource = rt.retornaClientebuscar(txtcedulacliente.Text);
-                AccesoDatos.CerrarConexion(AccesoDatos.abrirConexion());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //try
+            //{
+            //    // Buscar clientes por cédula mientras se escribe en el campo de texto
+            //    AccesoDatos.abrirConexion();
+            //    AccesoDatos rt = new AccesoDatos();
+            //    // se llena la tabla con el resultando que traiga el metodo retornaClientebuscar
+            //    dgvClientes.DataSource = rt.retornaClientebuscar(txtcedulacliente.Text);
+            //    AccesoDatos.CerrarConexion(AccesoDatos.abrirConexion());
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void txtnombrescliente_KeyUp(object sender, KeyEventArgs e)
         {
-            try
-            {
-                // Buscar clientes por nombre mientras se escribe en el campo de texto
-                AccesoDatos.abrirConexion();
-                AccesoDatos rt = new AccesoDatos();
-                dgvClientes.DataSource = rt.retornaClientebuscar(txtnombrescliente.Text);
-                AccesoDatos.CerrarConexion(AccesoDatos.abrirConexion());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //try
+            //{
+            //    // Buscar clientes por nombre mientras se escribe en el campo de texto
+            //    AccesoDatos.abrirConexion();
+            //    AccesoDatos rt = new AccesoDatos();
+            //    dgvClientes.DataSource = rt.retornaClientebuscar(txtnombrescliente.Text);
+            //    AccesoDatos.CerrarConexion(AccesoDatos.abrirConexion());
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void txtapellidoscliente_KeyUp(object sender, KeyEventArgs e)
         {
-            try
-            {
-                // Buscar clientes por apellido mientras se escribe en el campo de texto
-                AccesoDatos.abrirConexion();
-                AccesoDatos rt = new AccesoDatos();
-                dgvClientes.DataSource = rt.retornaClientebuscar(txtapellidoscliente.Text);
-                AccesoDatos.CerrarConexion(AccesoDatos.abrirConexion());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //try
+            //{
+            //    // Buscar clientes por apellido mientras se escribe en el campo de texto
+            //    AccesoDatos.abrirConexion();
+            //    AccesoDatos rt = new AccesoDatos();
+            //    dgvClientes.DataSource = rt.retornaClientebuscar(txtapellidoscliente.Text);
+            //    AccesoDatos.CerrarConexion(AccesoDatos.abrirConexion());
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void txtcedulacliente_KeyPress(object sender, KeyPressEventArgs e)
