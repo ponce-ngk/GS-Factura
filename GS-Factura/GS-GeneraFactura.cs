@@ -106,6 +106,15 @@ namespace GS_Factura
                 // Muestra un mensaje de error
                 MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                return;
+
+            }
+
+           
+
         }
         private void tmtDate_Tick(object sender, EventArgs e)
         {
@@ -475,6 +484,7 @@ namespace GS_Factura
         {
             // Actualiza el valor del contador de caracteres con la longitud del texto en txtSearchCliente
             this.lblcontadorcedulaCliente.Text = txtSearchCliente.Text.Length.ToString();
+            
         }
 
         private void txtcancelado_TextChanged(object sender, EventArgs e)
@@ -691,7 +701,17 @@ namespace GS_Factura
 
         }
 
-       
+        private void lblcontadorcedulaCliente_TextChanged(object sender, EventArgs e)
+        {
+            if (int.Parse(lblcontadorcedulaCliente.Text) > 10)
+            {
+                // Cancela el evento de tecla presionada
+                MessageBox.Show("El campo Cedula del Cliente no contiene 10 caracteres. Por favor, Ingrese todo los digitos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSearchCliente.MaxLength = 10;
+                return;
+            }
+           
+        }
     }
 
 }
