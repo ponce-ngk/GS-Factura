@@ -78,11 +78,6 @@ namespace GS_Factura
 
         // Este método se ejecuta cuando cambia el texto en el campo de búsqueda de productos.
 
-        private void txtbuscarproducto_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
         public void extraerInfoData(string sentencia)
         {
             try
@@ -149,8 +144,6 @@ namespace GS_Factura
             }
         }
 
-      
-
         private void ProductoVenta_Load(object sender, EventArgs e)
         {
             //dtgventaproducto.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
@@ -170,7 +163,7 @@ namespace GS_Factura
                     string sentenciaextraer = @"select IDPRODUCTO 
                         as ID, PRODUCTO, PRECIO_UNITARIO AS PRECIO_UNITARIO,
                         STOCK from [dbo].[PRODUCTO]
-                        where PRODUCTO LIKE '" + txtbuscarproducto.Text + "%' or IDPRODUCTO LIKE '" + txtbuscarproducto.Text + "%'";
+                        where PRODUCTO LIKE '" + txtbuscarproducto.Text + "%' or IDPRODUCTO LIKE '" + txtbuscarproducto.Text + "%' AND Estado = 1";
                     this.extraerInfoData(sentenciaextraer);
 
                 }

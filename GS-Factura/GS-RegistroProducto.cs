@@ -39,9 +39,13 @@ namespace GS_Factura
             txtpreciounitario.Text = "";
             txtbuscarproducto.Texts = "";
             lblIdProducto.Text = "";
-            if(dgvProductos.RowCount != 0)
+            if (dgvProductos.RowCount != 0)
             {
-                dgvProductos.Rows.RemoveAt(0);
+                //dgvProductos.
+                //dgvProductos.Rows.RemoveAt(dgvProductos.CurrentRow.Index);
+                //dgvProductos.Rows.Clear();
+                //select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1 and IDPRODUCTO = '00000000000'
+                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1 and IDPRODUCTO ='00000000000'");
             }
             else
             {
@@ -103,13 +107,14 @@ namespace GS_Factura
                 if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
                 {
                     e.Handled = true;
-                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
-              ("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
+              //  dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+              //("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
+                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO,\tRTRIM(STOCK) AS STOCK from PRODUCTO WHERE  PRODUCTO LIKE '"+txtbuscarproducto.Texts+"%' AND Estado = 1");
             }
             else if (e.KeyChar == (char)(Keys.Enter))
             {
+                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1");
                 e.Handled = true;
-                
             }
         }
 
@@ -286,7 +291,6 @@ namespace GS_Factura
 
         private void txtbuscarproducto_KeyDown(object sender, KeyEventArgs e)
         {
-            
             if (e.KeyCode == Keys.Enter)
             {
                 // Llamar al método para buscar productos

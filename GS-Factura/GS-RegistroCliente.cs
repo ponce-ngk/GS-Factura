@@ -304,10 +304,47 @@ namespace GS_Factura
 
         private void txt_Buscar_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Enter)
             {
                 dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
             }
+        }
+
+        private void dgvClientes_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dgvClientes.CurrentCell == null)
+                {
+                    BloqueoControles();
+                }
+                else
+                {
+                    BloqueoClickDgv();
+                    // Mostrar los datos de la fila seleccionada en los campos correspondientes
+                    txtidcliente.Text = dgvClientes.CurrentRow.Cells[0].Value.ToString();
+                    txtcedulacliente.Text = dgvClientes.CurrentRow.Cells[1].Value.ToString();
+                    txtnombrescliente.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
+                    txtapellidoscliente.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
+                    dtpFechaCliente.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txt_Buscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }
