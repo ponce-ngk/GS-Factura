@@ -130,7 +130,7 @@ namespace GS_Factura
                 ProductoVenta formPRODUCT = new ProductoVenta();
                 // Asigna un evento delegado para pasar información entre formularios
                 formPRODUCT.pasarproducto += new ProductoVenta.pasarformFactura(ejecutaproductos);
-                formPRODUCT.Show();
+                formPRODUCT.ShowDialog();
 
             }
             catch (Exception ex)
@@ -261,6 +261,7 @@ namespace GS_Factura
             int sumcantidadproductos = 0;
             decimal subtotalCompra = 0.0M;
             decimal descuentoCompra = 0.0M;
+            decimal iva12 = 12.0M;
 
             btnConfirmarVenta.Visible = true;
             btnConfirmarVenta.Enabled = true;
@@ -282,13 +283,19 @@ namespace GS_Factura
 
 
             // Agregamos el IVA
-            decimal iva = subtotalCompra * (int.Parse(txtivaVenta.Text) / 100.0M);
+            decimal iva = subtotalCompra * (iva12 / 100.0M);
+            //decimal iva = subtotalCompra * (int.Parse(12.00) / 100.0M);
 
             subtotalCompra += iva;
+            //txtivaVenta.Text = iva.ToString("0.00");
+
+
 
             // Calculamos el total de la compra
             decimal total = subtotalCompra;
             txtTotalVenta.Text = total.ToString("0.00");
+
+            txtivaVenta.Text = iva.ToString("0.00");
 
             txtTotalVenta.ForeColor = Color.Red;
 

@@ -125,23 +125,23 @@ namespace GS_Factura
         //todos los datos que se encuentra en la fila del data que dio clic pasa a  los campos como txt o label
         private void dtgventaproducto_DoubleClick(object sender, EventArgs e)
         {
-            try
-            {
-                string cantidad = "0";
-                // Llama al método asociado al delegado pasarformFactura
-                pasarproducto(
-                 dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[0].Value.ToString(),
-                 dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[1].Value.ToString(),
-                  cantidad, dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[2].Value.ToString());
-                // Oculta la ventana actual
-                this.Hide();
+            //try
+            //{
+            //    string cantidad = "0";
+            //    // Llama al método asociado al delegado pasarformFactura
+            //    pasarproducto(
+            //     dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[0].Value.ToString(),
+            //     dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[1].Value.ToString(),
+            //      cantidad, dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[2].Value.ToString());
+            //    // Oculta la ventana actual
+            //    this.Hide();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //    throw;
+            //}
         }
 
         private void ProductoVenta_Load(object sender, EventArgs e)
@@ -167,6 +167,44 @@ namespace GS_Factura
                     this.extraerInfoData(sentenciaextraer);
 
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+        private void txtbuscarproducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Validacion de que sea solo letras y espacio 
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+                //  dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+                //("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
+                dtgventaproducto.DataSource = AccesoDatos.llenartablaparabuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO,\tRTRIM(STOCK) AS STOCK from PRODUCTO WHERE  PRODUCTO LIKE '" + txtbuscarproducto.Text + "%' AND Estado = 1");
+            }
+            else if (e.KeyChar == (char)(Keys.Enter))
+            {
+                dtgventaproducto.DataSource = AccesoDatos.llenartablaparabuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1");
+                e.Handled = true;
+            }
+        }
+
+        private void dtgventaproducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string cantidad = "0";
+                // Llama al método asociado al delegado pasarformFactura
+                pasarproducto(
+                 dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[0].Value.ToString(),
+                 dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[1].Value.ToString(),
+                  cantidad, dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[2].Value.ToString());
+                // Oculta la ventana actual
+                this.Hide();
+
             }
             catch (Exception ex)
             {

@@ -69,7 +69,7 @@
             this.tableLayoutPanel3.Controls.Add(this.dtgventaproducto, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.panel5, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(12, 66);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.80916F));
@@ -133,6 +133,7 @@
             this.dtgventaproducto.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dtgventaproducto.Size = new System.Drawing.Size(742, 160);
             this.dtgventaproducto.TabIndex = 19;
+            this.dtgventaproducto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgventaproducto_CellDoubleClick);
             this.dtgventaproducto.DoubleClick += new System.EventHandler(this.dtgventaproducto_DoubleClick);
             // 
             // panel5
@@ -185,12 +186,13 @@
             this.txtbuscarproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbuscarproducto.ForeColor = System.Drawing.Color.Gray;
             this.txtbuscarproducto.Location = new System.Drawing.Point(41, 9);
-            this.txtbuscarproducto.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.txtbuscarproducto.Margin = new System.Windows.Forms.Padding(10);
             this.txtbuscarproducto.Name = "txtbuscarproducto";
             this.txtbuscarproducto.Size = new System.Drawing.Size(688, 29);
             this.txtbuscarproducto.TabIndex = 25;
             this.txtbuscarproducto.Text = "Busca Nombre del Producto...";
             this.txtbuscarproducto.Enter += new System.EventHandler(this.txtbuscarproducto_Enter);
+            this.txtbuscarproducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscarproducto_KeyPress);
             this.txtbuscarproducto.Leave += new System.EventHandler(this.txtbuscarproducto_Leave);
             // 
             // panel2
@@ -222,7 +224,7 @@
             this.ClientSize = new System.Drawing.Size(769, 296);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProductoVenta";

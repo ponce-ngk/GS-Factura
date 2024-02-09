@@ -60,30 +60,30 @@ namespace GS_Factura
         }
         private void dgvProductos_Click(object sender, EventArgs e)
         {
-            //Asignacion de datos de la BD al DataGrid
+            ////Asignacion de datos de la BD al DataGrid
             
-            try
-            {
-                if(dgvProductos.CurrentCell == null)
-                {
-                    //BloqueoClickDgv();
-                    BloqueoControles();
-                    //MessageBox.Show("Debe de seleccionar un celda con informacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //try
+            //{
+            //    if(dgvProductos.CurrentCell == null)
+            //    {
+            //        //BloqueoClickDgv();
+            //        BloqueoControles();
+            //        //MessageBox.Show("Debe de seleccionar un celda con informacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                }
-                else
-                {
-                    BloqueoClickDgv();
-                    lblIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
-                    txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
-                    txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
-                    txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //    }
+            //    else
+            //    {
+            //        BloqueoClickDgv();
+            //        lblIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
+            //        txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
+            //        txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
+            //        txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
         private void txtbuscarproducto__TextChanged(object sender, EventArgs e)
         {
@@ -298,6 +298,34 @@ namespace GS_Factura
                ("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
             }
             
+        }
+
+        private void dgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Asignacion de datos de la BD al DataGrid
+
+            try
+            {
+                if (dgvProductos.CurrentCell == null)
+                {
+                    //BloqueoClickDgv();
+                    BloqueoControles();
+                    //MessageBox.Show("Debe de seleccionar un celda con informacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                }
+                else
+                {
+                    BloqueoClickDgv();
+                    lblIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
+                    txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
+                    txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
+                    txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
