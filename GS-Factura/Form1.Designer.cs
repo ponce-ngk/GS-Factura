@@ -120,7 +120,7 @@
             this.btnBuscaFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscaFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscaFactura.UseVisualStyleBackColor = false;
-            this.btnBuscaFactura.Click += new System.EventHandler(this.btnBuscaFactura_Click);
+            this.btnBuscaFactura.Click += new System.EventHandler(this.BtnBuscaFactura_Click);
             // 
             // btnVenta
             // 
@@ -147,7 +147,7 @@
             this.btnVenta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVenta.UseVisualStyleBackColor = false;
-            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
+            this.btnVenta.Click += new System.EventHandler(this.BtnVenta_Click);
             // 
             // btnProductos
             // 
@@ -174,7 +174,7 @@
             this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProductos.UseVisualStyleBackColor = false;
-            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
+            this.btnProductos.Click += new System.EventHandler(this.BtnProductos_Click);
             // 
             // btnRegistro
             // 
@@ -201,7 +201,7 @@
             this.btnRegistro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegistro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRegistro.UseVisualStyleBackColor = false;
-            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
+            this.btnRegistro.Click += new System.EventHandler(this.BtnRegistro_Click);
             // 
             // panelDashHead
             // 
@@ -251,7 +251,7 @@
             this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptmfotouser.TabIndex = 6;
             this.ptmfotouser.TabStop = false;
-            this.ptmfotouser.Click += new System.EventHandler(this.ptmfotouser_Click);
+            this.ptmfotouser.Click += new System.EventHandler(this.Ptmfotouser_Click);
             // 
             // panelDashOut
             // 
@@ -290,7 +290,7 @@
             this.btnCerrarsesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCerrarsesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCerrarsesion.UseVisualStyleBackColor = false;
-            this.btnCerrarsesion.Click += new System.EventHandler(this.btnCerrarsesion_Click);
+            this.btnCerrarsesion.Click += new System.EventHandler(this.BtnCerrarsesion_Click);
             // 
             // panelLayoutForms
             // 
@@ -391,7 +391,7 @@
             this.btnMenu.Size = new System.Drawing.Size(62, 51);
             this.btnMenu.TabIndex = 23;
             this.btnMenu.UseVisualStyleBackColor = false;
-            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
+            this.btnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
             // 
             // panelLayourMaximizar
             // 
@@ -433,7 +433,7 @@
             this.btn_minimizar.Size = new System.Drawing.Size(49, 51);
             this.btn_minimizar.TabIndex = 7;
             this.btn_minimizar.UseVisualStyleBackColor = false;
-            this.btn_minimizar.Click += new System.EventHandler(this.btn_minimizar_Click);
+            this.btn_minimizar.Click += new System.EventHandler(this.Btn_Minimizar_Click);
             // 
             // btn_cerrar
             // 
@@ -455,7 +455,7 @@
             this.btn_cerrar.Size = new System.Drawing.Size(51, 51);
             this.btn_cerrar.TabIndex = 5;
             this.btn_cerrar.UseVisualStyleBackColor = false;
-            this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
+            this.btn_cerrar.Click += new System.EventHandler(this.Btn_cerrar_Click);
             // 
             // btn_maximizar
             // 
@@ -477,7 +477,7 @@
             this.btn_maximizar.Size = new System.Drawing.Size(49, 51);
             this.btn_maximizar.TabIndex = 6;
             this.btn_maximizar.UseVisualStyleBackColor = false;
-            this.btn_maximizar.Click += new System.EventHandler(this.btn_maximizar_Click);
+            this.btn_maximizar.Click += new System.EventHandler(this.Btn_Maximizar_Click);
             // 
             // Form1
             // 

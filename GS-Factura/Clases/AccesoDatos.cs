@@ -23,7 +23,7 @@ namespace GS_Factura
         { }
 
 
-        public static SqlConnection abrirConexion()
+        public static SqlConnection AbrirConexion()
         {
             try
             {
@@ -53,15 +53,15 @@ namespace GS_Factura
             }
         }
 
-        public static DataTable llenartablaparabuscar(string consul)
+        public static DataTable LlenarTablaparaBuscar(string consul)
         {
             DataTable tabla = new DataTable();
             try
             {
-                abrirConexion();
+                AbrirConexion();
                 tabla = new DataTable();
                 string consultar = consul;
-                SqlCommand comando = new SqlCommand(consultar, abrirConexion());
+                SqlCommand comando = new SqlCommand(consultar, AbrirConexion());
                 SqlDataAdapter data = new SqlDataAdapter(comando);
                 data.Fill(tabla);
                 return tabla;
@@ -73,13 +73,13 @@ namespace GS_Factura
             }
         }
 
-        public DataTable retornaClientebuscar(string buscar)
+        public DataTable RetornaClienteBuscar(string buscar)
         {
             DataTable dt = new DataTable();
             try
             {
-                abrirConexion();
-                SqlCommand cmd = new SqlCommand("SELECT IDCLIENTE AS ID, RTRIM(CEDULA) AS Cedula, RTRIM(NOMBRE) AS Nombre, RTRIM(APELLIDOS) AS Apellido, FECHA_NACIMIENTO AS 'Fecha Nacimiento', CASE Estado WHEN 0 THEN 'Eliminado' WHEN 1 THEN 'Activo' END AS Estado FROM CLIENTE WHERE (CEDULA like '" + buscar + "%' or NOMBRE LIKE('" + buscar + "%') OR APELLIDOS LIKE '" + buscar + "%') AND Estado = 1;", abrirConexion());
+                AbrirConexion();
+                SqlCommand cmd = new SqlCommand("SELECT IDCLIENTE AS ID, RTRIM(CEDULA) AS Cedula, RTRIM(NOMBRE) AS Nombre, RTRIM(APELLIDOS) AS Apellido, FECHA_NACIMIENTO AS 'Fecha Nacimiento', CASE Estado WHEN 0 THEN 'Eliminado' WHEN 1 THEN 'Activo' END AS Estado FROM CLIENTE WHERE (CEDULA like '" + buscar + "%' or NOMBRE LIKE('" + buscar + "%') OR APELLIDOS LIKE '" + buscar + "%') AND Estado = 1;", AbrirConexion());
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 return dt;
@@ -91,12 +91,12 @@ namespace GS_Factura
             }
         }
 
-        public static DataTable retornaRegistros(string Sentencia)
+        public static DataTable RetornaRegistros(string Sentencia)
         {
             DataTable dt = new DataTable();
             try
             {
-                SqlConnection oCon = abrirConexion(); // Utiliza el método abrirConexion para obtener la conexión.
+                SqlConnection oCon = AbrirConexion(); // Utiliza el método AbrirConexion para obtener la conexión.
                 SqlCommand ocom = new SqlCommand(Sentencia, oCon);
                 SqlDataAdapter oDA = new SqlDataAdapter(ocom);
                 oDA.Fill(dt);

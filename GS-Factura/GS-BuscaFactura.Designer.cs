@@ -108,7 +108,7 @@
             this.btn_busca_factura.Size = new System.Drawing.Size(23, 23);
             this.btn_busca_factura.TabIndex = 26;
             this.btn_busca_factura.UseVisualStyleBackColor = false;
-            this.btn_busca_factura.Click += new System.EventHandler(this.btn_busca_factura_Click);
+            this.btn_busca_factura.Click += new System.EventHandler(this.Btn_busca_factura_Click);
             // 
             // rptFacturaBuscar
             // 

@@ -104,6 +104,12 @@
     <Compile Include="Clases\AccesoDatos.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Producto.cs" />
+    <Compile Include="GS-ClienteVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GS-ClienteVenta.Designer.cs">
+      <DependentUpon>GS-ClienteVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataSetFactura.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -157,14 +163,17 @@
     <Compile Include="GS-RP-ADD.Designer.cs">
       <DependentUpon>GS-RP-ADD.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductoVenta.cs">
+    <Compile Include="GS-ProductoVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductoVenta.Designer.cs">
-      <DependentUpon>ProductoVenta.cs</DependentUpon>
+    <Compile Include="GS-ProductoVenta.Designer.cs">
+      <DependentUpon>GS-ProductoVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GS-ClienteVenta.resx">
+      <DependentUpon>GS-ClienteVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FacturaInexistente.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -192,8 +201,8 @@
     <EmbeddedResource Include="GS-RP-ADD.resx">
       <DependentUpon>GS-RP-ADD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductoVenta.resx">
-      <DependentUpon>ProductoVenta.cs</DependentUpon>
+    <EmbeddedResource Include="GS-ProductoVenta.resx">
+      <DependentUpon>GS-ProductoVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

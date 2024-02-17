@@ -35,7 +35,7 @@ namespace GS_Factura
                     "F.IDFACTURA = DF.IDFACTURA\r\ninner join CLIENTE as C on " +
                     "f.IDCLIENTE = c.IDCLIENTE\r\ninner join PRODUCTO as P on" +
                     " DF.IDPRODUCTO = P.IDPRODUCTO\r\nwhere f.IDFACTURA = "+maxIdVenta+ ""; // Reemplaza TU_TABLA con el nombre de tu tabla
-                DataTable datos = AccesoDatos.retornaRegistros(consulta);
+                DataTable datos = AccesoDatos.RetornaRegistros(consulta);
 
                 // Configurar el informe
                 reporteFactura.LocalReport.ReportPath = "factura.rdlc"; // Asegúrate de que coincida con el nombre de tu informe
@@ -57,7 +57,7 @@ namespace GS_Factura
 
             try
             {
-                using (SqlConnection conexion = AccesoDatos.abrirConexion())
+                using (SqlConnection conexion = AccesoDatos.AbrirConexion())
                 {
                     string consulta = "SELECT MAX(IDFACTURA) FROM FACTURA";
                     SqlCommand cmd = new SqlCommand(consulta, conexion);

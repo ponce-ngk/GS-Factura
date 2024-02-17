@@ -17,7 +17,7 @@ namespace GS_Factura
             InitializeComponent();
         }
 
-        private void btnVenta_Click(object sender, EventArgs e)
+        private void BtnVenta_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_GeneraFactura());
             return;
@@ -37,19 +37,19 @@ namespace GS_Factura
 
         }
 
-        private void btnProductos_Click(object sender, EventArgs e)
+        private void BtnProductos_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_RegistroProducto());
             return;
         }
 
-        private void btnRegistro_Click(object sender, EventArgs e)
+        private void BtnRegistro_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_RegistroCliente());
             return;
         }
 
-        private void btnMenu_Click(object sender, EventArgs e)
+        private void BtnMenu_Click(object sender, EventArgs e)
         {
 
             if (panelLayoutMenu.Width == 48)
@@ -66,12 +66,12 @@ namespace GS_Factura
             }
         }
 
-        private void btn_cerrar_Click(object sender, EventArgs e)
+        private void Btn_cerrar_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void btn_maximizar_Click(object sender, EventArgs e)
+        private void Btn_Maximizar_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
             {
@@ -85,12 +85,12 @@ namespace GS_Factura
             }
         }
 
-        private void btn_minimizar_Click(object sender, EventArgs e)
+        private void Btn_Minimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void btnCerrarsesion_Click(object sender, EventArgs e)
+        private void BtnCerrarsesion_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -104,13 +104,13 @@ namespace GS_Factura
             return;
         }
 
-        private void ptmfotouser_Click(object sender, EventArgs e)
+        private void Ptmfotouser_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_Inicio());
             return;
         }
 
-        private void btnBuscaFactura_Click(object sender, EventArgs e)
+        private void BtnBuscaFactura_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_BuscaFactura());
             return;

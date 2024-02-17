@@ -45,7 +45,7 @@ namespace GS_Factura
                 //dgvProductos.Rows.RemoveAt(dgvProductos.CurrentRow.Index);
                 //dgvProductos.Rows.Clear();
                 //select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1 and IDPRODUCTO = '00000000000'
-                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1 and IDPRODUCTO ='00000000000'");
+                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1 and IDPRODUCTO ='00000000000'");
             }
             else
             {
@@ -55,7 +55,7 @@ namespace GS_Factura
         }
         public void LlenarData()
         {
-            dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("exec sp_Mostrar_PRODUCTOS");
+            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_Mostrar_PRODUCTOS");
             dgvProductos.CurrentCell = null;
         }
         private void dgvProductos_Click(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace GS_Factura
             //    MessageBox.Show(ex.Message);
             //}
         }
-        private void txtbuscarproducto__TextChanged(object sender, EventArgs e)
+        private void TxtbuscarProducto__TextChanged(object sender, EventArgs e)
         {
             if(txtbuscarproducto.Texts != "")
             {
@@ -96,29 +96,29 @@ namespace GS_Factura
                 dgvProductos.CurrentCell = null;
             }
             //Busqueda de Producto por el nombre al momento de digitalizar el nombre del producto
-            //dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+            //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
             //    ("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) AS PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO," +
             //    "RTRIM(STOCK) AS STOCK from PRODUCTO WHERE ESTADO = 1 and PRODUCTO like '" + txtbuscarproducto.Texts+"%'");
         }
 
-        private void txtbuscarproducto_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtbuscarProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo letras y espacio 
                 if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
                 {
                     e.Handled = true;
-              //  dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+              //  dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
               //("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
-                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO,\tRTRIM(STOCK) AS STOCK from PRODUCTO WHERE  PRODUCTO LIKE '"+txtbuscarproducto.Texts+"%' AND Estado = 1");
+                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO,\tRTRIM(STOCK) AS STOCK from PRODUCTO WHERE  PRODUCTO LIKE '"+txtbuscarproducto.Texts+"%' AND Estado = 1");
             }
             else if (e.KeyChar == (char)(Keys.Enter))
             {
-                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1");
+                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1");
                 e.Handled = true;
             }
         }
 
-        private void txtnombreproducto_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtnombreProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo letras y espacio
             if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
@@ -127,7 +127,7 @@ namespace GS_Factura
             }
         }
 
-        private void txtcantidadproducto_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtcantidadProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo numeros  y el punto
             if (!(char.IsNumber(e.KeyChar) || e.KeyChar == '.') && (e.KeyChar != (char)Keys.Back))
@@ -136,12 +136,12 @@ namespace GS_Factura
             }
             else if((e.KeyChar) == 13)
             {
-                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
                ("EXEC BuscarProducto '" + txtbuscarproducto.Texts + "'");
             }
         }
 
-        private void txtpreciounitario_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtprecioUnitario_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo numeros  y el punto
             if (!(char.IsNumber(e.KeyChar) || e.KeyChar == '.') && (e.KeyChar != (char)Keys.Back))
@@ -150,7 +150,7 @@ namespace GS_Factura
             }
         }
 
-        private void btnAgregarProducto_Click(object sender, EventArgs e)
+        private void BtnAgregarProducto_Click(object sender, EventArgs e)
         {
             //Ingreso de un nuevo producto
             //Verifica si los txt no estan vacios
@@ -188,7 +188,7 @@ namespace GS_Factura
             }
         }
 
-        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        private void BtnEliminarProducto_Click(object sender, EventArgs e)
         {
             //Eliminar un producto
             //Verifica si los txt no estan vacios
@@ -225,7 +225,7 @@ namespace GS_Factura
             }
         }
 
-        private void btnActualizarProducto_Click(object sender, EventArgs e)
+        private void BtnActualizarProducto_Click(object sender, EventArgs e)
         {
             //Modificacion de un producto
             //Verifica si los txt no estan vacios
@@ -264,7 +264,7 @@ namespace GS_Factura
             }
         }
         //Funcion para Limpiar todos los campos en caso de no querrer lo escrito.
-        private void btnLimpiarProducto_Click(object sender, EventArgs e)
+        private void BtnLimpiarProducto_Click(object sender, EventArgs e)
         {
             Limpiar();
             BloqueoControles();
@@ -289,18 +289,18 @@ namespace GS_Factura
             lblEliminar.Visible = true;
         }
 
-        private void txtbuscarproducto_KeyDown(object sender, KeyEventArgs e)
+        private void TxtbuscarProducto_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 // Llamar al método para buscar productos
-                dgvProductos.DataSource = AccesoDatos.llenartablaparabuscar
+                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
                ("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
             }
             
         }
 
-        private void dgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //Asignacion de datos de la BD al DataGrid
 
@@ -326,6 +326,11 @@ namespace GS_Factura
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void iconButton15_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

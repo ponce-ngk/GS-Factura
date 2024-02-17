@@ -48,7 +48,7 @@ class CrudProducto
         int retorno = 0;
         try
         {
-            using (SqlConnection conex = AccesoDatos.abrirConexion())
+            using (SqlConnection conex = AccesoDatos.AbrirConexion())
             {
                 SqlCommand comando = new SqlCommand(string.Format("exec sp_Insertar_PRODUCTO '{0}','{1}','{2}'",
                                 pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);                
@@ -69,7 +69,7 @@ class CrudProducto
         int retorno = 0;
         try
         {
-            using (SqlConnection conex = AccesoDatos.abrirConexion())
+            using (SqlConnection conex = AccesoDatos.AbrirConexion())
             {
                 SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_PRODUCTO '{0}','{1}','{2}','{3}'",
                                 pProducto.IDPRODUCTO1, pProducto.PRODUCTO1, pProducto.PRECIO_UNITARIO1, pProducto.STOTCK1), conex);                
@@ -90,7 +90,7 @@ class CrudProducto
         int retorno = 0;
         try
         {
-            using (SqlConnection conex = AccesoDatos.abrirConexion())
+            using (SqlConnection conex = AccesoDatos.AbrirConexion())
             {                
                 SqlCommand comando = new SqlCommand(string.Format("exec sp_eliminar_PRODUCTO "+pProducto.IDPRODUCTO1 +""), conex);
                 retorno = comando.ExecuteNonQuery();

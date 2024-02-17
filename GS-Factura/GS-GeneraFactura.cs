@@ -22,16 +22,18 @@ namespace GS_Factura
         public GS_GeneraFactura()
         {
             InitializeComponent();
-            this.cargarnumerofactura();
+            this.Cargarnumerofactura();
+            //dtgVenta.CellEndEdit += dtgVenta_CellEndEdit;
+
 
         }
 
-        public void cargarnumerofactura()
+        public void Cargarnumerofactura()
         {
             try
             {
 
-                SqlCommand command = new SqlCommand("SELECT ISNULL(MAX(IDFACTURA), 0) FROM FACTURA", AccesoDatos.abrirConexion());
+                SqlCommand command = new SqlCommand("SELECT ISNULL(MAX(IDFACTURA), 0) FROM FACTURA", AccesoDatos.AbrirConexion());
                 string result = command.ExecuteScalar().ToString().PadLeft(6, '0');
                 lblnumerofactura.Text = "001-" + result;
             }
@@ -46,46 +48,24 @@ namespace GS_Factura
         }
 
         // Este método se ejecuta al hacer clic en el botón de validar cliente.
-        private void btnvalidarCliente_Click(object sender, EventArgs e)
+        private void BtnvalidarCliente_Click(object sender, EventArgs e)
         {
             try
             {
-                string consultaSQL = "select CEDULA,NOMBRE,APELLIDOS from [dbo].[CLIENTE] WHERE CEDULA  = @CedulaPerson";
+         
 
-                if (string.IsNullOrEmpty(txtSearchCliente.Text))
+                try
                 {
-                    MessageBox.Show("El campo Cédula del Cliente está vacío. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    ClienteVenta clienteVenta = new ClienteVenta();
+
+                    clienteVenta.pasarCliente += new ClienteVenta.pasarformFactura(EjecutaClientes);
+                    clienteVenta.ShowDialog();
+
                 }
-                else if (int.Parse(lblcontadorcedulaCliente.Text) != 10)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("El campo Cedula del Cliente no contiene 10 caracteres. Por favor, Ingrese todo los digitos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                // Verifica si la cédula del cliente existe en la base de datos.
-                else if (CrudCliente.VerificarExistenciaRegistros(consultaSQL, txtSearchCliente.Text))
-                {
-
-                    MessageBox.Show("El Cliente ha sido encontrado en la base de datos. Puede proceder a guardar la información.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-                    Cliente cliente = CrudCliente.MostrarDatosCliente(@"select IDCLIENTE, CEDULA, NOMBRE, APELLIDOS from [dbo].[CLIENTE] WHERE CEDULA =  '" + txtSearchCliente.Text + "'");
-
-                    if (cliente != null)
-                    {
-                        // Asignación de valores a las etiquetas
-                        lblidcliente.Text = cliente.IdCliente.ToString();
-                        lblcedulacliente.Text = cliente.Cedula;
-                        lblnombrecliente.Text = cliente.Nombre;
-                        lblApellidocliente.Text = cliente.Apellido;
-                    }
-
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("La cédula del Cliente no se encuentra en la base de datos. Por favor, ingrese una cédula válida", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                    MessageBox.Show(ex.Message);
+                    throw;
                 }
             }
             catch (Exception ex)
@@ -94,8 +74,20 @@ namespace GS_Factura
             }
 
         }
+        public void EjecutaClientes(string idpcliente, string cedulacliente,
+           string nombrecliente, string apellidocliente
+          )
+        {
+            lblidcliente.Text = idpcliente;
+            lblcedulacliente.Text = cedulacliente;
+            txtSearchCliente.Text = cedulacliente;
+            lblnombrecliente.Text = nombrecliente;
+            lblApellidocliente.Text = apellidocliente;
 
-        private void txtSearchCliente_KeyPress(object sender, KeyPressEventArgs e)
+        }
+
+
+        private void TxtSearchCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Si la tecla presionada no es un número y no es una tecla de control como Backspace o Delete
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -116,20 +108,20 @@ namespace GS_Factura
            
 
         }
-        private void tmtDate_Tick(object sender, EventArgs e)
+        private void TmtDate_Tick(object sender, EventArgs e)
         {
             lblFingresoVenta.Text = DateTime.Now.ToShortDateString();
 
         }
 
-        private void btnañadirVenta_Click(object sender, EventArgs e)
+        private void BtnañadirVenta_Click(object sender, EventArgs e)
         {
             try
             {
 
                 ProductoVenta formPRODUCT = new ProductoVenta();
                 // Asigna un evento delegado para pasar información entre formularios
-                formPRODUCT.pasarproducto += new ProductoVenta.pasarformFactura(ejecutaproductos);
+                formPRODUCT.pasarproducto += new ProductoVenta.pasarformFactura(Ejecutaproductos);
                 formPRODUCT.ShowDialog();
 
             }
@@ -140,7 +132,7 @@ namespace GS_Factura
             }
         }
 
-        public void ejecutaproductos(string idproduct,
+        public void Ejecutaproductos(string idproduct,
             string nombreproducto, string cantidadproducto,
             string preciproducto)
         {
@@ -196,7 +188,7 @@ namespace GS_Factura
 
         // Este evento se desencadena cuando se hace clic en el contenido de una celda en la DataGridView.
 
-        private void dtgVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DtgVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -220,7 +212,7 @@ namespace GS_Factura
             }
         }
 
-        private void dtgVenta_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void DtgVenta_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
             {
@@ -258,7 +250,7 @@ namespace GS_Factura
         public void GestionarFuncionalidadDtgVenta()
         {
             decimal totalproductos = 0;
-            int sumcantidadproductos = 0;
+            decimal sumcantidadproductos = 0;
             decimal subtotalCompra = 0.0M;
             decimal descuentoCompra = 0.0M;
             decimal iva12 = 12.0M;
@@ -270,7 +262,7 @@ namespace GS_Factura
             {
                 // Suma los totales y cantidades de productos.
                 totalproductos += decimal.Parse(recorrerdata.Cells["TotalProducto"].Value.ToString());
-                sumcantidadproductos += int.Parse(recorrerdata.Cells["StockProducto"].Value.ToString());
+                sumcantidadproductos += decimal.Parse(recorrerdata.Cells["StockProducto"].Value.ToString());
             }
 
             // Calculamos el subtotal (sin descuento ni IVA)
@@ -307,7 +299,7 @@ namespace GS_Factura
         }
 
         // Este método se ejecuta al hacer clic en el botón de vender.
-        private void btnVender_Click(object sender, EventArgs e)
+        private void BtnVender_Click(object sender, EventArgs e)
         {
             
             DialogResult respuesta = MessageBox.Show("Deseas realizar esta venta? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -315,9 +307,12 @@ namespace GS_Factura
             {
                 try
                 {
-                    // Crea un elemento XML para representar la factura de la venta.
 
-                    DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    // Crea un elemento XML para representar la factura de la venta.
+                    if (!string.IsNullOrEmpty(txtcancelado.Text) && txtcancelado.Text != "0")
+                    { 
+
+                        DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
                     XElement Venta = new XElement("FACTURA");
                     Venta.Add(new XElement("item",
@@ -342,8 +337,18 @@ namespace GS_Factura
 
                     // Combina los elementos XML de venta y detalle de venta en una consulta.
                     string consulta = Venta.ToString() + detalle_venta.ToString();
-                    xmlVenta(consulta);
-                    this.cargarnumerofactura();
+                    XmlVenta(consulta);
+                    this.Cargarnumerofactura();
+
+
+                        GS_Factura frm = new GS_Factura();
+                        frm.Show();
+
+                    
+                    
+                    }
+                    else MessageBox.Show("El usuario no ha cancelado. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                 }
                 catch (Exception ex)
                 {
@@ -351,17 +356,15 @@ namespace GS_Factura
                 }
             }
 
-            GS_Factura frm = new GS_Factura();
-            frm.Show();
 
         }
 
         // Este método procesa la venta almacenando la información en la base de datos.
-        public void xmlVenta(string Detalle)
+        public void XmlVenta(string Detalle)
         {
             try
             {
-                using (SqlConnection conexion = AccesoDatos.abrirConexion())
+                using (SqlConnection conexion = AccesoDatos.AbrirConexion())
                 {
                     using (SqlCommand cmd = new SqlCommand("sp_VentaProducto", conexion))
                     {
@@ -417,7 +420,7 @@ namespace GS_Factura
             }
         }
 
-        private void btncancelarventa_Click(object sender, EventArgs e)
+        private void BtncancelarVenta_Click(object sender, EventArgs e)
         {
             //limpia los datos
             DialogResult respuesta = MessageBox.Show("Deseas cancelar la compra? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -430,7 +433,7 @@ namespace GS_Factura
 
 
         // Este método se ejecuta al hacer clic en el botón de confirmar venta.
-        private void btnConfirmarVenta_Click(object sender, EventArgs e)
+        private void BtnConfirmarVenta_Click(object sender, EventArgs e)
         {
 
             if (lblcedulacliente.Text == "Numero Cedula")
@@ -444,7 +447,7 @@ namespace GS_Factura
             {
                 // Compara el ID y el nombre del producto con los valores en la fila actual.
 
-                if (int.Parse(recorrerdata.Cells["StockProducto"].Value.ToString()) <= 0 )
+                if (decimal.Parse(recorrerdata.Cells["StockProducto"].Value.ToString()) <= 0 )
                 {
                     MessageBox.Show("Falta agregar la cantidad al Producto de Id: "+ recorrerdata.Cells["IdProducto"].Value.ToString() + "", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
@@ -487,14 +490,14 @@ namespace GS_Factura
             }
         }
 
-        private void txtSearchCliente_TextChanged(object sender, EventArgs e)
+        private void TxtSearchCliente_TextChanged(object sender, EventArgs e)
         {
             // Actualiza el valor del contador de caracteres con la longitud del texto en txtSearchCliente
             this.lblcontadorcedulaCliente.Text = txtSearchCliente.Text.Length.ToString();
             
         }
 
-        private void txtcancelado_TextChanged(object sender, EventArgs e)
+        private void Txtcancelado_TextChanged(object sender, EventArgs e)
         {
          
 
@@ -550,7 +553,7 @@ namespace GS_Factura
         }
 
 
-        private void txtcancelado_Enter(object sender, EventArgs e)
+        private void Txtcancelado_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -569,7 +572,7 @@ namespace GS_Factura
             }
         }
 
-        private void txtcancelado_Leave(object sender, EventArgs e)
+        private void Txtcancelado_Leave(object sender, EventArgs e)
         {
             try
             {
@@ -587,7 +590,7 @@ namespace GS_Factura
             }
         }
 
-        private void txtcancelado_KeyPress(object sender, KeyPressEventArgs e)
+        private void Txtcancelado_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != ' ')
             {
@@ -614,7 +617,7 @@ namespace GS_Factura
 
         // Este método se ejecuta cuando cambia el estado del CheckBox de Consumidor Final.
 
-        private void cklistConsumidorFinal_CheckedChanged(object sender, EventArgs e)
+        private void CklistConsumidorFinal_CheckedChanged(object sender, EventArgs e)
         {
             if (cklistConsumidorFinal.Checked)
             {
@@ -635,22 +638,26 @@ namespace GS_Factura
             }
         }
 
-        private void dtgVenta_CellValidated(object sender, DataGridViewCellEventArgs e)
+        private void DtgVenta_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
-            this.cantidadDataGriedview();
+            this.CantidadDataGriedview();
         }
-
-        public void cantidadDataGriedview()
+        
+        public void CantidadDataGriedview()
         {
             try
             {
-                if (dtgVenta.CurrentRow.Cells[3].Value.ToString() != "" || dtgVenta.Rows.Count != 0)
+                if (dtgVenta.CurrentRow != null && dtgVenta.CurrentRow.Cells[3] != null && dtgVenta.CurrentRow.Cells[3].Value != null && !string.IsNullOrEmpty(dtgVenta.CurrentRow.Cells[3].Value.ToString()) && dtgVenta.Rows.Count != 0)
                 {
+                    string cantidadStr = dtgVenta.CurrentRow.Cells[3].Value.ToString();
+                    cantidadStr = cantidadStr.Replace(".", ",");
+                    dtgVenta.CurrentRow.Cells[3].Value = cantidadStr;
+
 
                     decimal stock;
                     int id_product = int.Parse(dtgVenta.CurrentRow.Cells[1].Value.ToString());
                     //int id_fract = int.Parse(dtg_v_factura.CurrentRow.Cells[1].Value.ToString());  
-                    using (SqlCommand montrarprodC = new SqlCommand("SELECT STOCK FROM PRODUCTO WHERE IDPRODUCTO = @id_product", AccesoDatos.abrirConexion()))
+                    using (SqlCommand montrarprodC = new SqlCommand("SELECT STOCK FROM PRODUCTO WHERE IDPRODUCTO = @id_product", AccesoDatos.AbrirConexion()))
                     {
                         montrarprodC.Parameters.AddWithValue("@id_product", id_product);
 
@@ -666,8 +673,6 @@ namespace GS_Factura
                         }
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -708,7 +713,7 @@ namespace GS_Factura
 
         }
 
-        private void lblcontadorcedulaCliente_TextChanged(object sender, EventArgs e)
+        private void LblcontadorCedulaCliente_TextChanged(object sender, EventArgs e)
         {
             if (int.Parse(lblcontadorcedulaCliente.Text) > 10)
             {
@@ -719,6 +724,8 @@ namespace GS_Factura
             }
            
         }
+
+       
     }
 
 }

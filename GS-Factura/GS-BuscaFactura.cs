@@ -24,7 +24,7 @@ namespace GS_Factura
             this.rptFacturaBuscar.RefreshReport();
         }
 
-        private void btn_busca_factura_Click(object sender, EventArgs e)
+        private void Btn_busca_factura_Click(object sender, EventArgs e)
         {
             rptFacturaBuscar.LocalReport.DataSources.Clear();
 
@@ -43,7 +43,7 @@ namespace GS_Factura
                     "F.IDFACTURA = DF.IDFACTURA\r\ninner join CLIENTE as C on " +
                     "f.IDCLIENTE = c.IDCLIENTE\r\ninner join PRODUCTO as P on" +
                     " DF.IDPRODUCTO = P.IDPRODUCTO\r\nwhere f.IDFACTURA = " + txtcedulaCliente.Text + ""; // Reemplaza TU_TABLA con el nombre de tu tabla
-                    DataTable datos = AccesoDatos.retornaRegistros(consulta);
+                    DataTable datos = AccesoDatos.RetornaRegistros(consulta);
 
                     // Configurar el informe
                     rptFacturaBuscar.LocalReport.ReportPath = "factura.rdlc"; // Asegúrate de que coincida con el nombre de tu informe
@@ -71,7 +71,7 @@ namespace GS_Factura
         private bool VerificarExistenciaFactura(int idFactura)
         {
             // Realizar una consulta para verificar si la factura existe
-            DataTable resultado = AccesoDatos.retornaRegistros($"SELECT COUNT(*) FROM FACTURA WHERE IDFACTURA = {idFactura}");
+            DataTable resultado = AccesoDatos.RetornaRegistros($"SELECT COUNT(*) FROM FACTURA WHERE IDFACTURA = {idFactura}");
 
             // Obtener el resultado de la consulta
             int count = Convert.ToInt32(resultado.Rows[0][0]);
