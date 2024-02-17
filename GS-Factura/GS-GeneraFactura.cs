@@ -23,7 +23,6 @@ namespace GS_Factura
         {
             InitializeComponent();
             this.Cargarnumerofactura();
-            //dtgVenta.CellEndEdit += dtgVenta_CellEndEdit;
 
 
         }
