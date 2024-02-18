@@ -51,7 +51,7 @@ class CrudCliente
         int retorno = 0;
         try
         {
-            using (SqlConnection conex = AccesoDatos.abrirConexion())
+            using (SqlConnection conex = AccesoDatos.AbrirConexion())
             {
                 SqlCommand comando = new SqlCommand(string.Format("exec sp_Insertar_CLIENTE '{0}','{1}','{2}','{3}'",
                                 pClientes.Cedula, pClientes.Nombre, pClientes.Apellido, pClientes.FechaNA), conex);
@@ -73,7 +73,7 @@ class CrudCliente
         int retorno = 0;
         try
         {
-            using (SqlConnection conex = AccesoDatos.abrirConexion())
+            using (SqlConnection conex = AccesoDatos.AbrirConexion())
             {
                 SqlCommand comando = new SqlCommand(string.Format("exec sp_actualizar_CLIENTE {0},'{1}','{2}','{3}','{4}'",
                                 pClientes.IdCliente,pClientes.Cedula, pClientes.Nombre, pClientes.Apellido, pClientes.FechaNA), conex);
@@ -95,7 +95,7 @@ class CrudCliente
         int retorno = 0;
         try
         {
-            using (SqlConnection conex = AccesoDatos.abrirConexion())
+            using (SqlConnection conex = AccesoDatos.AbrirConexion())
             {
                 SqlCommand comando = new SqlCommand(string.Format("exec sp_eliminar_CLIENTE {0},'{1}'",
                                 pClientes.IdCliente, pClientes.Estado), conex);
@@ -116,7 +116,7 @@ class CrudCliente
     {
         try
         {
-            using (SqlConnection conexion = AccesoDatos.abrirConexion())
+            using (SqlConnection conexion = AccesoDatos.AbrirConexion())
             {
                 using (SqlCommand command = new SqlCommand(consultaSQL, conexion))
                 {
@@ -135,7 +135,7 @@ class CrudCliente
 
     public static Cliente MostrarDatosCliente(string sentencia)
     {
-        SqlCommand command = new SqlCommand(sentencia, AccesoDatos.abrirConexion());
+        SqlCommand command = new SqlCommand(sentencia, AccesoDatos.AbrirConexion());
         SqlDataReader lectora_sentencia = command.ExecuteReader();
 
         if (lectora_sentencia.Read())
