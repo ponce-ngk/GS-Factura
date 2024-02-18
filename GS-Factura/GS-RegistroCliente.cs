@@ -22,7 +22,7 @@ namespace GS_Factura
             BloqueoControlesInicial();
             AccesoDatos fr = new AccesoDatos();
             // Se llena el DataGridView con los datos de los clientes al cargar el formulario
-            dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
+            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
             // Se establece el formato personalizado de la fecha en el control DateTimePicker para poderlo guardar
             dtpFechaCliente.CustomFormat = "yyyy-MM-dd";
         }
@@ -82,7 +82,7 @@ namespace GS_Factura
                     }
                     
                     // Se actualiza el DataGridView y se limpian los campos
-                    dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
+                    dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                     BloqueoControles();
                     LimpiarCampos();
                 }
@@ -127,7 +127,7 @@ namespace GS_Factura
                     }
 
                     // Actualizar el DataGridView y limpiar los campos
-                    dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
+                    dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                     BloqueoControles();
                     LimpiarCampos();
                 }
@@ -168,7 +168,7 @@ namespace GS_Factura
                     }
 
                     // Actualizar el DataGridView y limpiar los campos
-                    dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
+                    dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                     BloqueoControles();
                     LimpiarCampos();
                 }
@@ -185,7 +185,7 @@ namespace GS_Factura
             txtapellidoscliente.Text = "";
             dtpFechaCliente.Text = date.ToString();
             txt_Buscar.Text = "";
-            dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("sp_Listado_Clientes");
+            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
         }
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -298,7 +298,7 @@ namespace GS_Factura
 
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
-            dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
+            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
          
         }
 
@@ -307,7 +307,7 @@ namespace GS_Factura
 
             if (e.KeyCode == Keys.Enter)
             {
-                dgvClientes.DataSource = AccesoDatos.llenartablaparabuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
+                dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
             }
         }
 
