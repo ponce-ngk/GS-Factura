@@ -270,7 +270,7 @@ namespace GS_Factura
             txtsubtotalventa.Text = subtotalCompra.ToString("0.00");
 
             // Aplicamos el descuento  que es 0
-            txtsubtotalDescuentoVenta.Text = descuentoCompra.ToString("0.00");
+            //txtsubtotalDescuentoVenta.Text = descuentoCompra.ToString("0.00");
 
 
             // Agregamos el IVA
@@ -339,12 +339,20 @@ namespace GS_Factura
                     XmlVenta(consulta);
                     this.Cargarnumerofactura();
 
+                        GS_Factura frmFactura = new GS_Factura();
 
-                        GS_Factura frm = new GS_Factura();
-                        frm.Show();
+                        frmFactura.TopLevel = false;
+                        frmFactura.Dock = DockStyle.Fill;
+                        this.Controls.Add(frmFactura);
+                        frmFactura.Show();
 
-                    
-                    
+                       
+
+
+
+
+
+
                     }
                     else MessageBox.Show("El usuario no ha cancelado. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -390,7 +398,7 @@ namespace GS_Factura
             lblnombrecliente.Text = "Nombre del Cliente";
             lblApellidocliente.Text = "Apellido del Cliente";
             dtgVenta.Rows.Clear();
-            txtdescuentoventa.Text = "0";
+            //txtdescuentoventa.Text = "0";
             txtivaVenta.Text = "0";
             txtcancelado.Text = "0";
 
@@ -724,7 +732,22 @@ namespace GS_Factura
            
         }
 
-       
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            GS_Factura frmFactura = new GS_Factura();
+
+            // Limpia el Panel antes de agregar el formulario
+            panelFondo.Controls.Clear();
+
+            // Añade GS_Factura como un control en el Panel
+            frmFactura.TopLevel = false;
+            frmFactura.Dock = DockStyle.Fill;
+            panelFondo.Controls.Add(frmFactura);
+
+            frmFactura.Show();
+
+            this.Cargarnumerofactura();
+        }
     }
 
 }
