@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RJCodeAdvance.RJControls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,30 +13,43 @@ namespace GS_Factura
 {
     public partial class Form1 : Form
     {
+        private bool dragging = false;
+        private Point dragStartPoint;
         public Form1()
         {
             InitializeComponent();
+            lblEncabezadoGS.MouseDown += lblEncabezadoGS_MouseDown;
+            lblEncabezadoGS.MouseMove += lblEncabezadoGS_MouseMove;
+            lblEncabezadoGS.MouseUp += lblEncabezadoGS_MouseUp;
         }
+
 
         private void BtnVenta_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new GS_GeneraFactura());
-            return;
+            GS_GeneraFactura frmFactura = new GS_GeneraFactura();
+            AbrirFormEnPanel(frmFactura);
+
         }
 
 
-        private void AbrirFormEnPanel(object formhija)
+        private void AbrirFormEnPanel(object formHija)
         {
+            // Cerrar formulario actual si hay uno
             if (this.panelForms.Controls.Count > 0)
-                this.panelForms.Controls.RemoveAt(0);
-            Form fh = formhija as Form;
-            fh.TopLevel = false;
-            fh.Dock = DockStyle.Fill;
-            this.panelForms.Controls.Add(fh);
-            this.panelForms.Tag = fh;
-            fh.Show();
+            {
+                Form formularioActual = this.panelForms.Controls[0] as Form;
+                formularioActual.Close();
+            }
 
+            // Mostrar el nuevo formulario
+            Form nuevoForm = formHija as Form;
+            nuevoForm.TopLevel = false;
+            nuevoForm.Dock = DockStyle.Fill;
+            this.panelForms.Controls.Add(nuevoForm);
+            this.panelForms.Tag = nuevoForm;
+            nuevoForm.Show();
         }
+
 
         private void BtnProductos_Click(object sender, EventArgs e)
         {
@@ -57,12 +71,18 @@ namespace GS_Factura
                 panelLayoutMenu.Width = 149;
                 ptmfotouser.Visible = true;
                 lblNombre.Visible = true;
+                btnBuscaFactura.Width = 149;
+                btnBuscaFactura.TextImageRelation = TextImageRelation.ImageBeforeText;
+                btnBuscaFactura.Text = "  Facturas";
             }
             else
             {
                 panelLayoutMenu.Width = 48;
                 ptmfotouser.Visible = false;
                 lblNombre.Visible = false;
+                btnBuscaFactura.Width = 48;
+                btnBuscaFactura.TextImageRelation = TextImageRelation.Overlay;
+                btnBuscaFactura.Text = "";
             }
         }
 
@@ -112,8 +132,67 @@ namespace GS_Factura
 
         private void BtnBuscaFactura_Click(object sender, EventArgs e)
         {
+            Open_DropdownMenu(rjcFacturaMenu, sender);
+            
+        }
+
+        private void Open_DropdownMenu(RJDropdownMenu dropdownMenu, object sender)
+        {
+            Control control = (Control)sender;
+            dropdownMenu.VisibleChanged += new EventHandler((sender2, ev)
+                => DropdownMenu_VisibleChanged(sender2, ev, control));
+            dropdownMenu.Show(control, control.Width, 0);
+
+        }
+        private void DropdownMenu_VisibleChanged(object sender, EventArgs e, Control ctrl)
+        {
+            RJDropdownMenu dropdownMenu = (RJDropdownMenu)sender;
+            if (!DesignMode)
+            {
+                if (dropdownMenu.Visible)
+                {
+                    ctrl.BackColor = Color.FromArgb(51, 51, 76);
+                }
+                else
+                {
+                    ctrl.BackColor = Color.FromArgb(51, 51, 76);
+                }
+            }
+        }
+
+        private void btnRJBuscarF_Click(object sender, EventArgs e)
+        {
             AbrirFormEnPanel(new GS_BuscaFactura());
             return;
+        }
+
+
+        
+
+        private void lblEncabezadoGS_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragStartPoint = new Point(e.X, e.Y);
+        }
+
+        private void lblEncabezadoGS_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Si el mouse está siendo arrastrado
+            if (dragging)
+            {
+                // Calcular la diferencia entre la posición actual y la posición inicial
+                int deltaX = e.X - dragStartPoint.X;
+                int deltaY = e.Y - dragStartPoint.Y;
+
+                // Mover el formulario
+                this.Location = new Point(this.Location.X + deltaX, this.Location.Y + deltaY);
+            }
+        }
+
+        private void lblEncabezadoGS_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Al soltar el botón del mouse, detener el arrastre
+            dragging = false;
         }
     }
 }

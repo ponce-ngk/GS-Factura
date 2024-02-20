@@ -77,5 +77,17 @@ namespace GS_Factura
 
             return maxIdVenta;
         }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            
+            this.Close();
+            
+            
+
+
+        }
+
+        
     }
 }

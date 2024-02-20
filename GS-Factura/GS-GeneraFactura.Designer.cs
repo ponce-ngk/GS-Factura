@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbLayoutEncabezado = new System.Windows.Forms.TableLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
             this.lblFingresoVenta = new System.Windows.Forms.Label();
@@ -102,6 +102,8 @@
             this.Eliminarfila = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tbLayoutProduct = new System.Windows.Forms.TableLayoutPanel();
             this.panelFondo = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.tbLayoutEncabezado.SuspendLayout();
             this.panel14.SuspendLayout();
             this.panel20.SuspendLayout();
@@ -124,6 +126,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgVenta)).BeginInit();
             this.tbLayoutProduct.SuspendLayout();
             this.panelFondo.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbLayoutEncabezado
@@ -485,6 +488,7 @@
             this.tbLayoutBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.98153F));
             this.tbLayoutBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tbLayoutBotones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tbLayoutBotones.Controls.Add(this.panel4, 0, 0);
             this.tbLayoutBotones.Controls.Add(this.panel7, 2, 0);
             this.tbLayoutBotones.Controls.Add(this.panel6, 1, 0);
             this.tbLayoutBotones.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -958,22 +962,22 @@
             this.dtgVenta.AllowUserToAddRows = false;
             this.dtgVenta.AllowUserToResizeColumns = false;
             this.dtgVenta.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dtgVenta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            this.dtgVenta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dtgVenta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgVenta.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtgVenta.BackgroundColor = System.Drawing.Color.White;
             this.dtgVenta.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgVenta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dtgVenta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dtgVenta.ColumnHeadersHeight = 29;
             this.dtgVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -983,14 +987,14 @@
             this.StockProducto,
             this.PrecioVenta,
             this.TotalProducto});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgVenta.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgVenta.DefaultCellStyle = dataGridViewCellStyle13;
             this.dtgVenta.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgVenta.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dtgVenta.EnableHeadersVisualStyles = false;
@@ -1000,18 +1004,18 @@
             this.dtgVenta.MultiSelect = false;
             this.dtgVenta.Name = "dtgVenta";
             this.dtgVenta.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dtgVenta.RowHeadersVisible = false;
             this.dtgVenta.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dtgVenta.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtgVenta.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dtgVenta.Size = new System.Drawing.Size(784, 301);
             this.dtgVenta.TabIndex = 2;
             this.dtgVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgVenta_CellContentClick);
@@ -1090,6 +1094,43 @@
             this.panelFondo.Size = new System.Drawing.Size(784, 627);
             this.panelFondo.TabIndex = 10;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.iconButton1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(184, 40);
+            this.panel4.TabIndex = 3;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconButton1.BackColor = System.Drawing.Color.Red;
+            this.iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SpringGreen;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.ForeColor = System.Drawing.Color.White;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            this.iconButton1.IconColor = System.Drawing.Color.White;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 27;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(30, 5);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(137, 30);
+            this.iconButton1.TabIndex = 12;
+            this.iconButton1.Text = "         Cancelar";
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click_1);
+            // 
             // GS_GeneraFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1129,13 +1170,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgVenta)).EndInit();
             this.tbLayoutProduct.ResumeLayout(false);
             this.panelFondo.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tbLayoutEncabezado;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Label lblFingresoVenta;
         private System.Windows.Forms.Label label20;
@@ -1158,14 +1198,12 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TableLayoutPanel tbLayoutBotones;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox txtcambioVenta;
         private System.Windows.Forms.Panel panel7;
         private FontAwesome.Sharp.IconButton btnVender;
         private System.Windows.Forms.Panel panel6;
         private FontAwesome.Sharp.IconButton btncancelarventa;
-        private System.Windows.Forms.TableLayoutPanel tbLayoutDinero;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel88;
@@ -1201,7 +1239,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StockProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducto;
-        private System.Windows.Forms.TableLayoutPanel tbLayoutProduct;
         private System.Windows.Forms.Panel panelFondo;
+        private System.Windows.Forms.Panel panel4;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        public System.Windows.Forms.TableLayoutPanel tbLayoutEncabezado;
+        public System.Windows.Forms.TableLayoutPanel tbLayoutBotones;
+        public System.Windows.Forms.TableLayoutPanel tbLayoutDinero;
+        public System.Windows.Forms.TableLayoutPanel tbLayoutProduct;
     }
 }

@@ -748,6 +748,24 @@ namespace GS_Factura
 
             this.Cargarnumerofactura();
         }
+
+        private void iconButton1_Click_1(object sender, EventArgs e)
+        {
+            
+            //GS_Factura frmFactura = new GS_Factura();
+
+            //// Limpia el Panel antes de agregar el formulario
+            //panelFondo.Controls.Clear();
+
+            //// Añade GS_Factura como un control en el Panel
+            //frmFactura.TopLevel = false;
+            //frmFactura.Dock = DockStyle.Fill;
+            //panelFondo.Controls.Add(frmFactura);
+
+            //frmFactura.Show();
+
+            //this.Cargarnumerofactura();
+        }
     }
 
 }
