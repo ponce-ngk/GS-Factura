@@ -194,5 +194,11 @@ namespace GS_Factura
             // Al soltar el botón del mouse, detener el arrastre
             dragging = false;
         }
+
+        private void btnRJEliminar_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new GS_EliminaFactura());
+            return;
+        }
     }
 }

@@ -224,7 +224,7 @@
             this.lblNombre.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.ForeColor = System.Drawing.Color.White;
             this.lblNombre.Location = new System.Drawing.Point(2, 79);
-            this.lblNombre.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(10);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(150, 0);
             this.lblNombre.TabIndex = 7;
@@ -408,9 +408,9 @@
             this.panelLayourMaximizar.Margin = new System.Windows.Forms.Padding(0);
             this.panelLayourMaximizar.Name = "panelLayourMaximizar";
             this.panelLayourMaximizar.RowCount = 1;
-            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.panelLayourMaximizar.Size = new System.Drawing.Size(94, 25);
             this.panelLayourMaximizar.TabIndex = 2;
             // 
@@ -494,7 +494,7 @@
             this.rjcFacturaMenu.Name = "rjDdmRegistro";
             this.rjcFacturaMenu.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.rjcFacturaMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.rjcFacturaMenu.Size = new System.Drawing.Size(130, 70);
+            this.rjcFacturaMenu.Size = new System.Drawing.Size(181, 92);
             // 
             // btnRJBuscarF
             // 
@@ -507,13 +507,14 @@
             // btnRJEliminar
             // 
             this.btnRJEliminar.Name = "btnRJEliminar";
-            this.btnRJEliminar.Size = new System.Drawing.Size(129, 22);
+            this.btnRJEliminar.Size = new System.Drawing.Size(180, 22);
             this.btnRJEliminar.Text = "Eliminar";
+            this.btnRJEliminar.Click += new System.EventHandler(this.btnRJEliminar_Click);
             // 
             // btnRJEditar
             // 
             this.btnRJEditar.Name = "btnRJEditar";
-            this.btnRJEditar.Size = new System.Drawing.Size(129, 22);
+            this.btnRJEditar.Size = new System.Drawing.Size(180, 22);
             this.btnRJEditar.Text = "Editar";
             // 
             // Form1
