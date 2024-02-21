@@ -339,19 +339,25 @@ namespace GS_Factura
                     XmlVenta(consulta);
                     this.Cargarnumerofactura();
 
+                        // Guardar los tamaños actuales de las columnas
+                        float tamañoColumna1 = tblVentayFactura.ColumnStyles[0].Width;
+                        float tamañoColumna2 = tblVentayFactura.ColumnStyles[1].Width;
+
+                        // Intercambiar los tamaños de las columnas
+                        tblVentayFactura.ColumnStyles[0].Width = tamañoColumna2;
+                        tblVentayFactura.ColumnStyles[1].Width = tamañoColumna1;
+
                         GS_Factura frmFactura = new GS_Factura();
 
+
+                        // Añade GS_Factura como un control en el Panel
                         frmFactura.TopLevel = false;
                         frmFactura.Dock = DockStyle.Fill;
-                        this.Controls.Add(frmFactura);
+                        panelFactura.Controls.Add(frmFactura);
+
                         frmFactura.Show();
 
-                       
-
-
-
-
-
+                        this.Cargarnumerofactura();
 
                     }
                     else MessageBox.Show("El usuario no ha cancelado. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -749,22 +755,27 @@ namespace GS_Factura
             this.Cargarnumerofactura();
         }
 
-        private void iconButton1_Click_1(object sender, EventArgs e)
+        public void iconButton1_Click_1(object sender, EventArgs e)
         {
-            
-            //GS_Factura frmFactura = new GS_Factura();
+            // Guardar los tamaños actuales de las columnas
+            float tamañoColumna1 = tblVentayFactura.ColumnStyles[0].Width;
+            float tamañoColumna2 = tblVentayFactura.ColumnStyles[1].Width;
 
-            //// Limpia el Panel antes de agregar el formulario
-            //panelFondo.Controls.Clear();
+            // Intercambiar los tamaños de las columnas
+            tblVentayFactura.ColumnStyles[0].Width = tamañoColumna2;
+            tblVentayFactura.ColumnStyles[1].Width = tamañoColumna1;
 
-            //// Añade GS_Factura como un control en el Panel
-            //frmFactura.TopLevel = false;
-            //frmFactura.Dock = DockStyle.Fill;
-            //panelFondo.Controls.Add(frmFactura);
+            GS_Factura frmFactura = new GS_Factura();
 
-            //frmFactura.Show();
 
-            //this.Cargarnumerofactura();
+            // Añade GS_Factura como un control en el Panel
+            frmFactura.TopLevel = false;
+            frmFactura.Dock = DockStyle.Fill;
+            panelFactura.Controls.Add(frmFactura);
+
+            frmFactura.Show();
+
+            this.Cargarnumerofactura();
         }
     }
 

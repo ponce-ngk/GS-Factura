@@ -80,10 +80,19 @@ namespace GS_Factura
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            
-            this.Close();
-            
-            
+            // Acceder al formulario actual si ya está creado
+            GS_GeneraFactura gS_GeneraFactura = Application.OpenForms.OfType<GS_GeneraFactura>().FirstOrDefault();
+
+            // Verificar si el formulario está abierto antes de intentar acceder a sus controles
+            if (gS_GeneraFactura != null)
+            {
+                // Cambiar las dimensiones de las columnas en el formulario actual
+                gS_GeneraFactura.tblVentayFactura.ColumnStyles[0].Width = 99.50f;
+                gS_GeneraFactura.tblVentayFactura.ColumnStyles[1].Width = 0.50f;
+                this.Close();
+            }
+
+
 
 
         }
