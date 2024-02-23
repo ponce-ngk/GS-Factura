@@ -183,6 +183,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisualizaFacturaBorrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VisualizaFacturaBorrar.Designer.cs">
+      <DependentUpon>VisualizaFacturaBorrar.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GS-ClienteVenta.resx">
       <DependentUpon>GS-ClienteVenta.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +238,9 @@
     <EmbeddedResource Include="factura.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="VisualizaFacturaBorrar.resx">
+      <DependentUpon>VisualizaFacturaBorrar.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="DataSetFactura.xsc">
       <DependentUpon>DataSetFactura.xsd</DependentUpon>
     </None>
@@ -259,6 +268,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\remove.ico" />
+    <None Include="Resources\ver.ico" />
+    <None Include="Resources\ver_nuevo.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

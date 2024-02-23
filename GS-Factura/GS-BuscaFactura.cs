@@ -70,14 +70,19 @@ namespace GS_Factura
 
         private bool VerificarExistenciaFactura(int idFactura)
         {
-            // Realizar una consulta para verificar si la factura existe
-            DataTable resultado = AccesoDatos.RetornaRegistros($"SELECT COUNT(*) FROM FACTURA WHERE IDFACTURA = {idFactura}");
+            try
+            {
+                // Realizar una consulta para verificar si la factura existe
+                DataTable resultado = AccesoDatos.RetornaRegistros($"SELECT COUNT(*) FROM FACTURA WHERE IDFACTURA = {idFactura}");
 
-            // Obtener el resultado de la consulta
-            int count = Convert.ToInt32(resultado.Rows[0][0]);
+                // Obtener el resultado de la consulta
+                int count = Convert.ToInt32(resultado.Rows[0][0]);
 
-            // Devolver true si existe al menos una fila, false si no existe ninguna
-            return count > 0;
+                // Devolver true si existe al menos una fila, false si no existe ninguna
+                return count > 0;
+            }
+            catch { return false; } 
+            
         }
     }
 }

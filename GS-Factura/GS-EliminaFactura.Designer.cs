@@ -28,55 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tblFormulario = new System.Windows.Forms.TableLayoutPanel();
             this.tblFacturaMuestra = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelFactura = new System.Windows.Forms.Panel();
             this.tblBuscaFactura = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.dtgVenta = new System.Windows.Forms.DataGridView();
+            this.dtgFactura = new System.Windows.Forms.DataGridView();
             this.Eliminarfila = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verFactura = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtBuscaFacturaCliente = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtBuscarFactura = new System.Windows.Forms.TextBox();
-            this.btnvalidarCliente = new FontAwesome.Sharp.IconButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtBuscaFacturaCliente = new System.Windows.Forms.TextBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.btnBuscar = new FontAwesome.Sharp.IconButton();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtBuscarFacturaCedula = new System.Windows.Forms.TextBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tblFormulario.SuspendLayout();
             this.tblFacturaMuestra.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tblBuscaFactura.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgVenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgFactura)).BeginInit();
             this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -86,7 +84,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.Size = new System.Drawing.Size(775, 487);
             this.panel1.TabIndex = 0;
             // 
             // tblFormulario
@@ -102,7 +100,7 @@
             this.tblFormulario.RowCount = 1;
             this.tblFormulario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblFormulario.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblFormulario.Size = new System.Drawing.Size(800, 450);
+            this.tblFormulario.Size = new System.Drawing.Size(775, 487);
             this.tblFormulario.TabIndex = 0;
             // 
             // tblFacturaMuestra
@@ -110,15 +108,15 @@
             this.tblFacturaMuestra.ColumnCount = 1;
             this.tblFacturaMuestra.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblFacturaMuestra.Controls.Add(this.panel2, 0, 0);
-            this.tblFacturaMuestra.Controls.Add(this.panel3, 0, 1);
+            this.tblFacturaMuestra.Controls.Add(this.panelFactura, 0, 1);
             this.tblFacturaMuestra.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblFacturaMuestra.Location = new System.Drawing.Point(400, 0);
+            this.tblFacturaMuestra.Location = new System.Drawing.Point(387, 0);
             this.tblFacturaMuestra.Margin = new System.Windows.Forms.Padding(0);
             this.tblFacturaMuestra.Name = "tblFacturaMuestra";
             this.tblFacturaMuestra.RowCount = 2;
             this.tblFacturaMuestra.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.624944F));
             this.tblFacturaMuestra.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.37505F));
-            this.tblFacturaMuestra.Size = new System.Drawing.Size(400, 450);
+            this.tblFacturaMuestra.Size = new System.Drawing.Size(388, 487);
             this.tblFacturaMuestra.TabIndex = 0;
             // 
             // panel2
@@ -129,7 +127,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(400, 43);
+            this.panel2.Size = new System.Drawing.Size(388, 46);
             this.panel2.TabIndex = 0;
             // 
             // label1
@@ -141,20 +139,20 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(27, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(361, 33);
+            this.label1.Size = new System.Drawing.Size(349, 36);
             this.label1.TabIndex = 35;
             this.label1.Text = "Previsualización de la factura a borrar";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel3
+            // panelFactura
             // 
-            this.panel3.BackColor = System.Drawing.Color.Silver;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 43);
-            this.panel3.Margin = new System.Windows.Forms.Padding(0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(400, 407);
-            this.panel3.TabIndex = 1;
+            this.panelFactura.BackColor = System.Drawing.Color.Silver;
+            this.panelFactura.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFactura.Location = new System.Drawing.Point(0, 46);
+            this.panelFactura.Margin = new System.Windows.Forms.Padding(0);
+            this.panelFactura.Name = "panelFactura";
+            this.panelFactura.Size = new System.Drawing.Size(388, 441);
+            this.panelFactura.TabIndex = 1;
             // 
             // tblBuscaFactura
             // 
@@ -171,126 +169,92 @@
             this.tblBuscaFactura.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tblBuscaFactura.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tblBuscaFactura.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tblBuscaFactura.Size = new System.Drawing.Size(400, 450);
+            this.tblBuscaFactura.Size = new System.Drawing.Size(387, 487);
             this.tblBuscaFactura.TabIndex = 1;
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.dtgVenta);
+            this.panel4.Controls.Add(this.dtgFactura);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 45);
+            this.panel4.Location = new System.Drawing.Point(0, 48);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(400, 360);
+            this.panel4.Size = new System.Drawing.Size(387, 389);
             this.panel4.TabIndex = 0;
             // 
-            // dtgVenta
+            // dtgFactura
             // 
-            this.dtgVenta.AllowUserToAddRows = false;
-            this.dtgVenta.AllowUserToResizeColumns = false;
-            this.dtgVenta.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            this.dtgVenta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dtgVenta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgVenta.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dtgVenta.BackgroundColor = System.Drawing.Color.White;
-            this.dtgVenta.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dtgVenta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dtgVenta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dtgVenta.ColumnHeadersHeight = 29;
-            this.dtgVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dtgVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dtgFactura.AllowUserToAddRows = false;
+            this.dtgFactura.AllowUserToResizeColumns = false;
+            this.dtgFactura.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dtgFactura.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgFactura.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgFactura.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dtgFactura.BackgroundColor = System.Drawing.Color.White;
+            this.dtgFactura.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dtgFactura.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dtgFactura.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dtgFactura.ColumnHeadersHeight = 29;
+            this.dtgFactura.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dtgFactura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eliminarfila,
-            this.IdProducto,
-            this.NombreProducto,
-            this.StockProducto,
-            this.PrecioVenta,
-            this.TotalProducto});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgVenta.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dtgVenta.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgVenta.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dtgVenta.EnableHeadersVisualStyles = false;
-            this.dtgVenta.GridColor = System.Drawing.Color.Gainsboro;
-            this.dtgVenta.Location = new System.Drawing.Point(0, 0);
-            this.dtgVenta.Margin = new System.Windows.Forms.Padding(0);
-            this.dtgVenta.MultiSelect = false;
-            this.dtgVenta.Name = "dtgVenta";
-            this.dtgVenta.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dtgVenta.RowHeadersVisible = false;
-            this.dtgVenta.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dtgVenta.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dtgVenta.Size = new System.Drawing.Size(400, 360);
-            this.dtgVenta.TabIndex = 3;
+            this.verFactura});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgFactura.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dtgFactura.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgFactura.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dtgFactura.EnableHeadersVisualStyles = false;
+            this.dtgFactura.GridColor = System.Drawing.Color.Gainsboro;
+            this.dtgFactura.Location = new System.Drawing.Point(0, 0);
+            this.dtgFactura.Margin = new System.Windows.Forms.Padding(0);
+            this.dtgFactura.MultiSelect = false;
+            this.dtgFactura.Name = "dtgFactura";
+            this.dtgFactura.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dtgFactura.RowHeadersVisible = false;
+            this.dtgFactura.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtgFactura.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dtgFactura.Size = new System.Drawing.Size(387, 389);
+            this.dtgFactura.TabIndex = 3;
+            this.dtgFactura.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellClick);
+            this.dtgFactura.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dtgFactura_CellPainting);
             // 
             // Eliminarfila
             // 
-            this.Eliminarfila.FillWeight = 41.03463F;
+            this.Eliminarfila.FillWeight = 40.40974F;
             this.Eliminarfila.HeaderText = "";
             this.Eliminarfila.MinimumWidth = 6;
             this.Eliminarfila.Name = "Eliminarfila";
             // 
-            // IdProducto
+            // verFactura
             // 
-            this.IdProducto.FillWeight = 91.07334F;
-            this.IdProducto.HeaderText = "IDPRODUCTO";
-            this.IdProducto.MinimumWidth = 6;
-            this.IdProducto.Name = "IdProducto";
-            this.IdProducto.ReadOnly = true;
-            // 
-            // NombreProducto
-            // 
-            this.NombreProducto.FillWeight = 118.5336F;
-            this.NombreProducto.HeaderText = "Nombre";
-            this.NombreProducto.MinimumWidth = 6;
-            this.NombreProducto.Name = "NombreProducto";
-            this.NombreProducto.ReadOnly = true;
-            // 
-            // StockProducto
-            // 
-            this.StockProducto.FillWeight = 82.19414F;
-            this.StockProducto.HeaderText = "Cantidad";
-            this.StockProducto.MinimumWidth = 6;
-            this.StockProducto.Name = "StockProducto";
-            // 
-            // PrecioVenta
-            // 
-            this.PrecioVenta.FillWeight = 87.24833F;
-            this.PrecioVenta.HeaderText = "PrecioVenta";
-            this.PrecioVenta.MinimumWidth = 6;
-            this.PrecioVenta.Name = "PrecioVenta";
-            this.PrecioVenta.ReadOnly = true;
-            // 
-            // TotalProducto
-            // 
-            this.TotalProducto.FillWeight = 127.7852F;
-            this.TotalProducto.HeaderText = "Total";
-            this.TotalProducto.MinimumWidth = 6;
-            this.TotalProducto.Name = "TotalProducto";
-            this.TotalProducto.ReadOnly = true;
+            this.verFactura.FillWeight = 41.65952F;
+            this.verFactura.HeaderText = "Ver";
+            this.verFactura.MinimumWidth = 6;
+            this.verFactura.Name = "verFactura";
             // 
             // panel5
             // 
@@ -300,93 +264,8 @@
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Margin = new System.Windows.Forms.Padding(0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(400, 45);
+            this.panel5.Size = new System.Drawing.Size(387, 48);
             this.panel5.TabIndex = 1;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.IndianRed;
-            this.panel6.Controls.Add(this.label3);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 405);
-            this.panel6.Margin = new System.Windows.Forms.Padding(0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(400, 45);
-            this.panel6.TabIndex = 2;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(0, 11);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(123, 26);
-            this.label9.TabIndex = 36;
-            this.label9.Text = "Buscar factura por:";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtBuscaFacturaCliente
-            // 
-            this.txtBuscaFacturaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBuscaFacturaCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtBuscaFacturaCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtBuscaFacturaCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBuscaFacturaCliente.Enabled = false;
-            this.txtBuscaFacturaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscaFacturaCliente.ForeColor = System.Drawing.Color.DimGray;
-            this.txtBuscaFacturaCliente.Location = new System.Drawing.Point(1, 12);
-            this.txtBuscaFacturaCliente.Margin = new System.Windows.Forms.Padding(10);
-            this.txtBuscaFacturaCliente.Name = "txtBuscaFacturaCliente";
-            this.txtBuscaFacturaCliente.Size = new System.Drawing.Size(109, 23);
-            this.txtBuscaFacturaCliente.TabIndex = 37;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(-1, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 26);
-            this.label2.TabIndex = 38;
-            this.label2.Text = "o ";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtBuscarFactura
-            // 
-            this.txtBuscarFactura.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBuscarFactura.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtBuscarFactura.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtBuscarFactura.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBuscarFactura.Enabled = false;
-            this.txtBuscarFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarFactura.ForeColor = System.Drawing.Color.DimGray;
-            this.txtBuscarFactura.Location = new System.Drawing.Point(1, 11);
-            this.txtBuscarFactura.Margin = new System.Windows.Forms.Padding(10);
-            this.txtBuscarFactura.Name = "txtBuscarFactura";
-            this.txtBuscarFactura.Size = new System.Drawing.Size(109, 23);
-            this.txtBuscarFactura.TabIndex = 39;
-            // 
-            // btnvalidarCliente
-            // 
-            this.btnvalidarCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.btnvalidarCliente.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnvalidarCliente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnvalidarCliente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnvalidarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnvalidarCliente.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnvalidarCliente.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
-            this.btnvalidarCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnvalidarCliente.IconSize = 20;
-            this.btnvalidarCliente.Location = new System.Drawing.Point(2, 12);
-            this.btnvalidarCliente.Margin = new System.Windows.Forms.Padding(0);
-            this.btnvalidarCliente.Name = "btnvalidarCliente";
-            this.btnvalidarCliente.Size = new System.Drawing.Size(23, 23);
-            this.btnvalidarCliente.TabIndex = 40;
-            this.btnvalidarCliente.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel1
             // 
@@ -407,19 +286,126 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 45);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(387, 48);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // label3
+            // panel11
             // 
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(7, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(385, 26);
-            this.label3.TabIndex = 37;
-            this.label3.Text = "Nota: Una vez eliminada la factura no se podrá recuperarla";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel11.Controls.Add(this.label4);
+            this.panel11.Controls.Add(this.txtBuscaFacturaCliente);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(124, 0);
+            this.panel11.Margin = new System.Windows.Forms.Padding(0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(109, 48);
+            this.panel11.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.DimGray;
+            this.label4.Location = new System.Drawing.Point(1, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 17);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "N° Factura";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtBuscaFacturaCliente
+            // 
+            this.txtBuscaFacturaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBuscaFacturaCliente.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscaFacturaCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtBuscaFacturaCliente.Location = new System.Drawing.Point(5, 24);
+            this.txtBuscaFacturaCliente.Name = "txtBuscaFacturaCliente";
+            this.txtBuscaFacturaCliente.Size = new System.Drawing.Size(97, 23);
+            this.txtBuscaFacturaCliente.TabIndex = 4;
+            this.txtBuscaFacturaCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaFacturaCliente_KeyPress);
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.btnBuscar);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(363, 0);
+            this.panel10.Margin = new System.Windows.Forms.Padding(0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(24, 48);
+            this.panel10.TabIndex = 3;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnBuscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnBuscar.IconColor = System.Drawing.Color.White;
+            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscar.IconSize = 20;
+            this.btnBuscar.Location = new System.Drawing.Point(0, 22);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(26, 27);
+            this.btnBuscar.TabIndex = 40;
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.label5);
+            this.panel9.Controls.Add(this.txtBuscarFacturaCedula);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(254, 0);
+            this.panel9.Margin = new System.Windows.Forms.Padding(0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(109, 48);
+            this.panel9.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.DimGray;
+            this.label5.Location = new System.Drawing.Point(3, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 17);
+            this.label5.TabIndex = 38;
+            this.label5.Text = "N° Cédula";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtBuscarFacturaCedula
+            // 
+            this.txtBuscarFacturaCedula.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBuscarFacturaCedula.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarFacturaCedula.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtBuscarFacturaCedula.Location = new System.Drawing.Point(2, 24);
+            this.txtBuscarFacturaCedula.Name = "txtBuscarFacturaCedula";
+            this.txtBuscarFacturaCedula.Size = new System.Drawing.Size(103, 23);
+            this.txtBuscarFacturaCedula.TabIndex = 5;
+            this.txtBuscarFacturaCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscarFacturaCedula_KeyPress);
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label2);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(233, 0);
+            this.panel8.Margin = new System.Windows.Forms.Padding(0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(21, 48);
+            this.panel8.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(-1, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 26);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "o ";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel7
             // 
@@ -428,76 +414,75 @@
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Margin = new System.Windows.Forms.Padding(0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(128, 45);
+            this.panel7.Size = new System.Drawing.Size(124, 48);
             this.panel7.TabIndex = 0;
             // 
-            // panel8
+            // label9
             // 
-            this.panel8.Controls.Add(this.label2);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(240, 0);
-            this.panel8.Margin = new System.Windows.Forms.Padding(0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(22, 45);
-            this.panel8.TabIndex = 1;
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(3, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(121, 22);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "Buscar factura por:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel9
+            // panel6
             // 
-            this.panel9.Controls.Add(this.txtBuscarFactura);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(262, 0);
-            this.panel9.Margin = new System.Windows.Forms.Padding(0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(112, 45);
-            this.panel9.TabIndex = 2;
+            this.panel6.BackColor = System.Drawing.Color.IndianRed;
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 437);
+            this.panel6.Margin = new System.Windows.Forms.Padding(0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(387, 50);
+            this.panel6.TabIndex = 2;
             // 
-            // panel10
+            // label3
             // 
-            this.panel10.Controls.Add(this.btnvalidarCliente);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(374, 0);
-            this.panel10.Margin = new System.Windows.Forms.Padding(0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(26, 45);
-            this.panel10.TabIndex = 3;
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.txtBuscaFacturaCliente);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(128, 0);
-            this.panel11.Margin = new System.Windows.Forms.Padding(0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(112, 45);
-            this.panel11.TabIndex = 4;
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(7, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(372, 31);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "Nota: Una vez eliminada la factura no se podrá recuperarla";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GS_EliminaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(775, 487);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GS_EliminaFactura";
             this.Text = "GS_EliminaFactura";
+            this.Load += new System.EventHandler(this.GS_EliminaFactura_Load);
             this.panel1.ResumeLayout(false);
             this.tblFormulario.ResumeLayout(false);
             this.tblFacturaMuestra.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tblBuscaFactura.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgVenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgFactura)).EndInit();
             this.panel5.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel10.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -509,23 +494,15 @@
         private System.Windows.Forms.TableLayoutPanel tblFacturaMuestra;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelFactura;
         private System.Windows.Forms.TableLayoutPanel tblBuscaFactura;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DataGridView dtgVenta;
-        private System.Windows.Forms.DataGridViewButtonColumn Eliminarfila;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StockProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalProducto;
+        private System.Windows.Forms.DataGridView dtgFactura;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtBuscaFacturaCliente;
-        private System.Windows.Forms.TextBox txtBuscarFactura;
         private System.Windows.Forms.Label label2;
-        private FontAwesome.Sharp.IconButton btnvalidarCliente;
+        private FontAwesome.Sharp.IconButton btnBuscar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label3;
@@ -533,5 +510,11 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.TextBox txtBuscarFacturaCedula;
+        private System.Windows.Forms.TextBox txtBuscaFacturaCliente;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewButtonColumn Eliminarfila;
+        private System.Windows.Forms.DataGridViewButtonColumn verFactura;
     }
 }
