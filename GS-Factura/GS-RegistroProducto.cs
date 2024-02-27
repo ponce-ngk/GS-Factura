@@ -13,13 +13,13 @@ namespace GS_Factura
 {
     public partial class GS_RegistroProducto : Form
     {
+        int op;
         public GS_RegistroProducto()
         {
-
             InitializeComponent();
             BloqueoControlesInicial();
-            //LlenarData();
             Limpiar();
+            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
             dgvProductos.CurrentCell = null;
         }
         public void BloqueoControlesInicial()
@@ -30,8 +30,6 @@ namespace GS_Factura
             lblActualizar.Visible = false;
             lblEliminar.Visible = false;
         }
-
-        //Funcion de Borrar datos en el textbox y el llenado del data Grid con datos actualizar
         public void Limpiar() {
             txtcantidadproducto.Text = "";
             txtnombreproducto.Text = "";
@@ -39,19 +37,15 @@ namespace GS_Factura
             txtpreciounitario.Text = "";
             txtbuscarproducto.Texts = "";
             lblIdProducto.Text = "";
+            cmbitems.SelectedIndex = -1;
             if (dgvProductos.RowCount != 0)
             {
-                //dgvProductos.
-                //dgvProductos.Rows.RemoveAt(dgvProductos.CurrentRow.Index);
-                //dgvProductos.Rows.Clear();
-                //select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1 and IDPRODUCTO = '00000000000'
-                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1 and IDPRODUCTO ='00000000000'");
+                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
             }
             else
             {
 
             }
-            
         }
         public void LlenarData()
         {
@@ -60,64 +54,35 @@ namespace GS_Factura
         }
         private void dgvProductos_Click(object sender, EventArgs e)
         {
-            ////Asignacion de datos de la BD al DataGrid
-            
-            //try
-            //{
-            //    if(dgvProductos.CurrentCell == null)
-            //    {
-            //        //BloqueoClickDgv();
-            //        BloqueoControles();
-            //        //MessageBox.Show("Debe de seleccionar un celda con informacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-            //    }
-            //    else
-            //    {
-            //        BloqueoClickDgv();
-            //        lblIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
-            //        txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
-            //        txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
-            //        txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
         }
-        private void TxtbuscarProducto__TextChanged(object sender, EventArgs e)
-        {
-            if(txtbuscarproducto.Texts != "")
-            {
-                //dgvProductos.Rows.RemoveAt(0);
-            }
-            else
-            {
-                dgvProductos.CurrentCell = null;
-            }
-            //Busqueda de Producto por el nombre al momento de digitalizar el nombre del producto
-            //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
-            //    ("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) AS PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO," +
-            //    "RTRIM(STOCK) AS STOCK from PRODUCTO WHERE ESTADO = 1 and PRODUCTO like '" + txtbuscarproducto.Texts+"%'");
-        }
-
         private void TxtbuscarProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo letras y espacio 
-                if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
-                {
-                    e.Handled = true;
-              //  dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
-              //("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
-                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO,\tRTRIM(STOCK) AS STOCK from PRODUCTO WHERE  PRODUCTO LIKE '"+txtbuscarproducto.Texts+"%' AND Estado = 1");
-            }
-            else if (e.KeyChar == (char)(Keys.Enter))
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
             {
-                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("select RTRIM(IDPRODUCTO) AS IDPRODUCTO, RTRIM(PRODUCTO) as PRODUCTO, RTRIM(PRECIO_UNITARIO) AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK from PRODUCTO WHERE Estado = 1");
-                e.Handled = true;
+                if (txtbuscarproducto.Texts != null)
+                {
+                    if (op == 0)
+                    {
+                        e.Handled = true;
+                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'PRODUCTO', '" + txtbuscarproducto.Texts + "'");
+                    }
+                    else if (op == 1)
+                    {
+                        e.Handled = true;
+                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'IDPRODUCTO', '" + txtbuscarproducto.Texts + "'");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione al menos un campo");
+                }
+            }
+            else if (op == null && txtbuscarproducto.Texts == null)
+            {
+                MessageBox.Show("Por favor ingregse un caracterec");
             }
         }
-
         private void TxtnombreProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo letras y espacio
@@ -126,21 +91,19 @@ namespace GS_Factura
                 e.Handled = true;
             }
         }
-
         private void TxtcantidadProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Validacion de que sea solo numeros  y el punto
-            if (!(char.IsNumber(e.KeyChar) || e.KeyChar == '.') && (e.KeyChar != (char)Keys.Back))
+            //Permitir solo números, el caracter de control(para borrar) y el punto decimal
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
             }
-            else if((e.KeyChar) == 13)
+            //Permitir solo una coma como punto decimal
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
-                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
-               ("EXEC BuscarProducto '" + txtbuscarproducto.Texts + "'");
+                e.Handled = true;
             }
         }
-
         private void TxtprecioUnitario_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo numeros  y el punto
@@ -149,7 +112,6 @@ namespace GS_Factura
                 e.Handled = true;
             }
         }
-
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
         {
             //Ingreso de un nuevo producto
@@ -187,7 +149,6 @@ namespace GS_Factura
                 MessageBox.Show("Debe de llenar todos los Campos Requeridos para Agregar un Nuevo Producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void BtnEliminarProducto_Click(object sender, EventArgs e)
         {
             //Eliminar un producto
@@ -224,7 +185,6 @@ namespace GS_Factura
                 MessageBox.Show("Debe de seleccionar un producto para ser Eliminando", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void BtnActualizarProducto_Click(object sender, EventArgs e)
         {
             //Modificacion de un producto
@@ -288,30 +248,14 @@ namespace GS_Factura
             lblActualizar.Visible = true;
             lblEliminar.Visible = true;
         }
-
-        private void TxtbuscarProducto_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Llamar al método para buscar productos
-                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
-               ("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
-            }
-            
-        }
-
         private void DgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //Asignacion de datos de la BD al DataGrid
-
             try
             {
                 if (dgvProductos.CurrentCell == null)
                 {
-                    //BloqueoClickDgv();
                     BloqueoControles();
-                    //MessageBox.Show("Debe de seleccionar un celda con informacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
                 }
                 else
                 {
@@ -327,10 +271,51 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void iconButton15_Click(object sender, EventArgs e)
+        private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            op = cmbitems.SelectedIndex;
+            switch (op)
+            {
+                case 0:
+                    op = 0;
+                    break;
+                case 1:
+                    op = 1;
+                    break;
+            }
+        }
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtbuscarproducto.Texts != null)
+            {
+                if (op == 0)
+                {
+                    
+                    dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'PRODUCTO', '" + txtbuscarproducto.Texts + "'");
+                }
+                else if (op == 1)
+                {
+                    
+                    dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'IDPRODUCTO', '" + txtbuscarproducto.Texts + "'");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione al menos un campo");
+            }
+        }
+        private void txtpreciounitario_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            //Permitir solo números, el caracter de control(para borrar) y el punto decimal
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+            //Permitir solo una coma como punto decimal
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
