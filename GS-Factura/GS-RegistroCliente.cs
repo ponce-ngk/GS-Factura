@@ -14,6 +14,7 @@ namespace GS_Factura
 {
     public partial class GS_RegistroCliente : Form
     {
+        int op;
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
         public GS_RegistroCliente()
@@ -185,6 +186,7 @@ namespace GS_Factura
             txtapellidoscliente.Text = "";
             dtpFechaCliente.Text = date.ToString();
             txt_Buscar.Text = "";
+            cmbitems.SelectedIndex = -1;
             dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
         }
 
@@ -298,17 +300,70 @@ namespace GS_Factura
 
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
-            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
-         
+            if (txt_Buscar.Text != null)
+            {
+                if (op == 0)
+                {
+                    if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'IDCLIENTE', '" + txt_Buscar.Text + "'");
+                    }
+                    else
+                    {
+                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 1)
+                {
+                    if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'CEDULA', '" + txt_Buscar.Text + "'");
+                    }
+                    else
+                    {
+                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 2)
+                {
+                    if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'NOMBRE', '" + txt_Buscar.Text + "'");
+                    }
+                    else
+                    {
+                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 3)
+                {
+                    if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'APELLIDOS', '" + txt_Buscar.Text + "'");
+                    }
+                    else
+                    {
+                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione al menos un campo");
+            }
         }
 
         private void txt_Buscar_KeyDown(object sender, KeyEventArgs e)
         {
 
-            if (e.KeyCode == Keys.Enter)
-            {
-                dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
-            }
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
+            //}
         }
 
         private void dgvClientes_DoubleClick(object sender, EventArgs e)
@@ -342,9 +397,95 @@ namespace GS_Factura
             }
         }
 
+        private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            op = cmbitems.SelectedIndex;
+            switch (op)
+            {
+                case 0:
+                    op = 0;
+                    break;
+                case 1:
+                    op = 1;
+                    break;
+                case 2:
+                    op = 2;
+                    break;
+                case 3:
+                    op = 3;
+                    break;
+            }
+        }
+
         private void txt_Buscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            //Validacion de que sea solo letras y espacio 
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                if (txt_Buscar.Text != null)
+                {
+                    if (op == 0)
+                    {
+                        if(txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'IDCLIENTE', '" + txt_Buscar.Text + "'");
+                        }
+                        else
+                        {
+                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 1)
+                    {
+                        if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'CEDULA', '" + txt_Buscar.Text + "'");
+                        }
+                        else
+                        {
+                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }                        
+                    }
+                    else if (op == 2)
+                    {
+                        if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'NOMBRE', '" + txt_Buscar.Text + "'");
+                        }
+                        else
+                        {
+                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 3)
+                    {
+                        if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'APELLIDOS', '" + txt_Buscar.Text + "'");
+                        }
+                        else
+                        {
+                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione al menos un campo");
+                }
+            }
+            else if (op == null && txt_Buscar.Text == null)
+            {
+                MessageBox.Show("Por favor ingregse un carácter");
+            }
         }
     }
 }

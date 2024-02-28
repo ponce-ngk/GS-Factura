@@ -35,7 +35,7 @@ namespace GS_Factura
             txtnombreproducto.Text = "";
             txtpreciounitario.Text = "";
             txtpreciounitario.Text = "";
-            txtbuscarproducto.Texts = "";
+            txtbuscarproducto.Text = "";
             lblIdProducto.Text = "";
             cmbitems.SelectedIndex = -1;
             if (dgvProductos.RowCount != 0)
@@ -54,34 +54,6 @@ namespace GS_Factura
         }
         private void dgvProductos_Click(object sender, EventArgs e)
         {
-        }
-        private void TxtbuscarProducto_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //Validacion de que sea solo letras y espacio 
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
-            {
-                if (txtbuscarproducto.Texts != null)
-                {
-                    if (op == 0)
-                    {
-                        e.Handled = true;
-                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'PRODUCTO', '" + txtbuscarproducto.Texts + "'");
-                    }
-                    else if (op == 1)
-                    {
-                        e.Handled = true;
-                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'IDPRODUCTO', '" + txtbuscarproducto.Texts + "'");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Seleccione al menos un campo");
-                }
-            }
-            else if (op == null && txtbuscarproducto.Texts == null)
-            {
-                MessageBox.Show("Por favor ingregse un caracterec");
-            }
         }
         private void TxtnombreProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -284,26 +256,6 @@ namespace GS_Factura
                     break;
             }
         }
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            if (txtbuscarproducto.Texts != null)
-            {
-                if (op == 0)
-                {
-                    
-                    dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'PRODUCTO', '" + txtbuscarproducto.Texts + "'");
-                }
-                else if (op == 1)
-                {
-                    
-                    dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'IDPRODUCTO', '" + txtbuscarproducto.Texts + "'");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione al menos un campo");
-            }
-        }
         private void txtpreciounitario_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             //Permitir solo números, el caracter de control(para borrar) y el punto decimal
@@ -315,6 +267,86 @@ namespace GS_Factura
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void txtbuscarproducto_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            //Validacion de que sea solo letras y espacio 
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                if (txtbuscarproducto.Text != null)
+                {
+                    if (op == 0)
+                    {
+                        if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'PRODUCTO', '" + txtbuscarproducto.Text + "'");
+                        }
+                        else
+                        {
+                            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 1)
+                    {
+                        if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'IDPRODUCTO', '" + txtbuscarproducto.Text + "'");
+                        }
+                        else
+                        {
+                            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione al menos un campo");
+                }
+            }
+            else if (op == null && txtbuscarproducto.Text == null)
+            {
+                MessageBox.Show("Por favor ingregse un carácter");
+            }
+        }
+
+        private void btn_Buscar_Click(object sender, EventArgs e)
+        {
+            if (txtbuscarproducto.Text != null)
+            {
+                if (op == 0)
+                {
+                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'PRODUCTO', '" + txtbuscarproducto.Text + "'");
+                    }
+                    else
+                    {
+                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 1)
+                {
+                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'IDPRODUCTO', '" + txtbuscarproducto.Text + "'");
+                    }
+                    else
+                    {
+                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione al menos un campo");
             }
         }
     }
