@@ -1,8 +1,10 @@
-﻿using GS_Factura.Clases;
+﻿using CrudClubNautico.Clases;
+using GS_Factura.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,7 +15,11 @@ namespace GS_Factura
 {
     public partial class GS_RegistroProducto : Form
     {
+        CrudClubNautico.Clases.BD2 OAD = new BD2();
+        List<SqlParameter> par = new List<SqlParameter>();
         int op;
+        DataTable tb;
+        string sql = "";
         public GS_RegistroProducto()
         {
             InitializeComponent();
@@ -46,6 +52,32 @@ namespace GS_Factura
             {
 
             }
+        }
+        public bool Validar_Campos()
+        {
+            bool verificar = true;
+            if(txtnombreproducto.Text == "")
+            {
+                verificar = false;
+                errorProvider1.SetError(txtnombreproducto, "Ingrese El Nombre del producto");
+            }
+            if (txtcantidadproducto.Text == "")
+            {
+                verificar = false;
+                errorProvider1.SetError(txtcantidadproducto, "Ingrese El Stock del Producto");
+            }
+            if (txtpreciounitario.Text == "")
+            {
+                verificar = false;
+                errorProvider1.SetError(txtpreciounitario, "Ingrese El Precio Unitario del Producto");
+            }
+            return verificar;
+        }
+        public void BorrarMensajeError()
+        {
+            errorProvider1.SetError(txtnombreproducto, "");
+            errorProvider1.SetError(txtcantidadproducto, "");
+            errorProvider1.SetError(txtpreciounitario, "");
         }
         public void LlenarData()
         {
@@ -88,20 +120,22 @@ namespace GS_Factura
         {
             //Ingreso de un nuevo producto
             //Verifica si los txt no estan vacios
-            if (txtcantidadproducto.Text != "" && txtnombreproducto.Text != "" && txtpreciounitario.Text != "")
+            BorrarMensajeError();
+            //if (txtcantidadproducto.Text != "" && txtnombreproducto.Text != "" && txtpreciounitario.Text != "")
+            if (Validar_Campos())
             {
                 //Pregunta si esta de acuerdo en agregar un nuevo producto
                 DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres agregar estos datos?", "Confirmar adición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 //si presiona si procede con la insersion 
                 if (confirmacion == DialogResult.Yes)
                 {
-                    Producto pProducto = new Producto();
-                    pProducto.PRODUCTO1 = txtnombreproducto.Text;
-                    pProducto.STOTCK1 = txtcantidadproducto.Text;
-                    pProducto.PRECIO_UNITARIO1 = txtpreciounitario.Text;
-                    int resultado = CrudProducto.AgregarProducto(pProducto);
-
-                    if (resultado > 0)
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@PRODUCTO", txtnombreproducto.Text.Trim()));
+                    par.Add(new SqlParameter("@PRECIO_UNITARIO", txtpreciounitario.Text.Trim()));
+                    par.Add(new SqlParameter("@STOCK", txtcantidadproducto.Text.Trim()));
+                    sql = OAD.EscalarProcAlmString("sp_Insertar_PRODUCTO", par, true);
+                    if (sql != null)
                     {
                         MessageBox.Show("Los datos de Guardaron correctamente", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -132,12 +166,11 @@ namespace GS_Factura
                 if (confirmacion == DialogResult.Yes)
                 {
                     //si presiona si procede con la eliminacion 
-                    Producto pProducto = new Producto();
-                    pProducto.IDPRODUCTO1 = int.Parse(lblIdProducto.Text);
-                    pProducto.ESTADO1 = '0';
-                    int resultado = CrudProducto.EliminarProducto(pProducto);
-
-                    if (resultado > 0)
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@IDPRODUCTO", int.Parse(lblIdProducto.Text.Trim())));
+                    sql = OAD.EscalarProcAlmString("sp_eliminar_PRODUCTO", par, true);
+                    if (sql != null)
                     {
                         MessageBox.Show("Los datos de Eliminaron correctamente", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -168,14 +201,14 @@ namespace GS_Factura
                 if (confirmacion == DialogResult.Yes)
                 {
                     //si presiona si procede con la Modificacion
-                    Producto pProducto = new Producto();
-                    pProducto.IDPRODUCTO1 = int.Parse(lblIdProducto.Text);
-                    pProducto.PRODUCTO1 = txtnombreproducto.Text;
-                    pProducto.STOTCK1 = txtcantidadproducto.Text;
-                    pProducto.PRECIO_UNITARIO1 = txtpreciounitario.Text;
-                    int resultado = CrudProducto.ActualizarProducto(pProducto);
-
-                    if (resultado > 0)
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@IDPRODUCTO", int.Parse(lblIdProducto.Text.Trim())));
+                    par.Add(new SqlParameter("@PRODUCTO", txtnombreproducto.Text.Trim()));
+                    par.Add(new SqlParameter("@PRECIO_UNITARIO", txtpreciounitario.Text.Trim()));
+                    par.Add(new SqlParameter("@STOCK", txtcantidadproducto.Text.Trim()));
+                    sql = OAD.EscalarProcAlmString("sp_actualizar_PRODUCTO", par, true);
+                    if (sql != null)
                     {
                         MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -282,7 +315,12 @@ namespace GS_Factura
                         if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
                             e.Handled = true;
-                            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'PRODUCTO', '" + txtbuscarproducto.Text + "'");
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                            dgvProductos.DataSource = tb;
                         }
                         else
                         {
@@ -295,7 +333,12 @@ namespace GS_Factura
                         if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
                             e.Handled = true;
-                            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'IDPRODUCTO', '" + txtbuscarproducto.Text + "'");
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                            dgvProductos.DataSource = tb;
                         }
                         else
                         {
@@ -323,7 +366,12 @@ namespace GS_Factura
                 {
                     if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
                     {
-                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'PRODUCTO', '" + txtbuscarproducto.Text + "'");
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                        dgvProductos.DataSource = tb;
                     }
                     else
                     {
@@ -335,7 +383,12 @@ namespace GS_Factura
                 {
                     if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
                     {
-                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarProductos 'IDPRODUCTO', '" + txtbuscarproducto.Text + "'");
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                        dgvProductos.DataSource = tb;
                     }
                     else
                     {

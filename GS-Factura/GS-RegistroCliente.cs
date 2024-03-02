@@ -1,8 +1,10 @@
-﻿using GS_Factura.Clases;
+﻿using CrudClubNautico.Clases;
+using GS_Factura.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,8 +16,12 @@ namespace GS_Factura
 {
     public partial class GS_RegistroCliente : Form
     {
+        CrudClubNautico.Clases.BD2 OAD = new BD2();
+        List<SqlParameter> par = new List<SqlParameter>();
         int op;
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
+        string sql = "";
+        DataTable tb;
 
         public GS_RegistroCliente()
         {
@@ -45,7 +51,6 @@ namespace GS_Factura
             btnEditarCliente.Visible = true;
             btnEliminarCliente.Visible = true;
         }
-
         private void btnGuardarDueño_Click(object sender, EventArgs e)
         {
             // Se valida si hay campos vacíos antes de continuar
@@ -63,17 +68,14 @@ namespace GS_Factura
 
                 if (resultado == DialogResult.Yes)
                 {
-                    Cliente pClientes = new Cliente();
-
-                    pClientes.Cedula = txtcedulacliente.Text;
-                    pClientes.Nombre = txtnombrescliente.Text;
-                    pClientes.Apellido = txtapellidoscliente.Text;
-                    pClientes.FechaNA = dtpFechaCliente.Text;
-
-                    // Se llama al metodo AgregarCliente de la clase CrudCliente y se envian los datos
-                    int resultado2 = CrudCliente.AgregarCliente(pClientes);
-
-                    if (resultado2 > 0)
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@Cedula", txtcedulacliente.Text.Trim()));
+                    par.Add(new SqlParameter("@Nombre_Cliente", txtnombrescliente.Text.Trim()));
+                    par.Add(new SqlParameter("@Apellido", txtapellidoscliente.Text.Trim()));
+                    par.Add(new SqlParameter("@Fecha_Nac", dtpFechaCliente.Text.Trim()));
+                    sql = OAD.EscalarProcAlmString("sp_Insertar_CLIENTE", par, true);
+                    if (sql != null)
                     {
                         MessageBox.Show("Los datos se han agregado correctamente.", "Adición exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -81,7 +83,6 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-                    
                     // Se actualiza el DataGridView y se limpian los campos
                     dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                     BloqueoControles();
@@ -89,7 +90,6 @@ namespace GS_Factura
                 }
             }
         }
-
         private void btnEditarCliente_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
@@ -98,27 +98,22 @@ namespace GS_Factura
                 string.IsNullOrWhiteSpace(dtpFechaCliente.Text))
             {
                 MessageBox.Show("Por favor, completa todos los campos antes de continuar.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             }
             else
             {
                 DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres actualizar estos datos?", "Confirmar actualización", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
                 // Se confirmar antes de editar al cliente
                 if (resultado == DialogResult.Yes)
                 {
-                    Cliente pClientes = new Cliente();
-
-                    pClientes.IdCliente = int.Parse(txtidcliente.Text);
-                    pClientes.Cedula = txtcedulacliente.Text;
-                    pClientes.Nombre = txtnombrescliente.Text;
-                    pClientes.Apellido = txtapellidoscliente.Text;
-                    pClientes.FechaNA = dtpFechaCliente.Text;
-
-                    // Se llama al metodo ActualizarClient de la clase CrudCliente y se envian los datos
-                    int resultado2 = CrudCliente.ActualizarClient(pClientes);
-
-                    if (resultado2 > 0)
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@IDCLIENTE", int.Parse(txtidcliente.Text.Trim())));
+                    par.Add(new SqlParameter("@Cedula", txtcedulacliente.Text.Trim()));
+                    par.Add(new SqlParameter("@Nombre", txtnombrescliente.Text.Trim()));
+                    par.Add(new SqlParameter("@Apellido", txtapellidoscliente.Text.Trim()));
+                    par.Add(new SqlParameter("@Fecha_Nac", dtpFechaCliente.Text.Trim()));
+                    sql = OAD.EscalarProcAlmString("sp_actualizar_CLIENTE", par, true);
+                    if (sql != null)
                     {
                         MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -126,7 +121,6 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-
                     // Actualizar el DataGridView y limpiar los campos
                     dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                     BloqueoControles();
@@ -134,7 +128,6 @@ namespace GS_Factura
                 }
             }
         }
-
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
@@ -151,15 +144,11 @@ namespace GS_Factura
 
                 if (resultado == DialogResult.Yes)
                 {
-                    Cliente pClientes = new Cliente();
-
-                    pClientes.IdCliente = int.Parse(txtidcliente.Text);
-                    pClientes.Estado = '0';
-
-                    // Se llama al metodo EliminarClient de la clase CrudCliente y se envian los datos
-                    int resultado2 = CrudCliente.EliminarClient(pClientes);
-
-                    if (resultado2 > 0)
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@idcliente", txtidcliente.Text.Trim()));
+                    sql = OAD.EscalarProcAlmString("sp_Delete_Client", par, true);
+                    if (sql != null)
                     {
                         MessageBox.Show("Los datos se han eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -176,7 +165,6 @@ namespace GS_Factura
                 // Si el usuario elige 'No', no se hace nada
             }
         }
-
         private void LimpiarCampos()
         {
             // Se limpian todos los campos para volverlo ingresar
@@ -189,7 +177,6 @@ namespace GS_Factura
             cmbitems.SelectedIndex = -1;
             dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
         }
-
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -210,67 +197,15 @@ namespace GS_Factura
                 }
             }
             catch (Exception ex)
-            {
-                
+            {   
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnlimpiardatos_Click(object sender, EventArgs e)
         {            
             LimpiarCampos();
             BloqueoControles();
         }
-
-        private void txtcedulacliente_KeyUp(object sender, KeyEventArgs e)
-        {
-            //try
-            //{
-            //    // Buscar clientes por cédula mientras se escribe en el campo de texto
-            //    AccesoDatos.abrirConexion();
-            //    AccesoDatos rt = new AccesoDatos();
-            //    // se llena la tabla con el resultando que traiga el metodo retornaClientebuscar
-            //    dgvClientes.DataSource = rt.retornaClientebuscar(txtcedulacliente.Text);
-            //    AccesoDatos.CerrarConexion(AccesoDatos.abrirConexion());
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-        }
-
-        private void txtnombrescliente_KeyUp(object sender, KeyEventArgs e)
-        {
-            //try
-            //{
-            //    // Buscar clientes por nombre mientras se escribe en el campo de texto
-            //    AccesoDatos.abrirConexion();
-            //    AccesoDatos rt = new AccesoDatos();
-            //    dgvClientes.DataSource = rt.retornaClientebuscar(txtnombrescliente.Text);
-            //    AccesoDatos.CerrarConexion(AccesoDatos.abrirConexion());
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-        }
-
-        private void txtapellidoscliente_KeyUp(object sender, KeyEventArgs e)
-        {
-            //try
-            //{
-            //    // Buscar clientes por apellido mientras se escribe en el campo de texto
-            //    AccesoDatos.abrirConexion();
-            //    AccesoDatos rt = new AccesoDatos();
-            //    dgvClientes.DataSource = rt.retornaClientebuscar(txtapellidoscliente.Text);
-            //    AccesoDatos.CerrarConexion(AccesoDatos.abrirConexion());
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-        }
-
         private void txtcedulacliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permitir solo dígitos en el campo de cédula
@@ -279,7 +214,6 @@ namespace GS_Factura
                 e.Handled = true;
             }
         }
-
         private void txtnombrescliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permitir solo letras, espacios y retroceso en el campo de nombres
@@ -288,7 +222,6 @@ namespace GS_Factura
                 e.Handled = true;
             }
         }
-
         private void txtapellidoscliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permitir solo letras, espacios y retroceso en el campo de apellidos
@@ -297,7 +230,6 @@ namespace GS_Factura
                 e.Handled = true;
             }
         }
-
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
             if (txt_Buscar.Text != null)
@@ -306,7 +238,13 @@ namespace GS_Factura
                 {
                     if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                     {
-                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'IDCLIENTE', '" + txt_Buscar.Text + "'");
+                        
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "IDCLIENTE"));
+                        par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        dgvClientes.DataSource = tb;
                     }
                     else
                     {
@@ -318,7 +256,12 @@ namespace GS_Factura
                 {
                     if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                     {
-                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'CEDULA', '" + txt_Buscar.Text + "'");
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "CEDULA"));
+                        par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        dgvClientes.DataSource = tb;
                     }
                     else
                     {
@@ -330,7 +273,12 @@ namespace GS_Factura
                 {
                     if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                     {
-                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'NOMBRE', '" + txt_Buscar.Text + "'");
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                        par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        dgvClientes.DataSource = tb;
                     }
                     else
                     {
@@ -342,7 +290,12 @@ namespace GS_Factura
                 {
                     if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                     {
-                        dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'APELLIDOS', '" + txt_Buscar.Text + "'");
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "APELLIDOS"));
+                        par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        dgvClientes.DataSource = tb;
                     }
                     else
                     {
@@ -356,21 +309,6 @@ namespace GS_Factura
                 MessageBox.Show("Seleccione al menos un campo");
             }
         }
-
-        private void txt_Buscar_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_Buscar_Clientes '" + txt_Buscar.Text + "'");
-            //}
-        }
-
-        private void dgvClientes_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
         private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -392,11 +330,9 @@ namespace GS_Factura
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
             op = cmbitems.SelectedIndex;
@@ -416,7 +352,6 @@ namespace GS_Factura
                     break;
             }
         }
-
         private void txt_Buscar_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo letras y espacio 
@@ -429,7 +364,12 @@ namespace GS_Factura
                         if(txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
                             e.Handled = true;
-                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'IDCLIENTE', '" + txt_Buscar.Text + "'");
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "IDCLIENTE"));
+                            par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            dgvClientes.DataSource = tb;
                         }
                         else
                         {
@@ -442,7 +382,12 @@ namespace GS_Factura
                         if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
                             e.Handled = true;
-                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'CEDULA', '" + txt_Buscar.Text + "'");
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
+                            par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            dgvClientes.DataSource = tb;
                         }
                         else
                         {
@@ -455,7 +400,12 @@ namespace GS_Factura
                         if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
                             e.Handled = true;
-                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'NOMBRE', '" + txt_Buscar.Text + "'");
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            dgvClientes.DataSource = tb;
                         }
                         else
                         {
@@ -468,7 +418,12 @@ namespace GS_Factura
                         if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
                             e.Handled = true;
-                            dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC BuscarClientes 'APELLIDOS', '" + txt_Buscar.Text + "'");
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "APELLIDOS"));
+                            par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            dgvClientes.DataSource = tb;
                         }
                         else
                         {

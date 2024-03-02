@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\AccesoDatos.cs" />
+    <Compile Include="Clases\BD2.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Producto.cs" />
     <Compile Include="GS-ClienteVenta.cs">
