@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblIdIva = new System.Windows.Forms.Label();
-            this.lblProducto = new System.Windows.Forms.Label();
+            this.lblTextoIva = new System.Windows.Forms.Label();
             this.txtIva = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
@@ -64,25 +64,26 @@
             this.btnLimpiarDatos = new FontAwesome.Sharp.IconButton();
             this.label6 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.btn_Buscar = new FontAwesome.Sharp.IconButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_BuscarIva = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.BtnSearchClienteVenta = new FontAwesome.Sharp.IconButton();
-            this.txtbuscarCliente = new System.Windows.Forms.TextBox();
+            this.txtbuscarIva = new System.Windows.Forms.TextBox();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.dtpSearchFechaFinal = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dtpSearchFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel19 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgIva = new System.Windows.Forms.DataGridView();
             this.panel24 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dtpFechaInicioSearch = new System.Windows.Forms.DateTimePicker();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.cmbitemsIva = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.panel10.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -99,11 +100,11 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgIva)).BeginInit();
             this.panel24.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -163,7 +164,7 @@
             // panel5
             // 
             this.panel5.Controls.Add(this.lblIdIva);
-            this.panel5.Controls.Add(this.lblProducto);
+            this.panel5.Controls.Add(this.lblTextoIva);
             this.panel5.Controls.Add(this.txtIva);
             this.panel5.Controls.Add(this.label9);
             this.panel5.Controls.Add(this.iconButton10);
@@ -186,19 +187,21 @@
             this.lblIdIva.TabIndex = 42;
             this.lblIdIva.Text = "0";
             this.lblIdIva.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblIdIva.Visible = false;
             // 
-            // lblProducto
+            // lblTextoIva
             // 
-            this.lblProducto.AutoSize = true;
-            this.lblProducto.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProducto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblProducto.Location = new System.Drawing.Point(12, 4);
-            this.lblProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblProducto.Name = "lblProducto";
-            this.lblProducto.Size = new System.Drawing.Size(150, 22);
-            this.lblProducto.TabIndex = 41;
-            this.lblProducto.Text = "Id del Producto";
-            this.lblProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTextoIva.AutoSize = true;
+            this.lblTextoIva.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTextoIva.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblTextoIva.Location = new System.Drawing.Point(7, 4);
+            this.lblTextoIva.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTextoIva.Name = "lblTextoIva";
+            this.lblTextoIva.Size = new System.Drawing.Size(93, 22);
+            this.lblTextoIva.TabIndex = 41;
+            this.lblTextoIva.Text = "Id del Iva";
+            this.lblTextoIva.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTextoIva.Visible = false;
             // 
             // txtIva
             // 
@@ -213,6 +216,7 @@
             this.txtIva.Name = "txtIva";
             this.txtIva.Size = new System.Drawing.Size(319, 36);
             this.txtIva.TabIndex = 1;
+            this.txtIva.Text = "0";
             this.txtIva.Enter += new System.EventHandler(this.TxtIva_Enter);
             this.txtIva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIva_KeyPress);
             this.txtIva.Leave += new System.EventHandler(this.TxtIva_Leave);
@@ -401,7 +405,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.91644F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.94674F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 193F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 203F));
             this.tableLayoutPanel2.Controls.Add(this.panel3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel13, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel14, 2, 0);
@@ -422,10 +426,10 @@
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.btnGuardarIva);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(195, 0);
+            this.panel3.Location = new System.Drawing.Point(193, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(160, 128);
+            this.panel3.Size = new System.Drawing.Size(159, 128);
             this.panel3.TabIndex = 4;
             // 
             // label1
@@ -438,7 +442,7 @@
             this.label1.Location = new System.Drawing.Point(12, 87);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 32);
+            this.label1.Size = new System.Drawing.Size(140, 32);
             this.label1.TabIndex = 40;
             this.label1.Text = "Agregar";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -459,7 +463,7 @@
             this.btnGuardarIva.IconColor = System.Drawing.Color.White;
             this.btnGuardarIva.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarIva.IconSize = 40;
-            this.btnGuardarIva.Location = new System.Drawing.Point(40, 16);
+            this.btnGuardarIva.Location = new System.Drawing.Point(39, 16);
             this.btnGuardarIva.Margin = new System.Windows.Forms.Padding(0);
             this.btnGuardarIva.Name = "btnGuardarIva";
             this.btnGuardarIva.Size = new System.Drawing.Size(80, 74);
@@ -474,10 +478,10 @@
             this.panel13.Controls.Add(this.btnEliminarIva);
             this.panel13.Controls.Add(this.label2);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(755, 0);
+            this.panel13.Location = new System.Drawing.Point(748, 0);
             this.panel13.Margin = new System.Windows.Forms.Padding(0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(212, 128);
+            this.panel13.Size = new System.Drawing.Size(210, 128);
             this.panel13.TabIndex = 3;
             // 
             // btnEliminarIva
@@ -485,6 +489,7 @@
             this.btnEliminarIva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnEliminarIva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(90)))), ((int)(((byte)(130)))));
             this.btnEliminarIva.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEliminarIva.Enabled = false;
             this.btnEliminarIva.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnEliminarIva.FlatAppearance.BorderSize = 0;
             this.btnEliminarIva.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -496,7 +501,7 @@
             this.btnEliminarIva.IconColor = System.Drawing.Color.White;
             this.btnEliminarIva.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnEliminarIva.IconSize = 40;
-            this.btnEliminarIva.Location = new System.Drawing.Point(66, 16);
+            this.btnEliminarIva.Location = new System.Drawing.Point(65, 16);
             this.btnEliminarIva.Margin = new System.Windows.Forms.Padding(0);
             this.btnEliminarIva.Name = "btnEliminarIva";
             this.btnEliminarIva.Size = new System.Drawing.Size(80, 74);
@@ -516,7 +521,7 @@
             this.label2.Location = new System.Drawing.Point(12, 87);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 32);
+            this.label2.Size = new System.Drawing.Size(181, 32);
             this.label2.TabIndex = 39;
             this.label2.Text = "Eliminar";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -526,10 +531,10 @@
             this.panel14.Controls.Add(this.btnActualizarIva);
             this.panel14.Controls.Add(this.label5);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel14.Location = new System.Drawing.Point(572, 0);
+            this.panel14.Location = new System.Drawing.Point(567, 0);
             this.panel14.Margin = new System.Windows.Forms.Padding(0);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(183, 128);
+            this.panel14.Size = new System.Drawing.Size(181, 128);
             this.panel14.TabIndex = 2;
             // 
             // btnActualizarIva
@@ -537,6 +542,7 @@
             this.btnActualizarIva.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnActualizarIva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(110)))), ((int)(((byte)(254)))));
             this.btnActualizarIva.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActualizarIva.Enabled = false;
             this.btnActualizarIva.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnActualizarIva.FlatAppearance.BorderSize = 0;
             this.btnActualizarIva.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -548,7 +554,7 @@
             this.btnActualizarIva.IconColor = System.Drawing.Color.White;
             this.btnActualizarIva.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnActualizarIva.IconSize = 40;
-            this.btnActualizarIva.Location = new System.Drawing.Point(48, 16);
+            this.btnActualizarIva.Location = new System.Drawing.Point(47, 16);
             this.btnActualizarIva.Margin = new System.Windows.Forms.Padding(0);
             this.btnActualizarIva.Name = "btnActualizarIva";
             this.btnActualizarIva.Size = new System.Drawing.Size(80, 74);
@@ -568,7 +574,7 @@
             this.label5.Location = new System.Drawing.Point(11, 87);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 32);
+            this.label5.Size = new System.Drawing.Size(163, 32);
             this.label5.TabIndex = 39;
             this.label5.Text = "Actualizar";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -577,10 +583,10 @@
             // 
             this.panel15.Controls.Add(this.panel16);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel15.Location = new System.Drawing.Point(355, 0);
+            this.panel15.Location = new System.Drawing.Point(352, 0);
             this.panel15.Margin = new System.Windows.Forms.Padding(0);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(217, 128);
+            this.panel15.Size = new System.Drawing.Size(215, 128);
             this.panel15.TabIndex = 1;
             // 
             // panel16
@@ -591,7 +597,7 @@
             this.panel16.Location = new System.Drawing.Point(0, 0);
             this.panel16.Margin = new System.Windows.Forms.Padding(0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(217, 128);
+            this.panel16.Size = new System.Drawing.Size(215, 128);
             this.panel16.TabIndex = 3;
             // 
             // btnLimpiarDatos
@@ -610,7 +616,7 @@
             this.btnLimpiarDatos.IconColor = System.Drawing.Color.White;
             this.btnLimpiarDatos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnLimpiarDatos.IconSize = 40;
-            this.btnLimpiarDatos.Location = new System.Drawing.Point(66, 16);
+            this.btnLimpiarDatos.Location = new System.Drawing.Point(65, 16);
             this.btnLimpiarDatos.Margin = new System.Windows.Forms.Padding(0);
             this.btnLimpiarDatos.Name = "btnLimpiarDatos";
             this.btnLimpiarDatos.Size = new System.Drawing.Size(80, 74);
@@ -630,7 +636,7 @@
             this.label6.Location = new System.Drawing.Point(20, 87);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(168, 32);
+            this.label6.Size = new System.Drawing.Size(166, 32);
             this.label6.TabIndex = 39;
             this.label6.Text = "Limpiar";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -640,34 +646,8 @@
             this.panel17.Location = new System.Drawing.Point(0, 0);
             this.panel17.Margin = new System.Windows.Forms.Padding(0);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(195, 96);
+            this.panel17.Size = new System.Drawing.Size(193, 96);
             this.panel17.TabIndex = 0;
-            // 
-            // btn_Buscar
-            // 
-            this.btn_Buscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Buscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(191)))), ((int)(((byte)(159)))));
-            this.btn_Buscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Buscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btn_Buscar.FlatAppearance.BorderSize = 0;
-            this.btn_Buscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btn_Buscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SpringGreen;
-            this.btn_Buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Buscar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Buscar.ForeColor = System.Drawing.Color.White;
-            this.btn_Buscar.IconChar = FontAwesome.Sharp.IconChar.Searchengin;
-            this.btn_Buscar.IconColor = System.Drawing.Color.White;
-            this.btn_Buscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_Buscar.IconSize = 27;
-            this.btn_Buscar.Location = new System.Drawing.Point(1159, 0);
-            this.btn_Buscar.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_Buscar.Name = "btn_Buscar";
-            this.btn_Buscar.Size = new System.Drawing.Size(115, 82);
-            this.btn_Buscar.TabIndex = 6;
-            this.btn_Buscar.Text = "Buscar por Fecha";
-            this.btn_Buscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_Buscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_Buscar.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel1
             // 
@@ -678,7 +658,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.15337F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.819018F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.223926F));
-            this.tableLayoutPanel1.Controls.Add(this.btn_Buscar, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btn_BuscarIva, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel9, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
@@ -692,10 +672,38 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1304, 82);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
+            // btn_BuscarIva
+            // 
+            this.btn_BuscarIva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_BuscarIva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(191)))), ((int)(((byte)(159)))));
+            this.btn_BuscarIva.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_BuscarIva.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btn_BuscarIva.FlatAppearance.BorderSize = 0;
+            this.btn_BuscarIva.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btn_BuscarIva.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SpringGreen;
+            this.btn_BuscarIva.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_BuscarIva.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_BuscarIva.ForeColor = System.Drawing.Color.White;
+            this.btn_BuscarIva.IconChar = FontAwesome.Sharp.IconChar.Searchengin;
+            this.btn_BuscarIva.IconColor = System.Drawing.Color.White;
+            this.btn_BuscarIva.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_BuscarIva.IconSize = 27;
+            this.btn_BuscarIva.Location = new System.Drawing.Point(1159, 0);
+            this.btn_BuscarIva.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_BuscarIva.Name = "btn_BuscarIva";
+            this.btn_BuscarIva.Size = new System.Drawing.Size(115, 82);
+            this.btn_BuscarIva.TabIndex = 6;
+            this.btn_BuscarIva.Text = "Buscar por Fecha";
+            this.btn_BuscarIva.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_BuscarIva.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_BuscarIva.UseVisualStyleBackColor = false;
+            this.btn_BuscarIva.Click += new System.EventHandler(this.Btn_BuscarIva_Click);
+            // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.cmbitemsIva);
             this.panel4.Controls.Add(this.BtnSearchClienteVenta);
-            this.panel4.Controls.Add(this.txtbuscarCliente);
+            this.panel4.Controls.Add(this.txtbuscarIva);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
@@ -723,23 +731,23 @@
             this.BtnSearchClienteVenta.TabIndex = 27;
             this.BtnSearchClienteVenta.UseVisualStyleBackColor = false;
             // 
-            // txtbuscarCliente
+            // txtbuscarIva
             // 
-            this.txtbuscarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtbuscarIva.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbuscarCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtbuscarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbuscarCliente.ForeColor = System.Drawing.Color.Gray;
-            this.txtbuscarCliente.Location = new System.Drawing.Point(48, 27);
-            this.txtbuscarCliente.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.txtbuscarCliente.Name = "txtbuscarCliente";
-            this.txtbuscarCliente.Size = new System.Drawing.Size(460, 34);
-            this.txtbuscarCliente.TabIndex = 26;
-            this.txtbuscarCliente.Text = "Busca Por Iva....";
+            this.txtbuscarIva.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtbuscarIva.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbuscarIva.ForeColor = System.Drawing.Color.Gray;
+            this.txtbuscarIva.Location = new System.Drawing.Point(48, 27);
+            this.txtbuscarIva.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.txtbuscarIva.Name = "txtbuscarIva";
+            this.txtbuscarIva.Size = new System.Drawing.Size(253, 34);
+            this.txtbuscarIva.TabIndex = 26;
+            this.txtbuscarIva.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtbuscarIva_KeyDown);
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.dateTimePicker2);
+            this.panel9.Controls.Add(this.dtpSearchFechaFinal);
             this.panel9.Controls.Add(this.label8);
             this.panel9.Controls.Add(this.iconButton3);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -748,6 +756,107 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(328, 82);
             this.panel9.TabIndex = 2;
+            // 
+            // dtpSearchFechaFinal
+            // 
+            this.dtpSearchFechaFinal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpSearchFechaFinal.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpSearchFechaFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpSearchFechaFinal.Location = new System.Drawing.Point(52, 34);
+            this.dtpSearchFechaFinal.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpSearchFechaFinal.Name = "dtpSearchFechaFinal";
+            this.dtpSearchFechaFinal.Size = new System.Drawing.Size(264, 34);
+            this.dtpSearchFechaFinal.TabIndex = 47;
+            this.dtpSearchFechaFinal.Value = new System.DateTime(2024, 3, 3, 0, 0, 0, 0);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label8.Location = new System.Drawing.Point(5, 6);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(124, 22);
+            this.label8.TabIndex = 46;
+            this.label8.Text = "Fecha Final: ";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // iconButton3
+            // 
+            this.iconButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.iconButton3.Enabled = false;
+            this.iconButton3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.iconButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.iconButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.BasketShopping;
+            this.iconButton3.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
+            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton3.IconSize = 27;
+            this.iconButton3.Location = new System.Drawing.Point(7, 33);
+            this.iconButton3.Margin = new System.Windows.Forms.Padding(0);
+            this.iconButton3.Name = "iconButton3";
+            this.iconButton3.Size = new System.Drawing.Size(44, 36);
+            this.iconButton3.TabIndex = 45;
+            this.iconButton3.UseVisualStyleBackColor = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dtpSearchFechaInicio);
+            this.panel1.Controls.Add(this.iconButton2);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(521, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(307, 76);
+            this.panel1.TabIndex = 5;
+            // 
+            // dtpSearchFechaInicio
+            // 
+            this.dtpSearchFechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpSearchFechaInicio.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpSearchFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpSearchFechaInicio.Location = new System.Drawing.Point(51, 30);
+            this.dtpSearchFechaInicio.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpSearchFechaInicio.Name = "dtpSearchFechaInicio";
+            this.dtpSearchFechaInicio.Size = new System.Drawing.Size(236, 34);
+            this.dtpSearchFechaInicio.TabIndex = 46;
+            this.dtpSearchFechaInicio.Value = new System.DateTime(2024, 3, 3, 0, 0, 0, 0);
+            // 
+            // iconButton2
+            // 
+            this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.iconButton2.Enabled = false;
+            this.iconButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.iconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Donate;
+            this.iconButton2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
+            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton2.IconSize = 27;
+            this.iconButton2.Location = new System.Drawing.Point(8, 29);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(0);
+            this.iconButton2.Name = "iconButton2";
+            this.iconButton2.Size = new System.Drawing.Size(44, 36);
+            this.iconButton2.TabIndex = 45;
+            this.iconButton2.UseVisualStyleBackColor = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label7.Location = new System.Drawing.Point(4, 2);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(125, 22);
+            this.label7.TabIndex = 44;
+            this.label7.Text = "Fecha Inicio:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label11
             // 
@@ -787,37 +896,38 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(1485, 57);
             this.tableLayoutPanel8.TabIndex = 115;
             // 
-            // dataGridView1
+            // dtgIva
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 411);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1312, 331);
-            this.dataGridView1.TabIndex = 123;
+            this.dtgIva.AllowUserToAddRows = false;
+            this.dtgIva.AllowUserToDeleteRows = false;
+            this.dtgIva.AllowUserToResizeColumns = false;
+            this.dtgIva.AllowUserToResizeRows = false;
+            this.dtgIva.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgIva.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIva.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dtgIva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgIva.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgIva.Location = new System.Drawing.Point(0, 411);
+            this.dtgIva.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtgIva.Name = "dtgIva";
+            this.dtgIva.ReadOnly = true;
+            this.dtgIva.RowHeadersVisible = false;
+            this.dtgIva.RowHeadersWidth = 51;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dtgIva.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.dtgIva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgIva.Size = new System.Drawing.Size(1312, 331);
+            this.dtgIva.TabIndex = 123;
+            this.dtgIva.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgIva_CellDoubleClick);
             // 
             // panel24
             // 
@@ -847,113 +957,29 @@
             this.tableLayoutPanel9.Size = new System.Drawing.Size(1312, 10);
             this.tableLayoutPanel9.TabIndex = 125;
             // 
-            // panel1
+            // cmbitemsIva
             // 
-            this.panel1.Controls.Add(this.dtpFechaInicioSearch);
-            this.panel1.Controls.Add(this.iconButton2);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(521, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(307, 76);
-            this.panel1.TabIndex = 5;
-            // 
-            // dtpFechaInicioSearch
-            // 
-            this.dtpFechaInicioSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpFechaInicioSearch.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaInicioSearch.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaInicioSearch.Location = new System.Drawing.Point(51, 30);
-            this.dtpFechaInicioSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpFechaInicioSearch.Name = "dtpFechaInicioSearch";
-            this.dtpFechaInicioSearch.Size = new System.Drawing.Size(236, 34);
-            this.dtpFechaInicioSearch.TabIndex = 46;
-            this.dtpFechaInicioSearch.Value = new System.DateTime(2024, 3, 3, 0, 0, 0, 0);
-            // 
-            // iconButton2
-            // 
-            this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.iconButton2.Enabled = false;
-            this.iconButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.iconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Donate;
-            this.iconButton2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 27;
-            this.iconButton2.Location = new System.Drawing.Point(8, 29);
-            this.iconButton2.Margin = new System.Windows.Forms.Padding(0);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(44, 36);
-            this.iconButton2.TabIndex = 45;
-            this.iconButton2.UseVisualStyleBackColor = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(4, 2);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(125, 22);
-            this.label7.TabIndex = 44;
-            this.label7.Text = "Fecha Inicio:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(52, 34);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(264, 34);
-            this.dateTimePicker2.TabIndex = 47;
-            this.dateTimePicker2.Value = new System.DateTime(2024, 3, 3, 0, 0, 0, 0);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(5, 6);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(124, 22);
-            this.label8.TabIndex = 46;
-            this.label8.Text = "Fecha Final: ";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // iconButton3
-            // 
-            this.iconButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
-            this.iconButton3.Enabled = false;
-            this.iconButton3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.iconButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.iconButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.BasketShopping;
-            this.iconButton3.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(80)))), ((int)(((byte)(87)))));
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.IconSize = 27;
-            this.iconButton3.Location = new System.Drawing.Point(7, 33);
-            this.iconButton3.Margin = new System.Windows.Forms.Padding(0);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(44, 36);
-            this.iconButton3.TabIndex = 45;
-            this.iconButton3.UseVisualStyleBackColor = false;
+            this.cmbitemsIva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbitemsIva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbitemsIva.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.cmbitemsIva.FormattingEnabled = true;
+            this.cmbitemsIva.Items.AddRange(new object[] {
+            "Mostrar Todos",
+            "ID del Iva",
+            "Valor del Iva"});
+            this.cmbitemsIva.Location = new System.Drawing.Point(317, 25);
+            this.cmbitemsIva.MaxDropDownItems = 4;
+            this.cmbitemsIva.Name = "cmbitemsIva";
+            this.cmbitemsIva.Size = new System.Drawing.Size(186, 35);
+            this.cmbitemsIva.TabIndex = 28;
+            this.cmbitemsIva.SelectedIndexChanged += new System.EventHandler(this.cmbitemsIva_SelectedIndexChanged);
             // 
             // GS_Iva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1312, 742);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgIva);
             this.Controls.Add(this.panel24);
             this.Controls.Add(this.tableLayoutPanel9);
             this.Controls.Add(this.tableLayoutPanel3);
@@ -983,12 +1009,12 @@
             this.panel4.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.tableLayoutPanel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel24.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgIva)).EndInit();
+            this.panel24.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1001,7 +1027,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label lblProducto;
+        private System.Windows.Forms.Label lblTextoIva;
         public System.Windows.Forms.TextBox txtIva;
         private System.Windows.Forms.Label label9;
         private FontAwesome.Sharp.IconButton iconButton10;
@@ -1014,7 +1040,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel9;
-        private FontAwesome.Sharp.IconButton btn_Buscar;
+        private FontAwesome.Sharp.IconButton btn_BuscarIva;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
@@ -1033,20 +1059,21 @@
         private System.Windows.Forms.DateTimePicker dtpFechaInicio;
         private System.Windows.Forms.DateTimePicker dtpFechaFinal;
         private System.Windows.Forms.Label lblIdIva;
-        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView dtgIva;
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Panel panel19;
-        private System.Windows.Forms.TextBox txtbuscarCliente;
+        private System.Windows.Forms.TextBox txtbuscarIva;
         private FontAwesome.Sharp.IconButton BtnSearchClienteVenta;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpSearchFechaFinal;
         private System.Windows.Forms.Label label8;
         private FontAwesome.Sharp.IconButton iconButton3;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker dtpFechaInicioSearch;
+        private System.Windows.Forms.DateTimePicker dtpSearchFechaInicio;
         private FontAwesome.Sharp.IconButton iconButton2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbitemsIva;
     }
 }
