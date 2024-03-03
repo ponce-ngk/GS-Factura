@@ -1,4 +1,4 @@
-﻿using CrudClubNautico.Clases;
+﻿
 using GS_Factura.Clases;
 using System;
 using System.Collections.Generic;
@@ -16,12 +16,12 @@ namespace GS_Factura
 {
     public partial class GS_RegistroCliente : Form
     {
-        CrudClubNautico.Clases.BD2 OAD = new BD2();
+        BD2 OAD = new BD2();
         List<SqlParameter> par = new List<SqlParameter>();
         int op;
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
         string sql = "";
-        DataTable tb;
+        DataTable tb = new DataTable();
 
         public GS_RegistroCliente()
         {

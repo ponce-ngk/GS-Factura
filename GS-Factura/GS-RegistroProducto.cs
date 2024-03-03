@@ -1,5 +1,4 @@
-﻿using CrudClubNautico.Clases;
-using GS_Factura.Clases;
+﻿using GS_Factura.Clases;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,10 +14,10 @@ namespace GS_Factura
 {
     public partial class GS_RegistroProducto : Form
     {
-        CrudClubNautico.Clases.BD2 OAD = new BD2();
+        BD2 OAD = new BD2();
         List<SqlParameter> par = new List<SqlParameter>();
         int op;
-        DataTable tb;
+        DataTable tb = new DataTable();
         string sql = "";
         public GS_RegistroProducto()
         {
@@ -46,6 +45,7 @@ namespace GS_Factura
             cmbitems.SelectedIndex = -1;
             if (dgvProductos.RowCount != 0)
             {
+                tb.Clear();
                 dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
             }
             else
