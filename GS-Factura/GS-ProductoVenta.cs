@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GS_Factura.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,6 +15,11 @@ namespace GS_Factura
 {
     public partial class ProductoVenta : Form
     {
+        BD2 OAD = new BD2();
+        List<SqlParameter> par = new List<SqlParameter>();
+        int op;
+        DataTable tb = new DataTable();
+        string sql = "";
         // Declaración del delegado
         public delegate void pasarformFactura(string idproducto, string nameproduct,
                 string cantidadproducto, string preciproducto);
@@ -23,6 +30,7 @@ namespace GS_Factura
         public ProductoVenta()
         {
             InitializeComponent();
+            dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
         }
 
         private void BtncloseProduct_Click(object sender, EventArgs e)
@@ -57,7 +65,7 @@ namespace GS_Factura
                 if (txtbuscarproducto.Text == "")
                 {
                         // Restaura el texto predeterminado y el color del texto.
-                    txtbuscarproducto.Text = "Busca Nombre del Producto...";
+                    //txtbuscarproducto.Text = "Busca Nombre o ID del Producto...";
                     txtbuscarproducto.ForeColor = Color.DimGray;
                 }
             }
@@ -128,46 +136,137 @@ namespace GS_Factura
 
         private void BtnsearchProdVenta_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (txtbuscarproducto.Text == "")
-                {
-                    MessageBox.Show("El campo de buscar producto se encuentra vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    // Sentencia SQL para extraer información de productos que coincidan con el texto de búsqueda.
-                    string sentenciaextraer = @"select IDPRODUCTO 
-                        as ID, PRODUCTO, PRECIO_UNITARIO AS PRECIO_UNITARIO,
-                        STOCK from [dbo].[PRODUCTO]
-                        where PRODUCTO LIKE '" + txtbuscarproducto.Text + "%' or IDPRODUCTO LIKE '" + txtbuscarproducto.Text + "%' AND Estado = 1";
-                    this.ExtraerInfoData(sentenciaextraer);
+            //try
+            //{
+            //    if (txtbuscarproducto.Text == "")
+            //    {
+            //        MessageBox.Show("El campo de buscar producto se encuentra vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //    else
+            //    {
+            //        // Sentencia SQL para extraer información de productos que coincidan con el texto de búsqueda.
+            //        string sentenciaextraer = @"select IDPRODUCTO 
+            //            as ID, PRODUCTO, PRECIO_UNITARIO AS PRECIO_UNITARIO,
+            //            STOCK from [dbo].[PRODUCTO]
+            //            where PRODUCTO LIKE '" + txtbuscarproducto.Text + "%' or IDPRODUCTO LIKE '" + txtbuscarproducto.Text + "%' AND Estado = 1";
+            //        this.ExtraerInfoData(sentenciaextraer);
 
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //    throw;
+            //}
+            if (txtbuscarproducto.TextLength != null)
+            {
+                if (op == 0)
+                {
+                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                        dtgventaproducto.DataSource = tb;
+                    }
+                    else
+                    {
+                        dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 1)
+                {
+                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                        dtgventaproducto.DataSource = tb;
+                    }
+                    else
+                    {
+                        dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-                throw;
+                MessageBox.Show("Seleccione al menos un campo");
             }
         }
 
         private void TxtbuscarProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo letras y espacio 
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
+            //if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ') && (e.KeyChar != (char)Keys.Back))
+            //{
+            //    e.Handled = true;
+            //    //  dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
+            //    //("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
+            //    dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("SELECT  RTRIM(IDPRODUCTO) AS IDPRODUCTO,  RTRIM(PRODUCTO) AS PRODUCTO, REPLACE(CONVERT(VARCHAR, PRECIO_UNITARIO), '.', ',') AS PRECIO_UNITARIO,  REPLACE(CONVERT(VARCHAR, STOCK), '.', ',')  AS STOCK FROM PRODUCTO WHERE PRODUCTO LIKE '" + txtbuscarproducto.Text + "%' AND Estado = 1");
+            //}
+            //else if (e.KeyChar == (char)(Keys.Enter))
+            //{
+            //    dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("SELECT  RTRIM(IDPRODUCTO) AS IDPRODUCTO,  RTRIM(PRODUCTO) AS PRODUCTO, REPLACE(CONVERT(VARCHAR, PRECIO_UNITARIO), '.', ',') AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK FROM PRODUCTO WHERE  Estado = 1;");
+            //    e.Handled = true;
+            //}
+            //Validacion de que sea solo letras y espacio 
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
             {
-                e.Handled = true;
-                //  dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar
-                //("EXEC sp_Buscar_Producto2 '" + txtbuscarproducto.Texts + "'");
-                dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("SELECT  RTRIM(IDPRODUCTO) AS IDPRODUCTO,  RTRIM(PRODUCTO) AS PRODUCTO, REPLACE(CONVERT(VARCHAR, PRECIO_UNITARIO), '.', ',') AS PRECIO_UNITARIO,  REPLACE(CONVERT(VARCHAR, STOCK), '.', ',')  AS STOCK FROM PRODUCTO WHERE PRODUCTO LIKE '" + txtbuscarproducto.Text + "%' AND Estado = 1");
+                if (txtbuscarproducto.TextLength != null)
+                {
+                    if (op == 0)
+                    {
+                        if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                            dtgventaproducto.DataSource = tb;
+                        }
+                        else
+                        {
+                            dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 1)
+                    {
+                        if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                            dtgventaproducto.DataSource = tb;
+                        }
+                        else
+                        {
+                            dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione al menos un campo");
+                }
             }
-            else if (e.KeyChar == (char)(Keys.Enter))
+            else if (op == null && txtbuscarproducto.Text == null)
             {
-                dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("SELECT  RTRIM(IDPRODUCTO) AS IDPRODUCTO,  RTRIM(PRODUCTO) AS PRODUCTO, REPLACE(CONVERT(VARCHAR, PRECIO_UNITARIO), '.', ',') AS PRECIO_UNITARIO, RTRIM(STOCK) AS STOCK FROM PRODUCTO WHERE  Estado = 1;");
-                e.Handled = true;
+                MessageBox.Show("Por favor ingregse un carácter");
             }
-
 
 
         }
@@ -190,6 +289,20 @@ namespace GS_Factura
             {
                 MessageBox.Show(ex.Message);
                 throw;
+            }
+        }
+
+        private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            op = cmbitems.SelectedIndex;
+            switch (op)
+            {
+                case 0:
+                    op = 0;
+                    break;
+                case 1:
+                    op = 1;
+                    break;
             }
         }
     }

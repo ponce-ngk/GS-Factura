@@ -49,26 +49,7 @@ namespace GS_Factura
         // Este método se ejecuta al hacer clic en el botón de validar cliente.
         private void BtnvalidarCliente_Click(object sender, EventArgs e)
         {
-            try
-            {
-                try
-                {
-                    ClienteVenta clienteVenta = new ClienteVenta();
-
-                    clienteVenta.pasarCliente += new ClienteVenta.pasarformFactura(EjecutaClientes);
-                    clienteVenta.ShowDialog();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    throw;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
 
         }
         public void EjecutaClientes(string idpcliente, string cedulacliente,
@@ -774,6 +755,29 @@ namespace GS_Factura
             frmFactura.Show();
 
             this.Cargarnumerofactura();
+        }
+
+        private void btnAñadirCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    ClienteVenta clienteVenta = new ClienteVenta();
+                    clienteVenta.pasarCliente += new ClienteVenta.pasarformFactura(EjecutaClientes);
+                    clienteVenta.ShowDialog();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    throw;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 

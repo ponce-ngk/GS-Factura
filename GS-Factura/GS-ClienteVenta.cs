@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,12 @@ namespace GS_Factura
 {
     public partial class ClienteVenta : Form
     {
+        BD2 OAD = new BD2();
+        List<SqlParameter> par = new List<SqlParameter>();
+        int op;
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
+        string sql = "";
+        DataTable tb = new DataTable();
 
         public delegate void pasarformFactura(string idproducto, string cedulacliente,
                string namecliente, string apellidocliente);
@@ -25,6 +31,7 @@ namespace GS_Factura
         public ClienteVenta()
         {
             InitializeComponent();
+            DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -36,7 +43,7 @@ namespace GS_Factura
         {
             try
             {
-                if (txtbuscarCliente.Text == "Busca Por Nombre,Apellido,Cedula del Usuario...")
+                if (txtbuscarCliente.Text == "Busca Por ID,Nombre,Apellido,Cedula del Usuario...")
                 {
                     txtbuscarCliente.Text = "";
                     txtbuscarCliente.ForeColor = Color.Black;
@@ -56,7 +63,7 @@ namespace GS_Factura
                 if (txtbuscarCliente.Text == "")
                 {
                     // Restaura el texto predeterminado y el color del texto.
-                    txtbuscarCliente.Text = "Busca Por Nombre,Apellido,Cedula del Usuario...";
+                    //txtbuscarCliente.Text = "Busca Por ID,Nombre,Apellido,Cedula del Usuario...";
                     txtbuscarCliente.ForeColor = Color.DimGray;
                 }
             }
@@ -91,17 +98,14 @@ namespace GS_Factura
 
                 if (resultado == DialogResult.Yes)
                 {
-                    Cliente pClientes = new Cliente();
-
-                    pClientes.Cedula = txtcedulacliente.Text;
-                    pClientes.Nombre = txtnombrescliente.Text;
-                    pClientes.Apellido = txtapellidoscliente.Text;
-                    pClientes.FechaNA = dtpFechaCliente.Text;
-
-                    // Se llama al metodo AgregarCliente de la clase CrudCliente y se envian los datos
-                    int resultado2 = CrudCliente.AgregarCliente(pClientes);
-
-                    if (resultado2 > 0)
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@Cedula", txtcedulacliente.Text.Trim()));
+                    par.Add(new SqlParameter("@Nombre_Cliente", txtnombrescliente.Text.Trim()));
+                    par.Add(new SqlParameter("@Apellido", txtapellidoscliente.Text.Trim()));
+                    par.Add(new SqlParameter("@Fecha_Nac", dtpFechaCliente.Text.Trim()));
+                    sql = OAD.EscalarProcAlmString("sp_Insertar_CLIENTE", par, true);
+                    if (sql != null)
                     {
                         MessageBox.Show("Los datos se han agregado correctamente.", "Adición exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -109,9 +113,9 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-
+                    DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                     // Se actualiza el DataGridView y se limpian los campos
-                    DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_Buscar_Clientes '" + txtcedulacliente.Text + "'");
+                    //DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_Buscar_Clientes '" + txtcedulacliente.Text + "'");
 
                     LimpiarCampos();
                 }
@@ -153,6 +157,197 @@ namespace GS_Factura
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            op = cmbitems.SelectedIndex;
+            switch (op)
+            {
+                case 0:
+                    op = 0;
+                    break;
+                case 1:
+                    op = 1;
+                    break;
+                case 2:
+                    op = 2;
+                    break;
+                case 3:
+                    op = 3;
+                    break;
+            }
+        }
+
+        private void txtbuscarCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Validacion de que sea solo letras y espacio 
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                if (txtbuscarCliente.Text != null)
+                {
+                    if (op == 0)
+                    {
+                        if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "IDCLIENTE"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            DgvClientes.DataSource = tb;
+                        }
+                        else
+                        {
+                            DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 1)
+                    {
+                        if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            DgvClientes.DataSource = tb;
+                        }
+                        else
+                        {
+                            DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 2)
+                    {
+                        if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            DgvClientes.DataSource = tb;
+                        }
+                        else
+                        {
+                            DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 3)
+                    {
+                        if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "APELLIDOS"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            DgvClientes.DataSource = tb;
+                        }
+                        else
+                        {
+                            DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione al menos un campo");
+                }
+            }
+            else if (op == null && txtbuscarCliente.Text == null)
+            {
+                MessageBox.Show("Por favor ingregse un carácter");
+            }
+        }
+
+        private void BtnSearchClienteVenta_Click(object sender, EventArgs e)
+        {
+            if (txtbuscarCliente.Text != null)
+            {
+                if (op == 0)
+                {
+                    if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "IDCLIENTE"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        DgvClientes.DataSource = tb;
+                    }
+                    else
+                    {
+                        DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 1)
+                {
+                    if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "CEDULA"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        DgvClientes.DataSource = tb;
+                    }
+                    else
+                    {
+                        DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 2)
+                {
+                    if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        DgvClientes.DataSource = tb;
+                    }
+                    else
+                    {
+                        DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 3)
+                {
+                    if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "APELLIDOS"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        DgvClientes.DataSource = tb;
+                    }
+                    else
+                    {
+                        DgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione al menos un campo");
             }
         }
     }

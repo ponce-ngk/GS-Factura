@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CrudClubNautico.Clases
+namespace GS_Factura.Clases
 {
     public class BD2
     {
