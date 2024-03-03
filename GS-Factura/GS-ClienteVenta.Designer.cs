@@ -55,8 +55,8 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.DgvClientes = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.BtnSearchClienteVenta = new FontAwesome.Sharp.IconButton();
             this.txtbuscarCliente = new System.Windows.Forms.TextBox();
+            this.BtnSearchClienteVenta = new FontAwesome.Sharp.IconButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -75,7 +75,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.92029F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.07971F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 276F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 345F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 346F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel12, 1, 0);
@@ -96,9 +96,9 @@
             this.panel2.Controls.Add(this.iconButton4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(855, 3);
+            this.panel2.Location = new System.Drawing.Point(854, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(340, 113);
+            this.panel2.Size = new System.Drawing.Size(341, 113);
             this.panel2.TabIndex = 9;
             // 
             // dtpFechaCliente
@@ -110,7 +110,7 @@
             this.dtpFechaCliente.Location = new System.Drawing.Point(45, 40);
             this.dtpFechaCliente.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFechaCliente.Name = "dtpFechaCliente";
-            this.dtpFechaCliente.Size = new System.Drawing.Size(284, 34);
+            this.dtpFechaCliente.Size = new System.Drawing.Size(285, 34);
             this.dtpFechaCliente.TabIndex = 22;
             this.dtpFechaCliente.Value = new System.DateTime(2023, 12, 16, 20, 46, 10, 0);
             // 
@@ -152,7 +152,7 @@
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.txtapellidoscliente);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(579, 3);
+            this.panel4.Location = new System.Drawing.Point(578, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(270, 113);
             this.panel4.TabIndex = 8;
@@ -211,7 +211,7 @@
             this.panel12.Location = new System.Drawing.Point(270, 0);
             this.panel12.Margin = new System.Windows.Forms.Padding(0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(306, 119);
+            this.panel12.Size = new System.Drawing.Size(305, 119);
             this.panel12.TabIndex = 5;
             // 
             // iconButton3
@@ -257,7 +257,7 @@
             this.txtnombrescliente.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
             this.txtnombrescliente.MaxLength = 25;
             this.txtnombrescliente.Name = "txtnombrescliente";
-            this.txtnombrescliente.Size = new System.Drawing.Size(240, 34);
+            this.txtnombrescliente.Size = new System.Drawing.Size(239, 34);
             this.txtnombrescliente.TabIndex = 18;
             // 
             // panel1
@@ -453,6 +453,23 @@
             this.panel6.Size = new System.Drawing.Size(1195, 61);
             this.panel6.TabIndex = 5;
             // 
+            // txtbuscarCliente
+            // 
+            this.txtbuscarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtbuscarCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtbuscarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbuscarCliente.ForeColor = System.Drawing.Color.Gray;
+            this.txtbuscarCliente.Location = new System.Drawing.Point(55, 11);
+            this.txtbuscarCliente.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.txtbuscarCliente.Name = "txtbuscarCliente";
+            this.txtbuscarCliente.Size = new System.Drawing.Size(1123, 34);
+            this.txtbuscarCliente.TabIndex = 25;
+            this.txtbuscarCliente.Text = "Busca Por Nombre,Apellido,Cedula del Usuario...";
+            this.txtbuscarCliente.Enter += new System.EventHandler(this.txtbuscarproducto_Enter);
+            this.txtbuscarCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbuscarCliente_KeyDown);
+            this.txtbuscarCliente.Leave += new System.EventHandler(this.txtbuscarproducto_Leave);
+            // 
             // BtnSearchClienteVenta
             // 
             this.BtnSearchClienteVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(65)))));
@@ -472,23 +489,6 @@
             this.BtnSearchClienteVenta.Size = new System.Drawing.Size(44, 34);
             this.BtnSearchClienteVenta.TabIndex = 26;
             this.BtnSearchClienteVenta.UseVisualStyleBackColor = false;
-            // 
-            // txtbuscarCliente
-            // 
-            this.txtbuscarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtbuscarCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtbuscarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbuscarCliente.ForeColor = System.Drawing.Color.Gray;
-            this.txtbuscarCliente.Location = new System.Drawing.Point(55, 11);
-            this.txtbuscarCliente.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.txtbuscarCliente.Name = "txtbuscarCliente";
-            this.txtbuscarCliente.Size = new System.Drawing.Size(1123, 34);
-            this.txtbuscarCliente.TabIndex = 25;
-            this.txtbuscarCliente.Text = "Busca Por Nombre,Apellido,Cedula del Usuario...";
-            this.txtbuscarCliente.Enter += new System.EventHandler(this.txtbuscarproducto_Enter);
-            this.txtbuscarCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbuscarCliente_KeyDown);
-            this.txtbuscarCliente.Leave += new System.EventHandler(this.txtbuscarproducto_Leave);
             // 
             // ClienteVenta
             // 
@@ -543,8 +543,8 @@
         private FontAwesome.Sharp.IconButton BtnGuardar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.DataGridView DgvClientes;
         private FontAwesome.Sharp.IconButton BtnSearchClienteVenta;
         private System.Windows.Forms.TextBox txtbuscarCliente;
-        private System.Windows.Forms.DataGridView DgvClientes;
     }
 }

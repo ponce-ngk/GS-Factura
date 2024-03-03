@@ -200,5 +200,11 @@ namespace GS_Factura
             AbrirFormEnPanel(new GS_EliminaFactura());
             return;
         }
+
+        private void BtnIva_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new GS_Iva());
+            return;
+        }
     }
 }

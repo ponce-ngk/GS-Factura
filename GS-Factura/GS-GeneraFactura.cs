@@ -51,8 +51,6 @@ namespace GS_Factura
         {
             try
             {
-         
-
                 try
                 {
                     ClienteVenta clienteVenta = new ClienteVenta();
