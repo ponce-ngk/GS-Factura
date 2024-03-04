@@ -54,7 +54,8 @@ namespace GS_Factura
 
 
 
-                        cmdInsertarIVA.Parameters.AddWithValue("@ValorIVA", decimal.Parse(txtIva.Text));
+                        cmdInsertarIVA.Parameters.AddWithValue("@ValorIVA", decimal.Parse(txtIva.Text.Replace(".", ",")));
+
                         cmdInsertarIVA.Parameters.AddWithValue("@FechaInicio", dtpFechaInicio.Value);
                         cmdInsertarIVA.Parameters.AddWithValue("@FechaFinal", dtpFechaFinal.Value);
 
@@ -141,8 +142,9 @@ namespace GS_Factura
 
 
                             cmdInsertarIVA.Parameters.AddWithValue("@IVA_ID", int.Parse(lblIdIva.Text));
-                            cmdInsertarIVA.Parameters.AddWithValue("@ValorIVA", decimal.Parse(txtIva.Text));
-                            cmdInsertarIVA.Parameters.AddWithValue("@FechaInicio", dtpFechaInicio.Value);
+
+                        cmdInsertarIVA.Parameters.AddWithValue("@ValorIVA", decimal.Parse(txtIva.Text.Replace(".", ",")));
+                        cmdInsertarIVA.Parameters.AddWithValue("@FechaInicio", dtpFechaInicio.Value);
                             cmdInsertarIVA.Parameters.AddWithValue("@FechaFinal", dtpFechaFinal.Value);
 
                             cmdInsertarIVA.ExecuteNonQuery();
@@ -154,19 +156,15 @@ namespace GS_Factura
                         }
                     }
 
-
-
                 }
-            }
+
+        }
             catch (Exception)
             {
 
                 throw;
             }
-       
-        
-        
-        }
+}
 
         private void BtnEliminarIva_Click(object sender, EventArgs e)
         {
@@ -212,9 +210,9 @@ namespace GS_Factura
                 e.Handled = true;
                 MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (e.KeyChar == '.')
+            else if (e.KeyChar == ',')
             {
-                e.KeyChar = ','; // Reemplazar la coma por un punto
+                e.KeyChar = '.'; // Reemplazar la coma por un punto
             }
             else if (char.IsWhiteSpace(e.KeyChar))
             {
@@ -222,7 +220,7 @@ namespace GS_Factura
                 MessageBox.Show("No se permiten espacios en blanco", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             // Verificar si el usuario ha ingresado un punto decimal
-            if (e.KeyChar == ',' && txtIva.Text.IndexOf(',') > -1)
+            if (e.KeyChar == '.' && txtIva.Text.IndexOf('.') > -1)
             {
                 // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
                 e.Handled = true;
@@ -297,7 +295,7 @@ namespace GS_Factura
                 {
                     BloqueoClickDgv();
                     lblIdIva.Text = dtgIva.CurrentRow.Cells[0].Value.ToString();
-                    txtIva.Text = dtgIva.CurrentRow.Cells[1].Value.ToString();
+                    txtIva.Text = dtgIva.CurrentRow.Cells[1].Value.ToString().Replace(",","."); ;
                     dtpFechaInicio.Text = dtgIva.CurrentRow.Cells[2].Value.ToString();
                     dtpFechaFinal.Text = dtgIva.CurrentRow.Cells[3].Value.ToString();
                 }

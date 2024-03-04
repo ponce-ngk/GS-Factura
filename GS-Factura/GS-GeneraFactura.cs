@@ -89,7 +89,6 @@ namespace GS_Factura
         private void TmtDate_Tick(object sender, EventArgs e)
         {
             lblFingresoVenta.Text = DateTime.Now.ToShortDateString();
-
         }
 
         private void BtnañadirVenta_Click(object sender, EventArgs e)
@@ -231,7 +230,7 @@ namespace GS_Factura
             decimal sumcantidadproductos = 0;
             decimal subtotalCompra = 0.0M;
             decimal descuentoCompra = 0.0M;
-            decimal iva12 = 12.0M;
+            decimal iva12 = ObtenerValorIVAActual();
 
             btnConfirmarVenta.Visible = true;
             btnConfirmarVenta.Enabled = true;
@@ -239,7 +238,7 @@ namespace GS_Factura
             foreach (DataGridViewRow recorrerdata in dtgVenta.Rows)
             {
                 // Suma los totales y cantidades de productos.
-                totalproductos += decimal.Parse(recorrerdata.Cells["TotalProducto"].Value.ToString());
+                totalproductos += decimal.Parse(recorrerdata.Cells["TotalProducto"].Value.ToString().Replace(".", ","));
                 sumcantidadproductos += decimal.Parse(recorrerdata.Cells["StockProducto"].Value.ToString());
             }
 
@@ -263,7 +262,7 @@ namespace GS_Factura
 
             // Calculamos el total de la compra
             decimal total = subtotalCompra;
-            txtTotalVenta.Text = total.ToString("0.00");
+            txtTotalVenta.Text = total.ToString("0.00").Replace(",", ".");
 
             txtivaVenta.Text = iva.ToString("0.00");
 
@@ -306,10 +305,10 @@ namespace GS_Factura
 
                         detalle_venta.Add(new XElement("item",
                                 new XElement("IDPRODUCTO", row.Cells["IdProducto"].Value),
-                                new XElement("CANTIDAD", row.Cells["StockProducto"].Value),
-                                new XElement("PRECIO_UNITARIO", Convert.ToDecimal(row.Cells["PrecioVenta"].Value)),
-                                new XElement("SUBTOTAL", Convert.ToDecimal(row.Cells["TotalProducto"].Value))
-                                ));
+                                new XElement("CANTIDAD", row.Cells["StockProducto"].Value.ToString().Replace(".", ",")),
+                                new XElement("PRECIO_UNITARIO", Convert.ToDecimal(row.Cells["PrecioVenta"].Value.ToString().Replace(".", ",")),
+                                new XElement("SUBTOTAL", Convert.ToDecimal(row.Cells["TotalProducto"].Value.ToString().Replace(".", ",")))
+                                )));
 
                     }
 
@@ -642,7 +641,7 @@ namespace GS_Factura
                 if (dtgVenta.CurrentRow != null && dtgVenta.CurrentRow.Cells[3] != null && dtgVenta.CurrentRow.Cells[3].Value != null && !string.IsNullOrEmpty(dtgVenta.CurrentRow.Cells[3].Value.ToString()) && dtgVenta.Rows.Count != 0)
                 {
                     string cantidadStr = dtgVenta.CurrentRow.Cells[3].Value.ToString();
-                    cantidadStr = cantidadStr.Replace(".", ",");
+                    cantidadStr = cantidadStr.Replace(",", ".");
                     dtgVenta.CurrentRow.Cells[3].Value = cantidadStr;
 
 
@@ -654,7 +653,7 @@ namespace GS_Factura
                         montrarprodC.Parameters.AddWithValue("@id_product", id_product);
 
                         stock = Convert.ToDecimal(montrarprodC.ExecuteScalar());
-                        if (decimal.Parse(dtgVenta.CurrentRow.Cells[3].Value.ToString()) > stock)
+                        if (decimal.Parse(dtgVenta.CurrentRow.Cells[3].Value.ToString().Replace(".", ",")) > stock)
                         {
                             dtgVenta.CurrentRow.Cells[3].Value = 0;
                             MessageBox.Show("Producto no dispone de ese stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -681,8 +680,8 @@ namespace GS_Factura
 
             try
             {
-                decimal cantidad = decimal.Parse(dtgVenta.CurrentRow.Cells[3].Value.ToString());
-                decimal precio = decimal.Parse(dtgVenta.CurrentRow.Cells[4].Value.ToString());
+                decimal cantidad = decimal.Parse(dtgVenta.CurrentRow.Cells[3].Value.ToString().Replace(".", ","));
+                decimal precio = decimal.Parse(dtgVenta.CurrentRow.Cells[4].Value.ToString().Replace(".", ","));
 
                 // Calculamos el total del producto
                 decimal total = precio * cantidad;
@@ -691,7 +690,7 @@ namespace GS_Factura
                 total = Math.Round(total, 2);
 
 
-                dtgVenta.CurrentRow.Cells[5].Value = total.ToString("0.00");
+                dtgVenta.CurrentRow.Cells[5].Value = total.ToString("0.00").Replace(",", ".");
 
 
 
@@ -778,6 +777,38 @@ namespace GS_Factura
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void GS_GeneraFactura_Load(object sender, EventArgs e)
+        {
+            lblValorIva.Text = ObtenerValorIVAActual().ToString();
+        }
+        public decimal ObtenerValorIVAActual()
+        {
+            decimal valorIVA = 12.0m; // Valor predeterminado
+
+            try
+            {
+                    using (SqlCommand comando = new SqlCommand("ObtenerIVAActual", AccesoDatos.AbrirConexion()))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Si hay resultados, obtener el valor del campo ValorIVA
+                                valorIVA = Convert.ToDecimal(reader["ValorIVA"]);
+                            }
+                        }
+                    }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener el ValorIVA: " + ex.Message);
+            }
+
+            return valorIVA;
         }
     }
 
