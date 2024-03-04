@@ -497,9 +497,9 @@ namespace GS_Factura
                 // Verifica si el texto en txtcancelado no está en blanco o nulo
                 if (!string.IsNullOrWhiteSpace(txtcancelado.Text))
                 {
-                    if (decimal.TryParse(txtcancelado.Text, out decimal montoCancelado))
+                    if (decimal.TryParse(txtcancelado.Text.Replace(".", ","), out decimal montoCancelado))
                     {
-                        decimal totalVenta = decimal.Parse(txtTotalVenta.Text);
+                        decimal totalVenta = decimal.Parse(txtTotalVenta.Text.Replace(".",","));
                         // Calcula el cambio restando el monto cancelado al total de la venta
 
                         decimal cambio = montoCancelado - totalVenta;
@@ -508,14 +508,14 @@ namespace GS_Factura
 
                         if (cambio >= 0)
                         {
-                            txtcambioVenta.Text = cambio.ToString();
+                            txtcambioVenta.Text = cambio.ToString().Replace(",",".");
                             txtcambioVenta.ForeColor = Color.Green;
                         }
                         else
                         {
                             // Si el cambio es negativo, muestra "0,00" en txtcambioVenta en color negro
 
-                            txtcambioVenta.Text = "0,00"; //  valor que desees si el cambio es negativo
+                            txtcambioVenta.Text = "0.00"; //  valor que desees si el cambio es negativo
                             txtcambioVenta.ForeColor = Color.Black; 
                         }
                     }
@@ -523,7 +523,7 @@ namespace GS_Factura
                     {
                         // Muestra un mensaje de error si no se puede convertir el texto a decimal
                         MessageBox.Show("Ingrese un número válido en el campo de cancelación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtcambioVenta.Text = "0,00";
+                        txtcambioVenta.Text = "0.00";
                         txtcambioVenta.ForeColor = Color.Black;
                     }
                 }
@@ -588,9 +588,9 @@ namespace GS_Factura
                 e.Handled = true;
                 MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (e.KeyChar == '.')
+            else if (e.KeyChar == ',')
             {
-                e.KeyChar = ','; // Reemplazar la coma por un punto
+                e.KeyChar = '.'; // Reemplazar la coma por un punto
             }
             else if (char.IsWhiteSpace(e.KeyChar))
             {
@@ -598,7 +598,7 @@ namespace GS_Factura
                 MessageBox.Show("No se permiten espacios en blanco", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             // Verificar si el usuario ha ingresado un punto decimal
-            if (e.KeyChar == ',' && txtcancelado.Text.IndexOf(',') > -1)
+            if (e.KeyChar == ',' && txtcancelado.Text.IndexOf('.') > -1)
             {
                 // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
                 e.Handled = true;
@@ -781,7 +781,7 @@ namespace GS_Factura
 
         private void GS_GeneraFactura_Load(object sender, EventArgs e)
         {
-            lblValorIva.Text = ObtenerValorIVAActual().ToString();
+            lblValorIva.Text = ObtenerValorIVAActual().ToString().Replace(",",".");
         }
         public decimal ObtenerValorIVAActual()
         {
