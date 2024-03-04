@@ -28,7 +28,12 @@ namespace GS_Factura.Clases
             try
             {
                 string cadena = "";
-                cadena = "Data Source=.;Initial Catalog=FACTURAS;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+<<<<<<< HEAD
+                cadena = "Data Source= . ;Initial Catalog=FACTURAS;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+=======
+                //cadena = "Data Source=ELVIS-ASUS;Initial Catalog=FACTURAS;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+                cadena = "Server = . ;Database= FACTURAS ; User Id = sa ; Password = 1234;"; 
+>>>>>>> f2f069297c36703935ff625bd9d47264c8096f11
 
                 if (cadena.Length != 0)
                 {
