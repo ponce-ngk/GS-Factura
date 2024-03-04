@@ -239,7 +239,7 @@ namespace GS_Factura
             {
                 // Suma los totales y cantidades de productos.
                 totalproductos += decimal.Parse(recorrerdata.Cells["TotalProducto"].Value.ToString().Replace(".", ","));
-                sumcantidadproductos += decimal.Parse(recorrerdata.Cells["StockProducto"].Value.ToString());
+                sumcantidadproductos += decimal.Parse(recorrerdata.Cells["StockProducto"].Value.ToString().Replace(".", ","));
             }
 
             // Calculamos el subtotal (sin descuento ni IVA)
@@ -271,7 +271,7 @@ namespace GS_Factura
 
             // Actualiza etiquetas con información relevante.
 
-            lbl_V_cantidad.Text = sumcantidadproductos.ToString();
+            lbl_V_cantidad.Text = sumcantidadproductos.ToString().Replace(",", ".");
             lbl_TotalItems.Text = dtgVenta.Rows.Count.ToString();
         }
 
