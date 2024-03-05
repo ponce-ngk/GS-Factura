@@ -17,7 +17,8 @@ namespace GS_Factura
         private SqlDataAdapter oDA;
         private DataSet oDS;
         private SqlCommand ocom;
-        private static string cadenaConexion = "Server = . ;Database= FACTURAS ; User Id = sa ; Password = 1234;";
+        //private static string cadenaConexion = "Server = . ;Database= FACTURAS ; User Id = sa ; Password = 1234;";
+        private static string cadenaConexion = "Data Source=(local);Initial Catalog=FACTURAS;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
 
         public AccesoDatos()
         {

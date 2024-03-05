@@ -28,7 +28,7 @@ namespace GS_Factura.Clases
             try
             {
                 string cadena = "";
-                cadena = "Data Source= . ;Initial Catalog=FACTURAS;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+                cadena = "Data Source=(local);Initial Catalog=FACTURAS;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
 
 
                 if (cadena.Length != 0)
