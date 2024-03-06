@@ -21,8 +21,10 @@ namespace GS_Factura
         public GS_ResumenVentas()
         {
             InitializeComponent();
-            cbxNombre.Text = "Desabilitado"; 
+            cbxNombre.Text = "Desabilitado";
+            cbxNombre.ForeColor = Color.Red;
             cbxProducto.Text = "Desabilitado";
+            cbxProducto.ForeColor = Color.Red;
         }
 
         private void ExportToExcel(DataGridView dataGridView)
@@ -154,12 +156,14 @@ namespace GS_Factura
                 // Deshabilitar el TextBox si el CheckBox está marcado
                 txtCliente.Enabled = true;
                 cbxNombre.Text = "Habilitado";
+                cbxNombre.ForeColor = Color.Green;
             }
             else
             {
                 // Habilitar el TextBox si el CheckBox está desmarcado
                 txtCliente.Enabled = false;
                 cbxNombre.Text = "Desabilitado";
+                cbxNombre.ForeColor = Color.Red;
             }
         }
 
@@ -171,12 +175,14 @@ namespace GS_Factura
                 // Deshabilitar el TextBox si el CheckBox está marcado
                 txtProducto.Enabled = true;
                 cbxProducto.Text = "Habilitado";
+                cbxProducto.ForeColor = Color.Green;
             }
             else
             {
                 // Habilitar el TextBox si el CheckBox está desmarcado
                 txtProducto.Enabled = false;
                 cbxProducto.Text = "Desabilitado";
+                cbxProducto.ForeColor = Color.Red;
             }
         }
     }
