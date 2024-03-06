@@ -13,11 +13,19 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using GS_Factura.Clases;
+using System.Data.SqlClient;
 
 namespace GS_Factura
 {
     public partial class GS_ResumenVentas : Form
     {
+        BD2 OAD = new BD2();
+        List<SqlParameter> par = new List<SqlParameter>();
+        int op;
+        DataTable tb = new DataTable();
+        string sql = "";
+
         public GS_ResumenVentas()
         {
             InitializeComponent();
@@ -184,6 +192,16 @@ namespace GS_Factura
                 cbxProducto.Text = "Desabilitado";
                 cbxProducto.ForeColor = Color.Red;
             }
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            tb.Clear();
+            par.Clear();
+            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechas ", par, true);
+            dgvResumenVenta.DataSource = tb;
         }
     }
 }
