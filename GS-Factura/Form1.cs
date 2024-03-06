@@ -203,7 +203,25 @@ namespace GS_Factura
 
         private void BtnIva_Click(object sender, EventArgs e)
         {
+
             AbrirFormEnPanel(new GS_Iva());
+            return;
+        }
+
+        private void btnInformes_Click(object sender, EventArgs e)
+        {
+            Open_DropdownMenu(rjcIva, sender);
+        }
+
+        private void rjcBtnResumen_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new GS_ResumenVentas());
+            return;
+        }
+
+        private void rjcBtnDetallada_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new GS_DetalladoVenta());
             return;
         }
     }

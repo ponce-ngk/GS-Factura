@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelLayoutMenu = new System.Windows.Forms.TableLayoutPanel();
             this.panelDashCenter = new System.Windows.Forms.Panel();
+            this.btnInformes = new FontAwesome.Sharp.IconButton();
+            this.btnIva = new FontAwesome.Sharp.IconButton();
             this.btnBuscaFactura = new FontAwesome.Sharp.IconButton();
             this.btnVenta = new FontAwesome.Sharp.IconButton();
             this.btnProductos = new FontAwesome.Sharp.IconButton();
@@ -56,7 +58,9 @@
             this.btnRJBuscarF = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRJEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRJEditar = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnIva = new FontAwesome.Sharp.IconButton();
+            this.rjcIva = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
+            this.rjcBtnResumen = new System.Windows.Forms.ToolStripMenuItem();
+            this.rjcBtnDetallada = new System.Windows.Forms.ToolStripMenuItem();
             this.panelLayoutMenu.SuspendLayout();
             this.panelDashCenter.SuspendLayout();
             this.panelDashHead.SuspendLayout();
@@ -68,40 +72,93 @@
             this.panelButtomDash.SuspendLayout();
             this.panelLayourMaximizar.SuspendLayout();
             this.rjcFacturaMenu.SuspendLayout();
+            this.rjcIva.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLayoutMenu
             // 
             this.panelLayoutMenu.ColumnCount = 1;
-            this.panelLayoutMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 199F));
+            this.panelLayoutMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 149F));
             this.panelLayoutMenu.Controls.Add(this.panelDashCenter, 0, 1);
             this.panelLayoutMenu.Controls.Add(this.panelDashHead, 0, 0);
             this.panelLayoutMenu.Controls.Add(this.panelDashOut, 0, 2);
             this.panelLayoutMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLayoutMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelLayoutMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelLayoutMenu.Name = "panelLayoutMenu";
             this.panelLayoutMenu.RowCount = 3;
             this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.panelLayoutMenu.Size = new System.Drawing.Size(199, 630);
+            this.panelLayoutMenu.Size = new System.Drawing.Size(149, 512);
             this.panelLayoutMenu.TabIndex = 0;
             // 
             // panelDashCenter
             // 
             this.panelDashCenter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.panelDashCenter.Controls.Add(this.btnInformes);
             this.panelDashCenter.Controls.Add(this.btnIva);
             this.panelDashCenter.Controls.Add(this.btnBuscaFactura);
             this.panelDashCenter.Controls.Add(this.btnVenta);
             this.panelDashCenter.Controls.Add(this.btnProductos);
             this.panelDashCenter.Controls.Add(this.btnRegistro);
             this.panelDashCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDashCenter.Location = new System.Drawing.Point(0, 94);
+            this.panelDashCenter.Location = new System.Drawing.Point(0, 76);
             this.panelDashCenter.Margin = new System.Windows.Forms.Padding(0);
             this.panelDashCenter.Name = "panelDashCenter";
-            this.panelDashCenter.Size = new System.Drawing.Size(199, 504);
+            this.panelDashCenter.Size = new System.Drawing.Size(149, 409);
             this.panelDashCenter.TabIndex = 0;
+            // 
+            // btnInformes
+            // 
+            this.btnInformes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btnInformes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInformes.FlatAppearance.BorderSize = 0;
+            this.btnInformes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnInformes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInformes.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInformes.ForeColor = System.Drawing.Color.White;
+            this.btnInformes.IconChar = FontAwesome.Sharp.IconChar.SquarePollVertical;
+            this.btnInformes.IconColor = System.Drawing.Color.White;
+            this.btnInformes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInformes.IconSize = 30;
+            this.btnInformes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInformes.Location = new System.Drawing.Point(0, 314);
+            this.btnInformes.Name = "btnInformes";
+            this.btnInformes.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnInformes.Size = new System.Drawing.Size(149, 56);
+            this.btnInformes.TabIndex = 24;
+            this.btnInformes.Tag = "registro";
+            this.btnInformes.Text = "  Informes";
+            this.btnInformes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInformes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInformes.UseVisualStyleBackColor = false;
+            this.btnInformes.Click += new System.EventHandler(this.btnInformes_Click);
+            // 
+            // btnIva
+            // 
+            this.btnIva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btnIva.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIva.FlatAppearance.BorderSize = 0;
+            this.btnIva.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnIva.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIva.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIva.ForeColor = System.Drawing.Color.White;
+            this.btnIva.IconChar = FontAwesome.Sharp.IconChar.Donate;
+            this.btnIva.IconColor = System.Drawing.Color.White;
+            this.btnIva.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnIva.IconSize = 30;
+            this.btnIva.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnIva.Location = new System.Drawing.Point(0, 252);
+            this.btnIva.Name = "btnIva";
+            this.btnIva.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnIva.Size = new System.Drawing.Size(149, 56);
+            this.btnIva.TabIndex = 23;
+            this.btnIva.Tag = "registro";
+            this.btnIva.Text = "  Iva";
+            this.btnIva.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnIva.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnIva.UseVisualStyleBackColor = false;
+            this.btnIva.Click += new System.EventHandler(this.BtnIva_Click);
             // 
             // btnBuscaFactura
             // 
@@ -117,11 +174,10 @@
             this.btnBuscaFactura.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBuscaFactura.IconSize = 30;
             this.btnBuscaFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscaFactura.Location = new System.Drawing.Point(0, 233);
-            this.btnBuscaFactura.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscaFactura.Location = new System.Drawing.Point(0, 189);
             this.btnBuscaFactura.Name = "btnBuscaFactura";
-            this.btnBuscaFactura.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.btnBuscaFactura.Size = new System.Drawing.Size(199, 69);
+            this.btnBuscaFactura.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnBuscaFactura.Size = new System.Drawing.Size(149, 56);
             this.btnBuscaFactura.TabIndex = 22;
             this.btnBuscaFactura.Tag = "registro";
             this.btnBuscaFactura.Text = "  Facturas";
@@ -144,11 +200,10 @@
             this.btnVenta.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVenta.IconSize = 30;
             this.btnVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVenta.Location = new System.Drawing.Point(0, 4);
-            this.btnVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVenta.Location = new System.Drawing.Point(0, 3);
             this.btnVenta.Name = "btnVenta";
-            this.btnVenta.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnVenta.Size = new System.Drawing.Size(199, 69);
+            this.btnVenta.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.btnVenta.Size = new System.Drawing.Size(149, 56);
             this.btnVenta.TabIndex = 20;
             this.btnVenta.Tag = "venta";
             this.btnVenta.Text = "   Facturar";
@@ -171,11 +226,10 @@
             this.btnProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnProductos.IconSize = 30;
             this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductos.Location = new System.Drawing.Point(0, 80);
-            this.btnProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnProductos.Location = new System.Drawing.Point(0, 65);
             this.btnProductos.Name = "btnProductos";
-            this.btnProductos.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.btnProductos.Size = new System.Drawing.Size(199, 69);
+            this.btnProductos.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.btnProductos.Size = new System.Drawing.Size(149, 56);
             this.btnProductos.TabIndex = 21;
             this.btnProductos.Tag = "productos";
             this.btnProductos.Text = "   Productos";
@@ -198,11 +252,10 @@
             this.btnRegistro.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRegistro.IconSize = 30;
             this.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistro.Location = new System.Drawing.Point(0, 156);
-            this.btnRegistro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegistro.Location = new System.Drawing.Point(0, 127);
             this.btnRegistro.Name = "btnRegistro";
-            this.btnRegistro.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.btnRegistro.Size = new System.Drawing.Size(199, 69);
+            this.btnRegistro.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnRegistro.Size = new System.Drawing.Size(149, 56);
             this.btnRegistro.TabIndex = 19;
             this.btnRegistro.Tag = "registro";
             this.btnRegistro.Text = " Clientes";
@@ -220,7 +273,7 @@
             this.panelDashHead.Location = new System.Drawing.Point(0, 0);
             this.panelDashHead.Margin = new System.Windows.Forms.Padding(0);
             this.panelDashHead.Name = "panelDashHead";
-            this.panelDashHead.Size = new System.Drawing.Size(199, 94);
+            this.panelDashHead.Size = new System.Drawing.Size(149, 76);
             this.panelDashHead.TabIndex = 1;
             // 
             // lblNombre
@@ -230,10 +283,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNombre.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.ForeColor = System.Drawing.Color.White;
-            this.lblNombre.Location = new System.Drawing.Point(3, 97);
-            this.lblNombre.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.lblNombre.Location = new System.Drawing.Point(2, 79);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(10);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(200, 0);
+            this.lblNombre.Size = new System.Drawing.Size(150, 0);
             this.lblNombre.TabIndex = 7;
             this.lblNombre.Text = "Admin";
             this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -252,10 +305,9 @@
             this.ptmfotouser.BorderSize = 2;
             this.ptmfotouser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ptmfotouser.GradientAngle = 50F;
-            this.ptmfotouser.Location = new System.Drawing.Point(56, 12);
-            this.ptmfotouser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ptmfotouser.Location = new System.Drawing.Point(42, 10);
             this.ptmfotouser.Name = "ptmfotouser";
-            this.ptmfotouser.Size = new System.Drawing.Size(91, 91);
+            this.ptmfotouser.Size = new System.Drawing.Size(68, 68);
             this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptmfotouser.TabIndex = 6;
             this.ptmfotouser.TabStop = false;
@@ -266,10 +318,10 @@
             this.panelDashOut.BackColor = System.Drawing.Color.RosyBrown;
             this.panelDashOut.Controls.Add(this.btnCerrarsesion);
             this.panelDashOut.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDashOut.Location = new System.Drawing.Point(0, 598);
+            this.panelDashOut.Location = new System.Drawing.Point(0, 485);
             this.panelDashOut.Margin = new System.Windows.Forms.Padding(0);
             this.panelDashOut.Name = "panelDashOut";
-            this.panelDashOut.Size = new System.Drawing.Size(199, 32);
+            this.panelDashOut.Size = new System.Drawing.Size(149, 27);
             this.panelDashOut.TabIndex = 2;
             // 
             // btnCerrarsesion
@@ -290,8 +342,8 @@
             this.btnCerrarsesion.Location = new System.Drawing.Point(0, 0);
             this.btnCerrarsesion.Margin = new System.Windows.Forms.Padding(0);
             this.btnCerrarsesion.Name = "btnCerrarsesion";
-            this.btnCerrarsesion.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.btnCerrarsesion.Size = new System.Drawing.Size(199, 32);
+            this.btnCerrarsesion.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnCerrarsesion.Size = new System.Drawing.Size(149, 27);
             this.btnCerrarsesion.TabIndex = 24;
             this.btnCerrarsesion.Tag = "perfiles";
             this.btnCerrarsesion.Text = " Cerrar Sesión";
@@ -307,23 +359,22 @@
             this.panelLayoutForms.Controls.Add(this.panelForms, 0, 1);
             this.panelLayoutForms.Controls.Add(this.panelLayoutFormsHead, 0, 0);
             this.panelLayoutForms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLayoutForms.Location = new System.Drawing.Point(199, 0);
-            this.panelLayoutForms.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelLayoutForms.Location = new System.Drawing.Point(149, 0);
             this.panelLayoutForms.Name = "panelLayoutForms";
             this.panelLayoutForms.RowCount = 2;
             this.panelLayoutForms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.panelLayoutForms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95F));
-            this.panelLayoutForms.Size = new System.Drawing.Size(1033, 630);
+            this.panelLayoutForms.Size = new System.Drawing.Size(775, 512);
             this.panelLayoutForms.TabIndex = 1;
             // 
             // panelForms
             // 
             this.panelForms.BackColor = System.Drawing.Color.LavenderBlush;
             this.panelForms.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelForms.Location = new System.Drawing.Point(0, 31);
+            this.panelForms.Location = new System.Drawing.Point(0, 25);
             this.panelForms.Margin = new System.Windows.Forms.Padding(0);
             this.panelForms.Name = "panelForms";
-            this.panelForms.Size = new System.Drawing.Size(1033, 599);
+            this.panelForms.Size = new System.Drawing.Size(775, 487);
             this.panelForms.TabIndex = 1;
             // 
             // panelLayoutFormsHead
@@ -341,7 +392,7 @@
             this.panelLayoutFormsHead.Name = "panelLayoutFormsHead";
             this.panelLayoutFormsHead.RowCount = 1;
             this.panelLayoutFormsHead.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelLayoutFormsHead.Size = new System.Drawing.Size(1033, 31);
+            this.panelLayoutFormsHead.Size = new System.Drawing.Size(775, 25);
             this.panelLayoutFormsHead.TabIndex = 2;
             // 
             // panelDashHeadCenter
@@ -349,10 +400,10 @@
             this.panelDashHeadCenter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.panelDashHeadCenter.Controls.Add(this.lblEncabezadoGS);
             this.panelDashHeadCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDashHeadCenter.Location = new System.Drawing.Point(51, 0);
+            this.panelDashHeadCenter.Location = new System.Drawing.Point(38, 0);
             this.panelDashHeadCenter.Margin = new System.Windows.Forms.Padding(0);
             this.panelDashHeadCenter.Name = "panelDashHeadCenter";
-            this.panelDashHeadCenter.Size = new System.Drawing.Size(857, 31);
+            this.panelDashHeadCenter.Size = new System.Drawing.Size(643, 25);
             this.panelDashHeadCenter.TabIndex = 1;
             // 
             // lblEncabezadoGS
@@ -360,10 +411,9 @@
             this.lblEncabezadoGS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEncabezadoGS.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEncabezadoGS.ForeColor = System.Drawing.Color.White;
-            this.lblEncabezadoGS.Location = new System.Drawing.Point(43, 1);
-            this.lblEncabezadoGS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEncabezadoGS.Location = new System.Drawing.Point(32, 1);
             this.lblEncabezadoGS.Name = "lblEncabezadoGS";
-            this.lblEncabezadoGS.Size = new System.Drawing.Size(776, 28);
+            this.lblEncabezadoGS.Size = new System.Drawing.Size(582, 23);
             this.lblEncabezadoGS.TabIndex = 0;
             this.lblEncabezadoGS.Text = "Gestión del Software - Sistema de Facturación - v1.0";
             this.lblEncabezadoGS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -379,7 +429,7 @@
             this.panelButtomDash.Location = new System.Drawing.Point(0, 0);
             this.panelButtomDash.Margin = new System.Windows.Forms.Padding(0);
             this.panelButtomDash.Name = "panelButtomDash";
-            this.panelButtomDash.Size = new System.Drawing.Size(51, 31);
+            this.panelButtomDash.Size = new System.Drawing.Size(38, 25);
             this.panelButtomDash.TabIndex = 0;
             // 
             // btnMenu
@@ -399,7 +449,7 @@
             this.btnMenu.Location = new System.Drawing.Point(0, 0);
             this.btnMenu.Margin = new System.Windows.Forms.Padding(0);
             this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(51, 31);
+            this.btnMenu.Size = new System.Drawing.Size(38, 25);
             this.btnMenu.TabIndex = 23;
             this.btnMenu.UseVisualStyleBackColor = false;
             this.btnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
@@ -414,14 +464,14 @@
             this.panelLayourMaximizar.Controls.Add(this.btn_cerrar, 2, 0);
             this.panelLayourMaximizar.Controls.Add(this.btn_maximizar, 1, 0);
             this.panelLayourMaximizar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelLayourMaximizar.Location = new System.Drawing.Point(908, 0);
+            this.panelLayourMaximizar.Location = new System.Drawing.Point(681, 0);
             this.panelLayourMaximizar.Margin = new System.Windows.Forms.Padding(0);
             this.panelLayourMaximizar.Name = "panelLayourMaximizar";
             this.panelLayourMaximizar.RowCount = 1;
-            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.panelLayourMaximizar.Size = new System.Drawing.Size(125, 31);
+            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.panelLayourMaximizar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.panelLayourMaximizar.Size = new System.Drawing.Size(94, 25);
             this.panelLayourMaximizar.TabIndex = 2;
             // 
             // btn_minimizar
@@ -441,7 +491,7 @@
             this.btn_minimizar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_minimizar.Name = "btn_minimizar";
             this.btn_minimizar.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.btn_minimizar.Size = new System.Drawing.Size(41, 31);
+            this.btn_minimizar.Size = new System.Drawing.Size(31, 25);
             this.btn_minimizar.TabIndex = 7;
             this.btn_minimizar.UseVisualStyleBackColor = false;
             this.btn_minimizar.Click += new System.EventHandler(this.Btn_Minimizar_Click);
@@ -459,11 +509,11 @@
             this.btn_cerrar.IconColor = System.Drawing.Color.White;
             this.btn_cerrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_cerrar.IconSize = 20;
-            this.btn_cerrar.Location = new System.Drawing.Point(82, 0);
+            this.btn_cerrar.Location = new System.Drawing.Point(62, 0);
             this.btn_cerrar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_cerrar.Name = "btn_cerrar";
             this.btn_cerrar.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.btn_cerrar.Size = new System.Drawing.Size(43, 31);
+            this.btn_cerrar.Size = new System.Drawing.Size(32, 25);
             this.btn_cerrar.TabIndex = 5;
             this.btn_cerrar.UseVisualStyleBackColor = false;
             this.btn_cerrar.Click += new System.EventHandler(this.Btn_cerrar_Click);
@@ -481,11 +531,11 @@
             this.btn_maximizar.IconColor = System.Drawing.Color.White;
             this.btn_maximizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_maximizar.IconSize = 20;
-            this.btn_maximizar.Location = new System.Drawing.Point(41, 0);
+            this.btn_maximizar.Location = new System.Drawing.Point(31, 0);
             this.btn_maximizar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_maximizar.Name = "btn_maximizar";
             this.btn_maximizar.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.btn_maximizar.Size = new System.Drawing.Size(41, 31);
+            this.btn_maximizar.Size = new System.Drawing.Size(31, 25);
             this.btn_maximizar.TabIndex = 6;
             this.btn_maximizar.UseVisualStyleBackColor = false;
             this.btn_maximizar.Click += new System.EventHandler(this.Btn_Maximizar_Click);
@@ -505,67 +555,70 @@
             this.rjcFacturaMenu.Name = "rjDdmRegistro";
             this.rjcFacturaMenu.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.rjcFacturaMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.rjcFacturaMenu.Size = new System.Drawing.Size(147, 76);
+            this.rjcFacturaMenu.Size = new System.Drawing.Size(130, 70);
             // 
             // btnRJBuscarF
             // 
             this.btnRJBuscarF.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnRJBuscarF.Name = "btnRJBuscarF";
-            this.btnRJBuscarF.Size = new System.Drawing.Size(146, 24);
+            this.btnRJBuscarF.Size = new System.Drawing.Size(129, 22);
             this.btnRJBuscarF.Text = "Buscar";
             this.btnRJBuscarF.Click += new System.EventHandler(this.btnRJBuscarF_Click);
             // 
             // btnRJEliminar
             // 
             this.btnRJEliminar.Name = "btnRJEliminar";
-            this.btnRJEliminar.Size = new System.Drawing.Size(146, 24);
+            this.btnRJEliminar.Size = new System.Drawing.Size(129, 22);
             this.btnRJEliminar.Text = "Eliminar";
             this.btnRJEliminar.Click += new System.EventHandler(this.btnRJEliminar_Click);
             // 
             // btnRJEditar
             // 
             this.btnRJEditar.Name = "btnRJEditar";
-            this.btnRJEditar.Size = new System.Drawing.Size(146, 24);
+            this.btnRJEditar.Size = new System.Drawing.Size(129, 22);
             this.btnRJEditar.Text = "Editar";
             // 
-            // btnIva
+            // rjcIva
             // 
-            this.btnIva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.btnIva.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIva.FlatAppearance.BorderSize = 0;
-            this.btnIva.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btnIva.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIva.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIva.ForeColor = System.Drawing.Color.White;
-            this.btnIva.IconChar = FontAwesome.Sharp.IconChar.Donate;
-            this.btnIva.IconColor = System.Drawing.Color.White;
-            this.btnIva.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnIva.IconSize = 30;
-            this.btnIva.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIva.Location = new System.Drawing.Point(0, 310);
-            this.btnIva.Margin = new System.Windows.Forms.Padding(4);
-            this.btnIva.Name = "btnIva";
-            this.btnIva.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
-            this.btnIva.Size = new System.Drawing.Size(199, 69);
-            this.btnIva.TabIndex = 23;
-            this.btnIva.Tag = "registro";
-            this.btnIva.Text = "  Iva";
-            this.btnIva.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIva.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnIva.UseVisualStyleBackColor = false;
-            this.btnIva.Click += new System.EventHandler(this.BtnIva_Click);
+            this.rjcIva.BackColor = System.Drawing.Color.White;
+            this.rjcIva.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rjcIva.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.rjcIva.IsMainMenu = false;
+            this.rjcIva.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rjcBtnResumen,
+            this.rjcBtnDetallada});
+            this.rjcIva.MenuItemHeight = 50;
+            this.rjcIva.MenuItemTextColor = System.Drawing.Color.Black;
+            this.rjcIva.Name = "rjDdmRegistro";
+            this.rjcIva.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.rjcIva.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.rjcIva.Size = new System.Drawing.Size(181, 70);
+            // 
+            // rjcBtnResumen
+            // 
+            this.rjcBtnResumen.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.rjcBtnResumen.Name = "rjcBtnResumen";
+            this.rjcBtnResumen.Size = new System.Drawing.Size(180, 22);
+            this.rjcBtnResumen.Text = "Resumen";
+            this.rjcBtnResumen.Click += new System.EventHandler(this.rjcBtnResumen_Click);
+            // 
+            // rjcBtnDetallada
+            // 
+            this.rjcBtnDetallada.Name = "rjcBtnDetallada";
+            this.rjcBtnDetallada.Size = new System.Drawing.Size(180, 22);
+            this.rjcBtnDetallada.Text = "Detallada";
+            this.rjcBtnDetallada.Click += new System.EventHandler(this.rjcBtnDetallada_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1232, 630);
+            this.ClientSize = new System.Drawing.Size(924, 512);
             this.Controls.Add(this.panelLayoutForms);
             this.Controls.Add(this.panelLayoutMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISTEMA DE FACTURACIÓN";
@@ -582,6 +635,7 @@
             this.panelButtomDash.ResumeLayout(false);
             this.panelLayourMaximizar.ResumeLayout(false);
             this.rjcFacturaMenu.ResumeLayout(false);
+            this.rjcIva.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -614,6 +668,10 @@
         private System.Windows.Forms.ToolStripMenuItem btnRJEliminar;
         public System.Windows.Forms.ToolStripMenuItem btnRJEditar;
         private FontAwesome.Sharp.IconButton btnIva;
+        private RJCodeAdvance.RJControls.RJDropdownMenu rjcIva;
+        private System.Windows.Forms.ToolStripMenuItem rjcBtnResumen;
+        private System.Windows.Forms.ToolStripMenuItem rjcBtnDetallada;
+        private FontAwesome.Sharp.IconButton btnInformes;
     }
 }
 

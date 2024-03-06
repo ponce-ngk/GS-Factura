@@ -191,6 +191,18 @@
     <Compile Include="GS-ProductoVenta.Designer.cs">
       <DependentUpon>GS-ProductoVenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="GS_DetalladoVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GS_DetalladoVenta.Designer.cs">
+      <DependentUpon>GS_DetalladoVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GS_ResumenVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GS_ResumenVentas.Designer.cs">
+      <DependentUpon>GS_ResumenVentas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualizaFacturaBorrar.cs">
@@ -237,6 +249,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GS-ProductoVenta.resx">
       <DependentUpon>GS-ProductoVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GS_DetalladoVenta.resx">
+      <DependentUpon>GS_DetalladoVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GS_ResumenVentas.resx">
+      <DependentUpon>GS_ResumenVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
