@@ -33,12 +33,12 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cbxProducto = new System.Windows.Forms.CheckBox();
+            this.txtProducto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.txtBuscaFacturaCliente = new System.Windows.Forms.TextBox();
+            this.cbxNombre = new System.Windows.Forms.CheckBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -53,13 +53,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnVender = new FontAwesome.Sharp.IconButton();
+            this.btnExportarExcel = new FontAwesome.Sharp.IconButton();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnExportarPDF = new FontAwesome.Sharp.IconButton();
             this.panel9 = new System.Windows.Forms.Panel();
             this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.panelDtgInforme = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvResumenVenta = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -76,7 +76,7 @@
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panelDtgInforme.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResumenVenta)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -143,8 +143,8 @@
             // 
             this.panel7.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.checkBox1);
-            this.panel7.Controls.Add(this.textBox1);
+            this.panel7.Controls.Add(this.cbxProducto);
+            this.panel7.Controls.Add(this.txtProducto);
             this.panel7.Controls.Add(this.label2);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(200, 0);
@@ -153,34 +153,37 @@
             this.panel7.Size = new System.Drawing.Size(200, 67);
             this.panel7.TabIndex = 1;
             // 
-            // checkBox1
+            // cbxProducto
             // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cbxProducto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.Location = new System.Drawing.Point(44, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(116, 17);
-            this.checkBox1.TabIndex = 39;
-            this.checkBox1.Text = "Estado";
-            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbxProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxProducto.Location = new System.Drawing.Point(44, 3);
+            this.cbxProducto.Name = "cbxProducto";
+            this.cbxProducto.Size = new System.Drawing.Size(116, 17);
+            this.cbxProducto.TabIndex = 39;
+            this.cbxProducto.Text = "Estado";
+            this.cbxProducto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbxProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.cbxProducto.UseVisualStyleBackColor = true;
+            this.cbxProducto.CheckedChanged += new System.EventHandler(this.cbxProducto_CheckedChanged);
             // 
-            // textBox1
+            // txtProducto
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox1.Location = new System.Drawing.Point(0, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(198, 23);
-            this.textBox1.TabIndex = 40;
+            this.txtProducto.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtProducto.Enabled = false;
+            this.txtProducto.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProducto.ForeColor = System.Drawing.Color.Black;
+            this.txtProducto.Location = new System.Drawing.Point(0, 36);
+            this.txtProducto.Name = "txtProducto";
+            this.txtProducto.Size = new System.Drawing.Size(198, 29);
+            this.txtProducto.TabIndex = 40;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DimGray;
             this.label2.Location = new System.Drawing.Point(7, 21);
             this.label2.Name = "label2";
@@ -193,8 +196,8 @@
             // 
             this.panel6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.checkBox2);
-            this.panel6.Controls.Add(this.txtBuscaFacturaCliente);
+            this.panel6.Controls.Add(this.cbxNombre);
+            this.panel6.Controls.Add(this.txtCliente);
             this.panel6.Controls.Add(this.label1);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 0);
@@ -203,34 +206,37 @@
             this.panel6.Size = new System.Drawing.Size(200, 67);
             this.panel6.TabIndex = 0;
             // 
-            // checkBox2
+            // cbxNombre
             // 
-            this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cbxNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox2.Location = new System.Drawing.Point(44, 3);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(116, 17);
-            this.checkBox2.TabIndex = 39;
-            this.checkBox2.Text = "Estado";
-            this.checkBox2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.checkBox2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cbxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxNombre.Location = new System.Drawing.Point(44, 3);
+            this.cbxNombre.Name = "cbxNombre";
+            this.cbxNombre.Size = new System.Drawing.Size(116, 17);
+            this.cbxNombre.TabIndex = 39;
+            this.cbxNombre.Text = "Estado";
+            this.cbxNombre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cbxNombre.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.cbxNombre.UseVisualStyleBackColor = true;
+            this.cbxNombre.CheckedChanged += new System.EventHandler(this.cbxNombre_CheckedChanged);
             // 
-            // txtBuscaFacturaCliente
+            // txtCliente
             // 
-            this.txtBuscaFacturaCliente.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtBuscaFacturaCliente.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscaFacturaCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtBuscaFacturaCliente.Location = new System.Drawing.Point(0, 42);
-            this.txtBuscaFacturaCliente.Name = "txtBuscaFacturaCliente";
-            this.txtBuscaFacturaCliente.Size = new System.Drawing.Size(198, 23);
-            this.txtBuscaFacturaCliente.TabIndex = 40;
+            this.txtCliente.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtCliente.Enabled = false;
+            this.txtCliente.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCliente.ForeColor = System.Drawing.Color.Black;
+            this.txtCliente.Location = new System.Drawing.Point(0, 36);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Size = new System.Drawing.Size(198, 29);
+            this.txtCliente.TabIndex = 40;
             // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DimGray;
             this.label1.Location = new System.Drawing.Point(7, 21);
             this.label1.Name = "label1";
@@ -270,7 +276,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.DimGray;
             this.label3.Location = new System.Drawing.Point(3, -1);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
@@ -359,10 +365,11 @@
             // 
             this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker2.Location = new System.Drawing.Point(61, 3);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(117, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(117, 29);
             this.dateTimePicker2.TabIndex = 0;
             // 
             // panel3
@@ -393,15 +400,16 @@
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(61, 3);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(117, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(117, 29);
             this.dateTimePicker1.TabIndex = 0;
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.btnVender);
+            this.panel5.Controls.Add(this.btnExportarExcel);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(2, 27);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
@@ -409,34 +417,35 @@
             this.panel5.Size = new System.Drawing.Size(177, 22);
             this.panel5.TabIndex = 2;
             // 
-            // btnVender
+            // btnExportarExcel
             // 
-            this.btnVender.BackColor = System.Drawing.Color.Green;
-            this.btnVender.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVender.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVender.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnVender.FlatAppearance.BorderSize = 0;
-            this.btnVender.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnVender.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SpringGreen;
-            this.btnVender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVender.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVender.ForeColor = System.Drawing.Color.White;
-            this.btnVender.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
-            this.btnVender.IconColor = System.Drawing.Color.White;
-            this.btnVender.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVender.IconSize = 25;
-            this.btnVender.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVender.Location = new System.Drawing.Point(0, 0);
-            this.btnVender.Margin = new System.Windows.Forms.Padding(5);
-            this.btnVender.Name = "btnVender";
-            this.btnVender.Size = new System.Drawing.Size(177, 22);
-            this.btnVender.TabIndex = 14;
-            this.btnVender.Text = "       Exportar Excel";
-            this.btnVender.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.BackColor = System.Drawing.Color.Green;
+            this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportarExcel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExportarExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnExportarExcel.FlatAppearance.BorderSize = 0;
+            this.btnExportarExcel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnExportarExcel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SpringGreen;
+            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportarExcel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExportarExcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
+            this.btnExportarExcel.IconColor = System.Drawing.Color.White;
+            this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnExportarExcel.IconSize = 25;
+            this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarExcel.Location = new System.Drawing.Point(0, 0);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(5);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(177, 22);
+            this.btnExportarExcel.TabIndex = 14;
+            this.btnExportarExcel.Text = "       Exportar Excel";
+            this.btnExportarExcel.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // panel8
             // 
-            this.panel8.Controls.Add(this.iconButton1);
+            this.panel8.Controls.Add(this.btnExportarPDF);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(183, 27);
             this.panel8.Margin = new System.Windows.Forms.Padding(2);
@@ -444,30 +453,31 @@
             this.panel8.Size = new System.Drawing.Size(177, 22);
             this.panel8.TabIndex = 3;
             // 
-            // iconButton1
+            // btnExportarPDF
             // 
-            this.iconButton1.BackColor = System.Drawing.Color.Red;
-            this.iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SpringGreen;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.Color.White;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
-            this.iconButton1.IconColor = System.Drawing.Color.White;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 25;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(0, 0);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(177, 22);
-            this.iconButton1.TabIndex = 14;
-            this.iconButton1.Text = "       Exportar PDF";
-            this.iconButton1.UseVisualStyleBackColor = false;
+            this.btnExportarPDF.BackColor = System.Drawing.Color.Red;
+            this.btnExportarPDF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportarPDF.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExportarPDF.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnExportarPDF.FlatAppearance.BorderSize = 0;
+            this.btnExportarPDF.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnExportarPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SpringGreen;
+            this.btnExportarPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportarPDF.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarPDF.ForeColor = System.Drawing.Color.White;
+            this.btnExportarPDF.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
+            this.btnExportarPDF.IconColor = System.Drawing.Color.White;
+            this.btnExportarPDF.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnExportarPDF.IconSize = 25;
+            this.btnExportarPDF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarPDF.Location = new System.Drawing.Point(0, 0);
+            this.btnExportarPDF.Margin = new System.Windows.Forms.Padding(0);
+            this.btnExportarPDF.Name = "btnExportarPDF";
+            this.btnExportarPDF.Size = new System.Drawing.Size(177, 22);
+            this.btnExportarPDF.TabIndex = 14;
+            this.btnExportarPDF.Text = "       Exportar PDF";
+            this.btnExportarPDF.UseVisualStyleBackColor = false;
+            this.btnExportarPDF.Click += new System.EventHandler(this.btnExportarPDF_Click);
             // 
             // panel9
             // 
@@ -501,7 +511,7 @@
             // panelDtgInforme
             // 
             this.panelDtgInforme.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelDtgInforme.Controls.Add(this.dataGridView1);
+            this.panelDtgInforme.Controls.Add(this.dgvResumenVenta);
             this.panelDtgInforme.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDtgInforme.Location = new System.Drawing.Point(0, 67);
             this.panelDtgInforme.Margin = new System.Windows.Forms.Padding(0);
@@ -509,14 +519,14 @@
             this.panelDtgInforme.Size = new System.Drawing.Size(800, 383);
             this.panelDtgInforme.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgvResumenVenta
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(800, 383);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvResumenVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResumenVenta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvResumenVenta.Location = new System.Drawing.Point(0, 0);
+            this.dgvResumenVenta.Name = "dgvResumenVenta";
+            this.dgvResumenVenta.Size = new System.Drawing.Size(800, 383);
+            this.dgvResumenVenta.TabIndex = 0;
             // 
             // GS_ResumenVentas
             // 
@@ -546,7 +556,7 @@
             this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panelDtgInforme.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResumenVenta)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -561,11 +571,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.TextBox txtBuscaFacturaCliente;
+        private System.Windows.Forms.CheckBox cbxNombre;
+        private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox cbxProducto;
+        private System.Windows.Forms.TextBox txtProducto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel2;
@@ -578,12 +588,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel8;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton btnVender;
+        private FontAwesome.Sharp.IconButton btnExportarPDF;
+        private FontAwesome.Sharp.IconButton btnExportarExcel;
         private System.Windows.Forms.Panel panel10;
         private FontAwesome.Sharp.IconButton iconButton2;
         private System.Windows.Forms.Panel panel9;
         private FontAwesome.Sharp.IconButton btnBuscar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvResumenVenta;
     }
 }
