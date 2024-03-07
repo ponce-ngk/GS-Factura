@@ -22,7 +22,7 @@ namespace GS_Factura
     {
         BD2 OAD = new BD2();
         List<SqlParameter> par = new List<SqlParameter>();
-        int op;
+        int opClientes, opProductos;
         DataTable tb = new DataTable();
         string sql = "";
 
@@ -33,6 +33,8 @@ namespace GS_Factura
             cbxNombre.ForeColor = Color.Red;
             cbxProducto.Text = "Desabilitado";
             cbxProducto.ForeColor = Color.Red;
+            cmbitemsClientes.Enabled = false;
+            cmbitemsProductos.Enabled = false;
         }
 
         private void ExportToExcel(DataGridView dataGridView)
@@ -165,6 +167,7 @@ namespace GS_Factura
                 txtCliente.Enabled = true;
                 cbxNombre.Text = "Habilitado";
                 cbxNombre.ForeColor = Color.Green;
+                cmbitemsClientes.Enabled = true;
             }
             else
             {
@@ -172,6 +175,7 @@ namespace GS_Factura
                 txtCliente.Enabled = false;
                 cbxNombre.Text = "Desabilitado";
                 cbxNombre.ForeColor = Color.Red;
+                cmbitemsClientes.Enabled = false;
             }
         }
 
@@ -184,6 +188,7 @@ namespace GS_Factura
                 txtProducto.Enabled = true;
                 cbxProducto.Text = "Habilitado";
                 cbxProducto.ForeColor = Color.Green;
+                cmbitemsProductos.Enabled = true;
             }
             else
             {
@@ -191,6 +196,7 @@ namespace GS_Factura
                 txtProducto.Enabled = false;
                 cbxProducto.Text = "Desabilitado";
                 cbxProducto.ForeColor = Color.Red;
+                cmbitemsProductos.Enabled = false;
             }
         }
 
@@ -202,6 +208,585 @@ namespace GS_Factura
             par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechas ", par, true);
             dgvResumenVenta.DataSource = tb;
+        }
+
+        private void txtCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Validacion de que sea solo letras y espacio 
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                if (txtCliente.Text != null)
+                {
+                    if (opClientes == 0)
+                    {
+                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opClientes == 1)
+                    {
+                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opClientes == 0 && opProductos == 0)
+                    {
+                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
+                            par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opClientes == 0 && opProductos == 1)
+                    {
+                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
+                            par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opClientes == 1 && opProductos == 0)
+                    {
+                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opClientes == 1 && opProductos == 1)
+                    {
+                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione al menos un campo");
+                }
+            }
+            else if (opClientes == null && txtCliente.Text == null)
+            {
+                MessageBox.Show("Por favor ingregse un carácter");
+            }
+        }
+
+        private void cmbitemsProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            opProductos = cmbitemsProductos.SelectedIndex;
+            switch (opProductos)
+            {
+                case 0:
+                    opProductos = 0;
+                    break;
+                case 1:
+                    opProductos = 1;
+                    break;
+            }
+        }
+
+        private void txtProducto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Validacion de que sea solo letras y espacio 
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                if (txtProducto.Text != null)
+                {
+                    if (opProductos == 0)
+                    {
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasProductoS ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opProductos == 1)
+                    {
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasProductoS ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opProductos == 0 && opClientes == 0)
+                    {
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Campo2", "NOMBRE"));
+                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opProductos == 0 && opClientes == 1)
+                    {
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Campo2", "CEDULA"));
+                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opProductos == 1 && opClientes == 0)
+                    {
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Campo2", "NOMBRE"));
+                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opProductos == 1 && opClientes == 1)
+                    {
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Campo2", "CEDULA"));
+                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                            dgvResumenVenta.DataSource = tb;
+                        }
+                        else
+                        {
+                            dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione al menos un campo");
+                }
+            }
+            else if (opProductos == null && txtProducto.Text == null)
+            {
+                MessageBox.Show("Por favor ingregse un carácter");
+            }
+        }
+
+        private void btnBuscarItems_Click(object sender, EventArgs e)
+        {
+            if (txtCliente.Text != null)
+            {
+                if (opClientes == 0)
+                {
+                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "CEDULA"));
+                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (opClientes == 1)
+                {
+                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+            }
+            else if (txtProducto.Text != null)
+            {
+                if (opProductos == 0)
+                {
+                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasProductoS ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (opProductos == 1)
+                {
+                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasProductoS ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+            }
+            else if(txtCliente.Text != null || txtProducto.Text != null)
+            {
+                if (opClientes == 0 && opProductos == 0)
+                {
+                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "CEDULA"));
+                        par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                        par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (opClientes == 0 && opProductos == 1)
+                {
+                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "CEDULA"));
+                        par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                        par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (opClientes == 1 && opProductos == 0)
+                {
+                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                        par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                        par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (opClientes == 1 && opProductos == 1)
+                {
+                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                        par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                        par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (opProductos == 0 && opClientes == 0)
+                {
+                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                        par.Add(new SqlParameter("@Campo2", "NOMBRE"));
+                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                        par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (opProductos == 0 && opClientes == 1)
+                {
+                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                        par.Add(new SqlParameter("@Campo2", "CEDULA"));
+                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                        par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (opProductos == 1 && opClientes == 0)
+                {
+                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                        par.Add(new SqlParameter("@Campo2", "NOMBRE"));
+                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                        par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (opProductos == 1 && opClientes == 1)
+                {
+                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                        par.Add(new SqlParameter("@Campo2", "CEDULA"));
+                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                        par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                    }
+                    else
+                    {
+                        dgvResumenVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+            }
+        }
+
+        private void cmbitemsClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            opClientes = cmbitemsClientes.SelectedIndex;
+            switch (opClientes)
+            {
+                case 0:
+                    opClientes = 0;
+                    break;
+                case 1:
+                    opClientes = 1;
+                    break;
+            }
         }
     }
 }
