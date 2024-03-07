@@ -491,12 +491,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
                         par.Add(new SqlParameter("@Campo", "CEDULA"));
                         par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -510,12 +510,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
                         par.Add(new SqlParameter("@Campo", "NOMBRE"));
                         par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -532,12 +532,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
                         par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
                         par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasProductoS ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -551,12 +551,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
                         par.Add(new SqlParameter("@Campo", "PRODUCTO"));
                         par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasProductoS ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -575,12 +575,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
                         par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
                         par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -596,12 +596,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
                         par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
                         par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -617,12 +617,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
                         par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
                         par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -638,12 +638,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
                         par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
                         par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -659,12 +659,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Campo2", "NOMBRE"));
                         par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
                         par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -680,12 +680,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Campo2", "CEDULA"));
                         par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
                         par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -701,12 +701,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Campo2", "NOMBRE"));
                         par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
                         par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -722,12 +722,12 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Campo2", "CEDULA"));
                         par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
                         par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
+                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
                         dgvDetalladoVenta.DataSource = tb;
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ResumenVentasVacio");
+                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
