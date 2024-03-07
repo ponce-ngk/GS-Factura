@@ -296,6 +296,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconoprueba.ico" />
+    <None Include="Resources\editar.ico" />
+    <None Include="Resources\editar2.ico" />
+    <None Include="Resources\edit.ico" />
     <Content Include="Resources\remove.ico" />
     <None Include="Resources\ver.ico" />
     <None Include="Resources\ver_nuevo.ico" />

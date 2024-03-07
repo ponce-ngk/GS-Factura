@@ -122,7 +122,7 @@ namespace GS_Factura
         {
             try
             {
-                if (e.RowIndex >= 0 && (e.ColumnIndex == dtgFactura.Columns["EliminarFila"].Index || e.ColumnIndex == dtgFactura.Columns["VerFactura"].Index))
+                if (e.RowIndex >= 0 && (e.ColumnIndex == dtgFactura.Columns["EliminarFila"].Index || e.ColumnIndex == dtgFactura.Columns["VerFactura"].Index || e.ColumnIndex == dtgFactura.Columns["editarFactura"].Index))
                 {
                     e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
@@ -139,6 +139,12 @@ namespace GS_Factura
                         // Icono para la columna "VerFactura"
                         icono = Properties.Resources.ver_nuevo;
                     }
+                    else if (e.ColumnIndex == dtgFactura.Columns["editarFactura"].Index)
+                    {
+                        // Icono para la columna "VerFactura"
+                        icono = Properties.Resources.edit;
+                    }
+
 
                     // Calcular la posición para centrar el icono en la celda
                     int x = e.CellBounds.Left + (e.CellBounds.Width - icono.Width) / 2;

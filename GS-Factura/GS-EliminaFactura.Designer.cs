@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tblFormulario = new System.Windows.Forms.TableLayoutPanel();
             this.tblFacturaMuestra = new System.Windows.Forms.TableLayoutPanel();
@@ -42,8 +42,6 @@
             this.tblBuscaFactura = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dtgFactura = new System.Windows.Forms.DataGridView();
-            this.Eliminarfila = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.verFactura = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -60,6 +58,9 @@
             this.label9 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.Eliminarfila = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.verFactura = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.editarFactura = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.tblFormulario.SuspendLayout();
             this.tblFacturaMuestra.SuspendLayout();
@@ -141,7 +142,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(349, 36);
             this.label1.TabIndex = 35;
-            this.label1.Text = "Previsualización de la factura a borrar";
+            this.label1.Text = "PREVISUALIZACIÓN DE LA FACTURA";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelFactura
@@ -187,35 +188,36 @@
             this.dtgFactura.AllowUserToAddRows = false;
             this.dtgFactura.AllowUserToResizeColumns = false;
             this.dtgFactura.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dtgFactura.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            this.dtgFactura.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dtgFactura.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgFactura.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtgFactura.BackgroundColor = System.Drawing.Color.White;
             this.dtgFactura.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgFactura.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dtgFactura.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dtgFactura.ColumnHeadersHeight = 29;
             this.dtgFactura.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgFactura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eliminarfila,
-            this.verFactura});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgFactura.DefaultCellStyle = dataGridViewCellStyle3;
+            this.verFactura,
+            this.editarFactura});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgFactura.DefaultCellStyle = dataGridViewCellStyle8;
             this.dtgFactura.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgFactura.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dtgFactura.EnableHeadersVisualStyles = false;
@@ -225,36 +227,22 @@
             this.dtgFactura.MultiSelect = false;
             this.dtgFactura.Name = "dtgFactura";
             this.dtgFactura.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dtgFactura.RowHeadersVisible = false;
             this.dtgFactura.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dtgFactura.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dtgFactura.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dtgFactura.Size = new System.Drawing.Size(387, 389);
             this.dtgFactura.TabIndex = 3;
             this.dtgFactura.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgFactura_CellClick);
             this.dtgFactura.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dtgFactura_CellPainting);
-            // 
-            // Eliminarfila
-            // 
-            this.Eliminarfila.FillWeight = 40.40974F;
-            this.Eliminarfila.HeaderText = "";
-            this.Eliminarfila.MinimumWidth = 6;
-            this.Eliminarfila.Name = "Eliminarfila";
-            // 
-            // verFactura
-            // 
-            this.verFactura.FillWeight = 41.65952F;
-            this.verFactura.HeaderText = "Ver";
-            this.verFactura.MinimumWidth = 6;
-            this.verFactura.Name = "verFactura";
             // 
             // panel5
             // 
@@ -455,6 +443,28 @@
             this.label3.Text = "Nota: Una vez eliminada la factura no se podrá recuperarla";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // Eliminarfila
+            // 
+            this.Eliminarfila.FillWeight = 43.91354F;
+            this.Eliminarfila.HeaderText = "Eliminar";
+            this.Eliminarfila.MinimumWidth = 6;
+            this.Eliminarfila.Name = "Eliminarfila";
+            this.Eliminarfila.Text = "";
+            // 
+            // verFactura
+            // 
+            this.verFactura.FillWeight = 45.27168F;
+            this.verFactura.HeaderText = "Ver";
+            this.verFactura.MinimumWidth = 6;
+            this.verFactura.Name = "verFactura";
+            // 
+            // editarFactura
+            // 
+            this.editarFactura.FillWeight = 45.27168F;
+            this.editarFactura.HeaderText = "Editar";
+            this.editarFactura.MinimumWidth = 6;
+            this.editarFactura.Name = "editarFactura";
+            // 
             // GS_EliminaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -516,5 +526,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminarfila;
         private System.Windows.Forms.DataGridViewButtonColumn verFactura;
+        private System.Windows.Forms.DataGridViewButtonColumn editarFactura;
     }
 }
