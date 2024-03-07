@@ -72,8 +72,11 @@ namespace GS_Factura
                 ptmfotouser.Visible = true;
                 lblNombre.Visible = true;
                 btnBuscaFactura.Width = 149;
+                btnInformes.Width = 149;
                 btnBuscaFactura.TextImageRelation = TextImageRelation.ImageBeforeText;
+                btnInformes.TextImageRelation = TextImageRelation.ImageBeforeText;
                 btnBuscaFactura.Text = "  Facturas";
+                btnInformes.Text = "  Informes";
             }
             else
             {
@@ -81,8 +84,11 @@ namespace GS_Factura
                 ptmfotouser.Visible = false;
                 lblNombre.Visible = false;
                 btnBuscaFactura.Width = 48;
+                btnInformes.Width = 48;
                 btnBuscaFactura.TextImageRelation = TextImageRelation.Overlay;
+                btnInformes.TextImageRelation = TextImageRelation.Overlay;
                 btnBuscaFactura.Text = "";
+                btnInformes.Text = "";
             }
         }
 
@@ -132,8 +138,9 @@ namespace GS_Factura
 
         private void BtnBuscaFactura_Click(object sender, EventArgs e)
         {
-            Open_DropdownMenu(rjcFacturaMenu, sender);
-            
+            AbrirFormEnPanel(new GS_EliminaFactura());
+            return;
+
         }
 
         private void Open_DropdownMenu(RJDropdownMenu dropdownMenu, object sender)
@@ -162,8 +169,7 @@ namespace GS_Factura
 
         private void btnRJBuscarF_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new GS_BuscaFactura());
-            return;
+            
         }
 
 

@@ -54,10 +54,6 @@
             this.btn_minimizar = new FontAwesome.Sharp.IconButton();
             this.btn_cerrar = new FontAwesome.Sharp.IconButton();
             this.btn_maximizar = new FontAwesome.Sharp.IconButton();
-            this.rjcFacturaMenu = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
-            this.btnRJBuscarF = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnRJEliminar = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnRJEditar = new System.Windows.Forms.ToolStripMenuItem();
             this.rjcIva = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.rjcBtnResumen = new System.Windows.Forms.ToolStripMenuItem();
             this.rjcBtnDetallada = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +67,6 @@
             this.panelDashHeadCenter.SuspendLayout();
             this.panelButtomDash.SuspendLayout();
             this.panelLayourMaximizar.SuspendLayout();
-            this.rjcFacturaMenu.SuspendLayout();
             this.rjcIva.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,7 +164,7 @@
             this.btnBuscaFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscaFactura.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscaFactura.ForeColor = System.Drawing.Color.White;
-            this.btnBuscaFactura.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassChart;
+            this.btnBuscaFactura.IconChar = FontAwesome.Sharp.IconChar.FileInvoiceDollar;
             this.btnBuscaFactura.IconColor = System.Drawing.Color.White;
             this.btnBuscaFactura.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBuscaFactura.IconSize = 30;
@@ -180,7 +175,7 @@
             this.btnBuscaFactura.Size = new System.Drawing.Size(149, 56);
             this.btnBuscaFactura.TabIndex = 22;
             this.btnBuscaFactura.Tag = "registro";
-            this.btnBuscaFactura.Text = "  Facturas";
+            this.btnBuscaFactura.Text = "  G. Facturas";
             this.btnBuscaFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscaFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscaFactura.UseVisualStyleBackColor = false;
@@ -540,44 +535,6 @@
             this.btn_maximizar.UseVisualStyleBackColor = false;
             this.btn_maximizar.Click += new System.EventHandler(this.Btn_Maximizar_Click);
             // 
-            // rjcFacturaMenu
-            // 
-            this.rjcFacturaMenu.BackColor = System.Drawing.Color.White;
-            this.rjcFacturaMenu.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rjcFacturaMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.rjcFacturaMenu.IsMainMenu = false;
-            this.rjcFacturaMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnRJBuscarF,
-            this.btnRJEliminar,
-            this.btnRJEditar});
-            this.rjcFacturaMenu.MenuItemHeight = 50;
-            this.rjcFacturaMenu.MenuItemTextColor = System.Drawing.Color.Black;
-            this.rjcFacturaMenu.Name = "rjDdmRegistro";
-            this.rjcFacturaMenu.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.rjcFacturaMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.rjcFacturaMenu.Size = new System.Drawing.Size(130, 70);
-            // 
-            // btnRJBuscarF
-            // 
-            this.btnRJBuscarF.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnRJBuscarF.Name = "btnRJBuscarF";
-            this.btnRJBuscarF.Size = new System.Drawing.Size(129, 22);
-            this.btnRJBuscarF.Text = "Buscar";
-            this.btnRJBuscarF.Click += new System.EventHandler(this.btnRJBuscarF_Click);
-            // 
-            // btnRJEliminar
-            // 
-            this.btnRJEliminar.Name = "btnRJEliminar";
-            this.btnRJEliminar.Size = new System.Drawing.Size(129, 22);
-            this.btnRJEliminar.Text = "Eliminar";
-            this.btnRJEliminar.Click += new System.EventHandler(this.btnRJEliminar_Click);
-            // 
-            // btnRJEditar
-            // 
-            this.btnRJEditar.Name = "btnRJEditar";
-            this.btnRJEditar.Size = new System.Drawing.Size(129, 22);
-            this.btnRJEditar.Text = "Editar";
-            // 
             // rjcIva
             // 
             this.rjcIva.BackColor = System.Drawing.Color.White;
@@ -592,20 +549,20 @@
             this.rjcIva.Name = "rjDdmRegistro";
             this.rjcIva.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.rjcIva.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.rjcIva.Size = new System.Drawing.Size(181, 70);
+            this.rjcIva.Size = new System.Drawing.Size(138, 48);
             // 
             // rjcBtnResumen
             // 
             this.rjcBtnResumen.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.rjcBtnResumen.Name = "rjcBtnResumen";
-            this.rjcBtnResumen.Size = new System.Drawing.Size(180, 22);
+            this.rjcBtnResumen.Size = new System.Drawing.Size(137, 22);
             this.rjcBtnResumen.Text = "Resumen";
             this.rjcBtnResumen.Click += new System.EventHandler(this.rjcBtnResumen_Click);
             // 
             // rjcBtnDetallada
             // 
             this.rjcBtnDetallada.Name = "rjcBtnDetallada";
-            this.rjcBtnDetallada.Size = new System.Drawing.Size(180, 22);
+            this.rjcBtnDetallada.Size = new System.Drawing.Size(137, 22);
             this.rjcBtnDetallada.Text = "Detallada";
             this.rjcBtnDetallada.Click += new System.EventHandler(this.rjcBtnDetallada_Click);
             // 
@@ -634,7 +591,6 @@
             this.panelDashHeadCenter.ResumeLayout(false);
             this.panelButtomDash.ResumeLayout(false);
             this.panelLayourMaximizar.ResumeLayout(false);
-            this.rjcFacturaMenu.ResumeLayout(false);
             this.rjcIva.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -663,10 +619,6 @@
         public System.Windows.Forms.TableLayoutPanel panelLayoutMenu;
         public System.Windows.Forms.Panel panelDashCenter;
         private FontAwesome.Sharp.IconButton btnBuscaFactura;
-        private RJCodeAdvance.RJControls.RJDropdownMenu rjcFacturaMenu;
-        private System.Windows.Forms.ToolStripMenuItem btnRJBuscarF;
-        private System.Windows.Forms.ToolStripMenuItem btnRJEliminar;
-        public System.Windows.Forms.ToolStripMenuItem btnRJEditar;
         private FontAwesome.Sharp.IconButton btnIva;
         private RJCodeAdvance.RJControls.RJDropdownMenu rjcIva;
         private System.Windows.Forms.ToolStripMenuItem rjcBtnResumen;
