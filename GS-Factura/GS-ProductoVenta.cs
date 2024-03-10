@@ -30,7 +30,9 @@ namespace GS_Factura
         public ProductoVenta()
         {
             InitializeComponent();
-            dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+            dtgventaproducto.DataSource = tb;
+            //dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
         }
 
         private void BtncloseProduct_Click(object sender, EventArgs e)
@@ -173,7 +175,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                        dtgventaproducto.DataSource = tb;
+                        //dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -190,7 +194,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                        dtgventaproducto.DataSource = tb;
+                        //dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -235,7 +241,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                            dtgventaproducto.DataSource = tb;
+                            //dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -253,7 +261,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                            dtgventaproducto.DataSource = tb;
+                            //dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }

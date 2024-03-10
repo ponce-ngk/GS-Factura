@@ -196,7 +196,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -216,7 +218,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -238,7 +242,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -260,7 +266,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -282,7 +290,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -304,7 +314,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -343,7 +355,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -363,7 +377,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -385,7 +401,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -407,7 +425,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -429,7 +449,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -451,7 +473,9 @@ namespace GS_Factura
                         }
                         else
                         {
-                            dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -496,7 +520,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -515,7 +541,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -537,7 +565,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -556,7 +586,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -580,7 +612,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -601,7 +635,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -622,7 +658,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -643,7 +681,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -664,7 +704,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -685,7 +727,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -706,7 +750,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -727,7 +773,9 @@ namespace GS_Factura
                     }
                     else
                     {
-                        dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                        dgvDetalladoVenta.DataSource = tb;
+                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
