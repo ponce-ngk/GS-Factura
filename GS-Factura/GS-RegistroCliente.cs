@@ -16,6 +16,7 @@ namespace GS_Factura
 {
     public partial class GS_RegistroCliente : Form
     {
+        bool verificar=false;
         BD2 OAD = new BD2();
         List<SqlParameter> par = new List<SqlParameter>();
         int op;
@@ -53,43 +54,63 @@ namespace GS_Factura
             btnEditarCliente.Visible = true;
             btnEliminarCliente.Visible = true;
         }
+
         private void btnGuardarDueño_Click(object sender, EventArgs e)
         {
+            
             // Se valida si hay campos vacíos antes de continuar
             if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
                 string.IsNullOrWhiteSpace(txtnombrescliente.Text) ||
                 string.IsNullOrWhiteSpace(txtapellidoscliente.Text) ||
-                string.IsNullOrWhiteSpace(dtpFechaCliente.Text))
+                dtpFechaCliente.Value.Date != DateTime.Today)
             {
-                MessageBox.Show("Por favor, completa todos los campos antes de continuar.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, Verifica que todos los campos esten correctos.", "Campos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (txtcedulacliente.Text.Length != 10) // Verificar que la cédula tenga 10 caracteres
+            {
+                MessageBox.Show("La cédula debe tener exactamente 10 caracteres.", "Cédula inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                // Se confirmar antes de agregar al cliente
-                DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres agregar estos datos?", "Confirmar adición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (resultado == DialogResult.Yes)
+                verificar = false;
+                par.Clear();
+                par.Add(new SqlParameter("@Cedula", txtcedulacliente.Text.Trim()));
+                verificar = OAD.EscalarProcAlmBool("VerificarExistenciaCedula", par, true);
+                // Verificar si la cédula ya existe en la base de datos
+                if (verificar)
                 {
-                    sql = "";
-                    par.Clear();
-                    par.Add(new SqlParameter("@Cedula", txtcedulacliente.Text.Trim()));
-                    par.Add(new SqlParameter("@Nombre_Cliente", txtnombrescliente.Text.Trim()));
-                    par.Add(new SqlParameter("@Apellido", txtapellidoscliente.Text.Trim()));
-                    par.Add(new SqlParameter("@Fecha_Nac", dtpFechaCliente.Text.Trim()));
-                    sql = OAD.EscalarProcAlmString("sp_Insertar_CLIENTE", par, true);
-                    if (sql != null)
-                    {
-                        MessageBox.Show("Los datos se han agregado correctamente.", "Adición exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    // Se actualiza el DataGridView y se limpian los campos
-                    //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
-                    BloqueoControles();
-                    LimpiarCampos();
+                    MessageBox.Show("Ya existe un cliente registrado con esta cédula.", "Cédula duplicada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Salir del método para evitar continuar con la operación de guardado
                 }
+                else
+                {
+                    // Se confirmar antes de agregar al cliente
+                    DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres agregar estos datos?", "Confirmar adición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        sql = "";
+                        par.Clear();
+                        par.Add(new SqlParameter("@Cedula", txtcedulacliente.Text.Trim()));
+                        par.Add(new SqlParameter("@Nombre_Cliente", txtnombrescliente.Text.Trim()));
+                        par.Add(new SqlParameter("@Apellido", txtapellidoscliente.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Nac", dtpFechaCliente.Text.Trim()));
+                        sql = OAD.EscalarProcAlmString("sp_Insertar_CLIENTE", par, true);
+                        if (sql != null)
+                        {
+                            MessageBox.Show("Los datos se han agregado correctamente.", "Adición exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        // Se actualiza el DataGridView y se limpian los campos
+                        //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        BloqueoControles();
+                        LimpiarCampos();
+                    }
+                }
+                
             }
         }
         private void btnEditarCliente_Click(object sender, EventArgs e)
@@ -97,9 +118,13 @@ namespace GS_Factura
             if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
                 string.IsNullOrWhiteSpace(txtnombrescliente.Text) ||
                 string.IsNullOrWhiteSpace(txtapellidoscliente.Text) ||
-                string.IsNullOrWhiteSpace(dtpFechaCliente.Text))
+                dtpFechaCliente.Value.Date != DateTime.Today)
             {
-                MessageBox.Show("Por favor, completa todos los campos antes de continuar.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, Verifica que todos los campos esten correctos.", "Campos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (txtcedulacliente.Text.Length != 10) // Verificar que la cédula tenga 10 caracteres
+            {
+                MessageBox.Show("La cédula debe tener exactamente 10 caracteres.", "Cédula inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -198,6 +223,7 @@ namespace GS_Factura
                     txtnombrescliente.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
                     txtapellidoscliente.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
                     dtpFechaCliente.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
+                    txtcedulacliente.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -236,19 +262,24 @@ namespace GS_Factura
         }
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
+
             if (txt_Buscar.Text != null)
             {
                 if (op == 0)
                 {
                     if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                     {
-                        
+
                         tb.Clear();
                         par.Clear();
                         par.Add(new SqlParameter("@Campo", "IDCLIENTE"));
                         par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                         dgvClientes.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -268,6 +299,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                         dgvClientes.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -283,10 +318,14 @@ namespace GS_Factura
                     {
                         tb.Clear();
                         par.Clear();
-                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                        par.Add(new SqlParameter("@Campo", "CEDULA"));
                         par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                         dgvClientes.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -302,10 +341,37 @@ namespace GS_Factura
                     {
                         tb.Clear();
                         par.Clear();
+                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                        par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        dgvClientes.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
+                        dgvClientes.DataSource = tb;
+                        //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 4)
+                {
+                    if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
                         par.Add(new SqlParameter("@Campo", "APELLIDOS"));
                         par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                         dgvClientes.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -320,6 +386,8 @@ namespace GS_Factura
             {
                 MessageBox.Show("Seleccione al menos un campo");
             }
+            
+        
         }
         private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -351,29 +419,50 @@ namespace GS_Factura
             switch (op)
             {
                 case 0:
-                    op = 0;
+                    txt_Buscar.Enabled = false;
+                    tb.Clear();
+                    par.Clear();
+                    par.Add(new SqlParameter("@Campo", "IDCLIENTE"));
+                    par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                    tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                    dgvClientes.DataSource = tb;
+                    if (txt_Buscar.TextLength > 0)
+                    {
+                        MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        cmbitems.SelectedIndex = -1;
+                    }
                     break;
                 case 1:
+                    txt_Buscar.Enabled = true;
                     op = 1;
+                    tb.Clear();
                     break;
                 case 2:
+                    txt_Buscar.Enabled = true;
                     op = 2;
+                    tb.Clear();
                     break;
                 case 3:
+                    txt_Buscar.Enabled = true;
                     op = 3;
+                    tb.Clear();
+                    break;
+                case 4:
+                    txt_Buscar.Enabled = true;
+                    op = 4;
+                    tb.Clear();
                     break;
             }
         }
         private void txt_Buscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Validacion de que sea solo letras y espacio 
             if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
             {
                 if (txt_Buscar.Text != null)
                 {
                     if (op == 0)
                     {
-                        if(txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
                             e.Handled = true;
                             tb.Clear();
@@ -382,6 +471,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                             dgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -398,10 +491,14 @@ namespace GS_Factura
                             e.Handled = true;
                             tb.Clear();
                             par.Clear();
-                            par.Add(new SqlParameter("@Campo", "CEDULA"));
+                            par.Add(new SqlParameter("@Campo", "IDCLIENTE"));
                             par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                             dgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -409,7 +506,7 @@ namespace GS_Factura
                             dgvClientes.DataSource = tb;
                             //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }                        
+                        }
                     }
                     else if (op == 2)
                     {
@@ -418,10 +515,14 @@ namespace GS_Factura
                             e.Handled = true;
                             tb.Clear();
                             par.Clear();
-                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
                             par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                             dgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -438,10 +539,38 @@ namespace GS_Factura
                             e.Handled = true;
                             tb.Clear();
                             par.Clear();
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            dgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
+                            dgvClientes.DataSource = tb;
+                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 4)
+                    {
+                        if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
                             par.Add(new SqlParameter("@Campo", "APELLIDOS"));
                             par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                             dgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -461,6 +590,7 @@ namespace GS_Factura
             {
                 MessageBox.Show("Por favor ingregse un carácter");
             }
+            
         }
     }
 }

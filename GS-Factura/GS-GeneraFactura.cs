@@ -19,6 +19,8 @@ namespace GS_Factura
 {
     public partial class GS_GeneraFactura : Form
     {
+        BD2 bD2 = new BD2();
+
         public GS_GeneraFactura()
         {
             InitializeComponent();
@@ -32,9 +34,9 @@ namespace GS_Factura
             try
             {
 
-                SqlCommand command = new SqlCommand("SELECT ISNULL(MAX(IDFACTURA), 0) FROM FACTURA", AccesoDatos.AbrirConexion());
-                string result = command.ExecuteScalar().ToString().PadLeft(6, '0');
+                string result = bD2.ObetnerDatosFactura("SELECT ISNULL(MAX(IDFACTURA), 0) FROM FACTURA").PadLeft(6, '0');
                 lblnumerofactura.Text = "001-" + result;
+
             }
             catch (Exception ex)
             {
@@ -287,48 +289,31 @@ namespace GS_Factura
 
                     // Crea un elemento XML para representar la factura de la venta.
                     if (!string.IsNullOrEmpty(txtcancelado.Text) && txtcancelado.Text != "0")
-                    { 
+                    {
 
                         DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-                    XElement Venta = new XElement("FACTURA");
-                    Venta.Add(new XElement("item",
-                        new XElement("IDCLIENTE", int.Parse(lblidcliente.Text)),
-                        new XElement("FECHA", fechaIngreso),
-                        new XElement("SUBTOTAL", decimal.Parse(txtsubtotalventa.Text.Replace(".", ","))),
-                        new XElement("TOTAL", decimal.Parse(txtTotalVenta.Text.Replace(".", ",")))
-                        ));
-                
-                    XElement detalle_venta = new XElement("DETALLE_FACTURA");
-                    foreach (DataGridViewRow row in dtgVenta.Rows)
-                    {
 
-                        detalle_venta.Add(new XElement("item",
-                                new XElement("IDPRODUCTO", row.Cells["IdProducto"].Value),
-                                new XElement("CANTIDAD", row.Cells["StockProducto"].Value.ToString().Replace(".", ",")),
-                                new XElement("PRECIO_UNITARIO", Convert.ToDecimal(row.Cells["PrecioVenta"].Value.ToString().Replace(".", ",")),
-                                new XElement("SUBTOTAL", Convert.ToDecimal(row.Cells["TotalProducto"].Value.ToString().Replace(".", ",")))
-                                )));
 
-                    }
+                        bD2.XmlVenta(int.Parse(lblidcliente.Text), decimal.Parse(txtsubtotalventa.Text.Replace(".", ",")), decimal.Parse(lblValorIva.Text.Replace(".", ",")), decimal.Parse(txtTotalVenta.Text.Replace(".", ",")), dtgVenta);
 
-                    // Combina los elementos XML de venta y detalle de venta en una consulta.
-                    string consulta = Venta.ToString() + detalle_venta.ToString();
-                    XmlVenta(consulta);
-                    this.Cargarnumerofactura();
+
+                        this.LimpiarDatosVenta();
+
+                        this.Cargarnumerofactura();
 
                         // Guardar los tamaños actuales de las columnas
                         float tamañoColumna1 = tblVentayFactura.ColumnStyles[0].Width;
                         float tamañoColumna2 = tblVentayFactura.ColumnStyles[1].Width;
 
-                        // Intercambiar los tamaños de las columnas
+                        //Intercambiar los tamaños de las columnas
                         tblVentayFactura.ColumnStyles[0].Width = tamañoColumna2;
                         tblVentayFactura.ColumnStyles[1].Width = tamañoColumna1;
 
                         GS_Factura frmFactura = new GS_Factura();
 
 
-                        // Añade GS_Factura como un control en el Panel
+                        //Añade GS_Factura como un control en el Panel
                         frmFactura.TopLevel = false;
                         frmFactura.Dock = DockStyle.Fill;
                         panelFactura.Controls.Add(frmFactura);
@@ -350,32 +335,7 @@ namespace GS_Factura
 
         }
 
-        // Este método procesa la venta almacenando la información en la base de datos.
-        public void XmlVenta(string Detalle)
-        {
-            try
-            {
-                using (SqlConnection conexion = AccesoDatos.AbrirConexion())
-                {
-                    using (SqlCommand cmd = new SqlCommand("sp_VentaProducto", conexion))
-                    {
-                        cmd.Parameters.Add("@StringXML", SqlDbType.VarChar).Value = Detalle;
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.ExecuteNonQuery();
-                    } // El bloque using cerrará automáticamente el comando.
-
-                    MessageBox.Show("La venta ha sido exitosa.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.LimpiarDatosVenta();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-        //limpia todos los datos
+       
         public void LimpiarDatosVenta()
         {
             lblcedulacliente.Text = "Numero de Cedula";
@@ -691,9 +651,6 @@ namespace GS_Factura
 
 
                 dtgVenta.CurrentRow.Cells[5].Value = total.ToString("0.00").Replace(",", ".");
-
-
-
                 this.GestionarFuncionalidadDtgVenta();
             }
             catch (Exception ex)
