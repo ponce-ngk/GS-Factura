@@ -112,6 +112,9 @@
   <ItemGroup>
     <Compile Include="Clases\AccesoDatos.cs" />
     <Compile Include="Clases\BD2.cs" />
+    <Compile Include="Clases\EllipseControlArtan.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GS-ClienteVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +204,12 @@
     <Compile Include="GS_ResumenVentas.Designer.cs">
       <DependentUpon>GS_ResumenVentas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Notificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notificaciones.Designer.cs">
+      <DependentUpon>Notificaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualizaFacturaBorrar.cs">
@@ -252,6 +261,9 @@
       <DependentUpon>GS_ResumenVentas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Notificaciones.resx">
+      <DependentUpon>Notificaciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -295,9 +307,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconoprueba.ico" />
+    <None Include="Resources\Success.png" />
+    <None Include="Resources\Warning.png" />
+    <None Include="Resources\Success.ico" />
     <None Include="Resources\editar.ico" />
     <None Include="Resources\editar2.ico" />
     <None Include="Resources\edit.ico" />
+    <None Include="Resources\Information.png" />
+    <None Include="Resources\Error.png" />
     <Content Include="Resources\remove.ico" />
     <None Include="Resources\ver.ico" />
     <None Include="Resources\ver_nuevo.ico" />
