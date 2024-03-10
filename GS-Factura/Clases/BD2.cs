@@ -236,6 +236,22 @@ namespace GS_Factura.Clases
                 this.Desconectar();
             return ret;
         }
+
+        public bool EscalarProcAlmBool(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
+        {
+            bool ret = false;
+            CrearComandoStoredProcedure(sentenciaSQL);
+            foreach (SqlParameter p in parametros)
+            {
+                this.comando.Parameters.Add(p);
+            };
+            this.ConectarSiDesconectado();
+            ret = this.EjecutarEscalarBool();
+            if (cerrar_conexion_al_terminar)
+                this.Desconectar();
+            return ret;
+        }
+
         public int EjecutarEscalar()
         {
             int escalar = 0;
