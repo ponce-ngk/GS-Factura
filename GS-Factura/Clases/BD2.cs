@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace GS_Factura.Clases
 {
@@ -246,5 +247,78 @@ namespace GS_Factura.Clases
             }
             return escalar;
         }
+
+
+
+        public string ObetnerDatosFactura(string sentenciaSQL)
+        {
+            string escalar = "";
+            try
+            {
+                    using (SqlCommand command = new SqlCommand(sentenciaSQL, AccesoDatos.AbrirConexion()))
+                    {
+                        escalar = command.ExecuteScalar()?.ToString()?.Trim() ?? "";
+                    }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return escalar;
+        }
+
+
+        public void XmlVenta(int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
+        {
+            try
+            {
+                string venta = CrearElementoVenta(idCliente, subtotal, iva, total, detalleVenta);
+                string detalle = venta.ToString();
+
+                using (SqlConnection conexion = AccesoDatos.AbrirConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_VentaProducto", conexion))
+                    {
+                        cmd.Parameters.Add("@StringXML", SqlDbType.VarChar).Value = detalle;
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("La venta ha sido exitosa.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private String CrearElementoVenta(int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
+        {
+            XElement venta = new XElement("FACTURA");
+            venta.Add(new XElement("item",
+                new XElement("IDCLIENTE", idCliente),
+                new XElement("FECHA", DateTime.Now.ToString("yyyy-MM-dd")), 
+                new XElement("SUBTOTAL", subtotal),
+                new XElement("IVA", iva),
+                new XElement("TOTAL", total)
+            ));
+            XElement detalle_venta = new XElement("DETALLE_FACTURA");
+            foreach (DataGridViewRow row in detalleVenta.Rows)
+            {
+
+                detalle_venta.Add(new XElement("item",
+                new XElement("IDPRODUCTO", row.Cells["IdProducto"].Value),
+                new XElement("CANTIDAD", Convert.ToDecimal(row.Cells["StockProducto"].Value.ToString().Replace(".", ","))),
+                new XElement("PRECIO_UNITARIO", Convert.ToDecimal(row.Cells["PrecioVenta"].Value.ToString().Replace(".", ","))),
+                new XElement("SUBTOTAL", Convert.ToDecimal(row.Cells["TotalProducto"].Value.ToString().Replace(".", ",")))
+                ));
+            }
+            string consulta = venta.ToString() + detalle_venta.ToString();
+            return consulta;
+        }
+
+
+
     }
 }

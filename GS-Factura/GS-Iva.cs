@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GS_Factura.Clases;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,12 @@ namespace GS_Factura
 {
     public partial class GS_Iva : Form
     {
+        BD2 OAD = new BD2();
+        List<SqlParameter> par = new List<SqlParameter>();
+        int op;
+        DataTable tb = new DataTable();
+        string sql = "";
+
         public GS_Iva()
         {
             InitializeComponent();
@@ -47,24 +54,23 @@ namespace GS_Factura
                 }
                 else
                 {
-                    using (SqlConnection conex = AccesoDatos.AbrirConexion())
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@ValorIVA", decimal.Parse(txtIva.Text.Replace(".", ","))));
+                    par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
+                    par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
+                    sql = OAD.EscalarProcAlmString("InsertarIVA", par, true);
+                    if (sql != null)
                     {
-                        SqlCommand cmdInsertarIVA = new SqlCommand("InsertarIVA", conex);
-                        cmdInsertarIVA.CommandType = CommandType.StoredProcedure;
-
-
-
-                        cmdInsertarIVA.Parameters.AddWithValue("@ValorIVA", decimal.Parse(txtIva.Text.Replace(".", ",")));
-
-                        cmdInsertarIVA.Parameters.AddWithValue("@FechaInicio", dtpFechaInicio.Value);
-                        cmdInsertarIVA.Parameters.AddWithValue("@FechaFinal", dtpFechaFinal.Value);
-
-                        cmdInsertarIVA.ExecuteNonQuery();
                         dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAPorFecha '" + dtpFechaFinal.Value + "'");
                         BloqueoControles();
                         txtIva.Text = "0";
                         lblIdIva.Text = "0";
-                        MessageBox.Show("IVA guardado exitosamente.", "Adición exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("IVA guardado exitosamente.", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo  Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
 
                 }
@@ -134,25 +140,25 @@ namespace GS_Factura
                     if (confirmacion == DialogResult.Yes)
                     {
 
-                        using (SqlConnection conex = AccesoDatos.AbrirConexion())
+              
+                        sql = "";
+                        par.Clear();
+                        par.Add(new SqlParameter("@IDPRODUCTO", int.Parse(lblIdIva.Text)));
+                        par.Add(new SqlParameter("@ValorIVA", decimal.Parse(txtIva.Text.Replace(".", ","))));
+                        par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
+                        par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
+                        sql = OAD.EscalarProcAlmString("EditarIVA", par, true);
+                        if (sql != null)
                         {
-                            SqlCommand cmdInsertarIVA = new SqlCommand("EditarIVA", conex);
-                            cmdInsertarIVA.CommandType = CommandType.StoredProcedure;
-
-
-
-                            cmdInsertarIVA.Parameters.AddWithValue("@IVA_ID", int.Parse(lblIdIva.Text));
-
-                        cmdInsertarIVA.Parameters.AddWithValue("@ValorIVA", decimal.Parse(txtIva.Text.Replace(".", ",")));
-                        cmdInsertarIVA.Parameters.AddWithValue("@FechaInicio", dtpFechaInicio.Value);
-                            cmdInsertarIVA.Parameters.AddWithValue("@FechaFinal", dtpFechaFinal.Value);
-
-                            cmdInsertarIVA.ExecuteNonQuery();
                             dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(lblIdIva.Text) + "'");
                             BloqueoControles();
                             txtIva.Text = "0";
                             lblIdIva.Text = "0";
-                            MessageBox.Show("IVA Editado exitosamente.", "Adición exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                     }
 
@@ -173,23 +179,24 @@ namespace GS_Factura
                     DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres eliminar estos datos?", "Confirmar modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (confirmacion == DialogResult.Yes)
                     {
-
-                        using (SqlConnection conex = AccesoDatos.AbrirConexion())
-                        {
-                            SqlCommand cmdInsertarIVA = new SqlCommand("InactivarIVA", conex);
-                            cmdInsertarIVA.CommandType = CommandType.StoredProcedure;
-
-
-
-                            cmdInsertarIVA.Parameters.AddWithValue("@IVA_ID", int.Parse(lblIdIva.Text));
-                            cmdInsertarIVA.ExecuteNonQuery();
-                            dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(lblIdIva.Text) + "'");
-                            BloqueoControles();
-                            txtIva.Text = "0";
-                            lblIdIva.Text = "0";
-                            MessageBox.Show("IVA Eliminado exitosamente.", "Adición exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@IVA_ID", int.Parse(lblIdIva.Text)));
+                    sql = OAD.EscalarProcAlmString("InactivarIVA", par, true);
+                    if (sql != null)
+                    {
+                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(lblIdIva.Text) + "'");
+                        BloqueoControles();
+                        txtIva.Text = "0";
+                        lblIdIva.Text = "0";
+                        MessageBox.Show("IVA Eliminado exitosamente.", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    else
+                    {
+                        MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                }
 
 
 
@@ -268,7 +275,9 @@ namespace GS_Factura
         {
             dtpFechaInicio.Value = DateTime.Now;
             dtpSearchFechaInicio.Value = DateTime.Now;
-            //cmbitemsIva.SelectedIndex = 0;
+            dtpSearchFechaFinal.Value = DateTime.Now;
+            dtpFechaFinal.Value = DateTime.Now;
+            //cmbitemsIva.SelectedIndex = 0;          |
 
         }
         public void BloqueoClickDgv()
@@ -326,7 +335,7 @@ namespace GS_Factura
                 else
                 {
 
-                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAEntreFecha  '" + dtpSearchFechaInicio.Value.Date + "', '" + dtpSearchFechaFinal.Value.Date + "'");
+                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAEntreFecha  '" + dtpSearchFechaInicio.Value + "', '" + dtpSearchFechaFinal.Value + "'");
 
                 }
             }
