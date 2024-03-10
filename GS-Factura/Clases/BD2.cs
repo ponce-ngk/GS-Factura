@@ -155,6 +155,13 @@ namespace GS_Factura.Clases
             this.comando.CommandType = CommandType.Text;
             this.comando.CommandText = sentenciaSQL;
         }
+        public void CrearComandoStoredProcedure(string sentenciaSQL)
+        {
+            this.comando = new SqlCommand();
+            this.comando.Connection = this.conexion;
+            this.comando.CommandType = CommandType.StoredProcedure;
+            this.comando.CommandText = sentenciaSQL;
+        }
         public int EscalarProcAlm(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
         {
             int ret;
@@ -175,10 +182,11 @@ namespace GS_Factura.Clases
         public string EscalarProcAlmString(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
         {
             string ret = "";
-            this.comando = new SqlCommand();
-            this.comando.Connection = this.conexion;
-            this.comando.CommandType = CommandType.StoredProcedure;
-            this.comando.CommandText = sentenciaSQL;
+            CrearComandoStoredProcedure(sentenciaSQL);
+            //this.comando = new SqlCommand();
+            //this.comando.Connection = this.conexion;
+            //this.comando.CommandType = CommandType.StoredProcedure;
+            //this.comando.CommandText = sentenciaSQL;
             foreach (SqlParameter p in parametros)
             {
                 this.comando.Parameters.Add(p);
@@ -192,10 +200,11 @@ namespace GS_Factura.Clases
         public DataTable EscalarProcAlmTabla(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
         {
             DataTable ret = new DataTable();
-            this.comando = new SqlCommand();
-            this.comando.Connection = this.conexion;
-            this.comando.CommandType = CommandType.StoredProcedure;
-            this.comando.CommandText = sentenciaSQL;
+            CrearComandoStoredProcedure(sentenciaSQL);
+            //this.comando = new SqlCommand();
+            //this.comando.Connection = this.conexion;
+            //this.comando.CommandType = CommandType.StoredProcedure;
+            //this.comando.CommandText = sentenciaSQL;
             SqlDataAdapter adapter = new SqlDataAdapter(this.comando);
             foreach (SqlParameter p in parametros)
             {
@@ -208,6 +217,42 @@ namespace GS_Factura.Clases
                 this.Desconectar();
             return ret;
         }
+        public DataTable EscalarProcAlmTablaSinPar(string sentenciaSQL, bool cerrar_conexion_al_terminar)
+        {
+            DataTable ret = new DataTable();
+            CrearComandoStoredProcedure(sentenciaSQL);
+            //this.comando = new SqlCommand();
+            //this.comando.Connection = this.conexion;
+            //this.comando.CommandType = CommandType.StoredProcedure;
+            //this.comando.CommandText = sentenciaSQL;
+            SqlDataAdapter adapter = new SqlDataAdapter(this.comando);
+            //foreach (SqlParameter p in parametros)
+            //{
+            //    this.comando.Parameters.Add(p);
+            //};
+            this.ConectarSiDesconectado();
+            adapter.Fill(ret);
+            //ret = this.EjecutarEscalar();
+            if (cerrar_conexion_al_terminar)
+                this.Desconectar();
+            return ret;
+        }
+
+        public bool EscalarProcAlmBool(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
+        {
+            bool ret = false;
+            CrearComandoStoredProcedure(sentenciaSQL);
+            foreach (SqlParameter p in parametros)
+            {
+                this.comando.Parameters.Add(p);
+            };
+            this.ConectarSiDesconectado();
+            ret = this.EjecutarEscalarBool();
+            if (cerrar_conexion_al_terminar)
+                this.Desconectar();
+            return ret;
+        }
+
         public int EjecutarEscalar()
         {
             int escalar = 0;
