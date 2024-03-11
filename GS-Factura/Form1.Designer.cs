@@ -79,7 +79,7 @@
             this.panelLayoutMenu.Controls.Add(this.panelDashOut, 0, 2);
             this.panelLayoutMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLayoutMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelLayoutMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelLayoutMenu.Margin = new System.Windows.Forms.Padding(4);
             this.panelLayoutMenu.Name = "panelLayoutMenu";
             this.panelLayoutMenu.RowCount = 3;
             this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
@@ -119,7 +119,7 @@
             this.btnInformes.IconSize = 30;
             this.btnInformes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInformes.Location = new System.Drawing.Point(0, 386);
-            this.btnInformes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnInformes.Margin = new System.Windows.Forms.Padding(4);
             this.btnInformes.Name = "btnInformes";
             this.btnInformes.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.btnInformes.Size = new System.Drawing.Size(199, 69);
@@ -146,7 +146,7 @@
             this.btnIva.IconSize = 30;
             this.btnIva.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnIva.Location = new System.Drawing.Point(0, 310);
-            this.btnIva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIva.Margin = new System.Windows.Forms.Padding(4);
             this.btnIva.Name = "btnIva";
             this.btnIva.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.btnIva.Size = new System.Drawing.Size(199, 69);
@@ -173,13 +173,13 @@
             this.btnBuscaFactura.IconSize = 30;
             this.btnBuscaFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscaFactura.Location = new System.Drawing.Point(0, 233);
-            this.btnBuscaFactura.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscaFactura.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscaFactura.Name = "btnBuscaFactura";
             this.btnBuscaFactura.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.btnBuscaFactura.Size = new System.Drawing.Size(199, 69);
             this.btnBuscaFactura.TabIndex = 22;
             this.btnBuscaFactura.Tag = "registro";
-            this.btnBuscaFactura.Text = "  G. Facturas";
+            this.btnBuscaFactura.Text = "Facturas";
             this.btnBuscaFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBuscaFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscaFactura.UseVisualStyleBackColor = false;
@@ -200,7 +200,7 @@
             this.btnVenta.IconSize = 30;
             this.btnVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVenta.Location = new System.Drawing.Point(0, 4);
-            this.btnVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVenta.Margin = new System.Windows.Forms.Padding(4);
             this.btnVenta.Name = "btnVenta";
             this.btnVenta.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnVenta.Size = new System.Drawing.Size(199, 69);
@@ -227,7 +227,7 @@
             this.btnProductos.IconSize = 30;
             this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProductos.Location = new System.Drawing.Point(0, 80);
-            this.btnProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnProductos.Margin = new System.Windows.Forms.Padding(4);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.btnProductos.Size = new System.Drawing.Size(199, 69);
@@ -254,7 +254,7 @@
             this.btnRegistro.IconSize = 30;
             this.btnRegistro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRegistro.Location = new System.Drawing.Point(0, 156);
-            this.btnRegistro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegistro.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.btnRegistro.Size = new System.Drawing.Size(199, 69);
@@ -308,7 +308,7 @@
             this.ptmfotouser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ptmfotouser.GradientAngle = 50F;
             this.ptmfotouser.Location = new System.Drawing.Point(56, 12);
-            this.ptmfotouser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ptmfotouser.Margin = new System.Windows.Forms.Padding(4);
             this.ptmfotouser.Name = "ptmfotouser";
             this.ptmfotouser.Size = new System.Drawing.Size(91, 91);
             this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -363,7 +363,7 @@
             this.panelLayoutForms.Controls.Add(this.panelLayoutFormsHead, 0, 0);
             this.panelLayoutForms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelLayoutForms.Location = new System.Drawing.Point(199, 0);
-            this.panelLayoutForms.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelLayoutForms.Margin = new System.Windows.Forms.Padding(4);
             this.panelLayoutForms.Name = "panelLayoutForms";
             this.panelLayoutForms.RowCount = 2;
             this.panelLayoutForms.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
@@ -559,21 +559,21 @@
             this.rjcIva.Name = "rjDdmRegistro";
             this.rjcIva.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.rjcIva.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.rjcIva.Size = new System.Drawing.Size(159, 52);
+            this.rjcIva.Size = new System.Drawing.Size(241, 52);
             // 
             // rjcBtnResumen
             // 
             this.rjcBtnResumen.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.rjcBtnResumen.Name = "rjcBtnResumen";
-            this.rjcBtnResumen.Size = new System.Drawing.Size(158, 24);
-            this.rjcBtnResumen.Text = "Resumen";
+            this.rjcBtnResumen.Size = new System.Drawing.Size(240, 24);
+            this.rjcBtnResumen.Text = "Resumen de Ventas";
             this.rjcBtnResumen.Click += new System.EventHandler(this.rjcBtnResumen_Click);
             // 
             // rjcBtnDetallada
             // 
             this.rjcBtnDetallada.Name = "rjcBtnDetallada";
-            this.rjcBtnDetallada.Size = new System.Drawing.Size(158, 24);
-            this.rjcBtnDetallada.Text = "Detallada";
+            this.rjcBtnDetallada.Size = new System.Drawing.Size(240, 24);
+            this.rjcBtnDetallada.Text = "Detalles de Ventas";
             this.rjcBtnDetallada.Click += new System.EventHandler(this.rjcBtnDetallada_Click);
             // 
             // Form1
@@ -586,7 +586,7 @@
             this.Controls.Add(this.panelLayoutMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SISTEMA DE FACTURACIÓN";

@@ -60,7 +60,7 @@ namespace GS_Factura
         public bool Validar_Campos()
         {
             bool verificar = true;
-            if(txtnombreproducto.Text == "")
+            if (txtnombreproducto.Text == "")
             {
                 verificar = false;
                 errorProvider1.SetError(txtnombreproducto, "Ingrese El Nombre del producto");
@@ -259,6 +259,17 @@ namespace GS_Factura
             lblActualizar.Visible = true;
             lblEliminar.Visible = true;
         }
+        void AlertlBoxArtan(Color backColor, Color color, string title, string text, Image icon)
+        {
+            Notificaciones noti = new Notificaciones();
+            noti.BackColor = backColor;
+            noti.ColorAlertBox = color;
+            noti.TitleAlertBox = title;
+            noti.TextAlertBox = text;
+            noti.IconeAlertBox = icon;
+            noti.ShowDialog();
+        }
+
         private void DgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //Asignacion de datos de la BD al DataGrid
@@ -444,6 +455,11 @@ namespace GS_Factura
             {
                 MessageBox.Show("Seleccione al menos un campo");
             }
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Success", "Operacion Completada con exito.", Properties.Resources.Success);
         }
     }
 }

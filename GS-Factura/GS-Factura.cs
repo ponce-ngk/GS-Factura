@@ -97,6 +97,18 @@ namespace GS_Factura
 
         }
 
-        
+        internal class Clases
+        {
+        }
+
+        internal class EllipseControlArtan
+        {
+            public EllipseControlArtan()
+            {
+            }
+
+            public int CournerRedius { get; internal set; }
+            public Notificaciones TargetControl { get; internal set; }
+        }
     }
 }

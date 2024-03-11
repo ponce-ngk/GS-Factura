@@ -199,26 +199,40 @@ namespace GS_Factura
 
             if (e.RowIndex >= 0 && e.ColumnIndex == dtgFactura.Columns["Eliminarfila"].Index)
             {
-                try
+                DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres eliminar la Factura", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
                 {
-                    int idFactura = Convert.ToInt32(dtgFactura.Rows[e.RowIndex].Cells["IDFACTURA"].Value);
-
-                    // Llamada al método para eliminar la factura
-                    AccesoDatos.EliminarFactura(idFactura);
-
-                    // Cerrar el formulario de visualización después de la eliminación
-                    if (panelFactura.Controls.Count > 0 && panelFactura.Controls[0] is VisualizaFacturaBorrar)
+                    try
                     {
-                        ((VisualizaFacturaBorrar)panelFactura.Controls[0]).Close();
-                    }
+                        int idFactura = Convert.ToInt32(dtgFactura.Rows[e.RowIndex].Cells["IDFACTURA"].Value);
 
-                    // Recargar los datos en el DataGridView u otras acciones según sea necesario
-                    CargarDatosFacturas();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                        // Llamada al método para eliminar la factura
+                        AccesoDatos.EliminarFactura(idFactura);
+                        if (panelFactura.Controls.Count > 0 && panelFactura.Controls[0] is VisualizaFacturaBorrar)
+                        {
+
+                            MessageBox.Show("Los datos se han eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ((VisualizaFacturaBorrar)panelFactura.Controls[0]).Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Los datos se han eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        // Cerrar el formulario de visualización después de la eliminación
+                        //if (panelFactura.Controls.Count > 0 && panelFactura.Controls[0] is VisualizaFacturaBorrar)
+                        //{
+                        //    ((VisualizaFacturaBorrar)panelFactura.Controls[0]).Close();
+                        //}
+
+                        // Recargar los datos en el DataGridView u otras acciones según sea necesario
+                        CargarDatosFacturas();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                } 
             }
         }
 

@@ -117,50 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnAñadirCliente.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAANxSURBVEhLvZVJ
-        TBNRGMd7NiGBYCkt0ilMpXRh04ARkCCURa3sKFJApSACRUQFAgqJqIBsgrhGEwUUUEAUlwPeFBMViVFj
-        FDkYb+jBGGI4eODve8MwLB1JMdEv+R1m+X7/lzdv3pP872KcVss7nVzcJqQKZkXQHiepvIM4lLOqJeXg
-        4BjnqlRPWutuzrQOfULb/YkV0To0DmvtjRmZOzu5ysHBxGuFUlF5Y99b0eaV0ND3BjI3z0nidJ9Vk3Jc
-        Le+iIxdr+BsKa7tmHKWK67xeIqHzt9y0HL/2BGFx2VDpgzjCE3JQ0/FM9F0KnS7q5PUSiVTOfBZ7kVLc
-        0AsZo8UW63nknBvliC04C1eVDoea+kV7KNTJ60mAQiUaQL+Ji/taZNQ/Ru75sUWY64ZJsDca+8W/G3Xy
-        +j8HZB5uRkjqERv5HMHkWVbpGZs+il0BxtQCbC+5KiqnmEquIGpHoU0fxa6AeEsFovY1icopxpwGJFgq
-        bfoodgUcvTQMlU8ocs+9sg0g9xj9Ru4dsV67Aih0SQbE7IHl7AtBbml7Dj9jBvesvncMh1sGUN7+AGfu
-        fRT67A6g/4dpdxkUal/4G83wizRD7mlAdJoVQRFR8A/Ww5QRjOjUDWD1aiTnlXE9dgfM0XznPUpb73LU
-        XB+B2qBBXVcabo8dEOgdLcKuwnCEmZKReaj5Kq9fPqBl8ANyqy4jxnwQgcZUrAtPhKfOgLrOefmFh3vR
-        /bxQuI5OCUTK/mM3eL14QNPAO0Sm5EOm0iIgNhvReS1IquhGQnkX9EFaQUbZlu6Pxp504frio2xofHVf
-        eD0JWLJVlLUNwY31RZi5Cjnto4tWT3xpB7aagzkRHXn8nvVgdS7YHKdDZkmoEKLSKL/z+rnNbpyT02Xn
-        6mFAWs3QIvEcyZW9iEgM4iR0Wk7fTENIrBeKT8WibTCLu3+LfIs1rNs3Xk8CyElEDwsaomB9sKP6jqic
-        Yml/CaXGAz0vrcJozUUhaL+3W7iuvpQERs0M8nquGHoSnex+jezWEVHxQkJ3FiMlb5MgXEjn03x4eLtP
-        E+f8gUOLHHPbye44ta34Mrcli4kFyF8cd+AEro1UCWI6LVVk5B5a5S9nuXMir7UppYzRDErXqL8qWN8f
-        CtZvWchC+MFotT9Zg9e00ks15WnQDhPH4pH/25JIfgP3f4R9SLFTfgAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <metadata name="tmtDate.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="timerAnimation.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>14, 13</value>
   </metadata>
-  <metadata name="Eliminarfila.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="IdProducto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="NombreProducto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="StockProducto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="PrecioVenta.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="TotalProducto.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>42</value>
+  <metadata name="EllipseControlArtan.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>181, 16</value>
   </metadata>
 </root>

@@ -746,7 +746,7 @@ namespace GS_Factura
 
             try
             {
-                    using (SqlCommand comando = new SqlCommand("ObtenerIVAActual", AccesoDatos.AbrirConexion()))
+                    using (SqlCommand comando = new SqlCommand("SeleccionarIVAActual", AccesoDatos.AbrirConexion()))
                     {
                         comando.CommandType = CommandType.StoredProcedure;
 
