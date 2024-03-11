@@ -52,19 +52,34 @@ namespace GS_Factura
         private void Notificaciones_Load(object sender, EventArgs e)
         {
             PositionAlertBox();
-            for(int i =0; i < 500; i++)
+            for (int i = 0; i < 500; i++)
             {
-                timerAnimation.Start();
+                timer1.Start();
             }
         }
 
         private void timerAnimation_Tick(object sender, EventArgs e)
         {
             LinAlertBox.Width = LinAlertBox.Width + 2;
-            if(LinAlertBox.Width == 500)
+            if (LinAlertBox.Width == 500)
             {
                 this.Close();
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            LinAlertBox.Width = LinAlertBox.Width + 2;
+            if (LinAlertBox.Width == 500)
+            {
+                Notificaciones nt = new Notificaciones();
+                nt.Close();
+            }
+        }
+
+        private void PicCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

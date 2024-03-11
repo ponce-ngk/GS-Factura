@@ -112,7 +112,7 @@
   <ItemGroup>
     <Compile Include="Clases\AccesoDatos.cs" />
     <Compile Include="Clases\BD2.cs" />
-    <Compile Include="Clases\EllipseControlArtan.cs">
+    <Compile Include="EllipseControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GS-ClienteVenta.cs">
@@ -318,6 +318,7 @@
     <None Include="Resources\edit.ico" />
     <None Include="Resources\Information.png" />
     <None Include="Resources\Error.png" />
+    <None Include="Resources\Close.png" />
     <Content Include="Resources\remove.ico" />
     <None Include="Resources\ver.ico" />
     <None Include="Resources\ver_nuevo.ico" />
