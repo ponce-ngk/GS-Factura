@@ -30,8 +30,11 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+<<<<<<< HEAD
+=======
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             this.panel11 = new System.Windows.Forms.Panel();
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
@@ -73,7 +76,10 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+<<<<<<< HEAD
+=======
             this.dtgIva = new System.Windows.Forms.DataGridView();
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -88,7 +94,10 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel2.SuspendLayout();
+<<<<<<< HEAD
+=======
             ((System.ComponentModel.ISupportInitialize)(this.dtgIva)).BeginInit();
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             this.SuspendLayout();
             // 
             // panel11
@@ -110,7 +119,11 @@
             this.dtpFechaInicio.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFechaInicio.Location = new System.Drawing.Point(55, 57);
+<<<<<<< HEAD
+            this.dtpFechaInicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+=======
             this.dtpFechaInicio.Margin = new System.Windows.Forms.Padding(4);
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(219, 34);
             this.dtpFechaInicio.TabIndex = 43;
@@ -167,7 +180,11 @@
             this.dtpFechaFinal.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFechaFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFechaFinal.Location = new System.Drawing.Point(56, 57);
+<<<<<<< HEAD
+            this.dtpFechaFinal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+=======
             this.dtpFechaFinal.Margin = new System.Windows.Forms.Padding(4);
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             this.dtpFechaFinal.Name = "dtpFechaFinal";
             this.dtpFechaFinal.Size = new System.Drawing.Size(219, 34);
             this.dtpFechaFinal.TabIndex = 44;
@@ -345,6 +362,42 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(1067, 27);
             this.tableLayoutPanel8.TabIndex = 115;
             // 
+<<<<<<< HEAD
+            // dtgIva
+            // 
+            this.dtgIva.AllowUserToAddRows = false;
+            this.dtgIva.AllowUserToDeleteRows = false;
+            this.dtgIva.AllowUserToResizeColumns = false;
+            this.dtgIva.AllowUserToResizeRows = false;
+            this.dtgIva.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgIva.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(234)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIva.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgIva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgIva.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgIva.Location = new System.Drawing.Point(0, 0);
+            this.dtgIva.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtgIva.Name = "dtgIva";
+            this.dtgIva.ReadOnly = true;
+            this.dtgIva.RowHeadersVisible = false;
+            this.dtgIva.RowHeadersWidth = 51;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.dtgIva.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dtgIva.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgIva.Size = new System.Drawing.Size(1067, 361);
+            this.dtgIva.TabIndex = 123;
+            this.dtgIva.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgIva_CellDoubleClick);
+            // 
+=======
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             // panel24
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(125)))));
@@ -481,7 +534,11 @@
             this.dtpSearchFechaInicio.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpSearchFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpSearchFechaInicio.Location = new System.Drawing.Point(52, 22);
+<<<<<<< HEAD
+            this.dtpSearchFechaInicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+=======
             this.dtpSearchFechaInicio.Margin = new System.Windows.Forms.Padding(4);
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             this.dtpSearchFechaInicio.Name = "dtpSearchFechaInicio";
             this.dtpSearchFechaInicio.Size = new System.Drawing.Size(249, 34);
             this.dtpSearchFechaInicio.TabIndex = 46;
@@ -538,7 +595,11 @@
             this.dtpSearchFechaFinal.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpSearchFechaFinal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpSearchFechaFinal.Location = new System.Drawing.Point(49, 22);
+<<<<<<< HEAD
+            this.dtpSearchFechaFinal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+=======
             this.dtpSearchFechaFinal.Margin = new System.Windows.Forms.Padding(4);
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             this.dtpSearchFechaFinal.Name = "dtpSearchFechaFinal";
             this.dtpSearchFechaFinal.Size = new System.Drawing.Size(256, 34);
             this.dtpSearchFechaFinal.TabIndex = 47;
@@ -604,7 +665,7 @@
             this.cmbitemsIva.Name = "cmbitemsIva";
             this.cmbitemsIva.Size = new System.Drawing.Size(156, 35);
             this.cmbitemsIva.TabIndex = 28;
-            this.cmbitemsIva.SelectedIndexChanged += new System.EventHandler(this.cmbitemsIva_SelectedIndexChanged);
+            this.cmbitemsIva.SelectedIndexChanged += new System.EventHandler(this.CmbitemsIva_SelectedIndexChanged);
             // 
             // BtnSearchClienteVenta
             // 
@@ -638,7 +699,12 @@
             this.txtbuscarIva.Name = "txtbuscarIva";
             this.txtbuscarIva.Size = new System.Drawing.Size(103, 34);
             this.txtbuscarIva.TabIndex = 26;
+<<<<<<< HEAD
+            this.txtbuscarIva.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtbuscarIva_KeyDown);
+            this.txtbuscarIva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtbuscarIva_KeyPress);
+=======
             this.txtbuscarIva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscarIva_KeyPress);
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             // 
             // btn_BuscarIva
             // 
@@ -766,8 +832,13 @@
             // 
             // panel2
             // 
+<<<<<<< HEAD
+            this.panel2.Controls.Add(this.tableLayoutPanel8);
+            this.panel2.Controls.Add(this.dtgIva);
+=======
             this.panel2.Controls.Add(this.dtgIva);
             this.panel2.Controls.Add(this.tableLayoutPanel8);
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 193);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
@@ -775,6 +846,8 @@
             this.panel2.Size = new System.Drawing.Size(1067, 361);
             this.panel2.TabIndex = 125;
             // 
+<<<<<<< HEAD
+=======
             // dtgIva
             // 
             this.dtgIva.AllowUserToAddRows = false;
@@ -824,6 +897,7 @@
             this.dtgIva.TabIndex = 118;
             this.dtgIva.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgIva_CellDoubleClick_1);
             // 
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             // GS_Iva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -856,7 +930,10 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+<<<<<<< HEAD
+=======
             ((System.ComponentModel.ISupportInitialize)(this.dtgIva)).EndInit();
+>>>>>>> f32f4fa70bac0b0f094a497e7d95d38c9c99c41d
             this.ResumeLayout(false);
 
         }

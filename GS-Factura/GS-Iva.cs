@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -323,9 +324,7 @@ namespace GS_Factura
                 }
                 else
                 {
-
                     dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAEntreFecha  '" + dtpSearchFechaInicio.Value + "', '" + dtpSearchFechaFinal.Value + "'");
-
                 }
             }
             catch (Exception)
@@ -434,28 +433,96 @@ namespace GS_Factura
             }
         }
 
-        private void dtgIva_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+       
+
+        private void CmbitemsIva_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbitemsIva.Text == "ID del Iva" || cmbitemsIva.Text == "Valor del Iva")
+            {
+                if (dtgIva.RowCount != 0)
+                {
+                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAPorFecha ' '");
+                }
+                return;
+            }
+            else if (cmbitemsIva.Text == "Mostrar Todos")
+            {
+                dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_FullObtenerIVA ");
+
+            }
+
+        }
+
+        private void TxtbuscarIva_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (cmbitemsIva.Text == "Valor del Iva")
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                {
+                    // Si no es un número ni Enter ni punto, ignorar la tecla presionada
+                    e.Handled = true;
+                }
+                if (e.KeyChar == ',')
+                {
+                    e.KeyChar = '.'; // Reemplazar la coma por un punto
+                }
+
+                // Verificar si el usuario ha ingresado un punto decimal
+                if (e.KeyChar == '.' && txtbuscarIva.Text.IndexOf('.') > -1)
+                {
+                    // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    // Si no es un número ni Enter, ignorar la tecla presionada
+                    e.Handled = true;
+                }
+            }
+        }
+
+
+
+        private void EjecutarBusqueda()
         {
             try
             {
-                if (dtgIva.CurrentCell == null)
+                if (txtbuscarIva.Text != "")
                 {
-                    BloqueoControles();
+                    if (cmbitemsIva.Text == "ID del Iva")
+                    {
+                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(txtbuscarIva.Text) + "'");
+                        return;
+                    }
+                    else if (cmbitemsIva.Text == "Valor del Iva")
+                    {
+                        decimal valorIva = decimal.Parse(txtbuscarIva.Text.Replace(".", ","));
+                        string query = "EXEC sp_ObtenerValorIVA @dato";
+                        SqlParameter[] parametros = { new SqlParameter("@dato", SqlDbType.Decimal) { Value = valorIva } };
+                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscarComando(query, parametros);
+                        return;
+                    }
+                }
+                else if (txtbuscarIva.Text == "" && cmbitemsIva.Text == "ID del Iva" || cmbitemsIva.Text == "Valor del Iva")
+                {
+                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAPorFecha ' '");
+                    return;
                 }
                 else
                 {
-                    BloqueoClickDgv();
-                    lblIdIva.Text = dtgIva.CurrentRow.Cells[0].Value.ToString();
-                    txtIva.Text = dtgIva.CurrentRow.Cells[1].Value.ToString().Replace(",", "."); ;
-                    dtpFechaInicio.Text = dtgIva.CurrentRow.Cells[2].Value.ToString();
-                    dtpFechaFinal.Text = dtgIva.CurrentRow.Cells[3].Value.ToString();
+                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_FullObtenerIVA ");
                 }
             }
             catch (Exception)
             {
-
+                // Manejo del error
                 throw;
             }
         }
+        }
     }
-}
+
