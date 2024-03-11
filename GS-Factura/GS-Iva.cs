@@ -14,6 +14,7 @@ namespace GS_Factura
 {
     public partial class GS_Iva : Form
     {
+        bool verificarFecha = false;
         BD2 OAD = new BD2();
         List<SqlParameter> par = new List<SqlParameter>();
         int op;
@@ -54,25 +55,44 @@ namespace GS_Factura
                 }
                 else
                 {
-                    sql = "";
+                    verificarFecha = false;
                     par.Clear();
-                    par.Add(new SqlParameter("@ValorIVA", decimal.Parse(txtIva.Text.Replace(".", ","))));
                     par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
                     par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
-                    sql = OAD.EscalarProcAlmString("InsertarIVA", par, true);
-                    if (sql != null)
+                    verificarFecha = OAD.EscalarProcAlmBool("VerificarRangoFechaIVA", par, true);
+                    // Verificar si la cédula ya existe en la base de datos
+                    if (verificarFecha)
                     {
-                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAPorFecha '" + dtpFechaFinal.Value + "'");
-                        BloqueoControles();
-                        txtIva.Text = "0";
-                        lblIdIva.Text = "0";
-                        MessageBox.Show("IVA guardado exitosamente.", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Ya existe una fecha registrada en emision.", "Fecha Duplicada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Salir del método para evitar continuar con la operación de guardado
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo  Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+                        // Se confirmar antes de agregar al cliente
+                        DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres agregar este nuevo valor de IVA?", "Confirmar adición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                        if (resultado == DialogResult.Yes)
+                        {
+                            sql = "";
+                            par.Clear();
+                            par.Add(new SqlParameter("@ValorIVA", decimal.Parse(txtIva.Text.Replace(".", ","))));
+                            par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
+                            par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
+                            sql = OAD.EscalarProcAlmString("InsertarIVA", par, true);
+                            if (sql != null)
+                            {
+                                //dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAPorFecha '" + dtpFechaFinal.Value + "'");
+                                BloqueoControles();
+                                txtIva.Text = "0";
+                                lblIdIva.Text = "0";
+                                MessageBox.Show("IVA guardado exitosamente.", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo  Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception)
@@ -136,6 +156,7 @@ namespace GS_Factura
                 }
                 else
                 {
+
                     DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres actualizar estos datos?", "Confirmar modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (confirmacion == DialogResult.Yes)
                     {
@@ -143,14 +164,13 @@ namespace GS_Factura
               
                         sql = "";
                         par.Clear();
-                        par.Add(new SqlParameter("@IDPRODUCTO", int.Parse(lblIdIva.Text)));
+                        par.Add(new SqlParameter("@ID_IVA", int.Parse(lblIdIva.Text)));
                         par.Add(new SqlParameter("@ValorIVA", decimal.Parse(txtIva.Text.Replace(".", ","))));
                         par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
                         par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
                         sql = OAD.EscalarProcAlmString("EditarIVA", par, true);
                         if (sql != null)
                         {
-                            dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(lblIdIva.Text) + "'");
                             BloqueoControles();
                             txtIva.Text = "0";
                             lblIdIva.Text = "0";
@@ -181,11 +201,11 @@ namespace GS_Factura
                     {
                     sql = "";
                     par.Clear();
-                    par.Add(new SqlParameter("@IVA_ID", int.Parse(lblIdIva.Text)));
+                    par.Add(new SqlParameter("@ID_iva", int.Parse(lblIdIva.Text)));
                     sql = OAD.EscalarProcAlmString("InactivarIVA", par, true);
                     if (sql != null)
                     {
-                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(lblIdIva.Text) + "'");
+                        //dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(lblIdIva.Text) + "'");
                         BloqueoControles();
                         txtIva.Text = "0";
                         lblIdIva.Text = "0";
@@ -248,7 +268,6 @@ namespace GS_Factura
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
@@ -266,7 +285,6 @@ namespace GS_Factura
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
@@ -277,7 +295,6 @@ namespace GS_Factura
             dtpSearchFechaInicio.Value = DateTime.Now;
             dtpSearchFechaFinal.Value = DateTime.Now;
             dtpFechaFinal.Value = DateTime.Now;
-            //cmbitemsIva.SelectedIndex = 0;          |
 
         }
         public void BloqueoClickDgv()
@@ -287,35 +304,7 @@ namespace GS_Factura
             btnEliminarIva.Enabled = true;
             lblTextoIva.Visible = true;
             lblIdIva.Visible = true;
-
-            //lblActualizar.Visible = true;
-            //lblEliminar.Visible = true;
         }
-
-        private void DtgIva_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (dtgIva.CurrentCell == null)
-                {
-                    BloqueoControles();
-                }
-                else
-                {
-                    BloqueoClickDgv();
-                    lblIdIva.Text = dtgIva.CurrentRow.Cells[0].Value.ToString();
-                    txtIva.Text = dtgIva.CurrentRow.Cells[1].Value.ToString().Replace(",","."); ;
-                    dtpFechaInicio.Text = dtgIva.CurrentRow.Cells[2].Value.ToString();
-                    dtpFechaFinal.Text = dtgIva.CurrentRow.Cells[3].Value.ToString();
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         private void Btn_BuscarIva_Click(object sender, EventArgs e)
         {
             try
@@ -346,60 +335,127 @@ namespace GS_Factura
             }
         }
 
-        private void TxtbuscarIva_KeyDown(object sender, KeyEventArgs e)
+        private void cmbitemsIva_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            op = cmbitemsIva.SelectedIndex;
+            switch (op)
+            {
+                case 0:
+                    txtbuscarIva.Enabled = false;
+                    tb.Clear();
+                    tb = OAD.EscalarProcAlmTablaSinPar("sp_FullObtenerIVA", true);
+                    dtgIva.DataSource = tb;
+                    if (txtbuscarIva.TextLength > 0)
+                    {
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                        dtgIva.DataSource = tb;
+                        MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        cmbitemsIva.SelectedIndex = -1;
+                    }
+                    break;
+                case 1:
+                    txtbuscarIva.Enabled = true;
+                    op = 1;
+                    tb.Clear();
+                    break;
+                case 2:
+                    txtbuscarIva.Enabled = true;
+                    op = 2;
+                    tb.Clear();
+                    break;
+            }
+        }
+
+        private void txtbuscarIva_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                if (txtbuscarIva.Text != null)
+                {
+                    if (op == 0)
+                    {
+                        
+                    }
+                    else if (op == 1)
+                    {
+                        if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "ID_IVA"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
+                            dtgIva.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                            dtgIva.DataSource = tb;
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 2)
+                    {
+                        if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
+                        {
+                            e.Handled = true;
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "ValorIVA"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
+                            dtgIva.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio ", true);
+                            dtgIva.DataSource = tb;
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione al menos un campo");
+                }
+            }
+            else if (op == null && txtbuscarIva.Text == null)
+            {
+                MessageBox.Show("Por favor ingregse un carácter");
+            }
+        }
+
+        private void dtgIva_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (txtbuscarIva.Text != "")
+                if (dtgIva.CurrentCell == null)
                 {
-
-                    if (cmbitemsIva.Text == "ID del Iva" )
-                    {
-                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(txtbuscarIva.Text) + "'");
-
-                        return;
-                    }
-                    else if (cmbitemsIva.Text == "Valor del Iva")
-                    {
-                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerValorIVA '" + int.Parse(txtbuscarIva.Text) + "'");
-
-                        return;
-                    }
+                    BloqueoControles();
                 }
-                else if (txtbuscarIva.Text == "" && cmbitemsIva.Text == "ID del Iva" || cmbitemsIva.Text == "Valor del Iva")
+                else
                 {
-                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAPorFecha ' '");
-                    return;
+                    BloqueoClickDgv();
+                    lblIdIva.Text = dtgIva.CurrentRow.Cells[0].Value.ToString();
+                    txtIva.Text = dtgIva.CurrentRow.Cells[1].Value.ToString().Replace(",", "."); ;
+                    dtpFechaInicio.Text = dtgIva.CurrentRow.Cells[2].Value.ToString();
+                    dtpFechaFinal.Text = dtgIva.CurrentRow.Cells[3].Value.ToString();
                 }
-                else 
-                {
-                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_FullObtenerIVA ");
-                }
-
             }
             catch (Exception)
             {
 
                 throw;
             }
-        }
-
-        private void cmbitemsIva_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbitemsIva.Text == "ID del Iva" || cmbitemsIva.Text == "Valor del Iva")
-            {
-                if (dtgIva.RowCount != 0)
-                {
-                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAPorFecha ' '");
-                }
-                return;
-            }
-            else if (cmbitemsIva.Text == "Mostrar Todos")
-            {
-                dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_FullObtenerIVA ");
-
-            }
-
         }
     }
 }

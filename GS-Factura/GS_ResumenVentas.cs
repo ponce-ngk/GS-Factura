@@ -208,6 +208,10 @@ namespace GS_Factura
             par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechas ", par, true);
             dgvResumenVenta.DataSource = tb;
+            if (tb.Rows.Count == 0)
+            {
+                MessageBox.Show("Reporte no Encontrado en ese rango de fechas. \n\nSe sugiere verificar el rango de fechas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtCliente_KeyPress(object sender, KeyPressEventArgs e)
@@ -230,6 +234,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -252,6 +260,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -276,6 +288,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -300,6 +316,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -324,6 +344,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -348,6 +372,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -449,6 +477,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -473,6 +505,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -497,6 +533,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -521,6 +561,10 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                             dgvResumenVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
@@ -558,6 +602,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -579,6 +627,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasCliente ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -603,6 +655,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasProductoS ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -624,6 +680,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasProductoS ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -650,6 +710,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -673,6 +737,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -696,6 +764,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -719,6 +791,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -742,6 +818,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -765,6 +845,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -788,6 +872,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -811,6 +899,10 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechasClienteProducto ", par, true);
                         dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
