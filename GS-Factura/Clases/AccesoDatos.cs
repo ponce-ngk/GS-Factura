@@ -80,6 +80,35 @@ namespace GS_Factura
             }
         }
 
+        public static DataTable LlenarTablaparaBuscarComando(string consulta, SqlParameter[] parametros = null)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                using (SqlConnection conexion = AbrirConexion())
+                {
+                    using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                    {
+                        if (parametros != null)
+                        {
+                            comando.Parameters.AddRange(parametros);
+                        }
+
+                        SqlDataAdapter data = new SqlDataAdapter(comando);
+                        data.Fill(tabla);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return tabla;
+        }
+
+
         public DataTable RetornaClienteBuscar(string buscar)
         {
             DataTable dt = new DataTable();

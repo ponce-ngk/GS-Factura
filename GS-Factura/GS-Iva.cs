@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -334,9 +335,7 @@ namespace GS_Factura
                 }
                 else
                 {
-
                     dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAEntreFecha  '" + dtpSearchFechaInicio.Value + "', '" + dtpSearchFechaFinal.Value + "'");
-
                 }
             }
             catch (Exception)
@@ -348,43 +347,14 @@ namespace GS_Factura
 
         private void TxtbuscarIva_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            if (e.KeyCode == Keys.Enter)
             {
-                if (txtbuscarIva.Text != "")
-                {
-
-                    if (cmbitemsIva.Text == "ID del Iva" )
-                    {
-                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(txtbuscarIva.Text) + "'");
-
-                        return;
-                    }
-                    else if (cmbitemsIva.Text == "Valor del Iva")
-                    {
-                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerValorIVA '" + int.Parse(txtbuscarIva.Text) + "'");
-
-                        return;
-                    }
-                }
-                else if (txtbuscarIva.Text == "" && cmbitemsIva.Text == "ID del Iva" || cmbitemsIva.Text == "Valor del Iva")
-                {
-                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAPorFecha ' '");
-                    return;
-                }
-                else 
-                {
-                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_FullObtenerIVA ");
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
+                EjecutarBusqueda();
+                e.Handled = true; // Evitar el "sonido" al presionar Enter
             }
         }
 
-        private void cmbitemsIva_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbitemsIva_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbitemsIva.Text == "ID del Iva" || cmbitemsIva.Text == "Valor del Iva")
             {
@@ -400,6 +370,77 @@ namespace GS_Factura
 
             }
 
+        }
+
+        private void TxtbuscarIva_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (cmbitemsIva.Text == "Valor del Iva")
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                {
+                    // Si no es un número ni Enter ni punto, ignorar la tecla presionada
+                    e.Handled = true;
+                }
+                if (e.KeyChar == ',')
+                {
+                    e.KeyChar = '.'; // Reemplazar la coma por un punto
+                }
+
+                // Verificar si el usuario ha ingresado un punto decimal
+                if (e.KeyChar == '.' && txtbuscarIva.Text.IndexOf('.') > -1)
+                {
+                    // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
+                    e.Handled = true;
+                }
+            }
+            else
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    // Si no es un número ni Enter, ignorar la tecla presionada
+                    e.Handled = true;
+                }
+            }
+        }
+
+
+
+        private void EjecutarBusqueda()
+        {
+            try
+            {
+                if (txtbuscarIva.Text != "")
+                {
+                    if (cmbitemsIva.Text == "ID del Iva")
+                    {
+                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(txtbuscarIva.Text) + "'");
+                        return;
+                    }
+                    else if (cmbitemsIva.Text == "Valor del Iva")
+                    {
+                        decimal valorIva = decimal.Parse(txtbuscarIva.Text.Replace(".", ","));
+                        string query = "EXEC sp_ObtenerValorIVA @dato";
+                        SqlParameter[] parametros = { new SqlParameter("@dato", SqlDbType.Decimal) { Value = valorIva } };
+                        dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscarComando(query, parametros);
+                        return;
+                    }
+                }
+                else if (txtbuscarIva.Text == "" && cmbitemsIva.Text == "ID del Iva" || cmbitemsIva.Text == "Valor del Iva")
+                {
+                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAPorFecha ' '");
+                    return;
+                }
+                else
+                {
+                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_FullObtenerIVA ");
+                }
+            }
+            catch (Exception)
+            {
+                // Manejo del error
+                throw;
+            }
         }
     }
 }
