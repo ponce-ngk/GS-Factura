@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +25,6 @@ namespace GS_Factura
         public GS_Iva()
         {
             InitializeComponent();
-        }
-
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void BtnGuardarIva_Click(object sender, EventArgs e)
@@ -122,13 +118,14 @@ namespace GS_Factura
             //lblEliminar.Visible = false;
             //lblAgregar.Visible = true;
         }
-        void Limpiar ()
+        void Limpiar()
         {
             txtIva.Text = "0";
             lblIdIva.Text = "0";
             if (dtgIva.RowCount != 0)
             {
-                dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAPorFecha ' '");
+                tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                dtgIva.DataSource = tb;
             }
 
         }
@@ -161,7 +158,7 @@ namespace GS_Factura
                     if (confirmacion == DialogResult.Yes)
                     {
 
-              
+
                         sql = "";
                         par.Clear();
                         par.Add(new SqlParameter("@ID_IVA", int.Parse(lblIdIva.Text)));
@@ -184,21 +181,21 @@ namespace GS_Factura
 
                 }
 
-        }
+            }
             catch (Exception)
             {
 
                 throw;
             }
-}
+        }
 
         private void BtnEliminarIva_Click(object sender, EventArgs e)
         {
             try
             {
-                    DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres eliminar estos datos?", "Confirmar modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (confirmacion == DialogResult.Yes)
-                    {
+                DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres eliminar estos datos?", "Confirmar modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmacion == DialogResult.Yes)
+                {
                     sql = "";
                     par.Clear();
                     par.Add(new SqlParameter("@ID_iva", int.Parse(lblIdIva.Text)));
@@ -313,19 +310,17 @@ namespace GS_Factura
                 if (dtpSearchFechaFinal.Value.Date < dtpSearchFechaInicio.Value.Date)
                 {
                     MessageBox.Show("La fecha final no puede ser menor que la fecha inicial.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-         
-                    return; 
+
+                    return;
                 }
                 else if (dtpSearchFechaInicio.Value.Date > dtpSearchFechaFinal.Value.Date)
                 {
                     MessageBox.Show("La fecha Inicial no puede ser mayor que la fecha Final.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; 
+                    return;
                 }
                 else
                 {
-
                     dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAEntreFecha  '" + dtpSearchFechaInicio.Value + "', '" + dtpSearchFechaFinal.Value + "'");
-
                 }
             }
             catch (Exception)
@@ -374,7 +369,7 @@ namespace GS_Factura
                 {
                     if (op == 0)
                     {
-                        
+
                     }
                     else if (op == 1)
                     {
@@ -434,7 +429,7 @@ namespace GS_Factura
             }
         }
 
-        private void dtgIva_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dtgIva_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -459,3 +454,4 @@ namespace GS_Factura
         }
     }
 }
+

@@ -232,7 +232,33 @@ namespace GS_Factura
                     {
                         MessageBox.Show(ex.Message);
                     }
+
                 } 
+            }
+            if (e.RowIndex >= 0 && e.ColumnIndex == dtgFactura.Columns["EditarFactura"].Index)
+            {
+                try
+                {
+                    // Obtener el ID de la factura de la fila seleccionada
+                    int idFactura = Convert.ToInt32(dtgFactura.Rows[e.RowIndex].Cells["IDFACTURA"].Value);
+
+                    // Mostrar un mensaje de confirmación
+                    DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres editar esta factura?", "Confirmar edición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        // Abrir el formulario de edición de factura con el ID de la factura
+                        GS_EditarFactura editarForm = new GS_EditarFactura(idFactura);
+                        editarForm.ShowDialog();
+
+                        // Recargar los datos en el DataGridView u otras acciones según sea necesario
+                        CargarDatosFacturas();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

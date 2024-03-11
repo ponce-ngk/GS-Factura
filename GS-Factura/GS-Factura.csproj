@@ -227,6 +227,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GS-EditarFactura.resx">
+      <DependentUpon>GS-EditarFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GS-EliminaFactura.resx">
       <DependentUpon>GS-EliminaFactura.cs</DependentUpon>
     </EmbeddedResource>
