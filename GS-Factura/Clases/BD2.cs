@@ -312,6 +312,18 @@ namespace GS_Factura.Clases
             return escalar;
         }
 
+        public DataTable ObtenerDatosFactura(int idFactura)
+        {
+            string sentenciaSQL = "sp_ObtenerDatosFactura";
+            List<SqlParameter> parametros = new List<SqlParameter>
+    {
+        new SqlParameter("@IDFactura", idFactura)
+    };
+
+            return EscalarProcAlmTabla(sentenciaSQL, parametros, true);
+        }
+
+
 
         public void XmlVenta(int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
         {
@@ -362,6 +374,8 @@ namespace GS_Factura.Clases
             string consulta = venta.ToString() + detalle_venta.ToString();
             return consulta;
         }
+
+
 
 
 
