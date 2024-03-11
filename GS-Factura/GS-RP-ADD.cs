@@ -31,31 +31,31 @@ namespace GS_Factura
 
         private void btnGuardarPorducto_Click(object sender, EventArgs e)
         {
-            if(txtcantidadproducto.Texts != "" && txtnombreproducto.Texts != "" && txtpreciounitario.Texts != "")
-            {
+            //if(txtcantidadproducto.Texts != "" && txtnombreproducto.Texts != "" && txtpreciounitario.Texts != "")
+            //{
                 
-                Producto pProducto = new Producto();
-                pProducto.PRODUCTO1 = txtnombreproducto.Texts;
-                pProducto.STOTCK1 = txtcantidadproducto.Texts;
-                pProducto.PRECIO_UNITARIO1 = txtpreciounitario.Texts;
+            //    Producto pProducto = new Producto();
+            //    pProducto.PRODUCTO1 = txtnombreproducto.Texts;
+            //    pProducto.STOTCK1 = txtcantidadproducto.Texts;
+            //    pProducto.PRECIO_UNITARIO1 = txtpreciounitario.Texts;
                 
-                int resultado = CrudProducto.AgregarProducto(pProducto);
+            //    int resultado = CrudProducto.AgregarProducto(pProducto);
 
-                if (resultado > 0)
-                {
-                    MessageBox.Show("Los datos de Guardaron correctamente", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                rp.dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_Mostrar_PRODUCTOS");
-                Limpiar();
-            }
-            else
-            {
-                MessageBox.Show("campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //    if (resultado > 0)
+            //    {
+            //        MessageBox.Show("Los datos de Guardaron correctamente", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    }
+            //    rp.dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_Mostrar_PRODUCTOS");
+            //    Limpiar();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("campos vacios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
             
         }
     }

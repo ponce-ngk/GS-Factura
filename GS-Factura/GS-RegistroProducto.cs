@@ -24,7 +24,9 @@ namespace GS_Factura
             InitializeComponent();
             BloqueoControlesInicial();
             Limpiar();
-            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+            dgvProductos.DataSource = tb;
+            //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
             dgvProductos.CurrentCell = null;
         }
         public void BloqueoControlesInicial()
@@ -46,7 +48,9 @@ namespace GS_Factura
             if (dgvProductos.RowCount != 0)
             {
                 tb.Clear();
-                dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                dgvProductos.DataSource = tb;
+                //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
             }
             else
             {
@@ -56,7 +60,7 @@ namespace GS_Factura
         public bool Validar_Campos()
         {
             bool verificar = true;
-            if(txtnombreproducto.Text == "")
+            if (txtnombreproducto.Text == "")
             {
                 verificar = false;
                 errorProvider1.SetError(txtnombreproducto, "Ingrese El Nombre del producto");
@@ -81,7 +85,9 @@ namespace GS_Factura
         }
         public void LlenarData()
         {
-            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_Mostrar_PRODUCTOS");
+            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+            dgvProductos.DataSource = tb;
+            //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_Mostrar_PRODUCTOS");
             dgvProductos.CurrentCell = null;
         }
         private void dgvProductos_Click(object sender, EventArgs e)
@@ -253,6 +259,17 @@ namespace GS_Factura
             lblActualizar.Visible = true;
             lblEliminar.Visible = true;
         }
+        void AlertlBoxArtan(Color backColor, Color color, string title, string text, Image icon)
+        {
+            Notificaciones noti = new Notificaciones();
+            noti.BackColor = backColor;
+            noti.ColorAlertBox = color;
+            noti.TitleAlertBox = title;
+            noti.TextAlertBox = text;
+            noti.IconeAlertBox = icon;
+            noti.ShowDialog();
+        }
+
         private void DgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //Asignacion de datos de la BD al DataGrid
@@ -308,29 +325,47 @@ namespace GS_Factura
             //Validacion de que sea solo letras y espacio 
             if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
             {
-                if (txtbuscarproducto.Text != null)
+                if (txtbuscarproducto.TextLength != 0 && cmbitems.SelectedIndex != -1)
                 {
-                    if (op == 0)
+                    if (txtbuscarproducto.TextLength != 0 && cmbitems.SelectedIndex == -1)
                     {
-                        if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Seleccione al menos un campo de Busqueda.");
+                    }
+                        if (op == 0)
+                    {
+                        if (txtbuscarproducto.TextLength != 0 && cmbitems.SelectedIndex == -1)
                         {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
-                            par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
-                            dgvProductos.DataSource = tb;
-                        }
-                        else
-                        {
-                            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
+                            if (txtbuscarproducto.TextLength != 0 && cmbitems.SelectedIndex != -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                                par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                                dgvProductos.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("El Producto no existe o no esta registrado en la base de datos...");
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                                dgvProductos.DataSource = tb;
+                                //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }                        
+                        
                     }
                     else if (op == 1)
                     {
-                        if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        if (txtbuscarproducto.TextLength != 0 && cmbitems.SelectedIndex == -1)
                         {
                             e.Handled = true;
                             tb.Clear();
@@ -339,17 +374,23 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
                             dgvProductos.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("El Producto no existe o no esta registrado en la base de datos...");
+                            }
                         }
                         else
                         {
-                            dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                            dgvProductos.DataSource = tb;
+                            //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione al menos un campo");
+                    MessageBox.Show("Seleccione al menos un campo de Busqueda y Ingrese el dato a Buscar.");
                 }
             }
             else if (op == null && txtbuscarproducto.Text == null)
@@ -360,7 +401,7 @@ namespace GS_Factura
 
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
-            if (txtbuscarproducto.Text != null)
+            if (txtbuscarproducto.TextLength != 0 && cmbitems.SelectedIndex == -1)
             {
                 if (op == 0)
                 {
@@ -372,10 +413,17 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
                         dgvProductos.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("El Producto no existe o no esta registrado en la base de datos...");
+                        }
                     }
                     else
                     {
-                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+
+                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                        dgvProductos.DataSource = tb;
+                        //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -389,10 +437,16 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
                         tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
                         dgvProductos.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("El Producto no existe o no esta registrado en la base de datos...");
+                        }
                     }
                     else
                     {
-                        dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                        dgvProductos.DataSource = tb;
+                        //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -401,6 +455,11 @@ namespace GS_Factura
             {
                 MessageBox.Show("Seleccione al menos un campo");
             }
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Success", "Operacion Completada con exito.", Properties.Resources.Success);
         }
     }
 }
