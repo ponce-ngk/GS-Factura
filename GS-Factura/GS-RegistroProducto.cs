@@ -90,9 +90,6 @@ namespace GS_Factura
             //dgvProductos.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_Mostrar_PRODUCTOS");
             dgvProductos.CurrentCell = null;
         }
-        private void dgvProductos_Click(object sender, EventArgs e)
-        {
-        }
         private void TxtnombreProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo letras y espacio
@@ -143,7 +140,8 @@ namespace GS_Factura
                     sql = OAD.EscalarProcAlmString("sp_Insertar_PRODUCTO", par, true);
                     if (sql != null)
                     {
-                        MessageBox.Show("Los datos de Guardaron correctamente", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Success", "Los datos de Guardaron correctamente", Properties.Resources.Success);
+                        //MessageBox.Show("Los datos de Guardaron correctamente", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -267,7 +265,7 @@ namespace GS_Factura
             noti.TitleAlertBox = title;
             noti.TextAlertBox = text;
             noti.IconeAlertBox = icon;
-            noti.ShowDialog();
+            noti.Show();
         }
 
         private void DgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -460,6 +458,7 @@ namespace GS_Factura
         private void iconButton2_Click(object sender, EventArgs e)
         {
             AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Success", "Operacion Completada con exito.", Properties.Resources.Success);
+            
         }
     }
 }

@@ -128,7 +128,6 @@
             this.dgvProductos.Size = new System.Drawing.Size(1232, 351);
             this.dgvProductos.TabIndex = 114;
             this.dgvProductos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProductos_CellDoubleClick);
-            this.dgvProductos.Click += new System.EventHandler(this.dgvProductos_Click);
             // 
             // panel9
             // 
@@ -723,9 +722,9 @@
             this.label4.Location = new System.Drawing.Point(9, 30);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 22);
+            this.label4.Size = new System.Drawing.Size(177, 22);
             this.label4.TabIndex = 41;
-            this.label4.Text = "Stock:";
+            this.label4.Text = "Stock: (requerido)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel12
@@ -763,9 +762,9 @@
             this.label10.Location = new System.Drawing.Point(11, 30);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 22);
+            this.label10.Size = new System.Drawing.Size(260, 22);
             this.label10.TabIndex = 43;
-            this.label10.Text = "Precio Unitario: ";
+            this.label10.Text = "Precio Unitario: (requerido)";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // iconButton6
