@@ -553,7 +553,6 @@ namespace GS_Factura
             {
                 try
                 {
-
                     // Crea un elemento XML para representar la factura de la venta.
                     if (!string.IsNullOrEmpty(txtcancelado.Text) && txtcancelado.Text != "0")
                     {
