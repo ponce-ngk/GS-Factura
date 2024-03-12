@@ -36,10 +36,51 @@ namespace GS_Factura
             cmbitemsClientes.Enabled = false;
             cmbitemsProductos.Enabled = false;
         }
+
+        private void SaveExcelFile(string fileName, Excel.Workbook workbook)
+        {
+            Excel.Application excelApp = new Excel.Application();
+
+            try
+            {
+                // Verificar si el archivo de Excel está abierto
+                foreach (Excel.Workbook wb in excelApp.Workbooks)
+                {
+                    if (wb.FullName == fileName)
+                    {
+                        // Cerrar el archivo existente
+                        wb.Close(true);
+                        break;
+                    }
+                }
+
+                // Guardar el archivo Excel en la ubicación seleccionada
+                workbook.SaveAs(fileName);
+
+                // Mostrar mensaje de éxito
+                MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar el archivo Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (excelApp != null)
+                {
+                    workbook.Close(false);
+                    excelApp.Quit();
+                    releaseObject(workbook);
+                    releaseObject(excelApp);
+                }
+            }
+        }
+
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
             ExportToExcel(dgvDetalladoVenta);
         }
+
         private void ExportToExcel(DataGridView dataGridView)
         {
             // Crear una instancia de Excel
@@ -47,16 +88,33 @@ namespace GS_Factura
             Excel.Workbook workbook = excelApp.Workbooks.Add();
             Excel.Worksheet worksheet = workbook.Sheets[1];
 
+            // Agregar título en la primera fila
+            Excel.Range titleRange = worksheet.Cells[1, 1] as Excel.Range;
+            titleRange.Value = "Resumen de informe de venta";
+            titleRange.Font.Size = 35;
+            titleRange.Font.Bold = true;
+            titleRange.EntireRow.AutoFit();
+
             // Copiar datos del DataGridView a Excel
             for (int i = 0; i < dataGridView.ColumnCount; i++)
             {
-                worksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
+                worksheet.Cells[4, i + 1] = dataGridView.Columns[i].HeaderText;
+
+                // Agregar bordes a la celda de la cabecera
+                Excel.Range cellRange = worksheet.Cells[2, i + 1] as Excel.Range;
+                cellRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                cellRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
             }
             for (int i = 0; i < dataGridView.Rows.Count; i++)
             {
                 for (int j = 0; j < dataGridView.Columns.Count; j++)
                 {
-                    worksheet.Cells[i + 2, j + 1] = dataGridView.Rows[i].Cells[j].Value;
+                    worksheet.Cells[i + 5, j + 1] = dataGridView.Rows[i].Cells[j].Value;
+
+                    // Agregar bordes a las celdas de datos
+                    Excel.Range cellRange = worksheet.Cells[i + 3, j + 1] as Excel.Range;
+                    cellRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    cellRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
                 }
             }
 
@@ -66,20 +124,16 @@ namespace GS_Factura
             saveFileDialog.Title = "Guardar archivo Excel";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Guardar el archivo Excel en la ubicación seleccionada
-                workbook.SaveAs(saveFileDialog.FileName);
-
-                // Mostrar mensaje de éxito
-                MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Guardar el archivo Excel
+                SaveExcelFile(saveFileDialog.FileName, workbook);
             }
 
             // Liberar recursos
-            workbook.Close(false);
-            excelApp.Quit();
             releaseObject(worksheet);
             releaseObject(workbook);
             releaseObject(excelApp);
         }
+
         private void releaseObject(object obj)
         {
             try
@@ -884,8 +938,11 @@ namespace GS_Factura
 
         private void ExportarPDF()
         {
+            BaseFont fuente = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1250, true);
+            iTextSharp.text.Font fontTitle = new iTextSharp.text.Font(fuente, 30f, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
             // Crear un documento PDF
-            Document doc = new Document(PageSize.A4);
+            Document doc = new Document(PageSize.A4.Rotate());
+            doc.SetMargins(1.27f, 1.27f, 1.27f, 1.27f);
             try
             {
                 // Especificar la ubicación del archivo PDF
@@ -899,7 +956,18 @@ namespace GS_Factura
                     PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
                     doc.Open();
 
+
                     // Agregar encabezado
+                    Paragraph header = new Paragraph("Resumen de informe de venta", fontTitle);
+                    header.Alignment = Element.ALIGN_CENTER;
+                    doc.Add(header);
+
+                    // Agregar espacio entre el encabezado y la tabla
+                    doc.Add(new Paragraph("\n"));
+                    doc.Add(new Paragraph("\n"));
+                    doc.Add(new Paragraph("\n"));
+
+
                     PdfPTable table = new PdfPTable(dgvDetalladoVenta.Columns.Count);
                     for (int i = 0; i < dgvDetalladoVenta.Columns.Count; i++)
                     {
