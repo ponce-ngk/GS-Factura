@@ -992,18 +992,16 @@ namespace GS_Factura
 
         private void btnInstrucciones_Click(object sender, EventArgs e)
         {
-            string instrucciones = "Para exportar a PDF:\n\n" +
-                           "1. Haga clic en el botón 'Exportar a PDF'.\n" +
-                           "2. Seleccione la ubicación donde desea guardar el archivo PDF.\n" +
-                           "3. Haga clic en 'Guardar'.\n" +
-                           "4. Se generará el archivo PDF con los datos del DataGridView.\n\n" +
-                           "Para exportar a Excel:\n\n" +
-                           "1. Haga clic en el botón 'Exportar a Excel'.\n" +
-                           "2. Seleccione la ubicación donde desea guardar el archivo Excel.\n" +
-                           "3. Haga clic en 'Guardar'.\n" +
-                           "4. Se generará el archivo Excel con los datos del DataGridView.";
-
-            MessageBox.Show(instrucciones, "Instrucciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                GS_Informacion FormInformacion = new GS_Informacion();
+                FormInformacion.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
         }
 
         private void cmbitemsClientes_SelectedIndexChanged(object sender, EventArgs e)
