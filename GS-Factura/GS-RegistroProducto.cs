@@ -382,7 +382,62 @@ namespace GS_Factura
         }
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
-
+            if (txtbuscarproducto.Text != null)
+            {
+                if (op == 1)
+                {
+                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarProductos", par, true);
+                        dgvProductos.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
+                            //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                        dgvProductos.DataSource = tb;
+                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                        //MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else if (op == 2)
+                {
+                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarProductos", par, true);
+                        dgvProductos.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
+                            //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                        dgvProductos.DataSource = tb;
+                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                        //MessageBox.Show("Por favor ingregse al menos un carácter");
+                    }
+                }
+                else
+                {
+                    AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                    //MessageBox.Show("Seleccione al menos un campo");
+                }
+            }
         }
 
         private void dgvProductos_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
