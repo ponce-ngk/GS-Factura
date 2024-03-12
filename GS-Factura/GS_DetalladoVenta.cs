@@ -83,6 +83,11 @@ namespace GS_Factura
 
         private void ExportToExcel(DataGridView dataGridView)
         {
+            if (dataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             // Crear una instancia de Excel
             Excel.Application excelApp = new Excel.Application();
             Excel.Workbook workbook = excelApp.Workbooks.Add();
@@ -101,7 +106,7 @@ namespace GS_Factura
                 worksheet.Cells[4, i + 1] = dataGridView.Columns[i].HeaderText;
 
                 // Agregar bordes a la celda de la cabecera
-                Excel.Range cellRange = worksheet.Cells[2, i + 1] as Excel.Range;
+                Excel.Range cellRange = worksheet.Cells[4, i + 1] as Excel.Range;
                 cellRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 cellRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
             }
@@ -112,7 +117,7 @@ namespace GS_Factura
                     worksheet.Cells[i + 5, j + 1] = dataGridView.Rows[i].Cells[j].Value;
 
                     // Agregar bordes a las celdas de datos
-                    Excel.Range cellRange = worksheet.Cells[i + 3, j + 1] as Excel.Range;
+                    Excel.Range cellRange = worksheet.Cells[i + 5, j + 1] as Excel.Range;
                     cellRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     cellRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
                 }
@@ -938,6 +943,11 @@ namespace GS_Factura
 
         private void ExportarPDF()
         {
+            if (dgvDetalladoVenta.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             BaseFont fuente = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1250, true);
             iTextSharp.text.Font fontTitle = new iTextSharp.text.Font(fuente, 30f, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
             // Crear un documento PDF

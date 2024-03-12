@@ -61,8 +61,8 @@ namespace GS_Factura
             // Se valida si hay campos vacíos antes de continuar
             if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
                 string.IsNullOrWhiteSpace(txtnombrescliente.Text) ||
-                string.IsNullOrWhiteSpace(txtapellidoscliente.Text)
-                || dtpFechaCliente.Value.Date == DateTime.Today)
+                string.IsNullOrWhiteSpace(txtapellidoscliente.Text) ||
+                dtpFechaCliente.Value.Date == DateTime.Today)
             {
                 MessageBox.Show("Por favor, Verifica que todos los campos esten correctos.", "Campos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -118,7 +118,7 @@ namespace GS_Factura
             if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
                 string.IsNullOrWhiteSpace(txtnombrescliente.Text) ||
                 string.IsNullOrWhiteSpace(txtapellidoscliente.Text) ||
-                dtpFechaCliente.Value.Date != DateTime.Today)
+                dtpFechaCliente.Value.Date == DateTime.Today)
             {
                 MessageBox.Show("Por favor, Verifica que todos los campos esten correctos.", "Campos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -160,7 +160,7 @@ namespace GS_Factura
             if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
                 string.IsNullOrWhiteSpace(txtnombrescliente.Text) ||
                 string.IsNullOrWhiteSpace(txtapellidoscliente.Text) ||
-                string.IsNullOrWhiteSpace(dtpFechaCliente.Text))
+                dtpFechaCliente.Value.Date == DateTime.Today)
             {
                 MessageBox.Show("Por favor, completa todos los campos antes de continuar.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -419,6 +419,7 @@ namespace GS_Factura
             switch (op)
             {
                 case 0:
+                    txt_Buscar.Text = "";
                     txt_Buscar.Enabled = false;
                     tb.Clear();
                     par.Clear();
