@@ -52,7 +52,7 @@ namespace GS_Factura
         private void Notificaciones_Load(object sender, EventArgs e)
         {
             PositionAlertBox();
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 300; i++)
             {
                 timer1.Start();
             }
@@ -61,7 +61,7 @@ namespace GS_Factura
         private void timerAnimation_Tick(object sender, EventArgs e)
         {
             LinAlertBox.Width = LinAlertBox.Width + 2;
-            if (LinAlertBox.Width == 500)
+            if (LinAlertBox.Width == 300)
             {
                 this.Close();
             }
@@ -70,7 +70,7 @@ namespace GS_Factura
         private void timer1_Tick(object sender, EventArgs e)
         {
             LinAlertBox.Width = LinAlertBox.Width + 2;
-            if (LinAlertBox.Width == 500)
+            if (LinAlertBox.Width == 300)
             {
                 Notificaciones nt = new Notificaciones();
                 nt.Close();

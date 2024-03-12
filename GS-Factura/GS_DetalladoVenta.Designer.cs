@@ -551,7 +551,7 @@
             this.panel10.Controls.Add(this.btnBuscarItems);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(364, 27);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel10.Margin = new System.Windows.Forms.Padding(2);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(34, 22);
             this.panel10.TabIndex = 5;
@@ -654,7 +654,7 @@
             this.panel5.Controls.Add(this.btnExportarExcel);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(2, 27);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(177, 22);
             this.panel5.TabIndex = 2;
@@ -677,7 +677,7 @@
             this.btnExportarExcel.IconSize = 25;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportarExcel.Location = new System.Drawing.Point(0, 0);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(5);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(177, 22);
             this.btnExportarExcel.TabIndex = 14;
@@ -690,7 +690,7 @@
             this.panel8.Controls.Add(this.btnExportarPDF);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(183, 27);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(177, 22);
             this.panel8.TabIndex = 3;
@@ -726,7 +726,7 @@
             this.panel9.Controls.Add(this.btnBuscar);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(364, 2);
-            this.panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(34, 21);
             this.panel9.TabIndex = 4;
