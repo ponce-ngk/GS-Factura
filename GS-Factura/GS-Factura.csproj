@@ -180,12 +180,6 @@
     <Compile Include="GS-RegistroProducto.Designer.cs">
       <DependentUpon>GS-RegistroProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-RP-ADD.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GS-RP-ADD.Designer.cs">
-      <DependentUpon>GS-RP-ADD.cs</DependentUpon>
-    </Compile>
     <Compile Include="GS-ProductoVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,9 +244,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GS-RegistroProducto.resx">
       <DependentUpon>GS-RegistroProducto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GS-RP-ADD.resx">
-      <DependentUpon>GS-RP-ADD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GS-ProductoVenta.resx">
       <DependentUpon>GS-ProductoVenta.cs</DependentUpon>
@@ -319,6 +310,7 @@
     <None Include="Resources\Information.png" />
     <None Include="Resources\Error.png" />
     <None Include="Resources\Close.png" />
+    <None Include="Resources\Cerrar.png" />
     <Content Include="Resources\remove.ico" />
     <None Include="Resources\ver.ico" />
     <None Include="Resources\ver_nuevo.ico" />

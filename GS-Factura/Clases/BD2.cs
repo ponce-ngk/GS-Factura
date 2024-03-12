@@ -183,10 +183,6 @@ namespace GS_Factura.Clases
         {
             string ret = "";
             CrearComandoStoredProcedure(sentenciaSQL);
-            //this.comando = new SqlCommand();
-            //this.comando.Connection = this.conexion;
-            //this.comando.CommandType = CommandType.StoredProcedure;
-            //this.comando.CommandText = sentenciaSQL;
             foreach (SqlParameter p in parametros)
             {
                 this.comando.Parameters.Add(p);
@@ -201,10 +197,6 @@ namespace GS_Factura.Clases
         {
             DataTable ret = new DataTable();
             CrearComandoStoredProcedure(sentenciaSQL);
-            //this.comando = new SqlCommand();
-            //this.comando.Connection = this.conexion;
-            //this.comando.CommandType = CommandType.StoredProcedure;
-            //this.comando.CommandText = sentenciaSQL;
             SqlDataAdapter adapter = new SqlDataAdapter(this.comando);
             foreach (SqlParameter p in parametros)
             {
@@ -221,15 +213,7 @@ namespace GS_Factura.Clases
         {
             DataTable ret = new DataTable();
             CrearComandoStoredProcedure(sentenciaSQL);
-            //this.comando = new SqlCommand();
-            //this.comando.Connection = this.conexion;
-            //this.comando.CommandType = CommandType.StoredProcedure;
-            //this.comando.CommandText = sentenciaSQL;
             SqlDataAdapter adapter = new SqlDataAdapter(this.comando);
-            //foreach (SqlParameter p in parametros)
-            //{
-            //    this.comando.Parameters.Add(p);
-            //};
             this.ConectarSiDesconectado();
             adapter.Fill(ret);
             //ret = this.EjecutarEscalar();

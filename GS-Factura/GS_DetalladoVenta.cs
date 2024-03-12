@@ -36,27 +36,90 @@ namespace GS_Factura
             cmbitemsClientes.Enabled = false;
             cmbitemsProductos.Enabled = false;
         }
+
+        private void SaveExcelFile(string fileName, Excel.Workbook workbook)
+        {
+            Excel.Application excelApp = new Excel.Application();
+
+            try
+            {
+                // Verificar si el archivo de Excel está abierto
+                foreach (Excel.Workbook wb in excelApp.Workbooks)
+                {
+                    if (wb.FullName == fileName)
+                    {
+                        // Cerrar el archivo existente
+                        wb.Close(true);
+                        break;
+                    }
+                }
+
+                // Guardar el archivo Excel en la ubicación seleccionada
+                workbook.SaveAs(fileName);
+
+                // Mostrar mensaje de éxito
+                MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar el archivo Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (excelApp != null)
+                {
+                    workbook.Close(false);
+                    excelApp.Quit();
+                    releaseObject(workbook);
+                    releaseObject(excelApp);
+                }
+            }
+        }
+
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
             ExportToExcel(dgvDetalladoVenta);
         }
+
         private void ExportToExcel(DataGridView dataGridView)
         {
+            if (dataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             // Crear una instancia de Excel
             Excel.Application excelApp = new Excel.Application();
             Excel.Workbook workbook = excelApp.Workbooks.Add();
             Excel.Worksheet worksheet = workbook.Sheets[1];
 
+            // Agregar título en la primera fila
+            Excel.Range titleRange = worksheet.Cells[1, 1] as Excel.Range;
+            titleRange.Value = "Resumen de informe de venta";
+            titleRange.Font.Size = 35;
+            titleRange.Font.Bold = true;
+            titleRange.EntireRow.AutoFit();
+
             // Copiar datos del DataGridView a Excel
             for (int i = 0; i < dataGridView.ColumnCount; i++)
             {
-                worksheet.Cells[1, i + 1] = dataGridView.Columns[i].HeaderText;
+                worksheet.Cells[4, i + 1] = dataGridView.Columns[i].HeaderText;
+
+                // Agregar bordes a la celda de la cabecera
+                Excel.Range cellRange = worksheet.Cells[4, i + 1] as Excel.Range;
+                cellRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                cellRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
             }
             for (int i = 0; i < dataGridView.Rows.Count; i++)
             {
                 for (int j = 0; j < dataGridView.Columns.Count; j++)
                 {
-                    worksheet.Cells[i + 2, j + 1] = dataGridView.Rows[i].Cells[j].Value;
+                    worksheet.Cells[i + 5, j + 1] = dataGridView.Rows[i].Cells[j].Value;
+
+                    // Agregar bordes a las celdas de datos
+                    Excel.Range cellRange = worksheet.Cells[i + 5, j + 1] as Excel.Range;
+                    cellRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                    cellRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
                 }
             }
 
@@ -66,20 +129,16 @@ namespace GS_Factura
             saveFileDialog.Title = "Guardar archivo Excel";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Guardar el archivo Excel en la ubicación seleccionada
-                workbook.SaveAs(saveFileDialog.FileName);
-
-                // Mostrar mensaje de éxito
-                MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Guardar el archivo Excel
+                SaveExcelFile(saveFileDialog.FileName, workbook);
             }
 
             // Liberar recursos
-            workbook.Close(false);
-            excelApp.Quit();
             releaseObject(worksheet);
             releaseObject(workbook);
             releaseObject(excelApp);
         }
+
         private void releaseObject(object obj)
         {
             try
@@ -121,6 +180,8 @@ namespace GS_Factura
                 cbxNombre.Text = "Desabilitado";
                 cbxNombre.ForeColor = Color.Red;
                 cmbitemsClientes.Enabled = false;
+                txtCliente.Text = "";
+                cmbitemsClientes.SelectedIndex = -1;
             }
         }
 
@@ -142,6 +203,8 @@ namespace GS_Factura
                 cbxProducto.Text = "Desabilitado";
                 cbxProducto.ForeColor = Color.Red;
                 cmbitemsProductos.Enabled = false;
+                txtProducto.Text = "";
+                cmbitemsProductos.SelectedIndex = -1;
             }
         }
 
@@ -178,364 +241,527 @@ namespace GS_Factura
             //Validacion de que sea solo letras y espacio 
             if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
             {
-                if (txtCliente.Text != null)
+                //CheckBox que indica que va a buscar solo por el lado del cliente
+                if (cbxNombre.Checked == true && cbxProducto.Checked == false)
                 {
-                    if (opClientes == 0)
+                    //MessageBox.Show("chebox 1 Cliente ");
+                    if (txtCliente.Text != null)
                     {
-                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                        if (opClientes == 0)
                         {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "CEDULA"));
-                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
+                            if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
                             {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "CEDULA"));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
-                        else
+                        else if (opClientes == 1)
                         {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opClientes == 1)
-                    {
-                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
-                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
+                            if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
                             {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opClientes == 0 && opProductos == 0)
-                    {
-                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "CEDULA"));
-                            par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
-                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
+                            else
                             {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opClientes == 0 && opProductos == 1)
-                    {
-                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "CEDULA"));
-                            par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
-                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opClientes == 1 && opProductos == 0)
-                    {
-                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
-                            par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
-                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opClientes == 1 && opProductos == 1)
-                    {
-                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
-                            par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
-                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                 }
-                else
+                //CheckBox que indica que va a buscar solo por el lado del producto
+                else if (cbxNombre.Checked == false && cbxProducto.Checked == true)
                 {
-                    MessageBox.Show("Seleccione al menos un campo");
+                    if (txtProducto.Text != null)
+                    {
+                        if (opProductos == 0)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                                par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (opProductos == 1)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                                par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                    }
+                }
+                //CheckBox que indica que va a buscar por el lado del cliente y producto
+                else if (cbxNombre.Checked == true && cbxProducto.Checked == true)
+                {
+                    //MessageBox.Show(" los 2 chebox estan habilitado ");
+                    if (txtProducto.Text != null)
+                    {
+                        if (opProductos == 0 && opClientes == 0)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "CEDULA"));
+                                par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                                par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (opProductos == 0 && opClientes == 1)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                                par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                                par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (opProductos == 1 && opClientes == 0)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "CEDULA"));
+                                par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                                par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (opProductos == 1 && opClientes == 1)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                                par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                                par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                        //MessageBox.Show("Seleccione al menos un campo");
+                    }
                 }
             }
             else if (opClientes == null && txtCliente.Text == null)
             {
-                MessageBox.Show("Por favor ingregse un carácter");
+                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "No se admiten caracteres especiales.", Properties.Resources.Information);
+                //MessageBox.Show("No se Permite el ingreso de  caracteres especiales");
             }
         }
-
         private void txtProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo letras y espacio 
             if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
             {
-                if (txtProducto.Text != null)
+                //CheckBox que indica que va a buscar solo por el lado del cliente
+                if (cbxNombre.Checked == true && cbxProducto.Checked == false)
                 {
-                    if (opProductos == 0)
+                    //MessageBox.Show("chebox 1 Cliente ");
+                    if (txtCliente.Text != null)
                     {
-                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                        if (opClientes == 0)
                         {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
-                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
+                            if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
                             {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "CEDULA"));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
-                        else
+                        else if (opClientes == 1)
                         {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opProductos == 1)
-                    {
-                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
-                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
+                            if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
                             {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opProductos == 0 && opClientes == 0)
-                    {
-                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
-                            par.Add(new SqlParameter("@Campo2", "NOMBRE"));
-                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                            par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
+                            else
                             {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opProductos == 0 && opClientes == 1)
-                    {
-                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
-                            par.Add(new SqlParameter("@Campo2", "CEDULA"));
-                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                            par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opProductos == 1 && opClientes == 0)
-                    {
-                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
-                            par.Add(new SqlParameter("@Campo2", "NOMBRE"));
-                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                            par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (opProductos == 1 && opClientes == 1)
-                    {
-                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
-                            par.Add(new SqlParameter("@Campo2", "CEDULA"));
-                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                            par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            if (tb.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                            dgvDetalladoVenta.DataSource = tb;
-                            //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                 }
-                else
+                //CheckBox que indica que va a buscar solo por el lado del producto
+                else if (cbxNombre.Checked == false && cbxProducto.Checked == true)
                 {
-                    MessageBox.Show("Seleccione al menos un campo");
+                    if (txtProducto.Text != null)
+                    {
+                        if (opProductos == 0)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                                par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (opProductos == 1)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                                par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                    }
+                }
+                //CheckBox que indica que va a buscar por el lado del cliente y producto
+                else if (cbxNombre.Checked == true && cbxProducto.Checked == true)
+                {
+                    //MessageBox.Show(" los 2 chebox estan habilitado ");
+                    if (txtProducto.Text != null)
+                    {
+                        if (opProductos == 0 && opClientes == 0)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "CEDULA"));
+                                par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                                par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (opProductos == 0 && opClientes == 1)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                                par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                                par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (opProductos == 1 && opClientes == 0)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "CEDULA"));
+                                par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                                par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (opProductos == 1 && opClientes == 1)
+                        {
+                            if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                                par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                                par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                                par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                                par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                                dgvDetalladoVenta.DataSource = tb;
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                        //MessageBox.Show("Seleccione al menos un campo");
+                    }
                 }
             }
-            else if (opProductos == null && txtProducto.Text == null)
+            else if (opClientes == null && txtCliente.Text == null)
             {
-                MessageBox.Show("Por favor ingregse un carácter");
+                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "No se admiten caracteres especiales.", Properties.Resources.Information);
+                //MessageBox.Show("No se Permite el ingreso de  caracteres especiales");
             }
         }
 
@@ -549,343 +775,271 @@ namespace GS_Factura
             dgvDetalladoVenta.DataSource = tb;
             if (tb.Rows.Count == 0)
             {
-                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnBuscarItems_Click(object sender, EventArgs e)
         {
-            if (txtCliente.Text != null)
+            //CheckBox que indica que va a buscar solo por el lado del cliente
+            if (cbxNombre.Checked == true && cbxProducto.Checked == false)
             {
-                if (opClientes == 0)
+                //MessageBox.Show("chebox 1 Cliente ");
+                if (txtCliente.Text != null)
                 {
-                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                    if (opClientes == 0)
                     {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "CEDULA"));
-                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
+                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
                         {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            //MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
-                    else
+                    else if (opClientes == 1)
                     {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (opClientes == 1)
-                {
-                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
-                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
+                        if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
                         {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientes ", par, true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
                     }
                 }
             }
-            else if (txtProducto.Text != null)
+            //CheckBox que indica que va a buscar solo por el lado del producto
+            else if (cbxNombre.Checked == false && cbxProducto.Checked == true)
             {
-                if (opProductos == 0)
+                if (txtProducto.Text != null)
                 {
-                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
+                    if (opProductos == 0)
                     {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
-                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
+                        if (txtProducto.TextLength != 0 || cmbitemsProductos.SelectedIndex == -1)
                         {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos", par, true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            //MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
-                    else
+                    else if (opProductos == 1)
                     {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (opProductos == 1)
-                {
-                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
-                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
+                        if (txtProducto.TextLength != 0 || cmbitemsProductos.SelectedIndex == -1)
                         {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasProductos", par, true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
                     }
                 }
             }
-            else if (txtCliente.Text != null || txtProducto.Text != null)
+            //CheckBox que indica que va a buscar por el lado del cliente y producto
+            else if (cbxNombre.Checked == true && cbxProducto.Checked == true)
             {
-                if (opClientes == 0 && opProductos == 0)
+                //MessageBox.Show(" los 2 chebox estan habilitado ");
+                if (txtProducto.Text != null)
                 {
-                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                    if (opProductos == 0 && opClientes == 0)
                     {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "CEDULA"));
-                        par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
-                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                        par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
                         {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
+                            par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            //MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
-                    else
+                    else if (opProductos == 0 && opClientes == 1)
                     {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opProductos == 1 && opClientes == 0)
+                    {
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
+                            par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (opProductos == 1 && opClientes == 1)
+                    {
+                        if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
+                        {
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                            par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
+                            par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos", par, true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
+                            dgvDetalladoVenta.DataSource = tb;
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
                     }
                 }
-                else if (opClientes == 0 && opProductos == 1)
+                else
                 {
-                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "CEDULA"));
-                        par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
-                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                        par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (opClientes == 1 && opProductos == 0)
-                {
-                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
-                        par.Add(new SqlParameter("@Campo2", "IDPRODUCTO"));
-                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                        par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (opClientes == 1 && opProductos == 1)
-                {
-                    if (txtCliente.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "NOMBRE"));
-                        par.Add(new SqlParameter("@Campo2", "PRODUCTO"));
-                        par.Add(new SqlParameter("@Valor", txtCliente.Text.Trim()));
-                        par.Add(new SqlParameter("@Valor2", txtProducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (opProductos == 0 && opClientes == 0)
-                {
-                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
-                        par.Add(new SqlParameter("@Campo2", "NOMBRE"));
-                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                        par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (opProductos == 0 && opClientes == 1)
-                {
-                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
-                        par.Add(new SqlParameter("@Campo2", "CEDULA"));
-                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                        par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (opProductos == 1 && opClientes == 0)
-                {
-                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
-                        par.Add(new SqlParameter("@Campo2", "NOMBRE"));
-                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                        par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (opProductos == 1 && opClientes == 1)
-                {
-                    if (txtProducto.TextLength != 0 || cmbitemsClientes.SelectedIndex == -1 && cmbitemsProductos.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
-                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
-                        par.Add(new SqlParameter("@Campo2", "CEDULA"));
-                        par.Add(new SqlParameter("@Valor", txtProducto.Text.Trim()));
-                        par.Add(new SqlParameter("@Valor2", txtCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechasClientesProductos ", par, true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
-                        dgvDetalladoVenta.DataSource = tb;
-                        //dgvDetalladoVenta.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_DetalladoVentasVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
+                    AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                    //MessageBox.Show("Seleccione al menos un campo");
                 }
             }
         }
 
         private void ExportarPDF()
         {
+            if (dgvDetalladoVenta.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            BaseFont fuente = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1250, true);
+            iTextSharp.text.Font fontTitle = new iTextSharp.text.Font(fuente, 30f, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
             // Crear un documento PDF
-            Document doc = new Document(PageSize.A4);
+            Document doc = new Document(PageSize.A4.Rotate());
+            doc.SetMargins(1.27f, 1.27f, 1.27f, 1.27f);
             try
             {
                 // Especificar la ubicación del archivo PDF
@@ -899,7 +1053,18 @@ namespace GS_Factura
                     PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
                     doc.Open();
 
+
                     // Agregar encabezado
+                    Paragraph header = new Paragraph("Resumen de informe de venta", fontTitle);
+                    header.Alignment = Element.ALIGN_CENTER;
+                    doc.Add(header);
+
+                    // Agregar espacio entre el encabezado y la tabla
+                    doc.Add(new Paragraph("\n"));
+                    doc.Add(new Paragraph("\n"));
+                    doc.Add(new Paragraph("\n"));
+
+
                     PdfPTable table = new PdfPTable(dgvDetalladoVenta.Columns.Count);
                     for (int i = 0; i < dgvDetalladoVenta.Columns.Count; i++)
                     {
@@ -931,6 +1096,16 @@ namespace GS_Factura
             {
                 doc.Close();
             }
+        }
+        void AlertlBoxArtan(Color backColor, Color color, string title, string text, System.Drawing.Image icon)
+        {
+            Notificaciones noti = new Notificaciones();
+            noti.BackColor = backColor;
+            noti.ColorAlertBox = color;
+            noti.TitleAlertBox = title;
+            noti.TextAlertBox = text;
+            noti.IconeAlertBox = icon;
+            noti.ShowDialog();
         }
     }
 }

@@ -44,7 +44,7 @@
             // btnRegresar
             // 
             this.btnRegresar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegresar.BackColor = System.Drawing.Color.Blue;
+            this.btnRegresar.BackColor = System.Drawing.Color.Red;
             this.btnRegresar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegresar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnRegresar.FlatAppearance.BorderSize = 0;
