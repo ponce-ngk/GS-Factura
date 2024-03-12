@@ -36,7 +36,6 @@
             this.timerAnimation = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.PicCerrar = new System.Windows.Forms.PictureBox();
-            
             ((System.ComponentModel.ISupportInitialize)(this.PicAlertBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicCerrar)).BeginInit();
             this.SuspendLayout();
@@ -84,12 +83,12 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 10;
+            this.timer1.Interval = 5;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // PicCerrar
             // 
-            this.PicCerrar.Image = global::GS_Factura.Properties.Resources.Close;
+            this.PicCerrar.Image = global::GS_Factura.Properties.Resources.Cerrar;
             this.PicCerrar.Location = new System.Drawing.Point(467, 1);
             this.PicCerrar.Name = "PicCerrar";
             this.PicCerrar.Size = new System.Drawing.Size(32, 30);
@@ -97,10 +96,6 @@
             this.PicCerrar.TabIndex = 14;
             this.PicCerrar.TabStop = false;
             this.PicCerrar.Click += new System.EventHandler(this.PicCerrar_Click);
-            // 
-            // ellipseControl
-            // 
-
             // 
             // Notificaciones
             // 
