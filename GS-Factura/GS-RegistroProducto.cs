@@ -45,6 +45,7 @@ namespace GS_Factura
             txtbuscarproducto.Text = "";
             lblIdProducto.Text = "";
             cmbitems.SelectedIndex = -1;
+            txtbuscarproducto.Enabled = true;
             if (dgvProductos.RowCount != 0)
             {
                 tb.Clear();
@@ -235,6 +236,7 @@ namespace GS_Factura
         {
             Limpiar();
             BloqueoControles();
+            BorrarMensajeError();
             dgvProductos.CurrentCell = null;
         }
         public void BloqueoControles()
@@ -267,26 +269,6 @@ namespace GS_Factura
         }
         private void DgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Asignacion de datos de la BD al DataGrid
-            try
-            {
-                if (dgvProductos.CurrentCell == null)
-                {
-                    BloqueoControles();
-                }
-                else
-                {
-                    BloqueoClickDgv();
-                    lblIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
-                    txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
-                    txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
-                    txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -458,6 +440,30 @@ namespace GS_Factura
                     AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
                     //MessageBox.Show("Seleccione al menos un campo");
                 }
+            }
+        }
+
+        private void dgvProductos_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            //Asignacion de datos de la BD al DataGrid
+            try
+            {
+                if (dgvProductos.CurrentCell == null)
+                {
+                    BloqueoControles();
+                }
+                else
+                {
+                    BloqueoClickDgv();
+                    lblIdProducto.Text = dgvProductos.CurrentRow.Cells[0].Value.ToString();
+                    txtnombreproducto.Text = dgvProductos.CurrentRow.Cells[1].Value.ToString();
+                    txtpreciounitario.Text = dgvProductos.CurrentRow.Cells[2].Value.ToString();
+                    txtcantidadproducto.Text = dgvProductos.CurrentRow.Cells[3].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
