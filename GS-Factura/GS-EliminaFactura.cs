@@ -50,12 +50,12 @@ namespace GS_Factura
                 }
                 else
                 {
-                    // Verificar si la longitud después de la pulsación de tecla excede 10 caracteres
-                    if ((txtBuscarFacturaCedula.Text + e.KeyChar).Length > 10 && e.KeyChar != (char)Keys.Back)
-                    {
-                        // Si excede 10 caracteres, cancelar la entrada de caracteres
-                        e.Handled = true;
-                    }
+                    //// Verificar si la longitud después de la pulsación de tecla excede 10 caracteres
+                    //if ((txtBuscarFacturaCedula.Text + e.KeyChar).Length > 10 && e.KeyChar != (char)Keys.Back)
+                    //{
+                    //    // Si excede 10 caracteres, cancelar la entrada de caracteres
+                    //    e.Handled = true;
+                    //}
                 }
             }
             catch (Exception ex)
@@ -70,7 +70,7 @@ namespace GS_Factura
             try
             {
                 // Obtener valores de los TextBox
-                string cedula = txtBuscarFacturaCedula.Text;
+                string cedula = txtBuscaFacturaCliente.Text;
                 int? numeroFactura = null;
 
                 // Intentar convertir el texto a un número entero
@@ -115,7 +115,7 @@ namespace GS_Factura
         public void LimpiaDatos()
         {
             txtBuscaFacturaCliente.Text = "";
-            txtBuscarFacturaCedula.Text = "";
+            
         }
 
         private void dtgFactura_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

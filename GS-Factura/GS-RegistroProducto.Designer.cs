@@ -48,7 +48,6 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.btn_Buscar = new FontAwesome.Sharp.IconButton();
             this.txtbuscarproducto = new System.Windows.Forms.TextBox();
             this.cmbitems = new System.Windows.Forms.ComboBox();
@@ -128,7 +127,6 @@
             this.dgvProductos.Size = new System.Drawing.Size(1232, 351);
             this.dgvProductos.TabIndex = 114;
             this.dgvProductos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProductos_CellDoubleClick);
-            this.dgvProductos.Click += new System.EventHandler(this.dgvProductos_Click);
             // 
             // panel9
             // 
@@ -375,7 +373,6 @@
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.Controls.Add(this.iconButton2);
             this.panel6.Controls.Add(this.btn_Buscar);
             this.panel6.Controls.Add(this.txtbuscarproducto);
             this.panel6.Controls.Add(this.cmbitems);
@@ -385,33 +382,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(726, 96);
             this.panel6.TabIndex = 0;
-            // 
-            // iconButton2
-            // 
-            this.iconButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(191)))), ((int)(((byte)(159)))));
-            this.iconButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.iconButton2.FlatAppearance.BorderSize = 0;
-            this.iconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SpringGreen;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton2.ForeColor = System.Drawing.Color.White;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Searchengin;
-            this.iconButton2.IconColor = System.Drawing.Color.White;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 27;
-            this.iconButton2.Location = new System.Drawing.Point(401, 60);
-            this.iconButton2.Margin = new System.Windows.Forms.Padding(0);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(121, 36);
-            this.iconButton2.TabIndex = 25;
-            this.iconButton2.Text = "Pruba de Alerts";
-            this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton2.UseVisualStyleBackColor = false;
-            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // btn_Buscar
             // 
@@ -459,6 +429,7 @@
             this.cmbitems.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
             this.cmbitems.FormattingEnabled = true;
             this.cmbitems.Items.AddRange(new object[] {
+            "Mostrar Todos",
             "Nombre del Producto",
             "ID del Producto"});
             this.cmbitems.Location = new System.Drawing.Point(537, 25);
@@ -723,9 +694,9 @@
             this.label4.Location = new System.Drawing.Point(9, 30);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 22);
+            this.label4.Size = new System.Drawing.Size(177, 22);
             this.label4.TabIndex = 41;
-            this.label4.Text = "Stock:";
+            this.label4.Text = "Stock: (requerido)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel12
@@ -763,9 +734,9 @@
             this.label10.Location = new System.Drawing.Point(11, 30);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 22);
+            this.label10.Size = new System.Drawing.Size(260, 22);
             this.label10.TabIndex = 43;
-            this.label10.Text = "Precio Unitario: ";
+            this.label10.Text = "Precio Unitario: (requerido)";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // iconButton6
@@ -892,6 +863,5 @@
         private System.Windows.Forms.TextBox txtbuscarproducto;
         private FontAwesome.Sharp.IconButton btn_Buscar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private FontAwesome.Sharp.IconButton iconButton2;
     }
 }

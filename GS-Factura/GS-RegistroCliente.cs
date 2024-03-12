@@ -61,8 +61,8 @@ namespace GS_Factura
             // Se valida si hay campos vacíos antes de continuar
             if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
                 string.IsNullOrWhiteSpace(txtnombrescliente.Text) ||
-                string.IsNullOrWhiteSpace(txtapellidoscliente.Text) ||
-                dtpFechaCliente.Value.Date != DateTime.Today)
+                string.IsNullOrWhiteSpace(txtapellidoscliente.Text)
+                || dtpFechaCliente.Value.Date == DateTime.Today)
             {
                 MessageBox.Show("Por favor, Verifica que todos los campos esten correctos.", "Campos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
