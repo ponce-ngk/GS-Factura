@@ -316,9 +316,9 @@ namespace GS_Factura.Clases
         {
             string sentenciaSQL = "sp_ObtenerDatosFactura";
             List<SqlParameter> parametros = new List<SqlParameter>
-    {
-        new SqlParameter("@IDFactura", idFactura)
-    };
+            {
+                 new SqlParameter("@IDFactura", idFactura)
+            };
 
             return EscalarProcAlmTabla(sentenciaSQL, parametros, true);
         }
@@ -375,6 +375,80 @@ namespace GS_Factura.Clases
             return consulta;
         }
 
+        public decimal RetornarStock(int idProducto)
+        {
+            decimal stock = 0;
+
+            try
+            {
+                using (SqlCommand mostrarProdCmd = new SqlCommand("SELECT STOCK FROM PRODUCTO WHERE IDPRODUCTO = @id_product", AccesoDatos.AbrirConexion()))
+                {
+                    mostrarProdCmd.Parameters.AddWithValue("@id_product", idProducto);
+                    stock = Convert.ToDecimal(mostrarProdCmd.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción según tus necesidades
+                MessageBox.Show("Error al obtener el stock: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return stock;
+        }
+
+
+        public void XmlEditarFactura(int idFactura, int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
+        {
+            try
+            {
+                string xmlFactura = EditarElementoFactura(idFactura, idCliente, subtotal, iva, total, detalleVenta);
+
+                using (SqlConnection conexion = AccesoDatos.AbrirConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_EditarFactura", conexion))
+                    {
+                        cmd.Parameters.Add("@IDFactura", SqlDbType.Int).Value = idFactura;
+                        cmd.Parameters.Add("@StringXML", SqlDbType.VarChar).Value = xmlFactura;
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("La factura ha sido editada exitosamente.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+        }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+    }
+
+        private String EditarElementoFactura(int idFactura, int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
+        {
+            XElement factura = new XElement("FACTURA",
+                new XElement("item",
+                    new XElement("IDFACTURA", idFactura),
+                    new XElement("IDCLIENTE", idCliente),
+                    new XElement("FECHA", DateTime.Now),
+                    new XElement("SUBTOTAL", subtotal),
+                    new XElement("IVA", iva),
+                    new XElement("TOTAL", total)
+                )
+            );
+
+            XElement detalleFactura = new XElement("DETALLE_FACTURA");
+            foreach (DataGridViewRow row in detalleVenta.Rows)
+            {
+                detalleFactura.Add(new XElement("item",
+                    new XElement("IDPRODUCTO", row.Cells["IDPRODUCTO"].Value),
+                    new XElement("CANTIDAD", Convert.ToDecimal(row.Cells["CANTIDAD"].Value.ToString().Replace(".", ","))),
+                    new XElement("PRECIO_UNITARIO", Convert.ToDecimal(row.Cells["PRECIO_UNITARIO"].Value.ToString().Replace(".", ","))),
+                    new XElement("SUBTOTAL", Convert.ToDecimal(row.Cells["TotalProducto"].Value.ToString().Replace(".", ",")))
+                ));
+            }
+
+            string xmlFactura = factura.ToString() + detalleFactura.ToString();
+            return xmlFactura;
+        }
 
 
 

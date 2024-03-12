@@ -96,6 +96,7 @@ namespace GS_Factura
         private void BtnañadirVenta_Click(object sender, EventArgs e)
         {
             try
+            
             {
 
                 ProductoVenta formPRODUCT = new ProductoVenta();
