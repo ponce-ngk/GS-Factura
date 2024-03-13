@@ -257,16 +257,7 @@ namespace GS_Factura
             lblActualizar.Visible = true;
             lblEliminar.Visible = true;
         }
-        void AlertlBoxArtan(Color backColor, Color color, string title, string text, Image icon)
-        {
-            Notificaciones noti = new Notificaciones();
-            noti.BackColor = backColor;
-            noti.ColorAlertBox = color;
-            noti.TitleAlertBox = title;
-            noti.TextAlertBox = text;
-            noti.IconeAlertBox = icon;
-            noti.ShowDialog();
-        }
+        
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
             op = cmbitems.SelectedIndex;

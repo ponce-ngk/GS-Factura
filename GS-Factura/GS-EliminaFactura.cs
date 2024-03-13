@@ -378,15 +378,6 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
             }
         }
-        void AlertlBoxArtan(Color backColor, Color color, string title, string text, Image icon)
-        {
-            Notificaciones noti = new Notificaciones();
-            noti.BackColor = backColor;
-            noti.ColorAlertBox = color;
-            noti.TitleAlertBox = title;
-            noti.TextAlertBox = text;
-            noti.IconeAlertBox = icon;
-            noti.ShowDialog();
-        }
+        
     }
 }
