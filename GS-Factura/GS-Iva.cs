@@ -449,32 +449,7 @@ namespace GS_Factura
 
         private void btnInhabilitar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres Inhabilitar estos datos?", "Confirmar de Inhabilitar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirmacion == DialogResult.Yes)
-                {
-                    sql = "";
-                    par.Clear();
-                    par.Add(new SqlParameter("@ID_IVA", int.Parse(lblIdIva.Text)));
-                    sql = OAD.EscalarProcAlmString("InactivarIVA", par, true);
-                    if (sql != null)
-                    {
-                        BloqueoControles();
-                        txtIva.Text = "0";
-                        lblIdIva.Text = "0";
-                        MessageBox.Show("IVA Inhabilitado exitosamente.", "Datos Inhabilitados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo Inhabilitar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            
         }
     }
 }
