@@ -309,6 +309,7 @@
     <None Include="Resources\Error.png" />
     <None Include="Resources\Close.png" />
     <None Include="Resources\Cerrar.png" />
+    <None Include="Resources\Captura de pantalla 2024-03-11 221407.png" />
     <Content Include="Resources\remove.ico" />
     <None Include="Resources\ver.ico" />
     <None Include="Resources\ver_nuevo.ico" />

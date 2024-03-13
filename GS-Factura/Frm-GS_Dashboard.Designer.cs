@@ -279,11 +279,10 @@
             this.lblNombre.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.ForeColor = System.Drawing.Color.White;
             this.lblNombre.Location = new System.Drawing.Point(2, 79);
-            this.lblNombre.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(10);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(150, 0);
             this.lblNombre.TabIndex = 7;
-            this.lblNombre.Text = "Admin";
             this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ptmfotouser
@@ -291,7 +290,7 @@
             this.ptmfotouser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ptmfotouser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptmfotouser.BackgroundImage")));
+            this.ptmfotouser.BackgroundImage = global::GS_Factura.Properties.Resources.Captura_de_pantalla_2024_03_11_221407;
             this.ptmfotouser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ptmfotouser.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
             this.ptmfotouser.BorderColor = System.Drawing.Color.RoyalBlue;
@@ -300,9 +299,9 @@
             this.ptmfotouser.BorderSize = 2;
             this.ptmfotouser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ptmfotouser.GradientAngle = 50F;
-            this.ptmfotouser.Location = new System.Drawing.Point(42, 10);
+            this.ptmfotouser.Location = new System.Drawing.Point(32, 3);
             this.ptmfotouser.Name = "ptmfotouser";
-            this.ptmfotouser.Size = new System.Drawing.Size(68, 68);
+            this.ptmfotouser.Size = new System.Drawing.Size(80, 80);
             this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptmfotouser.TabIndex = 6;
             this.ptmfotouser.TabStop = false;
