@@ -26,7 +26,7 @@ namespace GS_Factura
             try
             {
                 // Obtener el ID máximo de la factura
-                BD2 bd2 = new BD2();
+                AccesoDatos bd2 = new AccesoDatos();
                 int maxIdVenta = bd2.ObtenerMaxIdFactura();
 
                 // Verificar si se obtuvo correctamente el ID máximo

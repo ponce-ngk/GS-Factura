@@ -1194,8 +1194,8 @@
             this.txtSearchCliente.Name = "txtSearchCliente";
             this.txtSearchCliente.Size = new System.Drawing.Size(155, 29);
             this.txtSearchCliente.TabIndex = 50;
-            this.txtSearchCliente.TextChanged += new System.EventHandler(this.txtSearchCliente_TextChanged);
-            this.txtSearchCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchCliente_KeyPress);
+            //this.txtSearchCliente.TextChanged += new System.EventHandler(this.txtSearchCliente_TextChanged);
+            //this.txtSearchCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchCliente_KeyPress);
             // 
             // GS_EditarFactura
             // 

@@ -16,7 +16,7 @@ namespace GS_Factura
 {
     public partial class GS_EliminaFactura : Form
     {
-        BD2 OAD = new BD2();
+        AccesoDatos OAD = new AccesoDatos();
         List<SqlParameter> par = new List<SqlParameter>();
         int op;
         DataTable tb = new DataTable();
@@ -294,11 +294,10 @@ namespace GS_Factura
                     DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres editar esta factura?", "Confirmar edición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
-                    {
-                        DeshabilitarFormularios();
+                    {                        
+                        // Abrir el formulario de edición de factura con el ID de la factura
                         GS_EditarFactura editarForm = new GS_EditarFactura(idFactura);
-                        editarForm.FormClosed += (s, args) => HabilitarFormularios();
-                        editarForm.Show();
+                        editarForm.ShowDialog();
 
                         // Recargar los datos en el DataGridView u otras acciones según sea necesario
                         dtgFactura.Rows.RemoveAt(index);
@@ -309,22 +308,8 @@ namespace GS_Factura
                     MessageBox.Show(ex.Message);
                 }
             }
-        }
-        private void DeshabilitarFormularios()
-        {
-            foreach (Form form in Application.OpenForms)
-            {
-                form.Enabled = false;
-                form.TopMost = false;
-            }
-        }
-        private void HabilitarFormularios()
-        {
-            foreach (Form form in Application.OpenForms)
-            {
-                form.Enabled = true;
-            }
-        }
+        }        
+
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

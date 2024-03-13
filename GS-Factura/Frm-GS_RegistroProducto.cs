@@ -14,7 +14,7 @@ namespace GS_Factura
 {
     public partial class GS_RegistroProducto : Form
     {
-        BD2 OAD = new BD2();
+        AccesoDatos OAD = new AccesoDatos();
         List<SqlParameter> par = new List<SqlParameter>();
         int op;
         DataTable tb = new DataTable();

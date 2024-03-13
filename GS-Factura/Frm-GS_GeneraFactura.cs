@@ -20,7 +20,7 @@ namespace GS_Factura
 {
     public partial class GS_GeneraFactura : Form
     {
-        BD2 bD2 = new BD2();
+        AccesoDatos bD2 = new AccesoDatos();
         List<SqlParameter> par = new List<SqlParameter>();
         int op;
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
