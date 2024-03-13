@@ -121,7 +121,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAARoAAAE1CAYAAAA4SS9ZAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAA2RlJREFUeF7svXV41cfyP/775wvBq7SU6q3f3sqt3hoagru7OxQplCLFpVCKlRZa
+        wQAADsEBuJFr7QAA2RlJREFUeF7svXV41cfyP/775wvBq7SU6q3f3sqt3hoagru7OxQplCLFpVCKlRZa
         XJOQEHd3d0+IuxAITuV+Xr+Z3WzOSThJTgQKlzPPM89Jztn3vnd3Zl87szL7/8FABjKQge4yGYDGQAYy
         0F0nA9AYyEAGuuukE2j+7//+D6WlZSgru2hgAxvYwHoxYwZjhy7SCTTl5ZfQ0sQDrXo5oqWxgQ1sYAPX
         zQIrCDMYO3RR7UDT0x6tepxHy+4GNrCBDVw3C6wgzDAAjYENbOC7xgagMbCBDXzX2QA0Bjawge86G4DG
@@ -1055,22 +1055,24 @@
 1. Haga clic en el botón 'Exportar a PDF'.
 2. Seleccione la ubicación donde desea guardar el archivo PDF.
 3. Haga clic en 'Guardar'.
-4. Se generará el archivo PDF con los datos del DataGridView.
+4. Se generará el archivo PDF con los datos del DataGridView en 
+la ubicacion indicada.
 
 Para exportar a Excel:
 1. Haga clic en el botón 'Exportar a Excel'.
 2. Seleccione la ubicación donde desea guardar el archivo Excel.
 3. Haga clic en 'Guardar'.
-4. Se generará el archivo Excel con los datos del DataGridView.</value>
+4. Se generará el archivo Excel con los datos del DataGridView en 
+la ubicacion indicada.</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>El usuario puede elegir el rango de fechas, el cliente o el producto o 
 cualquier combinación de los tres datos.
 ----Tick----
- - Puede habilitar y desabilitar los campos de busquedo ya sea de 
+ - Puede habilitar y desabilitar los campos de busqueda ya sea de 
     producto o cliente.
  - Puede seleccionar por que campo de busqueda desea buscar por
-    medio del Como de Opciones.
+    medio del Combo de Opciones.
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
