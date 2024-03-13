@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
@@ -72,7 +72,7 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.dtgIva = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnInhabilitar = new FontAwesome.Sharp.IconButton();
+            this.btnInhabilitarIva = new FontAwesome.Sharp.IconButton();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel24 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -734,34 +734,34 @@
             this.dtgIva.AllowUserToAddRows = false;
             this.dtgIva.AllowUserToResizeColumns = false;
             this.dtgIva.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            this.dtgIva.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dtgIva.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgIva.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgIva.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtgIva.BackgroundColor = System.Drawing.Color.White;
             this.dtgIva.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgIva.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgIva.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIva.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgIva.ColumnHeadersHeight = 29;
             this.dtgIva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgIva.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgIva.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgIva.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtgIva.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgIva.EnableHeadersVisualStyles = false;
             this.dtgIva.GridColor = System.Drawing.Color.Black;
@@ -771,14 +771,14 @@
             this.dtgIva.Name = "dtgIva";
             this.dtgIva.ReadOnly = true;
             this.dtgIva.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgIva.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(183)))), ((int)(((byte)(221)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgIva.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgIva.RowHeadersVisible = false;
             this.dtgIva.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dtgIva.Size = new System.Drawing.Size(1067, 293);
@@ -793,7 +793,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.btnInhabilitar, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnInhabilitarIva, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnGuardarIva, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnActualizarIva, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnEliminarIva, 2, 0);
@@ -808,32 +808,32 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1067, 31);
             this.tableLayoutPanel4.TabIndex = 126;
             // 
-            // btnInhabilitar
+            // btnInhabilitarIva
             // 
-            this.btnInhabilitar.BackColor = System.Drawing.Color.Black;
-            this.btnInhabilitar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInhabilitar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInhabilitar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnInhabilitar.FlatAppearance.BorderSize = 0;
-            this.btnInhabilitar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnInhabilitar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.btnInhabilitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInhabilitar.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInhabilitar.ForeColor = System.Drawing.Color.White;
-            this.btnInhabilitar.IconChar = FontAwesome.Sharp.IconChar.BugSlash;
-            this.btnInhabilitar.IconColor = System.Drawing.Color.White;
-            this.btnInhabilitar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnInhabilitar.IconSize = 18;
-            this.btnInhabilitar.Location = new System.Drawing.Point(855, 2);
-            this.btnInhabilitar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnInhabilitar.Name = "btnInhabilitar";
-            this.btnInhabilitar.Size = new System.Drawing.Size(209, 27);
-            this.btnInhabilitar.TabIndex = 11;
-            this.btnInhabilitar.Text = "Inhabilitar";
-            this.btnInhabilitar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnInhabilitar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnInhabilitar.UseVisualStyleBackColor = false;
-            this.btnInhabilitar.Click += new System.EventHandler(this.btnInhabilitar_Click);
+            this.btnInhabilitarIva.BackColor = System.Drawing.Color.Black;
+            this.btnInhabilitarIva.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInhabilitarIva.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInhabilitarIva.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnInhabilitarIva.FlatAppearance.BorderSize = 0;
+            this.btnInhabilitarIva.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnInhabilitarIva.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.btnInhabilitarIva.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInhabilitarIva.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInhabilitarIva.ForeColor = System.Drawing.Color.White;
+            this.btnInhabilitarIva.IconChar = FontAwesome.Sharp.IconChar.BugSlash;
+            this.btnInhabilitarIva.IconColor = System.Drawing.Color.White;
+            this.btnInhabilitarIva.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInhabilitarIva.IconSize = 18;
+            this.btnInhabilitarIva.Location = new System.Drawing.Point(855, 2);
+            this.btnInhabilitarIva.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnInhabilitarIva.Name = "btnInhabilitarIva";
+            this.btnInhabilitarIva.Size = new System.Drawing.Size(209, 27);
+            this.btnInhabilitarIva.TabIndex = 11;
+            this.btnInhabilitarIva.Text = "Inhabilitar";
+            this.btnInhabilitarIva.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnInhabilitarIva.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInhabilitarIva.UseVisualStyleBackColor = false;
+            this.btnInhabilitarIva.Click += new System.EventHandler(this.btnInhabilitarIva_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -1059,7 +1059,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dtgIva;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private FontAwesome.Sharp.IconButton btnInhabilitar;
+        private FontAwesome.Sharp.IconButton btnInhabilitarIva;
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel4;

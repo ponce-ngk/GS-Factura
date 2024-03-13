@@ -146,57 +146,7 @@ namespace GS_Factura
             return dt;
         }
 
-        public static DataTable BuscarFacturas(string cedula, int? numeroFactura)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                using (SqlConnection conexion = AbrirConexion())
-                using (SqlCommand cmd = new SqlCommand("sp_BuscarFacturas", conexion))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    // Añadir parámetros
-                    cmd.Parameters.AddWithValue("@Cedula", cedula);
-                    SqlParameter paramNumeroFactura = cmd.Parameters.Add("@NumeroFactura", SqlDbType.Int);
-                    paramNumeroFactura.Value = (object)numeroFactura ?? DBNull.Value; // Manejar el valor nulo
-
-                    // Ejecutar el comando y obtener los resultados en un DataTable
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                dt = null;
-            }
-
-            return dt;
-        }
-
-
-        public static void EliminarFactura(int idFactura)
-        {
-            try
-            {
-                using (SqlConnection conexion = AbrirConexion())
-                using (SqlCommand comando = new SqlCommand("sp_EliminarFactura", conexion))
-                {
-                    comando.CommandType = CommandType.StoredProcedure;
-                    comando.Parameters.AddWithValue("@IDFactura", idFactura);
-
-                    //conexion.Open();
-                    comando.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
     }
         
 }

@@ -59,7 +59,7 @@ namespace GS_Factura
             {
                 panelLayoutMenu.Width = 149;
                 ptmfotouser.Visible = true;
-                lblNombre.Visible = true;
+                //lblNombre.Visible = true;
                 btnBuscaFactura.Width = 149;
                 btnInformes.Width = 149;
                 btnBuscaFactura.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -71,7 +71,7 @@ namespace GS_Factura
             {
                 panelLayoutMenu.Width = 48;
                 ptmfotouser.Visible = false;
-                lblNombre.Visible = false;
+                //lblNombre.Visible = false;
                 btnBuscaFactura.Width = 48;
                 btnInformes.Width = 48;
                 btnBuscaFactura.TextImageRelation = TextImageRelation.Overlay;
@@ -109,7 +109,7 @@ namespace GS_Factura
         {
             panelLayoutMenu.Width = 149;
             ptmfotouser.Visible = true;
-            lblNombre.Visible = true;
+            //lblNombre.Visible = true;
             AbrirFormEnPanel(new GS_Inicio());
             return;
         }

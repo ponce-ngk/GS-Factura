@@ -78,6 +78,8 @@ namespace GS_Factura
                                 BloqueoControles();
                                 txtIva.Text = "0";
                                 lblIdIva.Text = "0";
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                                dtgIva.DataSource = tb;
                                 MessageBox.Show("IVA guardado exitosamente.", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
@@ -159,6 +161,8 @@ namespace GS_Factura
                             BloqueoControles();
                             txtIva.Text = "0";
                             lblIdIva.Text = "0";
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                            dtgIva.DataSource = tb;
                             MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
@@ -183,13 +187,15 @@ namespace GS_Factura
                 {
                     sql = "";
                     par.Clear();
-                    par.Add(new SqlParameter("@ID_IVA", int.Parse(lblIdIva.Text)));
-                    sql = OAD.EscalarProcAlmString("EliminarIVA", par, true);
+                    par.Add(new SqlParameter("@ID_iva", int.Parse(lblIdIva.Text)));
+                    sql = OAD.EscalarProcAlmString("InactivarIVA", par, true);
                     if (sql != null)
                     {
                         BloqueoControles();
                         txtIva.Text = "0";
                         lblIdIva.Text = "0";
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                        dtgIva.DataSource = tb;
                         MessageBox.Show("IVA Eliminado exitosamente.", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -302,8 +308,10 @@ namespace GS_Factura
                     par.Add(new SqlParameter("@FechaFinal", dtpSearchFechaFinal.Value));
                     tb = OAD.EscalarProcAlmTabla("sp_ObtenerIVAEntreFecha", par, true);
                     dtgIva.DataSource = tb;
+                    cmbitemsIva.SelectedIndex = -1;
                     if (tb.Rows.Count == 0)
                     {
+                        cmbitemsIva.SelectedIndex = -1;
                         MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -447,9 +455,36 @@ namespace GS_Factura
             }
         }
 
-        private void btnInhabilitar_Click(object sender, EventArgs e)
+        private void btnInhabilitarIva_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres Inhabilitar estos datos?", "Confirmar de Inhabilitar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmacion == DialogResult.Yes)
+                {
+                    sql = "";
+                    par.Clear();
+                    par.Add(new SqlParameter("@ID_IVA", int.Parse(lblIdIva.Text)));
+                    sql = OAD.EscalarProcAlmString("InactivarIVA", par, true);
+                    if (sql != null)
+                    {
+                        BloqueoControles();
+                        txtIva.Text = "0";
+                        lblIdIva.Text = "0";
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                        dtgIva.DataSource = tb;
+                        MessageBox.Show("IVA Inhabilitado exitosamente.", "Datos Inhabilitados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo Inhabilitar", "Error al Inhabilitar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

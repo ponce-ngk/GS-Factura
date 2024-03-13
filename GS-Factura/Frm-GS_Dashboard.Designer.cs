@@ -38,9 +38,6 @@
             this.btnVenta = new FontAwesome.Sharp.IconButton();
             this.btnProductos = new FontAwesome.Sharp.IconButton();
             this.btnRegistro = new FontAwesome.Sharp.IconButton();
-            this.panelDashHead = new System.Windows.Forms.Panel();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.ptmfotouser = new RJCodeAdvance.RJControls.RJCircularPictureBox();
             this.panelDashOut = new System.Windows.Forms.Panel();
             this.btnCerrarsesion = new FontAwesome.Sharp.IconButton();
             this.panelLayoutForms = new System.Windows.Forms.TableLayoutPanel();
@@ -57,10 +54,10 @@
             this.rjcIva = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.rjcBtnResumen = new System.Windows.Forms.ToolStripMenuItem();
             this.rjcBtnDetallada = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelDashHead = new System.Windows.Forms.Panel();
+            this.ptmfotouser = new System.Windows.Forms.PictureBox();
             this.panelLayoutMenu.SuspendLayout();
             this.panelDashCenter.SuspendLayout();
-            this.panelDashHead.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).BeginInit();
             this.panelDashOut.SuspendLayout();
             this.panelLayoutForms.SuspendLayout();
             this.panelLayoutFormsHead.SuspendLayout();
@@ -68,6 +65,8 @@
             this.panelButtomDash.SuspendLayout();
             this.panelLayourMaximizar.SuspendLayout();
             this.rjcIva.SuspendLayout();
+            this.panelDashHead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLayoutMenu
@@ -81,9 +80,9 @@
             this.panelLayoutMenu.Location = new System.Drawing.Point(0, 0);
             this.panelLayoutMenu.Name = "panelLayoutMenu";
             this.panelLayoutMenu.RowCount = 3;
-            this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.30271F));
+            this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.88751F));
+            this.panelLayoutMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.809774F));
             this.panelLayoutMenu.Size = new System.Drawing.Size(149, 512);
             this.panelLayoutMenu.TabIndex = 0;
             // 
@@ -97,10 +96,10 @@
             this.panelDashCenter.Controls.Add(this.btnProductos);
             this.panelDashCenter.Controls.Add(this.btnRegistro);
             this.panelDashCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDashCenter.Location = new System.Drawing.Point(0, 76);
+            this.panelDashCenter.Location = new System.Drawing.Point(0, 93);
             this.panelDashCenter.Margin = new System.Windows.Forms.Padding(0);
             this.panelDashCenter.Name = "panelDashCenter";
-            this.panelDashCenter.Size = new System.Drawing.Size(149, 409);
+            this.panelDashCenter.Size = new System.Drawing.Size(149, 383);
             this.panelDashCenter.TabIndex = 0;
             // 
             // btnInformes
@@ -259,64 +258,15 @@
             this.btnRegistro.UseVisualStyleBackColor = false;
             this.btnRegistro.Click += new System.EventHandler(this.BtnRegistro_Click);
             // 
-            // panelDashHead
-            // 
-            this.panelDashHead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(17)))), ((int)(((byte)(91)))));
-            this.panelDashHead.Controls.Add(this.lblNombre);
-            this.panelDashHead.Controls.Add(this.ptmfotouser);
-            this.panelDashHead.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDashHead.Location = new System.Drawing.Point(0, 0);
-            this.panelDashHead.Margin = new System.Windows.Forms.Padding(0);
-            this.panelDashHead.Name = "panelDashHead";
-            this.panelDashHead.Size = new System.Drawing.Size(149, 76);
-            this.panelDashHead.TabIndex = 1;
-            // 
-            // lblNombre
-            // 
-            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNombre.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.White;
-            this.lblNombre.Location = new System.Drawing.Point(2, 79);
-            this.lblNombre.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(150, 0);
-            this.lblNombre.TabIndex = 7;
-            this.lblNombre.Text = "Admin";
-            this.lblNombre.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ptmfotouser
-            // 
-            this.ptmfotouser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ptmfotouser.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptmfotouser.BackgroundImage")));
-            this.ptmfotouser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ptmfotouser.BorderCapStyle = System.Drawing.Drawing2D.DashCap.Flat;
-            this.ptmfotouser.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.ptmfotouser.BorderColor2 = System.Drawing.Color.HotPink;
-            this.ptmfotouser.BorderLineStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            this.ptmfotouser.BorderSize = 2;
-            this.ptmfotouser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ptmfotouser.GradientAngle = 50F;
-            this.ptmfotouser.Location = new System.Drawing.Point(42, 10);
-            this.ptmfotouser.Name = "ptmfotouser";
-            this.ptmfotouser.Size = new System.Drawing.Size(68, 68);
-            this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptmfotouser.TabIndex = 6;
-            this.ptmfotouser.TabStop = false;
-            this.ptmfotouser.Click += new System.EventHandler(this.Ptmfotouser_Click);
-            // 
             // panelDashOut
             // 
             this.panelDashOut.BackColor = System.Drawing.Color.RosyBrown;
             this.panelDashOut.Controls.Add(this.btnCerrarsesion);
             this.panelDashOut.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDashOut.Location = new System.Drawing.Point(0, 485);
+            this.panelDashOut.Location = new System.Drawing.Point(0, 476);
             this.panelDashOut.Margin = new System.Windows.Forms.Padding(0);
             this.panelDashOut.Name = "panelDashOut";
-            this.panelDashOut.Size = new System.Drawing.Size(149, 27);
+            this.panelDashOut.Size = new System.Drawing.Size(149, 36);
             this.panelDashOut.TabIndex = 2;
             // 
             // btnCerrarsesion
@@ -338,7 +288,7 @@
             this.btnCerrarsesion.Margin = new System.Windows.Forms.Padding(0);
             this.btnCerrarsesion.Name = "btnCerrarsesion";
             this.btnCerrarsesion.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnCerrarsesion.Size = new System.Drawing.Size(149, 27);
+            this.btnCerrarsesion.Size = new System.Drawing.Size(149, 36);
             this.btnCerrarsesion.TabIndex = 24;
             this.btnCerrarsesion.Tag = "perfiles";
             this.btnCerrarsesion.Text = " Cerrar Sesión";
@@ -566,6 +516,30 @@
             this.rjcBtnDetallada.Text = "Detalles de Ventas";
             this.rjcBtnDetallada.Click += new System.EventHandler(this.rjcBtnDetallada_Click);
             // 
+            // panelDashHead
+            // 
+            this.panelDashHead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(17)))), ((int)(((byte)(91)))));
+            this.panelDashHead.Controls.Add(this.ptmfotouser);
+            this.panelDashHead.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDashHead.Location = new System.Drawing.Point(0, 0);
+            this.panelDashHead.Margin = new System.Windows.Forms.Padding(0);
+            this.panelDashHead.Name = "panelDashHead";
+            this.panelDashHead.Size = new System.Drawing.Size(149, 93);
+            this.panelDashHead.TabIndex = 1;
+            // 
+            // ptmfotouser
+            // 
+            this.ptmfotouser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ptmfotouser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptmfotouser.Image = ((System.Drawing.Image)(resources.GetObject("ptmfotouser.Image")));
+            this.ptmfotouser.Location = new System.Drawing.Point(0, 0);
+            this.ptmfotouser.Name = "ptmfotouser";
+            this.ptmfotouser.Size = new System.Drawing.Size(149, 93);
+            this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptmfotouser.TabIndex = 0;
+            this.ptmfotouser.TabStop = false;
+            this.ptmfotouser.Click += new System.EventHandler(this.Ptmfotouser_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,8 +557,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelLayoutMenu.ResumeLayout(false);
             this.panelDashCenter.ResumeLayout(false);
-            this.panelDashHead.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).EndInit();
             this.panelDashOut.ResumeLayout(false);
             this.panelLayoutForms.ResumeLayout(false);
             this.panelLayoutFormsHead.ResumeLayout(false);
@@ -592,12 +564,13 @@
             this.panelButtomDash.ResumeLayout(false);
             this.panelLayourMaximizar.ResumeLayout(false);
             this.rjcIva.ResumeLayout(false);
+            this.panelDashHead.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panelDashHead;
         private System.Windows.Forms.Panel panelDashOut;
         private System.Windows.Forms.TableLayoutPanel panelLayoutForms;
         private System.Windows.Forms.TableLayoutPanel panelLayoutFormsHead;
@@ -610,8 +583,6 @@
         private FontAwesome.Sharp.IconButton btn_cerrar;
         private FontAwesome.Sharp.IconButton btn_maximizar;
         private FontAwesome.Sharp.IconButton btnCerrarsesion;
-        private System.Windows.Forms.Label lblNombre;
-        private RJCodeAdvance.RJControls.RJCircularPictureBox ptmfotouser;
         public FontAwesome.Sharp.IconButton btnVenta;
         private FontAwesome.Sharp.IconButton btnProductos;
         private FontAwesome.Sharp.IconButton btnRegistro;
@@ -624,6 +595,8 @@
         private System.Windows.Forms.ToolStripMenuItem rjcBtnResumen;
         private System.Windows.Forms.ToolStripMenuItem rjcBtnDetallada;
         private FontAwesome.Sharp.IconButton btnInformes;
+        private System.Windows.Forms.Panel panelDashHead;
+        private System.Windows.Forms.PictureBox ptmfotouser;
     }
 }
 
