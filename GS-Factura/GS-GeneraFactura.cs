@@ -507,64 +507,25 @@ namespace GS_Factura
 
         private void Txtcancelado_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != ' ' && !char.IsWhiteSpace(e.KeyChar))
-            //{
-            //    e.Handled = true;
-            //    MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
-            //else if (e.KeyChar == ',')
-            //{
-            //    e.KeyChar = '.'; // Reemplazar la coma por un punto
-            //}
-            //else if (char.IsWhiteSpace(e.KeyChar))
-            //{
-            //    e.Handled = true;
-            //    MessageBox.Show("No se permiten espacios en blanco", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
-            //// Verificar si el usuario ha ingresado un punto decimal
-            //if (e.KeyChar == ',' && txtcancelado.Text.IndexOf('.') > -1)
-            //{
-            //    // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
-            //    e.Handled = true;
-            //}
-            //Permitir solo números, el caracter de control(para borrar) y el punto decimal
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != ' ' && !char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true;
-                DialogResult respuesta = MessageBox.Show("Deseas realizar esta venta? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (respuesta == DialogResult.Yes)
-                {
-                    try
-                    {
-                        // Crea un elemento XML para representar la factura de la venta.
-                        if (!string.IsNullOrEmpty(txtcancelado.Text) && decimal.Parse(txtcancelado.Text) >= decimal.Parse(txtTotalVenta.Text))
-                        {
-                            DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                            bD2.XmlVenta(int.Parse(lblidcliente.Text), decimal.Parse(txtsubtotalventa.Text.Replace(".", ",")), decimal.Parse(lblValorIva.Text.Replace(".", ",")), decimal.Parse(txtTotalVenta.Text.Replace(".", ",")), dtgVenta);
-                            this.LimpiarDatosVenta();
-                            this.Cargarnumerofactura();
-                            // Guardar los tamaños actuales de las columnas
-                            float tamañoColumna1 = tblVentayFactura.ColumnStyles[0].Width;
-                            float tamañoColumna2 = tblVentayFactura.ColumnStyles[1].Width;
-
-                            //Intercambiar los tamaños de las columnas
-                            tblVentayFactura.ColumnStyles[0].Width = tamañoColumna2;
-                            tblVentayFactura.ColumnStyles[1].Width = tamañoColumna1;
-                            GS_Factura frmFactura = new GS_Factura();
-                            //Añade GS_Factura como un control en el Panel
-                            frmFactura.TopLevel = false;
-                            frmFactura.Dock = DockStyle.Fill;
-                            panelFactura.Controls.Add(frmFactura);
-                            frmFactura.Show();
-                            this.Cargarnumerofactura();
-                        }
-                        else MessageBox.Show("El usuario no ha cancelado. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
+                MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (e.KeyChar == ',')
+            {
+                e.KeyChar = '.'; // Reemplazar la coma por un punto
+            }
+            else if (char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("No se permiten espacios en blanco", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            // Verificar si el usuario ha ingresado un punto decimal
+            if (e.KeyChar == ',' && txtcancelado.Text.IndexOf('.') > -1)
+            {
+                // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
+                e.Handled = true;
             }
             //Permitir solo una coma como punto decimal
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
