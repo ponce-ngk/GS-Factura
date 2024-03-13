@@ -75,17 +75,34 @@ namespace GS_Factura
 
         private void BtnañadirVenta_Click(object sender, EventArgs e)
         {
-            try            
+            try
             {
+                DeshabilitarFormularios();
+
                 ProductoVenta formPRODUCT = new ProductoVenta();
-                // Asigna un evento delegado para pasar información entre formularios
+                formPRODUCT.FormClosed += (s, args) => HabilitarFormularios();
                 formPRODUCT.pasarproducto += new ProductoVenta.pasarformFactura(Ejecutaproductos);
-                formPRODUCT.ShowDialog();
+                formPRODUCT.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 throw;
+            }
+        }
+        private void DeshabilitarFormularios()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Enabled = false;
+            }
+        }
+
+        private void HabilitarFormularios()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Enabled = true;
             }
         }
 
@@ -543,7 +560,6 @@ namespace GS_Factura
                         MessageBox.Show(ex.Message);
                     }
                 }
-
             }
             //Permitir solo una coma como punto decimal
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
