@@ -487,18 +487,9 @@ namespace GS_Factura
             decimal valorIVA = 12.0m;
             try
             {
-                using (SqlCommand comando = new SqlCommand("SeleccionarIVAActual", AccesoDatos.AbrirConexion()))
-                {
-                    comando.CommandType = CommandType.StoredProcedure;
-
-                    using (SqlDataReader reader = comando.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            valorIVA = Convert.ToDecimal(reader["ValorIVA"]);
-                        }
-                    }
-                }
+                tb = bD2.EscalarProcAlmTablaSinPar("SeleccionarIVAActual ", true);
+                DataRow row = tb.Rows[0];
+                valorIVA = Convert.ToDecimal(row["ValorIVA"].ToString());
             }
             catch (Exception ex)
             {
