@@ -294,10 +294,11 @@ namespace GS_Factura
                     DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres editar esta factura?", "Confirmar edición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
-                    {                        
-                        // Abrir el formulario de edición de factura con el ID de la factura
+                    {
+                        DeshabilitarFormularios();
                         GS_EditarFactura editarForm = new GS_EditarFactura(idFactura);
-                        editarForm.ShowDialog();
+                        editarForm.FormClosed += (s, args) => HabilitarFormularios();
+                        editarForm.Show();
 
                         // Recargar los datos en el DataGridView u otras acciones según sea necesario
                         dtgFactura.Rows.RemoveAt(index);
@@ -308,8 +309,22 @@ namespace GS_Factura
                     MessageBox.Show(ex.Message);
                 }
             }
-        }        
-
+        }
+        private void DeshabilitarFormularios()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Enabled = false;
+                form.TopMost = false;
+            }
+        }
+        private void HabilitarFormularios()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Enabled = true;
+            }
+        }
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
