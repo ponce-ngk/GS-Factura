@@ -18,44 +18,39 @@ namespace GS_Factura
         DataTable datosFactura;
         BD2 OAD = new BD2();
 
-
         public GS_EditarFactura(int idFactura)
         {
             InitializeComponent();
             this.idFactura = idFactura;
         }
-
-
         private void CargarDatosFactura(int idFactura)
         {
-            datosFactura = new BD2().ObtenerDatosFactura(idFactura);
-
-            if (datosFactura.Rows.Count > 0)
+            try
             {
-
-                lblcedulacliente.Text = datosFactura.Rows[0]["CEDULA"].ToString();
-                lblidcliente.Text = datosFactura.Rows[0]["IDCLIENTE"].ToString();
-                lblnombrecliente.Text = datosFactura.Rows[0]["ClienteNombre"].ToString();
-                txtSearchCliente.Text = datosFactura.Rows[0]["CEDULA"].ToString();
-                lblApellidocliente.Text = datosFactura.Rows[0]["ClienteApellidos"].ToString();
-                lblnumerofactura.Text = datosFactura.Rows[0]["IDFACTURA"].ToString();
-                lblFingresoVenta.Text = datosFactura.Rows[0]["FechaEmision"].ToString();
-                lblValorIva.Text = datosFactura.Rows[0]["IVA"].ToString().Replace(",", ".");
-
-                dtgVenta.DataSource = datosFactura;
-                dtgVenta.Columns["CANTIDAD"].DefaultCellStyle.Format = "N2";
-
-                this.ColumnViwers();
-                dtgVenta.Columns["IDPRODUCTO"].Width = 110;
-            
-
-
-
-                // Obtener la fecha y hora actual
-                DateTime fechaHoraActual = DateTime.Now;
-                lblEdicion.Text = Convert.ToString(fechaHoraActual);
-
-                this.GestionarFuncionalidadDtgVenta();
+                datosFactura = new BD2().ObtenerDatosFactura(idFactura);
+                if (datosFactura.Rows.Count > 0)
+                {
+                    lblcedulacliente.Text = datosFactura.Rows[0]["CEDULA"].ToString();
+                    lblidcliente.Text = datosFactura.Rows[0]["IDCLIENTE"].ToString();
+                    lblnombrecliente.Text = datosFactura.Rows[0]["ClienteNombre"].ToString();
+                    txtSearchCliente.Text = datosFactura.Rows[0]["CEDULA"].ToString();
+                    lblApellidocliente.Text = datosFactura.Rows[0]["ClienteApellidos"].ToString();
+                    lblnumerofactura.Text = datosFactura.Rows[0]["IDFACTURA"].ToString();
+                    lblFingresoVenta.Text = datosFactura.Rows[0]["FechaEmision"].ToString();
+                    lblValorIva.Text = datosFactura.Rows[0]["IVA"].ToString().Replace(",", ".");
+                    dtgVenta.DataSource = datosFactura;
+                    dtgVenta.Columns["CANTIDAD"].DefaultCellStyle.Format = "N2";
+                    this.ColumnViwers();
+                    dtgVenta.Columns["IDPRODUCTO"].Width = 110;
+                    // Obtener la fecha y hora actual
+                    DateTime fechaHoraActual = DateTime.Now;
+                    lblEdicion.Text = Convert.ToString(fechaHoraActual);
+                    this.GestionarFuncionalidadDtgVenta();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -77,12 +72,7 @@ namespace GS_Factura
             dtgVenta.Columns["PRECIO_UNITARIO"].ReadOnly = true;
             dtgVenta.Columns["TotalProducto"].ReadOnly = true;
             dtgVenta.Columns["CANTIDAD"].ReadOnly = false;
-
-
-
         }
-
-
         private void DtgVenta_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             try
@@ -106,7 +96,6 @@ namespace GS_Factura
                     // Ajusta las dimensiones de la celda para que coincidan con el tamaño del botón
                     this.dtgVenta.Rows[e.RowIndex].Height = iconHeight + 4;
                     this.dtgVenta.Columns[e.ColumnIndex].Width = iconWidth + 9;
-
                     e.Handled = true;
                 }
             }
@@ -134,48 +123,45 @@ namespace GS_Factura
             }
         }
 
-        public void Ejecutaproductos(string idproduct,
-          string nombreproducto, string cantidadproducto,
-          string preciproducto)
+        public void Ejecutaproductos(string idproduct, string nombreproducto, string cantidadproducto, string preciproducto)
         {
-            // Convierte las cantidades y precios a los tipos de datos apropiados
-
-            int cantidad = int.Parse(cantidadproducto);
-            decimal precio = decimal.Parse(preciproducto);
-
-            // Calculamos el total del producto
-            decimal total = precio * cantidad;
-
-            // Redondea el total a dos decimales
-            total = Math.Round(total, 2);
-
-            // Verifica si el producto ya está en la venta (evita duplicados)
-            if (VerificarRestaPDataLotes(idproduct, nombreproducto))
+            try
             {
- 
-                DataRow newRow = datosFactura.NewRow();
-                newRow["IDPRODUCTO"] = idproduct;
-                newRow["NombreProducto"] = nombreproducto;
-                newRow["CANTIDAD"] = cantidadproducto;
-                newRow["CANTIDADANTES"] = cantidadproducto;
-                newRow["PRECIO_UNITARIO"] = preciproducto;
-                newRow["TotalProducto"] = total.ToString("0.00");
+                // Convierte las cantidades y precios a los tipos de datos apropiados
+                int cantidad = int.Parse(cantidadproducto);
+                decimal precio = decimal.Parse(preciproducto);
 
-                datosFactura.Rows.Add(newRow);
-                dtgVenta.DataSource = null;
-                dtgVenta.DataSource = datosFactura;
+                // Calculamos el total del producto
+                decimal total = precio * cantidad;
 
-                this.ColumnViwers();
+                // Redondea el total a dos decimales
+                total = Math.Round(total, 2);
 
+                // Verifica si el producto ya está en la venta (evita duplicados)
+                if (VerificarRestaPDataLotes(idproduct, nombreproducto))
+                {
+                    DataRow newRow = datosFactura.NewRow();
+                    newRow["IDPRODUCTO"] = idproduct;
+                    newRow["NombreProducto"] = nombreproducto;
+                    newRow["CANTIDAD"] = cantidadproducto;
+                    newRow["CANTIDADANTES"] = cantidadproducto;
+                    newRow["PRECIO_UNITARIO"] = preciproducto;
+                    newRow["TotalProducto"] = total.ToString("0.00");
+                    datosFactura.Rows.Add(newRow);
+                    dtgVenta.DataSource = null;
+                    dtgVenta.DataSource = datosFactura;
 
-                this.GestionarFuncionalidadDtgVenta();
-
-                // Verifica las filas en el DataGridView (puede haber algún tipo de validación)
-                this.VerificarFilasEnDataGridView();
+                    this.ColumnViwers();
+                    this.GestionarFuncionalidadDtgVenta();
+                    // Verifica las filas en el DataGridView (puede haber algún tipo de validación)
+                    this.VerificarFilasEnDataGridView();
+                }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
         public bool VerificarRestaPDataLotes(string idproducto, string nomproducto)
         {
             try
@@ -198,12 +184,10 @@ namespace GS_Factura
                 throw;
             }
         }
-
         private void Btncancelarventa_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void DtgVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -226,69 +210,57 @@ namespace GS_Factura
                 throw;
             }
         }
-
-
         public void GestionarFuncionalidadDtgVenta()
         {
-            decimal totalproductos = 0;
-            decimal sumcantidadproductos = 0;
-            decimal subtotalCompra = 0.0M;
-            decimal descuentoCompra = 0.0M;
-            decimal iva12 = decimal.Parse(lblValorIva.Text.Replace(".",","));
-
-            btnConfirmarVenta.Visible = true;
-            btnConfirmarVenta.Enabled = true;
-
-            foreach (DataGridViewRow recorrerdata in dtgVenta.Rows)
+            try
             {
-                // Suma los totales y cantidades de productos.
-                totalproductos += decimal.Parse(recorrerdata.Cells["TotalProducto"].Value.ToString().Replace(".", ","));
-                sumcantidadproductos += decimal.Parse(recorrerdata.Cells["CANTIDAD"].Value.ToString().Replace(".", ","));
+                decimal totalproductos = 0;
+                decimal sumcantidadproductos = 0;
+                decimal subtotalCompra = 0.0M;
+                decimal descuentoCompra = 0.0M;
+                decimal iva12 = decimal.Parse(lblValorIva.Text.Replace(".", ","));
+                btnConfirmarVenta.Visible = true;
+                btnConfirmarVenta.Enabled = true;
+                foreach (DataGridViewRow recorrerdata in dtgVenta.Rows)
+                {
+                    // Suma los totales y cantidades de productos.
+                    totalproductos += decimal.Parse(recorrerdata.Cells["TotalProducto"].Value.ToString().Replace(".", ","));
+                    sumcantidadproductos += decimal.Parse(recorrerdata.Cells["CANTIDAD"].Value.ToString().Replace(".", ","));
+                }
+                // Calculamos el subtotal (sin descuento ni IVA)
+                subtotalCompra = totalproductos;
+                txtsubtotalventa.Text = subtotalCompra.ToString("0.00");
+
+                // Agregamos el IVA
+                decimal iva = subtotalCompra * (iva12 / 100.0M);
+                //decimal iva = subtotalCompra * (int.Parse(12.00) / 100.0M);
+
+                subtotalCompra += iva;
+
+                // Calculamos el total de la compra
+                decimal total = subtotalCompra;
+                txtTotalVenta.Text = total.ToString("0.00").Replace(",", ".");
+                txtivaVenta.Text = iva.ToString("0.00");
+                txtTotalVenta.ForeColor = Color.Red;
+
+                // Actualiza etiquetas con información relevante.
+                lbl_V_cantidad.Text = sumcantidadproductos.ToString().Replace(",", ".");
+                lbl_TotalItems.Text = dtgVenta.Rows.Count.ToString();
             }
-            // Calculamos el subtotal (sin descuento ni IVA)
-            subtotalCompra = totalproductos;
-
-            txtsubtotalventa.Text = subtotalCompra.ToString("0.00");
-
-            // Aplicamos el descuento  que es 0
-            //txtsubtotalDescuentoVenta.Text = descuentoCompra.ToString("0.00");
-
-
-            // Agregamos el IVA
-            decimal iva = subtotalCompra * (iva12 / 100.0M);
-            //decimal iva = subtotalCompra * (int.Parse(12.00) / 100.0M);
-
-            subtotalCompra += iva;
-            //txtivaVenta.Text = iva.ToString("0.00");
-
-
-
-            // Calculamos el total de la compra
-            decimal total = subtotalCompra;
-            txtTotalVenta.Text = total.ToString("0.00").Replace(",", ".");
-
-            txtivaVenta.Text = iva.ToString("0.00");
-
-            txtTotalVenta.ForeColor = Color.Red;
-
-
-            // Actualiza etiquetas con información relevante.
-
-            lbl_V_cantidad.Text = sumcantidadproductos.ToString().Replace(",", ".");
-            lbl_TotalItems.Text = dtgVenta.Rows.Count.ToString();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
         private void GS_EditarFactura_Load(object sender, EventArgs e)
         {
             CargarDatosFactura(idFactura);
         }
-
         private void Txtcancelado_Enter(object sender, EventArgs e)
         {
             try
             {
                 // Si el texto en txtcancelado es "0", lo cambia a vacío y establece el color del texto a negro
-
                 if (txtcancelado.Text == "0")
                 {
                     txtcancelado.Text = "";
@@ -297,11 +269,9 @@ namespace GS_Factura
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void Txtcancelado_Leave(object sender, EventArgs e)
         {
             try
@@ -315,11 +285,9 @@ namespace GS_Factura
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void Txtcancelado_TextChanged(object sender, EventArgs e)
         {
             try
@@ -331,11 +299,8 @@ namespace GS_Factura
                     {
                         decimal totalVenta = decimal.Parse(txtTotalVenta.Text.Replace(".", ","));
                         // Calcula el cambio restando el monto cancelado al total de la venta
-
                         decimal cambio = montoCancelado - totalVenta;
-
                         // Si el cambio es positivo, muestra el cambio en txtcambioVenta en color verde
-
                         if (cambio >= 0)
                         {
                             txtcambioVenta.Text = cambio.ToString().Replace(",", ".");
@@ -344,7 +309,6 @@ namespace GS_Factura
                         else
                         {
                             // Si el cambio es negativo, muestra "0,00" en txtcambioVenta en color negro
-
                             txtcambioVenta.Text = "0.00"; //  valor que desees si el cambio es negativo
                             txtcambioVenta.ForeColor = Color.Black;
                         }
@@ -371,25 +335,30 @@ namespace GS_Factura
         }
         private void VerificarFilasEnDataGridView()
         {
-            if (dtgVenta.Rows.Count > 0)
+            try
             {
-                // Hay al menos una fila, mostrar y habilitar el botón
-                btnConfirmarVenta.Visible = true;
-                btnConfirmarVenta.Enabled = true;
+                if (dtgVenta.Rows.Count > 0)
+                {
+                    // Hay al menos una fila, mostrar y habilitar el botón
+                    btnConfirmarVenta.Visible = true;
+                    btnConfirmarVenta.Enabled = true;
+                }
+                else
+                {
+                    // No hay filas, ocultar y deshabilitar el botón
+                    btnConfirmarVenta.Visible = false;
+                    btnConfirmarVenta.Enabled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // No hay filas, ocultar y deshabilitar el botón
-                btnConfirmarVenta.Visible = false;
-                btnConfirmarVenta.Enabled = false;
+                MessageBox.Show(ex.Message);
             }
         }
-
         private void DtgVenta_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
             this.CantidadDataGriedview();
         }
-
         public void CantidadDataGriedview()
         {
             try
@@ -419,24 +388,18 @@ namespace GS_Factura
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
             }
-
         }
         public void CalcularCantidadData()
         {
-
             try
             {
                 decimal cantidad = decimal.Parse(dtgVenta.CurrentRow.Cells["CANTIDAD"].Value.ToString().Replace(".", ","));
                 decimal precio = decimal.Parse(dtgVenta.CurrentRow.Cells["PRECIO_UNITARIO"].Value.ToString().Replace(".", ","));
-
                 // Calculamos el total del producto
                 decimal total = precio * cantidad;
-
                 // Redondea el total a dos decimales
                 total = Math.Round(total, 2);
-
                 dtgVenta.CurrentRow.Cells["TotalProducto"].Value = total.ToString("0.00").Replace(",", ".");
                 this.GestionarFuncionalidadDtgVenta();
             }
@@ -445,71 +408,63 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
                 throw;
             }
-
-
         }
-
-
-
-
-
         private void BtnConfirmarVenta_Click(object sender, EventArgs e)
         {
-
-            if (lblcedulacliente.Text == "Numero Cedula")
+            try
             {
-                MessageBox.Show("El campo Cédula del Cliente está vacío. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-
-            foreach (DataGridViewRow recorrerdata in dtgVenta.Rows)
-            {
-                // Compara el ID y el nombre del producto con los valores en la fila actual.
-
-                if (decimal.Parse(recorrerdata.Cells["CANTIDAD"].Value.ToString()) <= 0)
+                if (lblcedulacliente.Text == "Numero Cedula")
                 {
-                    MessageBox.Show("Falta agregar la cantidad al Producto de Id: " + recorrerdata.Cells["IdProducto"].Value.ToString() + "", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("El campo Cédula del Cliente está vacío. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-            }
-
-            if (btnConfirmarVenta.Text == "  Cancelar Proceso de Pago")
-            {
-                DialogResult respuestaCancelacion = MessageBox.Show("Deseas Cancelar al Proceso de Pago? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                // Si la respuesta es afirmativa (Yes), realiza acciones de cancelación.
-
-                if (respuestaCancelacion == DialogResult.Yes)
+                foreach (DataGridViewRow recorrerdata in dtgVenta.Rows)
                 {
-                    txtcancelado.Enabled = false;
-                    txtcancelado.Text = "0";
-                    dtgVenta.Enabled = true;
-                    btnañadirVenta.Enabled = true;
-                    btnVender.Enabled = false;
-                    btnvalidarCliente.Enabled = true;
-
-                    btnConfirmarVenta.Text = "     Cerrar Venta";
-                    btnConfirmarVenta.BackColor = Color.ForestGreen;
+                    // Compara el ID y el nombre del producto con los valores en la fila actual.
+                    if (decimal.Parse(recorrerdata.Cells["CANTIDAD"].Value.ToString()) <= 0)
+                    {
+                        MessageBox.Show("Falta agregar la cantidad al Producto de Id: " + recorrerdata.Cells["IdProducto"].Value.ToString() + "", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                }
+                if (btnConfirmarVenta.Text == "  Cancelar Proceso de Pago")
+                {
+                    DialogResult respuestaCancelacion = MessageBox.Show("Deseas Cancelar al Proceso de Pago? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    // Si la respuesta es afirmativa (Yes), realiza acciones de cancelación.
+                    if (respuestaCancelacion == DialogResult.Yes)
+                    {
+                        txtcancelado.Enabled = false;
+                        txtcancelado.Text = "0";
+                        dtgVenta.Enabled = true;
+                        btnañadirVenta.Enabled = true;
+                        btnVender.Enabled = false;
+                        btnvalidarCliente.Enabled = true;
+                        btnConfirmarVenta.Text = "     Cerrar Venta";
+                        btnConfirmarVenta.BackColor = Color.ForestGreen;
+                    }
+                }
+                else
+                {
+                    // Si no está en modo de cancelación, pregunta si se desea pasar al proceso de pago.
+                    DialogResult respuesta = MessageBox.Show("Deseas Pasar al Proceso de Pago? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        txtcancelado.Enabled = true;
+                        dtgVenta.Enabled = false;
+                        btnañadirVenta.Enabled = false;
+                        btnConfirmarVenta.Text = "  Cancelar Proceso de Pago";
+                        btnVender.Enabled = true;
+                        btnvalidarCliente.Enabled = false;
+                        btnConfirmarVenta.BackColor = Color.Red;
+                        return;
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                // Si no está en modo de cancelación, pregunta si se desea pasar al proceso de pago.
-                DialogResult respuesta = MessageBox.Show("Deseas Pasar al Proceso de Pago? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (respuesta == DialogResult.Yes)
-                {
-                    txtcancelado.Enabled = true;
-                    dtgVenta.Enabled = false;
-                    btnañadirVenta.Enabled = false;
-                    btnConfirmarVenta.Text = "  Cancelar Proceso de Pago";
-                    btnVender.Enabled = true;
-                    btnvalidarCliente.Enabled = false;
-                    btnConfirmarVenta.BackColor = Color.Red;
-                    return;
-                }
+                MessageBox.Show(ex.Message);
             }
         }
-
         private void BtnAñadirCliente_Click(object sender, EventArgs e)
         {
             try
@@ -532,19 +487,14 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
             }
         }
-
-        public void EjecutaClientes(string idpcliente, string cedulacliente,
-         string nombrecliente, string apellidocliente
-        )
+        public void EjecutaClientes(string idpcliente, string cedulacliente,string nombrecliente, string apellidocliente)
         {
             lblidcliente.Text = idpcliente;
             lblcedulacliente.Text = cedulacliente;
             txtSearchCliente.Text = cedulacliente;
             lblnombrecliente.Text = nombrecliente;
             lblApellidocliente.Text = apellidocliente;
-
         }
-
         private void BtnVender_Click(object sender, EventArgs e)
         {
             DialogResult respuesta = MessageBox.Show("Deseas realizar esta venta? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -555,17 +505,17 @@ namespace GS_Factura
                     // Crea un elemento XML para representar la factura de la venta.
                     if (!string.IsNullOrEmpty(txtcancelado.Text) && txtcancelado.Text != "0")
                     {
-                        OAD.XmlEditarFactura(int.Parse(lblnumerofactura.Text), int.Parse(lblidcliente.Text), decimal.Parse(txtsubtotalventa.Text.Replace(".", ",")), decimal.Parse(lblValorIva.Text.Replace(".", ",")), decimal.Parse(txtTotalVenta.Text.Replace(".", ",")),dtgVenta);
+                        OAD.XmlEditarFactura(int.Parse(lblnumerofactura.Text), int.Parse(lblidcliente.Text), decimal.Parse(txtsubtotalventa.Text.Replace(".", ",")), decimal.Parse(lblValorIva.Text.Replace(".", ",")), decimal.Parse(txtTotalVenta.Text.Replace(".", ",")), dtgVenta);
                         this.Close();
                     }
                     else MessageBox.Show("El usuario no ha cancelado. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-            }
+                }
                 catch (Exception ex)
                 {
-                MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
+                }
             }
-        }
 
         }
     }

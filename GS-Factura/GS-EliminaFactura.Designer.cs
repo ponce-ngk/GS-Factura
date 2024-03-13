@@ -48,6 +48,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.cmbitems = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbitems = new System.Windows.Forms.ComboBox();
@@ -296,6 +297,24 @@
             this.panel11.Size = new System.Drawing.Size(387, 48);
             this.panel11.TabIndex = 4;
             // 
+            // cmbitems
+            // 
+            this.cmbitems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbitems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbitems.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
+            this.cmbitems.FormattingEnabled = true;
+            this.cmbitems.Items.AddRange(new object[] {
+            "Mostrar Todas",
+            "Cedula del Cliente",
+            "Numero de Factura"});
+            this.cmbitems.Location = new System.Drawing.Point(181, 22);
+            this.cmbitems.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbitems.MaxDropDownItems = 4;
+            this.cmbitems.Name = "cmbitems";
+            this.cmbitems.Size = new System.Drawing.Size(136, 30);
+            this.cmbitems.TabIndex = 41;
+            this.cmbitems.SelectedIndexChanged += new System.EventHandler(this.cmbitems_SelectedIndexChanged);
+            // 
             // btnBuscar
             // 
             this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
@@ -313,7 +332,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(5, 16);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(0);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(73, 30);
+            this.btnBuscar.Size = new System.Drawing.Size(97, 27);
             this.btnBuscar.TabIndex = 40;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -359,9 +378,10 @@
             this.txtBuscaFacturaCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBuscaFacturaCliente.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
             this.txtBuscaFacturaCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtBuscaFacturaCliente.Location = new System.Drawing.Point(76, 17);
+            this.txtBuscaFacturaCliente.Location = new System.Drawing.Point(12, 28);
+            this.txtBuscaFacturaCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBuscaFacturaCliente.Name = "txtBuscaFacturaCliente";
-            this.txtBuscaFacturaCliente.Size = new System.Drawing.Size(176, 29);
+            this.txtBuscaFacturaCliente.Size = new System.Drawing.Size(223, 34);
             this.txtBuscaFacturaCliente.TabIndex = 4;
             this.txtBuscaFacturaCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaFacturaCliente_KeyPress);
             // 
@@ -369,9 +389,10 @@
             // 
             this.label9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(74, 0);
+            this.label9.Location = new System.Drawing.Point(45, 2);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(269, 20);
+            this.label9.Size = new System.Drawing.Size(359, 27);
             this.label9.TabIndex = 36;
             this.label9.Text = "Selecciona el tipo de factura a buscar";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

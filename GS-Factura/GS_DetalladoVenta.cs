@@ -83,60 +83,67 @@ namespace GS_Factura
 
         private void ExportToExcel(DataGridView dataGridView)
         {
-            if (dataGridView.Rows.Count == 0)
+            try
             {
-                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            // Crear una instancia de Excel
-            Excel.Application excelApp = new Excel.Application();
-            Excel.Workbook workbook = excelApp.Workbooks.Add();
-            Excel.Worksheet worksheet = workbook.Sheets[1];
-
-            // Agregar título en la primera fila
-            Excel.Range titleRange = worksheet.Cells[1, 1] as Excel.Range;
-            titleRange.Value = "Resumen de informe de venta";
-            titleRange.Font.Size = 35;
-            titleRange.Font.Bold = true;
-            titleRange.EntireRow.AutoFit();
-
-            // Copiar datos del DataGridView a Excel
-            for (int i = 0; i < dataGridView.ColumnCount; i++)
-            {
-                worksheet.Cells[4, i + 1] = dataGridView.Columns[i].HeaderText;
-
-                // Agregar bordes a la celda de la cabecera
-                Excel.Range cellRange = worksheet.Cells[4, i + 1] as Excel.Range;
-                cellRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-                cellRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
-            }
-            for (int i = 0; i < dataGridView.Rows.Count; i++)
-            {
-                for (int j = 0; j < dataGridView.Columns.Count; j++)
+                if (dataGridView.Rows.Count == 0)
                 {
-                    worksheet.Cells[i + 5, j + 1] = dataGridView.Rows[i].Cells[j].Value;
+                    MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                // Crear una instancia de Excel
+                Excel.Application excelApp = new Excel.Application();
+                Excel.Workbook workbook = excelApp.Workbooks.Add();
+                Excel.Worksheet worksheet = workbook.Sheets[1];
 
-                    // Agregar bordes a las celdas de datos
-                    Excel.Range cellRange = worksheet.Cells[i + 5, j + 1] as Excel.Range;
+                // Agregar título en la primera fila
+                Excel.Range titleRange = worksheet.Cells[1, 1] as Excel.Range;
+                titleRange.Value = "Resumen de informe de venta";
+                titleRange.Font.Size = 35;
+                titleRange.Font.Bold = true;
+                titleRange.EntireRow.AutoFit();
+
+                // Copiar datos del DataGridView a Excel
+                for (int i = 0; i < dataGridView.ColumnCount; i++)
+                {
+                    worksheet.Cells[4, i + 1] = dataGridView.Columns[i].HeaderText;
+
+                    // Agregar bordes a la celda de la cabecera
+                    Excel.Range cellRange = worksheet.Cells[4, i + 1] as Excel.Range;
                     cellRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     cellRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
                 }
-            }
+                for (int i = 0; i < dataGridView.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridView.Columns.Count; j++)
+                    {
+                        worksheet.Cells[i + 5, j + 1] = dataGridView.Rows[i].Cells[j].Value;
 
-            // Crear un cuadro de diálogo para seleccionar la ubicación del archivo
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All Files (*.*)|*.*";
-            saveFileDialog.Title = "Guardar archivo Excel";
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        // Agregar bordes a las celdas de datos
+                        Excel.Range cellRange = worksheet.Cells[i + 5, j + 1] as Excel.Range;
+                        cellRange.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+                        cellRange.Borders.Weight = Excel.XlBorderWeight.xlThin;
+                    }
+                }
+
+                // Crear un cuadro de diálogo para seleccionar la ubicación del archivo
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel Workbook (*.xlsx)|*.xlsx|All Files (*.*)|*.*";
+                saveFileDialog.Title = "Guardar archivo Excel";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Guardar el archivo Excel
+                    SaveExcelFile(saveFileDialog.FileName, workbook);
+                }
+
+                // Liberar recursos
+                releaseObject(worksheet);
+                releaseObject(workbook);
+                releaseObject(excelApp);
+            }
+            catch (Exception ex)
             {
-                // Guardar el archivo Excel
-                SaveExcelFile(saveFileDialog.FileName, workbook);
+                MessageBox.Show("Error al guardar el archivo Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            // Liberar recursos
-            releaseObject(worksheet);
-            releaseObject(workbook);
-            releaseObject(excelApp);
         }
 
         private void releaseObject(object obj)
@@ -1025,6 +1032,21 @@ namespace GS_Factura
                     AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
                     //MessageBox.Show("Seleccione al menos un campo");
                 }
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GS_Informacion FormInformacion = new GS_Informacion();
+                FormInformacion.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
 
