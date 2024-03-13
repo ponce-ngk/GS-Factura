@@ -325,9 +325,12 @@ namespace GS_Factura
                 {
                     tb.Clear();
                     par.Clear();
-                    par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
-                    par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
+                    par.Add(new SqlParameter("@FechaInicio", dtpSearchFechaInicio.Value));
+                    par.Add(new SqlParameter("@FechaFinal", dtpSearchFechaFinal.Value));
                     tb = OAD.EscalarProcAlmTabla("sp_ObtenerIVAEntreFecha", par, true);
+                    //par.Add(new SqlParameter("@Fecha_Inicio", dtpSearchFechaInicio.Value));
+                    //par.Add(new SqlParameter("@Fecha_Fin", dtpSearchFechaFinal.Value));
+                    //tb = OAD.EscalarProcAlmTabla("sp_BuscarIVAxFecha", par, true);
                     dtgIva.DataSource = tb;
                     if (tb.Rows.Count == 0)
                     {
