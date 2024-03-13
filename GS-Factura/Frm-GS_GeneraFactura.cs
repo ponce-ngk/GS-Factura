@@ -718,7 +718,7 @@ namespace GS_Factura
 
         private void txt_Buscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 if (txtSearchCliente.Text != null)
                 {
@@ -746,7 +746,7 @@ namespace GS_Factura
             }
             else if (txtSearchCliente.Text == null)
             {
-                MessageBox.Show("Por favor ingregse un carácter");
+                MessageBox.Show("Por favor ingrese un carácter");
             }
         }
 
@@ -758,54 +758,7 @@ namespace GS_Factura
 
         private void txtcancelado2_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                // Verifica si el texto en txtcancelado no está en blanco o nulo
-                if (!string.IsNullOrWhiteSpace(txtcancelado.Text))
-                {
-                    if (decimal.TryParse(txtcancelado.Text.Replace(".", ","), out decimal montoCancelado))
-                    {
-                        decimal totalVenta = decimal.Parse(txtTotalVenta.Text.Replace(".", ","));
-                        // Calcula el cambio restando el monto cancelado al total de la venta
 
-                        decimal cambio = montoCancelado - totalVenta;
-
-                        // Si el cambio es positivo, muestra el cambio en txtcambioVenta en color verde
-
-                        if (cambio >= 0)
-                        {
-                            txtcambioVenta.Text = cambio.ToString().Replace(",", ".");
-                            txtcambioVenta.ForeColor = Color.Green;
-                        }
-                        else
-                        {
-                            // Si el cambio es negativo, muestra "0,00" en txtcambioVenta en color negro
-
-                            txtcambioVenta.Text = "0.00"; //  valor que desees si el cambio es negativo
-                            txtcambioVenta.ForeColor = Color.Black;
-                        }
-                    }
-                    else
-                    {
-                        // Muestra un mensaje de error si no se puede convertir el texto a decimal
-                        MessageBox.Show("Ingrese un número válido en el campo de cancelación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtcambioVenta.Text = "0.00";
-                        txtcambioVenta.ForeColor = Color.Black;
-                    }
-                }
-                else
-                {
-                    // Si el texto en txtcancelado está en blanco o nulo, muestra "0,00" en txtcambioVenta en color negro
-
-                    txtcambioVenta.Text = "0,00";
-                    txtcambioVenta.ForeColor = Color.Black;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
-            }
         }
 
         private void txtcancelado2_Leave(object sender, EventArgs e)
@@ -828,33 +781,9 @@ namespace GS_Factura
 
         private void txtcancelado2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != ' ' && !char.IsWhiteSpace(e.KeyChar))
-            //{
-            //    e.Handled = true;
-            //    MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
-            //else if (e.KeyChar == ',')
-            //{
-            //    e.KeyChar = '.'; // Reemplazar la coma por un punto
-            //}
-            //else if (char.IsWhiteSpace(e.KeyChar))
-            //{
-            //    e.Handled = true;
-            //    MessageBox.Show("No se permiten espacios en blanco", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
-            //// Verificar si el usuario ha ingresado un punto decimal
-            //if (e.KeyChar == ',' && txtcancelado.Text.IndexOf('.') > -1)
-            //{
-            //    // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
-            //    e.Handled = true;
-            //}
-            ////Permitir solo una coma como punto decimal
-            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            //{
-            //    e.Handled = true;
-            //}
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == (char)Keys.Back))
             {
+                e.Handled = true;
                 if (txtcancelado.Text != null)
                 {
                     DialogResult respuesta = MessageBox.Show("Deseas realizar esta venta? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -901,12 +830,11 @@ namespace GS_Factura
             {
                 MessageBox.Show("Por favor ingregse un carácter");
             }
-            ////Permitir solo una coma como punto decimal
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+
+            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
             {
                 e.Handled = true;
             }
         }
     }
-
 }
