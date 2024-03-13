@@ -94,7 +94,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(901, 97);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // panel2
             // 
@@ -535,7 +534,6 @@
             this.txtbuscarCliente.Size = new System.Drawing.Size(646, 29);
             this.txtbuscarCliente.TabIndex = 25;
             this.txtbuscarCliente.Enter += new System.EventHandler(this.txtbuscarproducto_Enter);
-            this.txtbuscarCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbuscarCliente_KeyDown);
             this.txtbuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscarCliente_KeyPress);
             this.txtbuscarCliente.Leave += new System.EventHandler(this.txtbuscarproducto_Leave);
             // 
