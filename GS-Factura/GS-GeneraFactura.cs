@@ -241,28 +241,18 @@ namespace GS_Factura
         // Este método se ejecuta al hacer clic en el botón de vender.
         private void BtnVender_Click(object sender, EventArgs e)
         {
-            
             DialogResult respuesta = MessageBox.Show("Deseas realizar esta venta? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
                 try
                 {
-
                     // Crea un elemento XML para representar la factura de la venta.
                     if (!string.IsNullOrEmpty(txtcancelado.Text) && txtcancelado.Text != "0")
                     {
-
                         DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-
-
                         bD2.XmlVenta(int.Parse(lblidcliente.Text), decimal.Parse(txtsubtotalventa.Text.Replace(".", ",")), decimal.Parse(lblValorIva.Text.Replace(".", ",")), decimal.Parse(txtTotalVenta.Text.Replace(".", ",")), dtgVenta);
-
-
                         this.LimpiarDatosVenta();
-
                         this.Cargarnumerofactura();
-
                         // Guardar los tamaños actuales de las columnas
                         float tamañoColumna1 = tblVentayFactura.ColumnStyles[0].Width;
                         float tamañoColumna2 = tblVentayFactura.ColumnStyles[1].Width;
@@ -270,30 +260,21 @@ namespace GS_Factura
                         //Intercambiar los tamaños de las columnas
                         tblVentayFactura.ColumnStyles[0].Width = tamañoColumna2;
                         tblVentayFactura.ColumnStyles[1].Width = tamañoColumna1;
-
                         GS_Factura frmFactura = new GS_Factura();
-
-
                         //Añade GS_Factura como un control en el Panel
                         frmFactura.TopLevel = false;
                         frmFactura.Dock = DockStyle.Fill;
                         panelFactura.Controls.Add(frmFactura);
-
                         frmFactura.Show();
-
                         this.Cargarnumerofactura();
-
                     }
                     else MessageBox.Show("El usuario no ha cancelado. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
-
-
         }
 
        
@@ -397,6 +378,7 @@ namespace GS_Factura
                     btnVender.Enabled = true;
                     btnvalidarCliente.Enabled = false;
                     btnConfirmarVenta.BackColor = Color.Red;
+                    txtcancelado.Focus();
                     return;
                 }
             }
