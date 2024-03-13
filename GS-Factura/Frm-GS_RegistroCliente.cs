@@ -17,7 +17,7 @@ namespace GS_Factura
     public partial class GS_RegistroCliente : Form
     {
         bool verificar=false;
-        BD2 OAD = new BD2();
+        AccesoDatos OAD = new AccesoDatos();
         List<SqlParameter> par = new List<SqlParameter>();
         int op;
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
@@ -27,7 +27,6 @@ namespace GS_Factura
         {
             InitializeComponent();
             BloqueoControlesInicial();
-            AccesoDatos fr = new AccesoDatos();
             // Se llena el DataGridView con los datos de los clientes al cargar el formulario
             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
             dgvClientes.DataSource = tb;

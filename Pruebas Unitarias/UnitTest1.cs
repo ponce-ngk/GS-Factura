@@ -17,11 +17,11 @@ namespace Pruebas_Unitarias
         public void EscalarProcAlm_DeberiaRetornarEscalarCorrecto()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             bd.Conectar();
-            string sentenciaSQL = "sp_PruebaUnitaria1";
+            string sentenciaSQL = "pruebaunitaria1";
             List<SqlParameter> parametros = new List<SqlParameter>();
-            parametros.Add(new SqlParameter("@Cedula", "1250400089")); // Agrega el nuevo parámetro
+            parametros.Add(new SqlParameter("@cedula", "1250400089")); // Agrega el nuevo parámetro
             // Act
             int resultado = bd.EscalarProcAlm(sentenciaSQL, parametros, true);
 
@@ -34,17 +34,17 @@ namespace Pruebas_Unitarias
         public void XmlVenta_DeberiaGenerarXmlCorrecto()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             int idCliente = 1;
             decimal subtotal = 100;
             decimal iva = 10;
-            decimal valoriva = 115;
             decimal total = 110;
             DataGridView detalleVenta = new DataGridView(); // Simula un DataGridView con datos
+
             // Act & Assert
             try
             {
-                bd.XmlVenta(idCliente, subtotal, iva, valoriva, total, detalleVenta);
+                bd.XmlVenta(idCliente, subtotal, iva, total, detalleVenta);
 
                 // Si no se lanza una excepción, asumimos que la venta fue exitosa
                 Assert.IsFalse(false); // Si no se lanza una excepción, no se debería llegar aquí
@@ -61,7 +61,7 @@ namespace Pruebas_Unitarias
         public void ObtenerDatosFactura_DeberiaRetornarTablaNoVacia()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             int idFactura = 2;
 
             // Act
@@ -77,7 +77,7 @@ namespace Pruebas_Unitarias
         public void RetornarStock_DeberiaRetornarStockCorrecto()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             int idProducto = 1;
 
             // Act
@@ -92,19 +92,18 @@ namespace Pruebas_Unitarias
         public void XmlEditarFactura_DeberiaEditarFacturaCorrectamente()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             int idFactura = 1;
             int idCliente = 1;
             decimal subtotal = 22.3000m;
             decimal iva = 12;
-            decimal valoriva = 2.676m;
             decimal total = 25.0900m;
             DataGridView detalleVenta = new DataGridView(); // Simula un DataGridView con datos
 
             // Act & Assert
             try
             {
-                bd.XmlEditarFactura(idFactura, idCliente, subtotal, iva, valoriva, total, detalleVenta);
+                bd.XmlEditarFactura(idFactura, idCliente, subtotal, iva, total, detalleVenta);
 
                 // Si no se lanza una excepción, asumimos que la edición de la factura fue exitosa
                 Assert.IsTrue(true); // Si no se lanza una excepción, la edición fue exitosa

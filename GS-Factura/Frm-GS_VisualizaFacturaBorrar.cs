@@ -29,7 +29,7 @@ namespace GS_Factura
             try
             {
                 // Obtener el ID máximo de la factura
-                BD2 bd2 = new BD2();
+                AccesoDatos bd2 = new AccesoDatos();
                 int maxIdVenta = idFactura;
 
                 // Verificar si se obtuvo correctamente el ID máximo
@@ -37,7 +37,6 @@ namespace GS_Factura
                 {
                     // Llamar al procedimiento almacenado para obtener los datos de la factura
                     List<SqlParameter> parametros = new List<SqlParameter>
-
             {
                 new SqlParameter("@IDFactura", maxIdVenta)
             };
@@ -48,7 +47,6 @@ namespace GS_Factura
                     reporteFactura.LocalReport.ReportPath = "factura.rdlc"; // Asegúrate de que coincida con el nombre de tu informe
                     ReportDataSource dataSource = new ReportDataSource("DataSet1", datos); // Reemplaza "DataSet1" con el nombre de tu conjunto de datos en el informe
                     reporteFactura.LocalReport.DataSources.Add(dataSource);
-
 
                     // Actualizar el informe
                     reporteFactura.RefreshReport();

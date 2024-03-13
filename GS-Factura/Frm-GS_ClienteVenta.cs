@@ -15,7 +15,7 @@ namespace GS_Factura
 {
     public partial class ClienteVenta : Form
     {
-        BD2 OAD = new BD2();
+        AccesoDatos OAD = new AccesoDatos();
         List<SqlParameter> par = new List<SqlParameter>();
         int op;
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
