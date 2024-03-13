@@ -35,19 +35,16 @@ namespace GS_Factura
                 if (dtpFechaFinal.Value.Date < dtpFechaInicio.Value.Date)
                 {
                     dtpFechaFinal.Value = DateTime.Now;
-                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Fecha final debe ser mayor.", Properties.Resources.Error);
                     MessageBox.Show("La fecha final no puede ser menor que la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else if (dtpFechaInicio.Value.Date > dtpFechaFinal.Value.Date)
                 {
-                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Fecha inicial debe ser mayor.", Properties.Resources.Error);
                     MessageBox.Show("La fecha Inicial no puede ser mayor que la fecha Final.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else if (txtIva.Text == "" || txtIva.Text == "0")
                 {
-                    //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "El campo Iva está vacío.", Properties.Resources.Warning);
                     MessageBox.Show("El campo Iva está vacío. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -58,10 +55,9 @@ namespace GS_Factura
                     par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
                     par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
                     verificarFecha = OAD.EscalarProcAlmBool("VerificarRangoFechaIVA", par, true);
-                    // Verificar si la cédula ya existe en la base de datos
+                    // Verificar si el rango de fechas ya existe en la base de datos.
                     if (verificarFecha)
                     {
-                        //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Ya existe una fecha registrada.", Properties.Resources.Warning);
                         MessageBox.Show("Ya existe una fecha registrada en emision.", "Fecha Duplicada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return; // Salir del método para evitar continuar con la operación de guardado
                     }
@@ -69,7 +65,6 @@ namespace GS_Factura
                     {
                         // Se confirmar antes de agregar al cliente
                         DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres agregar este nuevo valor de IVA?", "Confirmar adición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
                         if (resultado == DialogResult.Yes)
                         {
                             sql = "";
@@ -83,12 +78,10 @@ namespace GS_Factura
                                 BloqueoControles();
                                 txtIva.Text = "0";
                                 lblIdIva.Text = "0";
-                                //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Los datos de Guardaron correctamente.", Properties.Resources.Success);
                                 MessageBox.Show("IVA guardado exitosamente.", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {
-                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "No se pudieron Guardar.", Properties.Resources.Error);
                                 MessageBox.Show("No se pudo  Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             }
                         }
@@ -136,19 +129,16 @@ namespace GS_Factura
                 if (dtpFechaFinal.Value.Date < dtpFechaInicio.Value.Date)
                 {
                     dtpFechaFinal.Value = DateTime.Now;
-                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Fecha final debe ser mayor.", Properties.Resources.Error);
                     MessageBox.Show("La fecha final no puede ser menor que la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else if (dtpFechaInicio.Value.Date > dtpFechaFinal.Value.Date)
                 {
-                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Fecha inicial debe ser mayor.", Properties.Resources.Error);
                     MessageBox.Show("La fecha Inicial no puede ser mayor que la fecha Final.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else if (txtIva.Text == "" || txtIva.Text == "0")
                 {
-                    //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "El campo Iva está vacío.", Properties.Resources.Warning);
                     MessageBox.Show("El campo Iva está vacío. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -169,12 +159,10 @@ namespace GS_Factura
                             BloqueoControles();
                             txtIva.Text = "0";
                             lblIdIva.Text = "0";
-                            //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Los datos de Guardaron correctamente.", Properties.Resources.Success);
                             MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
-                            //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "No se pudieron Guardar.", Properties.Resources.Error);
                             MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                     }
@@ -202,12 +190,10 @@ namespace GS_Factura
                         BloqueoControles();
                         txtIva.Text = "0";
                         lblIdIva.Text = "0";
-                        //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "IVA Eliminado exitosamente.", Properties.Resources.Success);
                         MessageBox.Show("IVA Eliminado exitosamente.", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "No se pudieron Eliminar.", Properties.Resources.Error);
                         MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
@@ -223,7 +209,6 @@ namespace GS_Factura
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != ' ')
             {
                 e.Handled = true;
-                //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Solo se permiten números.", Properties.Resources.Warning);
                 MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (e.KeyChar == ',')
@@ -233,7 +218,6 @@ namespace GS_Factura
             else if (char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = true;
-                //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "No se permiten espacios en blanco.", Properties.Resources.Warning);
                 MessageBox.Show("No se permiten espacios en blanco", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             // Verificar si el usuario ha ingresado un punto decimal
@@ -302,13 +286,11 @@ namespace GS_Factura
                 // Verificar que la fecha final no sea menor que la fecha inicial
                 if (dtpSearchFechaFinal.Value.Date < dtpSearchFechaInicio.Value.Date)
                 {
-                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Fecha final debe ser mayor.", Properties.Resources.Error);
                     MessageBox.Show("La fecha final no puede ser menor que la fecha inicial.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else if (dtpSearchFechaInicio.Value.Date > dtpSearchFechaFinal.Value.Date)
                 {
-                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Fecha inicial debe ser mayor.", Properties.Resources.Error);
                     MessageBox.Show("La fecha Inicial no puede ser mayor que la fecha Final.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -319,13 +301,9 @@ namespace GS_Factura
                     par.Add(new SqlParameter("@FechaInicio", dtpSearchFechaInicio.Value));
                     par.Add(new SqlParameter("@FechaFinal", dtpSearchFechaFinal.Value));
                     tb = OAD.EscalarProcAlmTabla("sp_ObtenerIVAEntreFecha", par, true);
-                    //par.Add(new SqlParameter("@Fecha_Inicio", dtpSearchFechaInicio.Value));
-                    //par.Add(new SqlParameter("@Fecha_Fin", dtpSearchFechaFinal.Value));
-                    //tb = OAD.EscalarProcAlmTabla("sp_BuscarIVAxFecha", par, true);
                     dtgIva.DataSource = tb;
                     if (tb.Rows.Count == 0)
                     {
-                        //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "IVA no encontrado.", Properties.Resources.Error);
                         MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -353,7 +331,6 @@ namespace GS_Factura
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
                             dtgIva.DataSource = tb;
-                            //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
                             MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             cmbitemsIva.SelectedIndex = -1;
                         }
@@ -397,7 +374,6 @@ namespace GS_Factura
                                 dtgIva.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "IVA no encontrado.", Properties.Resources.Error);
                                     MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
@@ -405,7 +381,6 @@ namespace GS_Factura
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
                                 dtgIva.DataSource = tb;
-                                //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Por favor ingregse al menos un carácter.", Properties.Resources.Warning);
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
@@ -422,7 +397,6 @@ namespace GS_Factura
                                 dtgIva.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "IVA no encontrado.", Properties.Resources.Error);
                                     MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
@@ -430,20 +404,17 @@ namespace GS_Factura
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio ", true);
                                 dtgIva.DataSource = tb;
-                                //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Por favor ingregse al menos un carácter.", Properties.Resources.Warning);
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                     }
                     else
                     {
-                        //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Seleccione al menos un campo.", Properties.Resources.Warning);
                         MessageBox.Show("Seleccione al menos un campo");
                     }
                 }
                 else if (op == null && txtbuscarIva.Text == null)
                 {
-                    //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Por favor ingregse al menos un carácter.", Properties.Resources.Warning);
                     MessageBox.Show("Por favor ingregse un carácter");
                 }
             }

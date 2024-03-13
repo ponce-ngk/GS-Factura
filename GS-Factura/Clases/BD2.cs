@@ -180,6 +180,20 @@ namespace GS_Factura.Clases
                 this.Desconectar();
             return ret;
         }
+        //public string EscalarProcAlmString(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
+        //{
+        //    string ret = "";
+        //    CrearComandoStoredProcedure(sentenciaSQL);
+        //    foreach (SqlParameter p in parametros)
+        //    {
+        //        this.comando.Parameters.Add(p);
+        //    };
+        //    this.ConectarSiDesconectado();
+        //    ret = this.EjecutarEscalarString();
+        //    if (cerrar_conexion_al_terminar)
+        //        this.Desconectar();
+        //    return ret;
+        //}
         public string EscalarProcAlmString(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
         {
             string ret = "";
@@ -189,11 +203,20 @@ namespace GS_Factura.Clases
                 this.comando.Parameters.Add(p);
             };
             this.ConectarSiDesconectado();
-            ret = this.EjecutarEscalarString();
+            try
+            {
+                ret = this.EjecutarEscalarString();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ret = null; // Indicar que ocurrió un error
+            }
             if (cerrar_conexion_al_terminar)
                 this.Desconectar();
             return ret;
         }
+
         public DataTable EscalarProcAlmTabla(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
         {
             DataTable ret = new DataTable();
