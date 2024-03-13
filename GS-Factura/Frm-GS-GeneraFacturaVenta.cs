@@ -38,7 +38,7 @@ namespace GS_Factura
                 new SqlParameter("@IDFactura", maxIdVenta)
             };
 
-                    DataTable datos = bd2.EscalarProcAlmTabla("ObtenerDatosFacturaPorID", parametros, false);
+                    DataTable datos = bd2.EscalarProcAlmTabla("sp_ObtenerDatosFacturaPorID", parametros, false);
 
                     // Configurar el informe
                     reporteFactura.LocalReport.ReportPath = "factura.rdlc"; // Asegúrate de que coincida con el nombre de tu informe
