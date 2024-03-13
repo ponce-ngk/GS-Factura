@@ -1077,6 +1077,10 @@ namespace GS_Factura
                     MessageBox.Show("Seleccione al menos un campo");
                 }
             }
+            else if(cbxNombre.Checked == false && cbxProducto.Checked == false)
+            {
+                MessageBox.Show("Por favor habilite los campos de busqueda");
+            }
         }
 
         private void btnInstrucciones_Click(object sender, EventArgs e)
