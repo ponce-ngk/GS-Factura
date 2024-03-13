@@ -23,6 +23,7 @@ namespace GS_Factura
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
         string sql = "";
         DataTable tb = new DataTable();
+        
 
         public GS_RegistroCliente()
         {
@@ -34,6 +35,7 @@ namespace GS_Factura
             dgvClientes.DataSource = tb;
             // Se establece el formato personalizado de la fecha en el control DateTimePicker para poderlo guardar
             dtpFechaCliente.CustomFormat = "yyyy-MM-dd";
+            dtpFechaCliente.Text = date.ToString();
         }
         public void BloqueoControlesInicial()
         {
@@ -201,31 +203,6 @@ namespace GS_Factura
             dgvClientes.DataSource = tb;
             //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
         }
-        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if(dgvClientes.CurrentCell == null)
-                {
-                    BloqueoControles();
-                }
-                else
-                {
-                    BloqueoClickDgv();
-                    // Mostrar los datos de la fila seleccionada en los campos correspondientes
-                    txtidcliente.Text = dgvClientes.CurrentRow.Cells[0].Value.ToString();
-                    txtcedulacliente.Text = dgvClientes.CurrentRow.Cells[1].Value.ToString();
-                    txtnombrescliente.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
-                    txtapellidoscliente.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
-                    dtpFechaCliente.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
-                    txtcedulacliente.Enabled = false;
-                }
-            }
-            catch (Exception ex)
-            {   
-                MessageBox.Show(ex.Message);
-            }
-        }
         private void btnlimpiardatos_Click(object sender, EventArgs e)
         {            
             LimpiarCampos();
@@ -383,30 +360,6 @@ namespace GS_Factura
             }
             
         
-        }
-        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (dgvClientes.CurrentCell == null)
-                {
-                    BloqueoControles();
-                }
-                else
-                {
-                    BloqueoClickDgv();
-                    // Mostrar los datos de la fila seleccionada en los campos correspondientes
-                    txtidcliente.Text = dgvClientes.CurrentRow.Cells[0].Value.ToString();
-                    txtcedulacliente.Text = dgvClientes.CurrentRow.Cells[1].Value.ToString();
-                    txtnombrescliente.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
-                    txtapellidoscliente.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
-                    dtpFechaCliente.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -587,6 +540,32 @@ namespace GS_Factura
                 MessageBox.Show("Por favor ingregse un carácter");
             }
             
+        }
+
+        private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dgvClientes.CurrentCell == null)
+                {
+                    BloqueoControles();
+                }
+                else
+                {
+                    BloqueoClickDgv();
+                    // Mostrar los datos de la fila seleccionada en los campos correspondientes
+                    txtidcliente.Text = dgvClientes.CurrentRow.Cells[0].Value.ToString();
+                    txtcedulacliente.Text = dgvClientes.CurrentRow.Cells[1].Value.ToString();
+                    txtnombrescliente.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
+                    txtapellidoscliente.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
+                    dtpFechaCliente.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
+                    txtcedulacliente.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
