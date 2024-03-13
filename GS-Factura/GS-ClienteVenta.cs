@@ -134,11 +134,21 @@ namespace GS_Factura
                  );
                 // Oculta la ventana actual
                 this.Hide();
+                // Habilita todos los formularios
+                HabilitarFormularios();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 throw;
+            }
+        }
+        private void HabilitarFormularios()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Enabled = true;
+                form.TopMost = true;
             }
         }
         private void txtcedulacliente_KeyPress(object sender, KeyPressEventArgs e)
@@ -163,20 +173,41 @@ namespace GS_Factura
                 switch (op)
                 {
                     case 0:
-                        op = 0;
+                        txtbuscarCliente.Text = "";
+                        txtbuscarCliente.Enabled = false;
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Campo", "IDCLIENTE"));
+                        par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                        DgvClientes.DataSource = tb;
+                        if (txtbuscarCliente.TextLength > 0)
+                        {
+                            MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            cmbitems.SelectedIndex = -1;
+                        }
                         break;
                     case 1:
+                        txtbuscarCliente.Enabled = true;
                         op = 1;
+                        tb.Clear();
                         break;
                     case 2:
+                        txtbuscarCliente.Enabled = true;
                         op = 2;
+                        tb.Clear();
                         break;
                     case 3:
+                        txtbuscarCliente.Enabled = true;
                         op = 3;
+                        tb.Clear();
                         break;
                     case 4:
+                        txtbuscarCliente.Enabled = true;
                         op = 4;
+                        tb.Clear();
                         break;
+
                 }
             }
             catch (Exception ex)
@@ -188,7 +219,6 @@ namespace GS_Factura
         {
             try
             {
-                //Validacion de que sea solo letras y espacio 
                 if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
                 {
                     if (txtbuscarCliente.Text != null)
@@ -204,11 +234,16 @@ namespace GS_Factura
                                 par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
                                 tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                                 DgvClientes.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                                 DgvClientes.DataSource = tb;
+                                //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
@@ -219,15 +254,20 @@ namespace GS_Factura
                                 e.Handled = true;
                                 tb.Clear();
                                 par.Clear();
-                                par.Add(new SqlParameter("@Campo", "CEDULA"));
+                                par.Add(new SqlParameter("@Campo", "IDCLIENTE"));
                                 par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
                                 tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                                 DgvClientes.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                                 DgvClientes.DataSource = tb;
+                                //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
@@ -238,15 +278,20 @@ namespace GS_Factura
                                 e.Handled = true;
                                 tb.Clear();
                                 par.Clear();
-                                par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                                par.Add(new SqlParameter("@Campo", "CEDULA"));
                                 par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
                                 tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                                 DgvClientes.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                                 DgvClientes.DataSource = tb;
+                                //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
@@ -257,15 +302,44 @@ namespace GS_Factura
                                 e.Handled = true;
                                 tb.Clear();
                                 par.Clear();
-                                par.Add(new SqlParameter("@Campo", "APELLIDOS"));
+                                par.Add(new SqlParameter("@Campo", "NOMBRE"));
                                 par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
                                 tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                                 DgvClientes.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                                 DgvClientes.DataSource = tb;
+                                //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (op == 4)
+                        {
+                            if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "APELLIDOS"));
+                                par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                                DgvClientes.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
+                                DgvClientes.DataSource = tb;
+                                //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
@@ -289,6 +363,7 @@ namespace GS_Factura
         {
             try
             {
+
                 if (txtbuscarCliente.Text != null)
                 {
                     if (op == 0)
@@ -302,11 +377,16 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                             DgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                             DgvClientes.DataSource = tb;
+                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -320,11 +400,16 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                             DgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                             DgvClientes.DataSource = tb;
+                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -334,15 +419,20 @@ namespace GS_Factura
                         {
                             tb.Clear();
                             par.Clear();
-                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
+                            par.Add(new SqlParameter("@Campo", "CEDULA"));
                             par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                             DgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                             DgvClientes.DataSource = tb;
+                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -352,15 +442,43 @@ namespace GS_Factura
                         {
                             tb.Clear();
                             par.Clear();
-                            par.Add(new SqlParameter("@Campo", "APELLIDOS"));
+                            par.Add(new SqlParameter("@Campo", "NOMBRE"));
                             par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
                             tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
                             DgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                             DgvClientes.DataSource = tb;
+                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
+                    }
+                    else if (op == 4)
+                    {
+                        if (txtbuscarCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "APELLIDOS"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarCliente.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
+                            DgvClientes.DataSource = tb;
+                            if (tb.Rows.Count == 0)
+                            {
+                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
+                            DgvClientes.DataSource = tb;
+                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }

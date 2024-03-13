@@ -676,25 +676,19 @@ namespace GS_Factura
         }
 
         private void btnAñadirCliente_Click(object sender, EventArgs e)
-        {
+        {            
             try
             {
-                try
-                {
-                    ClienteVenta clienteVenta = new ClienteVenta();
-                    clienteVenta.pasarCliente += new ClienteVenta.pasarformFactura(EjecutaClientes);
-                    clienteVenta.ShowDialog();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    throw;
-                }
+                DeshabilitarFormularios();
+                ClienteVenta clienteVenta = new ClienteVenta();
+                clienteVenta.FormClosed += (s, args) => HabilitarFormularios();
+                clienteVenta.pasarCliente += new ClienteVenta.pasarformFactura(EjecutaClientes);
+                clienteVenta.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                throw;
             }
         }
 
