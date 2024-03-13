@@ -493,9 +493,7 @@ namespace GS_Factura
                     MessageBox.Show(ex.Message);
                 }
             }
-
         }
-
         private void txtSearchCliente_TextChanged(object sender, EventArgs e)
         {
             this.lblcontadorcedulaCliente.Text = txtSearchCliente.Text.Length.ToString();
@@ -503,35 +501,43 @@ namespace GS_Factura
 
         private void txtSearchCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            try
             {
-                if (txtSearchCliente.Text != null)
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
                 {
-                    e.Handled = true;
-                    tb.Clear();
-                    par.Clear();
-                    par.Add(new SqlParameter("@Cedula", txtSearchCliente.Text.Trim()));
-                    tb = bD2.EscalarProcAlmTabla("BuscarClientePorCedula ", par, true);
-                    if (tb.Rows.Count == 0)
+                    if (txtSearchCliente.Text != null)
                     {
-                        MessageBox.Show("Cliente no encontrado. \n\nSe sugiere el registro del Cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        e.Handled = true;
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Cedula", txtSearchCliente.Text.Trim()));
+                        tb = bD2.EscalarProcAlmTabla("BuscarClientePorCedula ", par, true);
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Cliente no encontrado. \n\nSe sugiere el registro del Cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            DataRow row = tb.Rows[0];
+                            lblcedulacliente.Text = row["CEDULA"].ToString();
+                            lblnombrecliente.Text = row["NOMBRE"].ToString();
+                            lblApellidocliente.Text = row["APELLIDOS"].ToString();
+                        }
                     }
                     else
                     {
-                        DataRow row = tb.Rows[0];
-                        lblcedulacliente.Text = row["CEDULA"].ToString();
-                        lblnombrecliente.Text = row["NOMBRE"].ToString();
-                        lblApellidocliente.Text = row["APELLIDOS"].ToString();
+                        MessageBox.Show("Por favor ingrese un carácter");
                     }
                 }
-                else
+                else if (txtSearchCliente.Text == null)
                 {
                     MessageBox.Show("Por favor ingrese un carácter");
                 }
             }
-            else if (txtSearchCliente.Text == null)
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor ingrese un carácter");
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
     }
