@@ -27,7 +27,89 @@ namespace GS_Factura
 
         private void txtBuscaFacturaCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            try
+            {
+                if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+                {
+                    if (txtBuscaFacturaCliente.Text != null)
+                    {
+                        if (op == 1)
+                        {
+                            if (txtBuscaFacturaCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "CEDULA"));
+                                par.Add(new SqlParameter("@Buscar", txtBuscaFacturaCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("BuscarFacturasClientes", par, true);
+                                dtgFactura.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Cliente no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
+                                dtgFactura.DataSource = tb;
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (op == 2)
+                        {
+                            if (txtBuscaFacturaCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "IDFACTURA"));
+                                par.Add(new SqlParameter("@Buscar", txtBuscaFacturaCliente.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("BuscarFacturasFac", par, true);
+                                dtgFactura.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Factura no encontrada.", Properties.Resources.Error);
+                                    MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
+                                dtgFactura.DataSource = tb;
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else
+                        {
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                            MessageBox.Show("Seleccione al menos un campo");
+                        }
+                    }
+                    else if (op == null && txtBuscaFacturaCliente.Text == null)
+                    {
+                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                        MessageBox.Show("Por favor ingregse un carácter");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void GS_EliminaFactura_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
             {
                 if (txtBuscaFacturaCliente.Text != null)
                 {
@@ -35,7 +117,7 @@ namespace GS_Factura
                     {
                         if (txtBuscaFacturaCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
-                            e.Handled = true;
+
                             tb.Clear();
                             par.Clear();
                             par.Add(new SqlParameter("@Campo", "CEDULA"));
@@ -60,7 +142,7 @@ namespace GS_Factura
                     {
                         if (txtBuscaFacturaCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
-                            e.Handled = true;
+
                             tb.Clear();
                             par.Clear();
                             par.Add(new SqlParameter("@Campo", "IDFACTURA"));
@@ -87,166 +169,15 @@ namespace GS_Factura
                         MessageBox.Show("Seleccione al menos un campo");
                     }
                 }
-                else if (op == null && txtBuscaFacturaCliente.Text == null)
-                {
-                    //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
-                    MessageBox.Show("Por favor ingregse un carácter");
-                }
-                //try
-                //{
-                //    if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-                //    {
-                //        e.Handled = true;
-                //    }
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-            }
-        }
-
-        private void GS_EliminaFactura_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBuscarFacturaCedula_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                // Verificar si la tecla presionada no es un número o la tecla de retroceso
-                if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-                {
-                    // Si no es un número o la tecla de retroceso, cancelar la entrada de caracteres
-                    e.Handled = true;
-                }
-                else
-                {
-                    //// Verificar si la longitud después de la pulsación de tecla excede 10 caracteres
-                    //if ((txtBuscarFacturaCedula.Text + e.KeyChar).Length > 10 && e.KeyChar != (char)Keys.Back)
-                    //{
-                    //    // Si excede 10 caracteres, cancelar la entrada de caracteres
-                    //    e.Handled = true;
-                    //}
-                }
             }
             catch (Exception ex)
             {
-                // Manejar la excepción aquí, por ejemplo, mostrar un mensaje de error
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            if (txtBuscaFacturaCliente.Text != null)
-            {
-                if (op == 1)
-                {
-                    if (txtBuscaFacturaCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
-                    {
-
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Campo", "CEDULA"));
-                        par.Add(new SqlParameter("@Buscar", txtBuscaFacturaCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("BuscarFacturasClientes", par, true);
-                        dtgFactura.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Cliente no encontrado.", Properties.Resources.Error);
-                            MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
-                        dtgFactura.DataSource = tb;
-                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (op == 2)
-                {
-                    if (txtBuscaFacturaCliente.TextLength != 0 || cmbitems.SelectedIndex == -1)
-                    {
-
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Campo", "IDFACTURA"));
-                        par.Add(new SqlParameter("@Buscar", txtBuscaFacturaCliente.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("BuscarFacturasFac", par, true);
-                        dtgFactura.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Factura no encontrada.", Properties.Resources.Error);
-                            MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
-                        dtgFactura.DataSource = tb;
-                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else
-                {
-                    //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
-                    MessageBox.Show("Seleccione al menos un campo");
-                }
-                //try
-                //{
-                //     Obtener valores de los TextBox
-                //    string cedula = txtBuscaFacturaCliente.Text;
-                //    int? numeroFactura = null;
-
-                //     Intentar convertir el texto a un número entero
-                //    if (int.TryParse(txtBuscaFacturaCliente.Text, out int tempNumeroFactura))
-                //    {
-                //        numeroFactura = tempNumeroFactura;
-                //    }
-
-                //    DataTable resultados;
-
-                //     Lógica de búsqueda basada en los valores de los TextBox
-                //    if (!string.IsNullOrWhiteSpace(cedula) && numeroFactura.HasValue)
-                //    {
-                //         Buscar por número de factura y cédula
-                //        resultados = AccesoDatos.BuscarFacturas(cedula, numeroFactura);
-                //    }
-                //    else if (!string.IsNullOrWhiteSpace(cedula))
-                //    {
-                //         Buscar solo por cédula
-                //        resultados = AccesoDatos.BuscarFacturas(cedula, null);
-                //    }
-                //    else if (numeroFactura.HasValue && numeroFactura > 0)
-                //    {
-                //         Buscar solo por número de factura
-                //        resultados = AccesoDatos.BuscarFacturas(null, numeroFactura);
-                //    }
-                //    else
-                //    {
-                //         Buscar todas las facturas
-                //        resultados = AccesoDatos.BuscarFacturas(null, null);
-                //    }
-
-                //     Mostrar los resultados en un control DataGridView, por ejemplo
-                //    dtgFactura.DataSource = resultados;
-                //    LimpiaDatos();
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+                MessageBox.Show(ex.Message);
             }
         }
         public void LimpiaDatos()
         {
             txtBuscaFacturaCliente.Text = "";
-
         }
 
         private void dtgFactura_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -409,33 +340,41 @@ namespace GS_Factura
 
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            op = cmbitems.SelectedIndex;
-            switch (op)
+            try
             {
-                case 0:
-                    txtBuscaFacturaCliente.Enabled = false;
-                    tb.Clear();
-                    tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasFull", true);
-                    dtgFactura.DataSource = tb;
-                    if (txtBuscaFacturaCliente.TextLength > 0)
-                    {
+                op = cmbitems.SelectedIndex;
+                switch (op)
+                {
+                    case 0:
+                        txtBuscaFacturaCliente.Text = "";
+                        txtBuscaFacturaCliente.Enabled = false;
                         tb.Clear();
-                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio", true);
-                        //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
-                        MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        cmbitems.SelectedIndex = -1;
-                    }
-                    break;
-                case 1:
-                    txtBuscaFacturaCliente.Enabled = true;
-                    op = 1;
-                    tb.Clear();
-                    break;
-                case 2:
-                    txtBuscaFacturaCliente.Enabled = true;
-                    op = 2;
-                    tb.Clear();
-                    break;
+                        tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasFull", true);
+                        dtgFactura.DataSource = tb;
+                        if (txtBuscaFacturaCliente.TextLength > 0)
+                        {
+                            tb.Clear();
+                            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio", true);
+                            //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
+                            MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            cmbitems.SelectedIndex = -1;
+                        }
+                        break;
+                    case 1:
+                        txtBuscaFacturaCliente.Enabled = true;
+                        op = 1;
+                        tb.Clear();
+                        break;
+                    case 2:
+                        txtBuscaFacturaCliente.Enabled = true;
+                        op = 2;
+                        tb.Clear();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         void AlertlBoxArtan(Color backColor, Color color, string title, string text, Image icon)
