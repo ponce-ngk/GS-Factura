@@ -148,7 +148,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 83F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1067, 83);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -165,7 +165,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 83F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(534, 83);
             this.tableLayoutPanel4.TabIndex = 15;
             // 
@@ -317,7 +317,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxProducto.Location = new System.Drawing.Point(57, 0);
-            this.cbxProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxProducto.Margin = new System.Windows.Forms.Padding(4);
             this.cbxProducto.Name = "cbxProducto";
             this.cbxProducto.Size = new System.Drawing.Size(156, 21);
             this.cbxProducto.TabIndex = 39;
@@ -475,7 +475,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxNombre.Location = new System.Drawing.Point(60, 1);
-            this.cbxNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxNombre.Margin = new System.Windows.Forms.Padding(4);
             this.cbxNombre.Name = "cbxNombre";
             this.cbxNombre.Size = new System.Drawing.Size(146, 21);
             this.cbxNombre.TabIndex = 39;
@@ -625,7 +625,7 @@
             this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker2.Location = new System.Drawing.Point(81, 4);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(156, 34);
             this.dateTimePicker2.TabIndex = 0;
@@ -677,7 +677,7 @@
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(81, 4);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(156, 34);
             this.dateTimePicker1.TabIndex = 0;
@@ -710,7 +710,7 @@
             this.btnExportarExcel.IconSize = 22;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportarExcel.Location = new System.Drawing.Point(0, 0);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(5);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(236, 28);
             this.btnExportarExcel.TabIndex = 14;
@@ -858,7 +858,7 @@
             this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GS_ResumenVentas";
             this.Text = "GS_ResumenVentas";
             this.panel1.ResumeLayout(false);
