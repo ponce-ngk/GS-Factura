@@ -125,13 +125,6 @@ namespace GS_Factura.Clases
                 Application.Exit();
             }
         }
-        public void CrearComando(string sentenciaSQL)
-        {
-            this.comando = new SqlCommand();
-            this.comando.Connection = this.conexion;
-            this.comando.CommandType = CommandType.Text;
-            this.comando.CommandText = sentenciaSQL;
-        }
         public void CrearComandoStoredProcedure(string sentenciaSQL)
         {
             this.comando = new SqlCommand();
