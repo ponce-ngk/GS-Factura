@@ -328,11 +328,11 @@ namespace GS_Factura.Clases
 
             return EscalarProcAlmTabla(sentenciaSQL, parametros, true);
         }
-        public void XmlVenta(int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
+        public void XmlVenta(int idCliente, decimal subtotal, decimal iva, decimal valoriva, decimal total, DataGridView detalleVenta)
         {
             try
             {
-                string venta = CrearElementoVenta(idCliente, subtotal, iva, total, detalleVenta);
+                string venta = CrearElementoVenta(idCliente, subtotal, iva, valoriva, total, detalleVenta);
                 string detalle = venta.ToString();
 
                 using (SqlConnection conexion = AccesoDatos.AbrirConexion())
@@ -352,7 +352,7 @@ namespace GS_Factura.Clases
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private String CrearElementoVenta(int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
+        private String CrearElementoVenta(int idCliente, decimal subtotal, decimal iva, decimal valoriva, decimal total, DataGridView detalleVenta)
         {
             XElement venta = new XElement("FACTURA");
             venta.Add(new XElement("item",
@@ -360,6 +360,7 @@ namespace GS_Factura.Clases
                 new XElement("FECHA", DateTime.Now.ToString("yyyy-MM-dd")), 
                 new XElement("SUBTOTAL", subtotal),
                 new XElement("IVA", iva),
+                new XElement("VALORIVA", valoriva),
                 new XElement("TOTAL", total)
             ));
             XElement detalle_venta = new XElement("DETALLE_FACTURA");
@@ -398,11 +399,11 @@ namespace GS_Factura.Clases
         }
 
 
-        public void XmlEditarFactura(int idFactura, int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
+        public void XmlEditarFactura(int idFactura, int idCliente, decimal subtotal, decimal iva, decimal valoriva, decimal total, DataGridView detalleVenta)
         {
             try
             {
-                string xmlFactura = EditarElementoFactura(idFactura, idCliente, subtotal, iva, total, detalleVenta);
+                string xmlFactura = EditarElementoFactura(idFactura, idCliente, subtotal, iva, valoriva, total, detalleVenta);
 
                 using (SqlConnection conexion = AccesoDatos.AbrirConexion())
                 {
@@ -423,7 +424,7 @@ namespace GS_Factura.Clases
             }
     }
 
-        private String EditarElementoFactura(int idFactura, int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
+        private String EditarElementoFactura(int idFactura, int idCliente, decimal subtotal, decimal iva, decimal valoriva, decimal total, DataGridView detalleVenta)
         {
             XElement factura = new XElement("FACTURA",
                 new XElement("item",
@@ -432,6 +433,7 @@ namespace GS_Factura.Clases
                     new XElement("FECHA", DateTime.Now),
                     new XElement("SUBTOTAL", subtotal),
                     new XElement("IVA", iva),
+                    new XElement("VALORIVA", valoriva),
                     new XElement("TOTAL", total)
                 )
             );
