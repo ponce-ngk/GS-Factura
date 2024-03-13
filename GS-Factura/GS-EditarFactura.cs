@@ -503,7 +503,7 @@ namespace GS_Factura
                 try
                 {
                     // Crea un elemento XML para representar la factura de la venta.
-                    if (!string.IsNullOrEmpty(txtcancelado.Text) && decimal.Parse(txtcancelado.Text) >= decimal.Parse(txtTotalVenta.Text))
+                    if (!string.IsNullOrEmpty(txtcancelado.Text) && decimal.Parse(txtcancelado.Text.Replace(".", ",")) >= decimal.Parse(txtTotalVenta.Text.Replace(".", ",")))
                     {
                         OAD.XmlEditarFactura(int.Parse(lblnumerofactura.Text), int.Parse(lblidcliente.Text), decimal.Parse(txtsubtotalventa.Text.Replace(".", ",")), decimal.Parse(lblValorIva.Text.Replace(".", ",")), decimal.Parse(txtTotalVenta.Text.Replace(".", ",")), dtgVenta);
                         this.Close();
