@@ -43,11 +43,9 @@ namespace GS_Factura
                 MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // Crear una instancia de Excel
             Excel.Application excelApp = new Excel.Application();
             Excel.Workbook workbook = excelApp.Workbooks.Add();
             Excel.Worksheet worksheet = workbook.Sheets[1];
-            // Agregar título en la primera fila
             Excel.Range titleRange = worksheet.Cells[1, 1] as Excel.Range;
             titleRange.Value = "Resumen de informe de venta";
             titleRange.Font.Size = 35;

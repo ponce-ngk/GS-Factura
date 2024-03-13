@@ -17,13 +17,11 @@ namespace GS_Factura
     {
         private int idFactura;
 
-        // Constructor que acepta el ID de la factura
         public VisualizaFacturaBorrar(int idFactura)
         {
             InitializeComponent();
             this.idFactura = idFactura; // Guarda el ID de la factura para usarlo en el evento Load
         }
-
         private void VisualizaFacturaBorrar_Load(object sender, EventArgs e)
         {
             try
@@ -60,8 +58,6 @@ namespace GS_Factura
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-        }
-        
+        }        
     }
 }
