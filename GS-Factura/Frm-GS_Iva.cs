@@ -59,7 +59,7 @@ namespace GS_Factura
                     if (verificarFecha)
                     {
                         MessageBox.Show("Ya existe una fecha registrada en emision.", "Fecha Duplicada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return; // Salir del método para evitar continuar con la operación de guardado
+                        return;
                     }
                     else
                     {
@@ -229,7 +229,6 @@ namespace GS_Factura
             // Verificar si el usuario ha ingresado un punto decimal
             if (e.KeyChar == '.' && txtIva.Text.IndexOf('.') > -1)
             {
-                // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
                 e.Handled = true;
             }
         }
@@ -431,6 +430,7 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void dtgIva_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
