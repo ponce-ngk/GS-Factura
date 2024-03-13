@@ -21,6 +21,7 @@ namespace GS_Factura
         int op;
         DataTable tb = new DataTable();
         string sql = "";
+        string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
         public GS_Iva()
         {
@@ -73,6 +74,7 @@ namespace GS_Factura
                             par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
                             par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
                             sql = OAD.EscalarProcAlmString("InsertarIVA", par, true);
+                            cmbitemsIva.SelectedIndex = -1;
                             if (sql != null)
                             {
                                 BloqueoControles();
@@ -80,6 +82,7 @@ namespace GS_Factura
                                 lblIdIva.Text = "0";
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
                                 dtgIva.DataSource = tb;
+                                cmbitemsIva.SelectedIndex = -1;
                                 MessageBox.Show("IVA guardado exitosamente.", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
@@ -101,6 +104,10 @@ namespace GS_Factura
             Limpiar();
             BloqueoControles();
             dtgIva.CurrentCell = null;
+            dtpFechaFinal.Text = date.ToString();
+            dtpFechaInicio.Text = date.ToString();
+            dtpSearchFechaInicio.Text = date.ToString();
+            dtpSearchFechaFinal.Text = date.ToString();
         }
 
         public void BloqueoControles()
@@ -116,6 +123,7 @@ namespace GS_Factura
         {
             txtIva.Text = "0";
             lblIdIva.Text = "0";
+            cmbitemsIva.SelectedIndex = -1;
             if (dtgIva.RowCount != 0)
             {
                 tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
@@ -156,6 +164,7 @@ namespace GS_Factura
                         par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
                         par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
                         sql = OAD.EscalarProcAlmString("EditarIVA", par, true);
+                        cmbitemsIva.SelectedIndex = -1;
                         if (sql != null)
                         {
                             BloqueoControles();
@@ -163,6 +172,7 @@ namespace GS_Factura
                             lblIdIva.Text = "0";
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
                             dtgIva.DataSource = tb;
+                            cmbitemsIva.SelectedIndex = -1;
                             MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
@@ -189,6 +199,7 @@ namespace GS_Factura
                     par.Clear();
                     par.Add(new SqlParameter("@ID_iva", int.Parse(lblIdIva.Text)));
                     sql = OAD.EscalarProcAlmString("InactivarIVA", par, true);
+                    cmbitemsIva.SelectedIndex = -1;
                     if (sql != null)
                     {
                         BloqueoControles();
@@ -196,6 +207,7 @@ namespace GS_Factura
                         lblIdIva.Text = "0";
                         tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
                         dtgIva.DataSource = tb;
+                        cmbitemsIva.SelectedIndex = -1;
                         MessageBox.Show("IVA Eliminado exitosamente.", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -311,7 +323,7 @@ namespace GS_Factura
                     if (tb.Rows.Count == 0)
                     {
                         cmbitemsIva.SelectedIndex = -1;
-                        MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el rango de fecha e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -381,7 +393,7 @@ namespace GS_Factura
                                 dtgIva.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del ID IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
@@ -404,7 +416,7 @@ namespace GS_Factura
                                 dtgIva.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del Valor del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
@@ -466,6 +478,7 @@ namespace GS_Factura
                     par.Clear();
                     par.Add(new SqlParameter("@ID_IVA", int.Parse(lblIdIva.Text)));
                     sql = OAD.EscalarProcAlmString("InactivarIVA", par, true);
+                    cmbitemsIva.SelectedIndex = -1;
                     if (sql != null)
                     {
                         BloqueoControles();
@@ -473,6 +486,7 @@ namespace GS_Factura
                         lblIdIva.Text = "0";
                         tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
                         dtgIva.DataSource = tb;
+                        cmbitemsIva.SelectedIndex = -1;
                         MessageBox.Show("IVA Inhabilitado exitosamente.", "Datos Inhabilitados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
