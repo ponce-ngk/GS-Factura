@@ -283,6 +283,7 @@
     <EmbeddedResource Include="VisualizaFacturaBorrar.resx">
       <DependentUpon>VisualizaFacturaBorrar.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DataSetFactura.xsc">
       <DependentUpon>DataSetFactura.xsd</DependentUpon>
     </None>

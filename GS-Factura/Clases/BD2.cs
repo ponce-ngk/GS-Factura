@@ -278,8 +278,6 @@ namespace GS_Factura.Clases
             return escalar;
         }
 
-
-
         public string ObetnerDatosFactura(string sentenciaSQL)
         {
             string escalar = "";
@@ -307,9 +305,6 @@ namespace GS_Factura.Clases
 
             return EscalarProcAlmTabla(sentenciaSQL, parametros, true);
         }
-
-
-
         public void XmlVenta(int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
         {
             try
@@ -334,7 +329,6 @@ namespace GS_Factura.Clases
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private String CrearElementoVenta(int idCliente, decimal subtotal, decimal iva, decimal total, DataGridView detalleVenta)
         {
             XElement venta = new XElement("FACTURA");
@@ -359,7 +353,6 @@ namespace GS_Factura.Clases
             string consulta = venta.ToString() + detalle_venta.ToString();
             return consulta;
         }
-
         public decimal RetornarStock(int idProducto)
         {
             decimal stock = 0;
