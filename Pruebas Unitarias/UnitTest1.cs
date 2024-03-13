@@ -19,9 +19,9 @@ namespace Pruebas_Unitarias
             // Arrange
             BD2 bd = new BD2();
             bd.Conectar();
-            string sentenciaSQL = "pruebaunitaria1";
+            string sentenciaSQL = "sp_PruebaUnitaria1";
             List<SqlParameter> parametros = new List<SqlParameter>();
-            parametros.Add(new SqlParameter("@cedula", "1250400089")); // Agrega el nuevo parámetro
+            parametros.Add(new SqlParameter("@Cedula", "1250400089")); // Agrega el nuevo parámetro
             // Act
             int resultado = bd.EscalarProcAlm(sentenciaSQL, parametros, true);
 
@@ -38,13 +38,13 @@ namespace Pruebas_Unitarias
             int idCliente = 1;
             decimal subtotal = 100;
             decimal iva = 10;
+            decimal valoriva = 115;
             decimal total = 110;
             DataGridView detalleVenta = new DataGridView(); // Simula un DataGridView con datos
-
             // Act & Assert
             try
             {
-                bd.XmlVenta(idCliente, subtotal, iva, total, detalleVenta);
+                bd.XmlVenta(idCliente, subtotal, iva, valoriva, total, detalleVenta);
 
                 // Si no se lanza una excepción, asumimos que la venta fue exitosa
                 Assert.IsFalse(false); // Si no se lanza una excepción, no se debería llegar aquí
@@ -97,13 +97,14 @@ namespace Pruebas_Unitarias
             int idCliente = 1;
             decimal subtotal = 22.3000m;
             decimal iva = 12;
+            decimal valoriva = 2.676m;
             decimal total = 25.0900m;
             DataGridView detalleVenta = new DataGridView(); // Simula un DataGridView con datos
 
             // Act & Assert
             try
             {
-                bd.XmlEditarFactura(idFactura, idCliente, subtotal, iva, total, detalleVenta);
+                bd.XmlEditarFactura(idFactura, idCliente, subtotal, iva, valoriva, total, detalleVenta);
 
                 // Si no se lanza una excepción, asumimos que la edición de la factura fue exitosa
                 Assert.IsTrue(true); // Si no se lanza una excepción, la edición fue exitosa

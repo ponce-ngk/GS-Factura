@@ -394,67 +394,6 @@ namespace GS_Factura
             }
         }
 
-        private void TxtSearchCliente_TextChanged(object sender, EventArgs e)
-        {
-          
-            
-        }
-
-        private void Txtcancelado_TextChanged(object sender, EventArgs e)
-        {
-         
-
-            try
-            {
-                // Verifica si el texto en txtcancelado no está en blanco o nulo
-                if (!string.IsNullOrWhiteSpace(txtcancelado.Text))
-                {
-                    if (decimal.TryParse(txtcancelado.Text.Replace(".", ","), out decimal montoCancelado))
-                    {
-                        decimal totalVenta = decimal.Parse(txtTotalVenta.Text.Replace(".",","));
-                        // Calcula el cambio restando el monto cancelado al total de la venta
-
-                        decimal cambio = montoCancelado - totalVenta;
-
-                        // Si el cambio es positivo, muestra el cambio en txtcambioVenta en color verde
-
-                        if (cambio >= 0)
-                        {
-                            txtcambioVenta.Text = cambio.ToString().Replace(",",".");
-                            txtcambioVenta.ForeColor = Color.Green;
-                        }
-                        else
-                        {
-                            // Si el cambio es negativo, muestra "0,00" en txtcambioVenta en color negro
-
-                            txtcambioVenta.Text = "0.00"; //  valor que desees si el cambio es negativo
-                            txtcambioVenta.ForeColor = Color.Black; 
-                        }
-                    }
-                    else
-                    {
-                        // Muestra un mensaje de error si no se puede convertir el texto a decimal
-                        MessageBox.Show("Ingrese un número válido en el campo de cancelación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtcambioVenta.Text = "0.00";
-                        txtcambioVenta.ForeColor = Color.Black;
-                    }
-                }
-                else
-                {
-                    // Si el texto en txtcancelado está en blanco o nulo, muestra "0,00" en txtcambioVenta en color negro
-
-                    txtcambioVenta.Text = "0,00";
-                    txtcambioVenta.ForeColor = Color.Black;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
-            }
-
-        }
-
 
         private void Txtcancelado_Enter(object sender, EventArgs e)
         {
@@ -758,7 +697,54 @@ namespace GS_Factura
 
         private void txtcancelado2_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                // Verifica si el texto en txtcancelado no está en blanco o nulo
+                if (!string.IsNullOrWhiteSpace(txtcancelado.Text))
+                {
+                    if (decimal.TryParse(txtcancelado.Text.Replace(".", ","), out decimal montoCancelado))
+                    {
+                        decimal totalVenta = decimal.Parse(txtTotalVenta.Text.Replace(".", ","));
+                        // Calcula el cambio restando el monto cancelado al total de la venta
 
+                        decimal cambio = montoCancelado - totalVenta;
+
+                        // Si el cambio es positivo, muestra el cambio en txtcambioVenta en color verde
+
+                        if (cambio >= 0)
+                        {
+                            txtcambioVenta.Text = cambio.ToString().Replace(",", ".");
+                            txtcambioVenta.ForeColor = Color.Green;
+                        }
+                        else
+                        {
+                            // Si el cambio es negativo, muestra "0,00" en txtcambioVenta en color negro
+
+                            txtcambioVenta.Text = "0.00"; //  valor que desees si el cambio es negativo
+                            txtcambioVenta.ForeColor = Color.Black;
+                        }
+                    }
+                    else
+                    {
+                        // Muestra un mensaje de error si no se puede convertir el texto a decimal
+                        MessageBox.Show("Ingrese un número válido en el campo de cancelación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtcambioVenta.Text = "0.00";
+                        txtcambioVenta.ForeColor = Color.Black;
+                    }
+                }
+                else
+                {
+                    // Si el texto en txtcancelado está en blanco o nulo, muestra "0,00" en txtcambioVenta en color negro
+
+                    txtcambioVenta.Text = "0,00";
+                    txtcambioVenta.ForeColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
         }
 
         private void txtcancelado2_Leave(object sender, EventArgs e)
