@@ -146,25 +146,7 @@ namespace GS_Factura
             return dt;
         }
 
-        public static void EliminarFactura(int idFactura)
-        {
-            try
-            {
-                using (SqlConnection conexion = AbrirConexion())
-                using (SqlCommand comando = new SqlCommand("sp_EliminarFactura", conexion))
-                {
-                    comando.CommandType = CommandType.StoredProcedure;
-                    comando.Parameters.AddWithValue("@IDFactura", idFactura);
-
-                    //conexion.Open();
-                    comando.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
     }
         
 }

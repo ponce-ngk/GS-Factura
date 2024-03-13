@@ -273,7 +273,7 @@ namespace GS_Factura
                         int idFactura = Convert.ToInt32(dtgFactura.Rows[e.RowIndex].Cells["IDFACTURA"].Value);
 
                         // Llamada al método para eliminar la factura
-                        AccesoDatos.EliminarFactura(idFactura);
+                        OAD.EliminarFactura(idFactura);
                         if (panelFactura.Controls.Count > 0 && panelFactura.Controls[0] is VisualizaFacturaBorrar)
                         {
                             //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Eliminación exitosa.", Properties.Resources.Success);
