@@ -790,6 +790,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(43, 27);
             this.btnBuscar.TabIndex = 45;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // panelDtgInforme
             // 

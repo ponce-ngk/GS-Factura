@@ -32,7 +32,6 @@ namespace GS_Factura
             // Se llena el DataGridView con los datos de los clientes al cargar el formulario
             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
             dgvClientes.DataSource = tb;
-            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
             // Se establece el formato personalizado de la fecha en el control DateTimePicker para poderlo guardar
             dtpFechaCliente.CustomFormat = "yyyy-MM-dd";
         }
@@ -56,8 +55,7 @@ namespace GS_Factura
         }
 
         private void btnGuardarDueño_Click(object sender, EventArgs e)
-        {
-            
+        {            
             // Se valida si hay campos vacíos antes de continuar
             if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
                 string.IsNullOrWhiteSpace(txtnombrescliente.Text) ||
@@ -104,8 +102,6 @@ namespace GS_Factura
                         {
                             MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
-                        // Se actualiza el DataGridView y se limpian los campos
-                        //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                         BloqueoControles();
                         LimpiarCampos();
                     }

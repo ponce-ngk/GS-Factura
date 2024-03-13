@@ -160,50 +160,58 @@ namespace GS_Factura
             //    MessageBox.Show(ex.Message);
             //    throw;
             //}
-            if (txtbuscarproducto.TextLength != null)
+            try
             {
-                if (op == 0)
+                if (txtbuscarproducto.TextLength == null)
                 {
-                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                    if (op == 0)
                     {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
-                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
-                        dtgventaproducto.DataSource = tb;
+                        if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                            dtgventaproducto.DataSource = tb;
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                            dtgventaproducto.DataSource = tb;
+                            //dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
                     }
-                    else
+                    else if (op == 1)
                     {
-                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
-                        dtgventaproducto.DataSource = tb;
-                        //dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
+                        if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                        {
+                            tb.Clear();
+                            par.Clear();
+                            par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                            par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                            tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
+                            dtgventaproducto.DataSource = tb;
+                        }
+                        else
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                            dtgventaproducto.DataSource = tb;
+                            //dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                        }
                     }
                 }
-                else if (op == 1)
+                else
                 {
-                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
-                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("BuscarProductos ", par, true);
-                        dtgventaproducto.DataSource = tb;
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
-                        dtgventaproducto.DataSource = tb;
-                        //dtgventaproducto.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec LeerProductoVacio");
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
+                    MessageBox.Show("Seleccione al menos un campo");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Seleccione al menos un campo");
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
 
