@@ -46,16 +46,16 @@ namespace GS_Factura
                                 dtgFactura.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Cliente no encontrado.", Properties.Resources.Error);
-                                    MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Cliente no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
                                 dtgFactura.DataSource = tb;
-                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                         else if (op == 2)
@@ -71,28 +71,28 @@ namespace GS_Factura
                                 dtgFactura.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Factura no encontrada.", Properties.Resources.Error);
-                                    MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Factura no encontrada.", Properties.Resources.Error);
+                                    //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
                                 dtgFactura.DataSource = tb;
-                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
-                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                         else
                         {
-                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
-                            MessageBox.Show("Seleccione al menos un campo");
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                            //MessageBox.Show("Seleccione al menos un campo");
                         }
                     }
                     else if (op == null && txtBuscaFacturaCliente.Text == null)
                     {
-                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
-                        MessageBox.Show("Por favor ingregse un carácter");
+                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                        //MessageBox.Show("Por favor ingregse un carácter");
                     }
                 }
             }
@@ -126,16 +126,16 @@ namespace GS_Factura
                             dtgFactura.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Cliente no encontrado.", Properties.Resources.Error);
-                                MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Cliente no encontrado.", Properties.Resources.Error);
+                                //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
                             dtgFactura.DataSource = tb;
-                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            //MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else if (op == 2)
@@ -151,22 +151,22 @@ namespace GS_Factura
                             dtgFactura.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Factura no encontrada.", Properties.Resources.Error);
-                                MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Factura no encontrada.", Properties.Resources.Error);
+                                //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
                             dtgFactura.DataSource = tb;
-                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
+                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                            //MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else
                     {
-                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
-                        MessageBox.Show("Seleccione al menos un campo");
+                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                        //MessageBox.Show("Seleccione al menos un campo");
                     }
                 }
             }
@@ -273,13 +273,14 @@ namespace GS_Factura
                         AccesoDatos.EliminarFactura(idFactura);
                         if (panelFactura.Controls.Count > 0 && panelFactura.Controls[0] is VisualizaFacturaBorrar)
                         {
-
-                            MessageBox.Show("Los datos se han eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Eliminación exitosa.", Properties.Resources.Success);
+                            //MessageBox.Show("Los datos se han eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ((VisualizaFacturaBorrar)panelFactura.Controls[0]).Close();
                         }
                         else
                         {
-                            MessageBox.Show("Los datos se han eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Eliminación exitosa.", Properties.Resources.Success);
+                            //MessageBox.Show("Los datos se han eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         // Cerrar el formulario de visualización después de la eliminación
                         //if (panelFactura.Controls.Count > 0 && panelFactura.Controls[0] is VisualizaFacturaBorrar)
@@ -355,8 +356,8 @@ namespace GS_Factura
                         {
                             tb.Clear();
                             tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio", true);
-                            //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
-                            MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
+                            //MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             cmbitems.SelectedIndex = -1;
                         }
                         break;

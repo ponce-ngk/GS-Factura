@@ -119,7 +119,8 @@ namespace GS_Factura
         {
             if (dgvResumenVenta.Rows.Count == 0)
             {
-                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "No hay datos para exportar.", Properties.Resources.Warning);
+                //MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             BaseFont fuente = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1250, true);
@@ -172,7 +173,8 @@ namespace GS_Factura
 
                     // Agregar la tabla al documento
                     doc.Add(table);
-                    MessageBox.Show("Datos exportados correctamente a PDF.");
+                    AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Datos exportados correctamente a PDF.", Properties.Resources.Success);
+                    //MessageBox.Show("Datos exportados correctamente a PDF.");
                 }
             }
             catch (Exception ex)

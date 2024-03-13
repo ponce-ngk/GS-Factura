@@ -224,7 +224,6 @@ namespace GS_Factura
                 throw;
             }
         }
-
         private void TxtIva_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != ' ')
@@ -336,7 +335,6 @@ namespace GS_Factura
                 throw;
             }
         }
-
         private void cmbitemsIva_SelectedIndexChanged(object sender, EventArgs e)
         {
             op = cmbitemsIva.SelectedIndex;
@@ -369,7 +367,6 @@ namespace GS_Factura
                     break;
             }
         }
-
         private void txtbuscarIva_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
@@ -439,7 +436,6 @@ namespace GS_Factura
                 //MessageBox.Show("Por favor ingregse un carácter");
             }
         }
-
         private void dtgIva_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
