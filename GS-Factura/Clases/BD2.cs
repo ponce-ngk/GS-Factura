@@ -483,6 +483,36 @@ namespace GS_Factura.Clases
             }
         }
 
+        public int ObtenerMaxIdFactura()
+        {
+            int maxIdFactura = 0;
+
+            try
+            {
+                this.CrearComandoStoredProcedure("sp_ObtenerMaxIdFactura");
+                this.ConectarSiDesconectado();
+
+                using (SqlDataReader reader = this.comando.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        maxIdFactura = reader["MaxIdFactura"] != DBNull.Value ? Convert.ToInt32(reader["MaxIdFactura"]) : 0;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                maxIdFactura = 0; // Indicar que ocurrió un error
+            }
+            finally
+            {
+                this.Desconectar();
+            }
+
+            return maxIdFactura;
+        }
+
 
 
 

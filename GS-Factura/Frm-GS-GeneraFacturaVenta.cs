@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using GS_Factura.Clases;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,60 +20,43 @@ namespace GS_Factura
         {
             InitializeComponent();
         }
-        AccesoDatos Datos = new AccesoDatos();
+
         private void GS_Factura_Load(object sender, EventArgs e)
         {
-            int maxIdVenta = ObtenerMaxIdVenta();
             try
             {
-                string consulta = "Select  F.IDFACTURA, c.CEDULA, C.NOMBRE, C.APELLIDOS, " +
-                    "F.FECHA, DF.IDPRODUCTO, DF.CANTIDAD,\r\nP.PRODUCTO, P.PRECIO_UNITARIO, " +
-                    "DF.SUBTOTAL, F.SUBTOTAL, F.TOTAL from FACTURA \r\nas " +
-                    "F inner join DETALLE_FACTURA as DF on " +
-                    "F.IDFACTURA = DF.IDFACTURA\r\ninner join CLIENTE as C on " +
-                    "f.IDCLIENTE = c.IDCLIENTE\r\ninner join PRODUCTO as P on" +
-                    " DF.IDPRODUCTO = P.IDPRODUCTO\r\nwhere f.IDFACTURA = "+maxIdVenta+ ""; // Reemplaza TU_TABLA con el nombre de tu tabla
-                DataTable datos = AccesoDatos.RetornaRegistros(consulta);
+                // Obtener el ID máximo de la factura
+                BD2 bd2 = new BD2();
+                int maxIdVenta = bd2.ObtenerMaxIdFactura();
 
-                // Configurar el informe
-                reporteFactura.LocalReport.ReportPath = "factura.rdlc"; // Asegúrate de que coincida con el nombre de tu informe
-                ReportDataSource dataSource = new ReportDataSource("DataSet1", datos); // Reemplaza "DataSet1" con el nombre de tu conjunto de datos en el informe
-                reporteFactura.LocalReport.DataSources.Add(dataSource);
-
-                // Actualizar el informe
-                reporteFactura.RefreshReport();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private int ObtenerMaxIdVenta()
-        {
-            int maxIdVenta = 0;
-
-            try
-            {
-                using (SqlConnection conexion = AccesoDatos.AbrirConexion())
+                // Verificar si se obtuvo correctamente el ID máximo
+                if (maxIdVenta > 0)
                 {
-                    string consulta = "SELECT MAX(IDFACTURA) FROM FACTURA";
-                    SqlCommand cmd = new SqlCommand(consulta, conexion);
+                    // Llamar al procedimiento almacenado para obtener los datos de la factura
+                    List<SqlParameter> parametros = new List<SqlParameter>
+            {
+                new SqlParameter("@IDFactura", maxIdVenta)
+            };
 
-                    object resultado = cmd.ExecuteScalar();
+                    DataTable datos = bd2.EscalarProcAlmTabla("ObtenerDatosFacturaPorID", parametros, false);
 
-                    if (resultado != null && resultado != DBNull.Value)
-                    {
-                        maxIdVenta = Convert.ToInt32(resultado);
-                    }
+                    // Configurar el informe
+                    reporteFactura.LocalReport.ReportPath = "factura.rdlc"; // Asegúrate de que coincida con el nombre de tu informe
+                    ReportDataSource dataSource = new ReportDataSource("DataSet1", datos); // Reemplaza "DataSet1" con el nombre de tu conjunto de datos en el informe
+                    reporteFactura.LocalReport.DataSources.Add(dataSource);
+
+                    // Actualizar el informe
+                    reporteFactura.RefreshReport();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo obtener el ID máximo de la factura.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener el máximo id_venta: " + ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            return maxIdVenta;
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)

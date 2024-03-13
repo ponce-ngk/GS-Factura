@@ -781,7 +781,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.97027cm</Width>
+              <Width>2.60527cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>3.21244cm</Width>
@@ -884,7 +884,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>IVA</Value>
+                              <Value>= "IVA(%" &amp; First(Fields!IVA.Value, "DataSet1") &amp; ")"</Value>
                               <Style>
                                 <FontFamily>Segoe UI Variable Display Semib</FontFamily>
                                 <FontSize>11pt</FontSize>
@@ -924,7 +924,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>12%</Value>
+                              <Value>=First(Fields!VALORIVA.Value, "DataSet1")</Value>
                               <Style>
                                 <FontFamily>Segoe UI Variable Display Semib</FontFamily>
                                 <FontSize>11pt</FontSize>
@@ -1057,9 +1057,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>8.75205cm</Top>
-        <Left>13.33861cm</Left>
+        <Left>12.70361cm</Left>
         <Height>3.81083cm</Height>
-        <Width>5.18271cm</Width>
+        <Width>5.81771cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -1231,10 +1231,18 @@
           <DataField>TOTAL</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="IVA">
+          <DataField>IVA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="VALORIVA">
+          <DataField>VALORIVA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetFactura</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\kevin\source\repos\GS-Factura\GS-Factura\DataSetFactura.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\kevin\source\repos\ponce-ngk\GS-Factura\GS-Factura\DataSetFactura.xsd</rd:SchemaPath>
         <rd:TableName>DataTable1</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
