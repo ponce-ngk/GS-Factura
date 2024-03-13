@@ -23,8 +23,6 @@ namespace GS_Factura
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
         string sql = "";
         DataTable tb = new DataTable();
-        
-
         public GS_RegistroCliente()
         {
             InitializeComponent();
@@ -146,7 +144,6 @@ namespace GS_Factura
                         MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     // Actualizar el DataGridView y limpiar los campos
-                    //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                     BloqueoControles();
                     LimpiarCampos();
                 }
@@ -165,7 +162,6 @@ namespace GS_Factura
             {
                 // Se confirmar antes de eliminar al cliente
                 DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres eliminar los datos de los campos de texto?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
                 if (resultado == DialogResult.Yes)
                 {
                     sql = "";
@@ -182,11 +178,9 @@ namespace GS_Factura
                     }
 
                     // Actualizar el DataGridView y limpiar los campos
-                    //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                     BloqueoControles();
                     LimpiarCampos();
                 }
-                // Si el usuario elige 'No', no se hace nada
             }
         }
         private void LimpiarCampos()
@@ -201,7 +195,6 @@ namespace GS_Factura
             cmbitems.SelectedIndex = -1;
             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
             dgvClientes.DataSource = tb;
-            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
         }
         private void btnlimpiardatos_Click(object sender, EventArgs e)
         {            
@@ -234,7 +227,6 @@ namespace GS_Factura
         }
         private void btn_Buscar_Click(object sender, EventArgs e)
         {
-
             if (txt_Buscar.Text != null)
             {
                 if (op == 0)
@@ -257,7 +249,6 @@ namespace GS_Factura
                     {
                         tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                         dgvClientes.DataSource = tb;
-                        //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -280,7 +271,6 @@ namespace GS_Factura
                     {
                         tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                         dgvClientes.DataSource = tb;
-                        //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -303,7 +293,6 @@ namespace GS_Factura
                     {
                         tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                         dgvClientes.DataSource = tb;
-                        //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -326,7 +315,6 @@ namespace GS_Factura
                     {
                         tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                         dgvClientes.DataSource = tb;
-                        //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -349,7 +337,6 @@ namespace GS_Factura
                     {
                         tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                         dgvClientes.DataSource = tb;
-                        //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                         MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
@@ -358,8 +345,6 @@ namespace GS_Factura
             {
                 MessageBox.Show("Seleccione al menos un campo");
             }
-            
-        
         }
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -429,7 +414,6 @@ namespace GS_Factura
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                             dgvClientes.DataSource = tb;
-                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -453,7 +437,6 @@ namespace GS_Factura
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                             dgvClientes.DataSource = tb;
-                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -477,7 +460,6 @@ namespace GS_Factura
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                             dgvClientes.DataSource = tb;
-                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -501,7 +483,6 @@ namespace GS_Factura
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                             dgvClientes.DataSource = tb;
-                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -525,7 +506,6 @@ namespace GS_Factura
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
                             dgvClientes.DataSource = tb;
-                            //dgvClientes.DataSource = AccesoDatos.LlenarTablaparaBuscar("sp_Listado_Clientes");
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -541,7 +521,6 @@ namespace GS_Factura
             }
             
         }
-
         private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try

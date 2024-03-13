@@ -112,6 +112,9 @@
   <ItemGroup>
     <Compile Include="Clases\AccesoDatos.cs" />
     <Compile Include="Clases\BD2.cs" />
+    <Compile Include="DataSetFactura.cs">
+      <DependentUpon>DataSetFactura.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Frm-GS_ClienteVenta.cs">
       <SubType>Form</SubType>
     </Compile>
