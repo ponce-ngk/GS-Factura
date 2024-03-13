@@ -8,7 +8,7 @@
     <ProjectGuid>{E502A45F-E417-43CF-A049-9CBE0BE59469}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>GS_Factura</RootNamespace>
-    <AssemblyName>GS-Factura_V1.1</AssemblyName>
+    <AssemblyName>GS-Factura_V2.0</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>iconoprueba.ico</ApplicationIcon>
+    <ApplicationIcon>gs_facturacion-02.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -298,6 +298,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="gs_facturacion-02.ico" />
     <Content Include="iconoprueba.ico" />
     <None Include="Resources\Success.png" />
     <None Include="Resources\Warning.png" />

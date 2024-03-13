@@ -21,6 +21,11 @@ namespace GS_Factura
     public partial class GS_GeneraFactura : Form
     {
         BD2 bD2 = new BD2();
+        List<SqlParameter> par = new List<SqlParameter>();
+        int op;
+        string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
+        string sql = "";
+        DataTable tb = new DataTable();
 
         public GS_GeneraFactura()
         {
@@ -50,24 +55,7 @@ namespace GS_Factura
             lblApellidocliente.Text = apellidocliente;
         }
 
-        private void TxtSearchCliente_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Si la tecla presionada no es un número y no es una tecla de control como Backspace o Delete
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-            {
-                // Cancela el evento de tecla presionada
-                e.Handled = true;
-                // Muestra un mensaje de error
-                MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-            }
-            else if (e.KeyChar == (char)(Keys.Enter))
-            {
-                e.Handled = true;
-                return;
-            }
-        }
-
+       
         private void TmtDate_Tick(object sender, EventArgs e)
         {
             lblFingresoVenta.Text = DateTime.Now.ToShortDateString();
@@ -408,8 +396,7 @@ namespace GS_Factura
 
         private void TxtSearchCliente_TextChanged(object sender, EventArgs e)
         {
-            // Actualiza el valor del contador de caracteres con la longitud del texto en txtSearchCliente
-            this.lblcontadorcedulaCliente.Text = txtSearchCliente.Text.Length.ToString();
+          
             
         }
 
@@ -727,6 +714,198 @@ namespace GS_Factura
         private void btnvalidarCliente_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txt_Buscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                if (txtSearchCliente.Text != null)
+                {
+                    e.Handled = true;
+                    tb.Clear();
+                    par.Clear();
+                    par.Add(new SqlParameter("@Cedula", txtSearchCliente.Text.Trim()));
+                    tb = bD2.EscalarProcAlmTabla("BuscarClientePorCedula ", par, true);
+                    if (tb.Rows.Count == 0)
+                    {
+                        MessageBox.Show("Cliente no encontrado. \n\nSe sugiere el registro del Cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        DataRow row = tb.Rows[0];
+                        lblcedulacliente.Text = row["CEDULA"].ToString();
+                        lblnombrecliente.Text = row["NOMBRE"].ToString();
+                        lblApellidocliente.Text = row["APELLIDOS"].ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor ingrese un carácter");
+                }
+            }
+            else if (txtSearchCliente.Text == null)
+            {
+                MessageBox.Show("Por favor ingregse un carácter");
+            }
+        }
+
+        private void txtSearchCliente2_TextChanged(object sender, EventArgs e)
+        {
+            // Actualiza el valor del contador de caracteres con la longitud del texto en txtSearchCliente
+            this.lblcontadorcedulaCliente.Text = txtSearchCliente.Text.Length.ToString();
+        }
+
+        private void txtcancelado2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Verifica si el texto en txtcancelado no está en blanco o nulo
+                if (!string.IsNullOrWhiteSpace(txtcancelado.Text))
+                {
+                    if (decimal.TryParse(txtcancelado.Text.Replace(".", ","), out decimal montoCancelado))
+                    {
+                        decimal totalVenta = decimal.Parse(txtTotalVenta.Text.Replace(".", ","));
+                        // Calcula el cambio restando el monto cancelado al total de la venta
+
+                        decimal cambio = montoCancelado - totalVenta;
+
+                        // Si el cambio es positivo, muestra el cambio en txtcambioVenta en color verde
+
+                        if (cambio >= 0)
+                        {
+                            txtcambioVenta.Text = cambio.ToString().Replace(",", ".");
+                            txtcambioVenta.ForeColor = Color.Green;
+                        }
+                        else
+                        {
+                            // Si el cambio es negativo, muestra "0,00" en txtcambioVenta en color negro
+
+                            txtcambioVenta.Text = "0.00"; //  valor que desees si el cambio es negativo
+                            txtcambioVenta.ForeColor = Color.Black;
+                        }
+                    }
+                    else
+                    {
+                        // Muestra un mensaje de error si no se puede convertir el texto a decimal
+                        MessageBox.Show("Ingrese un número válido en el campo de cancelación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtcambioVenta.Text = "0.00";
+                        txtcambioVenta.ForeColor = Color.Black;
+                    }
+                }
+                else
+                {
+                    // Si el texto en txtcancelado está en blanco o nulo, muestra "0,00" en txtcambioVenta en color negro
+
+                    txtcambioVenta.Text = "0,00";
+                    txtcambioVenta.ForeColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+        }
+
+        private void txtcancelado2_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                // Si el texto en txtcancelado está vacío, establece el texto a "0" y el color del texto a gris oscuro
+                if (txtcancelado.Text == "")
+                {
+                    txtcancelado.Text = "0";
+                    txtcancelado.ForeColor = Color.DimGray;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtcancelado2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != ' ' && !char.IsWhiteSpace(e.KeyChar))
+            //{
+            //    e.Handled = true;
+            //    MessageBox.Show("Solo se permiten números", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
+            //else if (e.KeyChar == ',')
+            //{
+            //    e.KeyChar = '.'; // Reemplazar la coma por un punto
+            //}
+            //else if (char.IsWhiteSpace(e.KeyChar))
+            //{
+            //    e.Handled = true;
+            //    MessageBox.Show("No se permiten espacios en blanco", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
+            //// Verificar si el usuario ha ingresado un punto decimal
+            //if (e.KeyChar == ',' && txtcancelado.Text.IndexOf('.') > -1)
+            //{
+            //    // Si ya hay un punto decimal en el cuadro de texto, ignorar el evento
+            //    e.Handled = true;
+            //}
+            ////Permitir solo una coma como punto decimal
+            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            //{
+            //    e.Handled = true;
+            //}
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                if (txtcancelado.Text != null)
+                {
+                    DialogResult respuesta = MessageBox.Show("Deseas realizar esta venta? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            // Crea un elemento XML para representar la factura de la venta.
+                            if (!string.IsNullOrEmpty(txtcancelado.Text) && decimal.Parse(txtcancelado.Text.Replace(".", ",")) >= decimal.Parse(txtTotalVenta.Text.Replace(".", ",")))
+                            {
+                                DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                                bD2.XmlVenta(int.Parse(lblidcliente.Text), decimal.Parse(txtsubtotalventa.Text.Replace(".", ",")), decimal.Parse(lblValorIva.Text.Replace(".", ",")), decimal.Parse(txtTotalVenta.Text.Replace(".", ",")), dtgVenta);
+                                this.LimpiarDatosVenta();
+                                this.Cargarnumerofactura();
+                                // Guardar los tamaños actuales de las columnas
+                                float tamañoColumna1 = tblVentayFactura.ColumnStyles[0].Width;
+                                float tamañoColumna2 = tblVentayFactura.ColumnStyles[1].Width;
+
+                                //Intercambiar los tamaños de las columnas
+                                tblVentayFactura.ColumnStyles[0].Width = tamañoColumna2;
+                                tblVentayFactura.ColumnStyles[1].Width = tamañoColumna1;
+                                GS_Factura frmFactura = new GS_Factura();
+                                //Añade GS_Factura como un control en el Panel
+                                frmFactura.TopLevel = false;
+                                frmFactura.Dock = DockStyle.Fill;
+                                panelFactura.Controls.Add(frmFactura);
+                                frmFactura.Show();
+                                this.Cargarnumerofactura();
+                            }
+                            else MessageBox.Show("El usuario no ha cancelado. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor ingrese un carácter");
+                }
+            }
+            else if (txtSearchCliente.Text == null)
+            {
+                MessageBox.Show("Por favor ingregse un carácter");
+            }
+            ////Permitir solo una coma como punto decimal
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 
