@@ -452,7 +452,6 @@ namespace GS_Factura
             try
             {
                 // Si el texto en txtcancelado es "0", lo cambia a vacío y establece el color del texto a negro
-
                 if (txtcancelado.Text == "0")
                 {
                     txtcancelado.Text = "";
