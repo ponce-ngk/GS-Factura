@@ -157,22 +157,22 @@ namespace GS_Factura
         {
             try
             {
-                DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres eliminar los datos de los campos de texto?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (resultado == DialogResult.Yes)
-                {
                     if (this.dtgVenta.Columns[e.ColumnIndex].Name == "Eliminarfila")
                     {
-                        int index = e.RowIndex;
-                        if (index >= 0)
+                        DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres eliminar los datos de los campos de texto?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (resultado == DialogResult.Yes)
                         {
-                            // Remueve la fila seleccionada de la DataGridView.
-                            dtgVenta.Rows.RemoveAt(index);
-                            this.GestionarFuncionalidadDtgVenta();
-                            this.VerificarFilasEnDataGridView();
+                            int index = e.RowIndex;
+                            if (index >= 0)
+                            {
+                                // Remueve la fila seleccionada de la DataGridView.
+                                dtgVenta.Rows.RemoveAt(index);
+                                this.GestionarFuncionalidadDtgVenta();
+                                this.VerificarFilasEnDataGridView();
+                            }
                         }
                     }
-                }
             }
             catch (Exception ex)
             {
