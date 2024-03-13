@@ -112,147 +112,147 @@
   <ItemGroup>
     <Compile Include="Clases\AccesoDatos.cs" />
     <Compile Include="Clases\BD2.cs" />
-    <Compile Include="GS-ClienteVenta.cs">
+    <Compile Include="Frm-GS_ClienteVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-ClienteVenta.Designer.cs">
-      <DependentUpon>GS-ClienteVenta.cs</DependentUpon>
+    <Compile Include="Frm-GS_ClienteVenta.Designer.cs">
+      <DependentUpon>Frm-GS_ClienteVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="DataSetFactura.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetFactura.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Frm-GS_Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Frm-GS_Dashboard.Designer.cs">
+      <DependentUpon>Frm-GS_Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-EditarFactura.cs">
+    <Compile Include="Frm-GS_EditarFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-EditarFactura.Designer.cs">
-      <DependentUpon>GS-EditarFactura.cs</DependentUpon>
+    <Compile Include="Frm-GS_EditarFactura.Designer.cs">
+      <DependentUpon>Frm-GS_EditarFactura.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-EliminaFactura.cs">
+    <Compile Include="Frm-GS_GestionFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-EliminaFactura.Designer.cs">
-      <DependentUpon>GS-EliminaFactura.cs</DependentUpon>
+    <Compile Include="Frm-GS_GestionFactura.Designer.cs">
+      <DependentUpon>Frm-GS_GestionFactura.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-Factura.cs">
+    <Compile Include="Frm-GS-GeneraFacturaVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-Factura.Designer.cs">
-      <DependentUpon>GS-Factura.cs</DependentUpon>
+    <Compile Include="Frm-GS-GeneraFacturaVenta.Designer.cs">
+      <DependentUpon>Frm-GS-GeneraFacturaVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-GeneraFactura.cs">
+    <Compile Include="Frm-GS_GeneraFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-GeneraFactura.Designer.cs">
-      <DependentUpon>GS-GeneraFactura.cs</DependentUpon>
+    <Compile Include="Frm-GS_GeneraFactura.Designer.cs">
+      <DependentUpon>Frm-GS_GeneraFactura.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-Informacion.cs">
+    <Compile Include="Frm-GS_Informacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-Informacion.Designer.cs">
-      <DependentUpon>GS-Informacion.cs</DependentUpon>
+    <Compile Include="Frm-GS_Informacion.Designer.cs">
+      <DependentUpon>Frm-GS_Informacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-Inicio.cs">
+    <Compile Include="Frm-GS_Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-Inicio.Designer.cs">
-      <DependentUpon>GS-Inicio.cs</DependentUpon>
+    <Compile Include="Frm-GS_Inicio.Designer.cs">
+      <DependentUpon>Frm-GS_Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-Iva.cs">
+    <Compile Include="Frm-GS_Iva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-Iva.Designer.cs">
-      <DependentUpon>GS-Iva.cs</DependentUpon>
+    <Compile Include="Frm-GS_Iva.Designer.cs">
+      <DependentUpon>Frm-GS_Iva.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-RegistroCliente.cs">
+    <Compile Include="Frm-GS_RegistroCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-RegistroCliente.Designer.cs">
-      <DependentUpon>GS-RegistroCliente.cs</DependentUpon>
+    <Compile Include="Frm-GS_RegistroCliente.Designer.cs">
+      <DependentUpon>Frm-GS_RegistroCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-RegistroProducto.cs">
+    <Compile Include="Frm-GS_RegistroProducto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-RegistroProducto.Designer.cs">
-      <DependentUpon>GS-RegistroProducto.cs</DependentUpon>
+    <Compile Include="Frm-GS_RegistroProducto.Designer.cs">
+      <DependentUpon>Frm-GS_RegistroProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS-ProductoVenta.cs">
+    <Compile Include="Frm-GS_ProductoVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS-ProductoVenta.Designer.cs">
-      <DependentUpon>GS-ProductoVenta.cs</DependentUpon>
+    <Compile Include="Frm-GS_ProductoVenta.Designer.cs">
+      <DependentUpon>Frm-GS_ProductoVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS_DetalladoVenta.cs">
+    <Compile Include="Frm-GS_DetalladoVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS_DetalladoVenta.Designer.cs">
-      <DependentUpon>GS_DetalladoVenta.cs</DependentUpon>
+    <Compile Include="Frm-GS_DetalladoVenta.Designer.cs">
+      <DependentUpon>Frm-GS_DetalladoVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="GS_ResumenVentas.cs">
+    <Compile Include="Frm-GS_ResumenVentas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GS_ResumenVentas.Designer.cs">
-      <DependentUpon>GS_ResumenVentas.cs</DependentUpon>
+    <Compile Include="Frm-GS_ResumenVentas.Designer.cs">
+      <DependentUpon>Frm-GS_ResumenVentas.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VisualizaFacturaBorrar.cs">
+    <Compile Include="Frm-GS_VisualizaFacturaBorrar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VisualizaFacturaBorrar.Designer.cs">
-      <DependentUpon>VisualizaFacturaBorrar.cs</DependentUpon>
+    <Compile Include="Frm-GS_VisualizaFacturaBorrar.Designer.cs">
+      <DependentUpon>Frm-GS_VisualizaFacturaBorrar.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GS-ClienteVenta.resx">
-      <DependentUpon>GS-ClienteVenta.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_ClienteVenta.resx">
+      <DependentUpon>Frm-GS_ClienteVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FacturaInexistente.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_Dashboard.resx">
+      <DependentUpon>Frm-GS_Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-EditarFactura.resx">
-      <DependentUpon>GS-EditarFactura.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_EditarFactura.resx">
+      <DependentUpon>Frm-GS_EditarFactura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-EliminaFactura.resx">
-      <DependentUpon>GS-EliminaFactura.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_GestionFactura.resx">
+      <DependentUpon>Frm-GS_GestionFactura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-Factura.resx">
-      <DependentUpon>GS-Factura.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS-GeneraFacturaVenta.resx">
+      <DependentUpon>Frm-GS-GeneraFacturaVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-GeneraFactura.resx">
-      <DependentUpon>GS-GeneraFactura.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_GeneraFactura.resx">
+      <DependentUpon>Frm-GS_GeneraFactura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-Informacion.resx">
-      <DependentUpon>GS-Informacion.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_Informacion.resx">
+      <DependentUpon>Frm-GS_Informacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-Inicio.resx">
-      <DependentUpon>GS-Inicio.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_Inicio.resx">
+      <DependentUpon>Frm-GS_Inicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-Iva.resx">
-      <DependentUpon>GS-Iva.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_Iva.resx">
+      <DependentUpon>Frm-GS_Iva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-RegistroCliente.resx">
-      <DependentUpon>GS-RegistroCliente.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_RegistroCliente.resx">
+      <DependentUpon>Frm-GS_RegistroCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-RegistroProducto.resx">
-      <DependentUpon>GS-RegistroProducto.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_RegistroProducto.resx">
+      <DependentUpon>Frm-GS_RegistroProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS-ProductoVenta.resx">
-      <DependentUpon>GS-ProductoVenta.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_ProductoVenta.resx">
+      <DependentUpon>Frm-GS_ProductoVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS_DetalladoVenta.resx">
-      <DependentUpon>GS_DetalladoVenta.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_DetalladoVenta.resx">
+      <DependentUpon>Frm-GS_DetalladoVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GS_ResumenVentas.resx">
-      <DependentUpon>GS_ResumenVentas.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_ResumenVentas.resx">
+      <DependentUpon>Frm-GS_ResumenVentas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -268,8 +268,8 @@
     <EmbeddedResource Include="factura.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="VisualizaFacturaBorrar.resx">
-      <DependentUpon>VisualizaFacturaBorrar.cs</DependentUpon>
+    <EmbeddedResource Include="Frm-GS_VisualizaFacturaBorrar.resx">
+      <DependentUpon>Frm-GS_VisualizaFacturaBorrar.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="DataSetFactura.xsc">
