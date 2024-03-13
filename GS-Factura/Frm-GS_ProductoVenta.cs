@@ -23,30 +23,12 @@ namespace GS_Factura
         // Declaración del delegado
         public delegate void pasarformFactura(string idproducto, string nameproduct,string cantidadproducto, string preciproducto);
         public event pasarformFactura pasarproducto;
-
         public ProductoVenta()
         {
             InitializeComponent();
             tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
             dtgventaproducto.DataSource = tb;
         }
-
-        
-        private void TxtbuscarProducto_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtbuscarproducto.Text == "")
-                {
-                    txtbuscarproducto.ForeColor = Color.DimGray;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void BtnsearchProdVenta_Click(object sender, EventArgs e)
         {
             if (txtbuscarproducto.Text != null)
@@ -101,7 +83,6 @@ namespace GS_Factura
                 }
             }
         }
-
         private void TxtbuscarProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
@@ -165,7 +146,6 @@ namespace GS_Factura
                 }
             }
         }
-
         private void DtgventaProducto_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -188,7 +168,6 @@ namespace GS_Factura
                 throw;
             }
         }
-
         private void HabilitarFormularios()
         {
             foreach (Form form in Application.OpenForms)
@@ -197,7 +176,6 @@ namespace GS_Factura
                 form.TopMost = true;
             }
         }
-
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
             op = cmbitems.SelectedIndex;
