@@ -253,12 +253,22 @@ namespace GS_Factura
                   cantidad, dtgventaproducto.Rows[dtgventaproducto.CurrentRow.Index].Cells[2].Value.ToString());
                 // Oculta la ventana actual
                 this.Hide();
+                // Habilita todos los formularios
+                HabilitarFormularios();
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 throw;
+            }
+        }
+
+        private void HabilitarFormularios()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Enabled = true;
             }
         }
 
