@@ -269,6 +269,7 @@ namespace GS_Factura
             foreach (Form form in Application.OpenForms)
             {
                 form.Enabled = true;
+                form.TopMost = true;
             }
         }
 
