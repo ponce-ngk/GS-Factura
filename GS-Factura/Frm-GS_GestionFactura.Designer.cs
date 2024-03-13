@@ -418,7 +418,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "GS_EliminaFactura";
             this.Text = "GS_EliminaFactura";
-            this.Load += new System.EventHandler(this.GS_EliminaFactura_Load);
             this.panel1.ResumeLayout(false);
             this.tblFormulario.ResumeLayout(false);
             this.tblFacturaMuestra.ResumeLayout(false);

@@ -103,11 +103,6 @@ namespace GS_Factura
             }
         }
 
-        private void GS_EliminaFactura_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -127,7 +122,6 @@ namespace GS_Factura
                             dtgFactura.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Cliente no encontrado.", Properties.Resources.Error);
                                 MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
@@ -135,7 +129,6 @@ namespace GS_Factura
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
                             dtgFactura.DataSource = tb;
-                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -152,7 +145,6 @@ namespace GS_Factura
                             dtgFactura.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Factura no encontrada.", Properties.Resources.Error);
                                 MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
@@ -160,13 +152,11 @@ namespace GS_Factura
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("BuscarFacturasVacio ", true);
                             dtgFactura.DataSource = tb;
-                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else
                     {
-                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
                         MessageBox.Show("Seleccione al menos un campo");
                     }
                 }
@@ -276,20 +266,13 @@ namespace GS_Factura
                         OAD.EliminarFactura(idFactura);
                         if (panelFactura.Controls.Count > 0 && panelFactura.Controls[0] is VisualizaFacturaBorrar)
                         {
-                            //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Eliminación exitosa.", Properties.Resources.Success);
                             MessageBox.Show("Los datos se han eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ((VisualizaFacturaBorrar)panelFactura.Controls[0]).Close();
                         }
                         else
                         {
-                            //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Eliminación exitosa.", Properties.Resources.Success);
                             MessageBox.Show("Los datos se han eliminado correctamente.", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        // Cerrar el formulario de visualización después de la eliminación
-                        //if (panelFactura.Controls.Count > 0 && panelFactura.Controls[0] is VisualizaFacturaBorrar)
-                        //{
-                        //    ((VisualizaFacturaBorrar)panelFactura.Controls[0]).Close();
-                        //}
 
                         // Recargar los datos en el DataGridView u otras acciones según sea necesario
                         dtgFactura.Rows.RemoveAt(index);
@@ -298,7 +281,6 @@ namespace GS_Factura
                     {
                         MessageBox.Show(ex.Message);
                     }
-
                 }
             }
             if (e.RowIndex >= 0 && e.ColumnIndex == dtgFactura.Columns["EditarFactura"].Index)
@@ -312,9 +294,7 @@ namespace GS_Factura
                     DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres editar esta factura?", "Confirmar edición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
-                    {
-                        //obtener posicion del data
-                        
+                    {                        
                         // Abrir el formulario de edición de factura con el ID de la factura
                         GS_EditarFactura editarForm = new GS_EditarFactura(idFactura);
                         editarForm.ShowDialog();
@@ -328,9 +308,7 @@ namespace GS_Factura
                     MessageBox.Show(ex.Message);
                 }
             }
-        }
-
-        
+        }        
 
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -349,7 +327,6 @@ namespace GS_Factura
                         {
                             tb.Clear();
                             tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio", true);
-                            //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
                             MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             cmbitems.SelectedIndex = -1;
                         }
@@ -370,7 +347,6 @@ namespace GS_Factura
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-        
+        }        
     }
 }

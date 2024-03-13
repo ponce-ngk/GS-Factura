@@ -29,19 +29,26 @@ namespace GS_Factura
         }
         private void AbrirFormEnPanel(object formHija)
         {
-            // Cerrar formulario actual si hay uno
-            if (this.panelForms.Controls.Count > 0)
+            try
             {
-                Form formularioActual = this.panelForms.Controls[0] as Form;
-                formularioActual.Close();
+                // Cerrar formulario actual si hay uno
+                if (this.panelForms.Controls.Count > 0)
+                {
+                    Form formularioActual = this.panelForms.Controls[0] as Form;
+                    formularioActual.Close();
+                }
+                // Mostrar el nuevo formulario
+                Form nuevoForm = formHija as Form;
+                nuevoForm.TopLevel = false;
+                nuevoForm.Dock = DockStyle.Fill;
+                this.panelForms.Controls.Add(nuevoForm);
+                this.panelForms.Tag = nuevoForm;
+                nuevoForm.Show();
             }
-            // Mostrar el nuevo formulario
-            Form nuevoForm = formHija as Form;
-            nuevoForm.TopLevel = false;
-            nuevoForm.Dock = DockStyle.Fill;
-            this.panelForms.Controls.Add(nuevoForm);
-            this.panelForms.Tag = nuevoForm;
-            nuevoForm.Show();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void BtnProductos_Click(object sender, EventArgs e)
         {
@@ -55,29 +62,34 @@ namespace GS_Factura
         }
         private void BtnMenu_Click(object sender, EventArgs e)
         {
-            if (panelLayoutMenu.Width == 48)
+            try
             {
-                panelLayoutMenu.Width = 149;
-                ptmfotouser.Visible = true;
-                //lblNombre.Visible = true;
-                btnBuscaFactura.Width = 149;
-                btnInformes.Width = 149;
-                btnBuscaFactura.TextImageRelation = TextImageRelation.ImageBeforeText;
-                btnInformes.TextImageRelation = TextImageRelation.ImageBeforeText;
-                btnBuscaFactura.Text = "  Facturas";
-                btnInformes.Text = "  Informes";
+                if (panelLayoutMenu.Width == 48)
+                {
+                    panelLayoutMenu.Width = 149;
+                    ptmfotouser.Visible = true;
+                    btnBuscaFactura.Width = 149;
+                    btnInformes.Width = 149;
+                    btnBuscaFactura.TextImageRelation = TextImageRelation.ImageBeforeText;
+                    btnInformes.TextImageRelation = TextImageRelation.ImageBeforeText;
+                    btnBuscaFactura.Text = "  Facturas";
+                    btnInformes.Text = "  Informes";
+                }
+                else
+                {
+                    panelLayoutMenu.Width = 48;
+                    ptmfotouser.Visible = false;
+                    btnBuscaFactura.Width = 48;
+                    btnInformes.Width = 48;
+                    btnBuscaFactura.TextImageRelation = TextImageRelation.Overlay;
+                    btnInformes.TextImageRelation = TextImageRelation.Overlay;
+                    btnBuscaFactura.Text = "";
+                    btnInformes.Text = "";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                panelLayoutMenu.Width = 48;
-                ptmfotouser.Visible = false;
-                //lblNombre.Visible = false;
-                btnBuscaFactura.Width = 48;
-                btnInformes.Width = 48;
-                btnBuscaFactura.TextImageRelation = TextImageRelation.Overlay;
-                btnInformes.TextImageRelation = TextImageRelation.Overlay;
-                btnBuscaFactura.Text = "";
-                btnInformes.Text = "";
+                MessageBox.Show(ex.Message);
             }
         }
         private void Btn_cerrar_Click(object sender, EventArgs e)
@@ -109,7 +121,6 @@ namespace GS_Factura
         {
             panelLayoutMenu.Width = 149;
             ptmfotouser.Visible = true;
-            //lblNombre.Visible = true;
             AbrirFormEnPanel(new GS_Inicio());
             return;
         }
@@ -152,14 +163,21 @@ namespace GS_Factura
         }
         private void lblEncabezadoGS_MouseMove(object sender, MouseEventArgs e)
         {
-            // Si el mouse está siendo arrastrado
-            if (dragging)
+            try
             {
-                // Calcular la diferencia entre la posición actual y la posición inicial
-                int deltaX = e.X - dragStartPoint.X;
-                int deltaY = e.Y - dragStartPoint.Y;
-                // Mover el formulario
-                this.Location = new Point(this.Location.X + deltaX, this.Location.Y + deltaY);
+                // Si el mouse está siendo arrastrado
+                if (dragging)
+                {
+                    // Calcular la diferencia entre la posición actual y la posición inicial
+                    int deltaX = e.X - dragStartPoint.X;
+                    int deltaY = e.Y - dragStartPoint.Y;
+                    // Mover el formulario
+                    this.Location = new Point(this.Location.X + deltaX, this.Location.Y + deltaY);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void lblEncabezadoGS_MouseUp(object sender, MouseEventArgs e)
