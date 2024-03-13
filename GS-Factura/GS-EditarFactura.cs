@@ -245,7 +245,6 @@ namespace GS_Factura
                 totalproductos += decimal.Parse(recorrerdata.Cells["TotalProducto"].Value.ToString().Replace(".", ","));
                 sumcantidadproductos += decimal.Parse(recorrerdata.Cells["CANTIDAD"].Value.ToString().Replace(".", ","));
             }
-
             // Calculamos el subtotal (sin descuento ni IVA)
             subtotalCompra = totalproductos;
 
