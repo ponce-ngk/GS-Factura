@@ -26,47 +26,29 @@ namespace GS_Factura
         {
             InitializeComponent();
             this.Cargarnumerofactura();
-
-
         }
 
         public void Cargarnumerofactura()
         {
             try
             {
-
                 string result = bD2.ObetnerDatosFactura("SELECT ISNULL(MAX(IDFACTURA), 0) FROM FACTURA").PadLeft(6, '0');
                 lblnumerofactura.Text = "001-" + result;
-
             }
             catch (Exception ex)
             {
-
                 throw;
-            }
-
-
-          
+            }          
         }
 
-        // Este método se ejecuta al hacer clic en el botón de validar cliente.
-        private void BtnvalidarCliente_Click(object sender, EventArgs e)
-        {
-            
-
-        }
-        public void EjecutaClientes(string idpcliente, string cedulacliente,
-           string nombrecliente, string apellidocliente
-          )
+        public void EjecutaClientes(string idpcliente, string cedulacliente,string nombrecliente, string apellidocliente)
         {
             lblidcliente.Text = idpcliente;
             lblcedulacliente.Text = cedulacliente;
             txtSearchCliente.Text = cedulacliente;
             lblnombrecliente.Text = nombrecliente;
             lblApellidocliente.Text = apellidocliente;
-
         }
-
 
         private void TxtSearchCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -83,12 +65,9 @@ namespace GS_Factura
             {
                 e.Handled = true;
                 return;
-
             }
-
-           
-
         }
+
         private void TmtDate_Tick(object sender, EventArgs e)
         {
             lblFingresoVenta.Text = DateTime.Now.ToShortDateString();
@@ -96,15 +75,12 @@ namespace GS_Factura
 
         private void BtnañadirVenta_Click(object sender, EventArgs e)
         {
-            try
-            
+            try            
             {
-
                 ProductoVenta formPRODUCT = new ProductoVenta();
                 // Asigna un evento delegado para pasar información entre formularios
                 formPRODUCT.pasarproducto += new ProductoVenta.pasarformFactura(Ejecutaproductos);
                 formPRODUCT.ShowDialog();
-
             }
             catch (Exception ex)
             {
@@ -113,12 +89,9 @@ namespace GS_Factura
             }
         }
 
-        public void Ejecutaproductos(string idproduct,
-            string nombreproducto, string cantidadproducto,
-            string preciproducto)
+        public void Ejecutaproductos(string idproduct,string nombreproducto, string cantidadproducto,string preciproducto)
         {
             // Convierte las cantidades y precios a los tipos de datos apropiados
-
             int cantidad = int.Parse(cantidadproducto);
             decimal precio = decimal.Parse(preciproducto);
            
@@ -135,15 +108,11 @@ namespace GS_Factura
                  dtgVenta.Rows.Add(null, idproduct, nombreproducto,
                  cantidadproducto, preciproducto,  total.ToString("0.00"));
                 this.GestionarFuncionalidadDtgVenta();
-
                 // Verifica las filas en el DataGridView (puede haber algún tipo de validación)
                 this.VerificarFilasEnDataGridView();
             }
-
         }
 
-        // Este método verifica si un producto ya ha sido agregado a la DataGridView en la aplicación.
-        // Recibe dos parámetros: el ID del producto y el nombre del producto.
         public bool VerificarRestaPDataLotes(string idproducto, string nomproducto)
         {
             try
@@ -151,7 +120,6 @@ namespace GS_Factura
                 foreach (DataGridViewRow recorrerdata in dtgVenta.Rows)
                 {
                     // Compara el ID y el nombre del producto con los valores en la fila actual.
-
                     if (idproducto.ToString() == recorrerdata.Cells["IdProducto"].Value.ToString() && nomproducto == recorrerdata.Cells["NombreProducto"].Value.ToString())
                     {
                         MessageBox.Show("Producto ya se encuentra agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -165,9 +133,7 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
                 throw;
             }
-        }
-
-        // Este evento se desencadena cuando se hace clic en el contenido de una celda en la DataGridView.
+        }        
 
         private void DtgVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -226,8 +192,6 @@ namespace GS_Factura
             }
         }
 
-        // Este método gestiona la funcionalidad de la DataGridView de ventas.
-
         public void GestionarFuncionalidadDtgVenta()
         {
             decimal totalproductos = 0;
@@ -235,7 +199,6 @@ namespace GS_Factura
             decimal subtotalCompra = 0.0M;
             decimal descuentoCompra = 0.0M;
             decimal iva12 = ObtenerValorIVAActual();
-
             btnConfirmarVenta.Visible = true;
             btnConfirmarVenta.Enabled = true;
 
@@ -248,11 +211,7 @@ namespace GS_Factura
 
             // Calculamos el subtotal (sin descuento ni IVA)
             subtotalCompra = totalproductos;
-
             txtsubtotalventa.Text = subtotalCompra.ToString("0.00");
-
-            // Aplicamos el descuento  que es 0
-            //txtsubtotalDescuentoVenta.Text = descuentoCompra.ToString("0.00");
 
 
             // Agregamos el IVA
