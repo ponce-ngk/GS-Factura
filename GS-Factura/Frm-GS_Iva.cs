@@ -78,6 +78,8 @@ namespace GS_Factura
                                 BloqueoControles();
                                 txtIva.Text = "0";
                                 lblIdIva.Text = "0";
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                                dtgIva.DataSource = tb;
                                 MessageBox.Show("IVA guardado exitosamente.", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
@@ -159,6 +161,8 @@ namespace GS_Factura
                             BloqueoControles();
                             txtIva.Text = "0";
                             lblIdIva.Text = "0";
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                            dtgIva.DataSource = tb;
                             MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
@@ -190,6 +194,8 @@ namespace GS_Factura
                         BloqueoControles();
                         txtIva.Text = "0";
                         lblIdIva.Text = "0";
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                        dtgIva.DataSource = tb;
                         MessageBox.Show("IVA Eliminado exitosamente.", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -465,6 +471,8 @@ namespace GS_Factura
                         BloqueoControles();
                         txtIva.Text = "0";
                         lblIdIva.Text = "0";
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                        dtgIva.DataSource = tb;
                         MessageBox.Show("IVA Inhabilitado exitosamente.", "Datos Inhabilitados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
