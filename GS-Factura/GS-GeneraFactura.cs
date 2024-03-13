@@ -57,9 +57,9 @@ namespace GS_Factura
             {
                 // Cancela el evento de tecla presionada
                 e.Handled = true;
-
                 // Muestra un mensaje de error
                 MessageBox.Show("Solo se permiten números", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             }
             else if (e.KeyChar == (char)(Keys.Enter))
             {
@@ -722,6 +722,11 @@ namespace GS_Factura
             }
 
             return valorIVA;
+        }
+
+        private void btnvalidarCliente_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
