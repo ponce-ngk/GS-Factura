@@ -303,6 +303,10 @@ namespace GS_Factura {
             
             private global::System.Data.DataColumn columnTOTAL;
             
+            private global::System.Data.DataColumn columnIVA;
+            
+            private global::System.Data.DataColumn columnVALORIVA;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public DataTable1DataTable() {
@@ -434,6 +438,22 @@ namespace GS_Factura {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IVAColumn {
+                get {
+                    return this.columnIVA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn VALORIVAColumn {
+                get {
+                    return this.columnVALORIVA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -469,7 +489,7 @@ namespace GS_Factura {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string CEDULA, string NOMBRE, string APELLIDOS, System.DateTime FECHA, long IDPRODUCTO, decimal CANTIDAD, string PRODUCTO, decimal PRECIO_UNITARIO, decimal SUBTOTAL, decimal SUBTOTAL1, decimal TOTAL) {
+            public DataTable1Row AddDataTable1Row(string CEDULA, string NOMBRE, string APELLIDOS, System.DateTime FECHA, long IDPRODUCTO, decimal CANTIDAD, string PRODUCTO, decimal PRECIO_UNITARIO, decimal SUBTOTAL, decimal SUBTOTAL1, decimal TOTAL, string IVA, string VALORIVA) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -483,7 +503,9 @@ namespace GS_Factura {
                         PRECIO_UNITARIO,
                         SUBTOTAL,
                         SUBTOTAL1,
-                        TOTAL};
+                        TOTAL,
+                        IVA,
+                        VALORIVA};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -518,6 +540,8 @@ namespace GS_Factura {
                 this.columnSUBTOTAL = base.Columns["SUBTOTAL"];
                 this.columnSUBTOTAL1 = base.Columns["SUBTOTAL1"];
                 this.columnTOTAL = base.Columns["TOTAL"];
+                this.columnIVA = base.Columns["IVA"];
+                this.columnVALORIVA = base.Columns["VALORIVA"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -547,6 +571,10 @@ namespace GS_Factura {
                 base.Columns.Add(this.columnSUBTOTAL1);
                 this.columnTOTAL = new global::System.Data.DataColumn("TOTAL", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTOTAL);
+                this.columnIVA = new global::System.Data.DataColumn("IVA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIVA);
+                this.columnVALORIVA = new global::System.Data.DataColumn("VALORIVA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVALORIVA);
                 this.columnIDFACTURA.AutoIncrement = true;
                 this.columnIDFACTURA.AutoIncrementSeed = -1;
                 this.columnIDFACTURA.AutoIncrementStep = -1;
@@ -881,6 +909,38 @@ namespace GS_Factura {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string IVA {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.IVAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IVA\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.IVAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string VALORIVA {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.VALORIVAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'VALORIVA\' de la tabla \'DataTable1\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.VALORIVAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsCEDULANull() {
                 return this.IsNull(this.tableDataTable1.CEDULAColumn);
             }
@@ -997,6 +1057,30 @@ namespace GS_Factura {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTOTALNull() {
                 this[this.tableDataTable1.TOTALColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsIVANull() {
+                return this.IsNull(this.tableDataTable1.IVAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetIVANull() {
+                this[this.tableDataTable1.IVAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsVALORIVANull() {
+                return this.IsNull(this.tableDataTable1.VALORIVAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetVALORIVANull() {
+                this[this.tableDataTable1.VALORIVAColumn] = global::System.Convert.DBNull;
             }
         }
         
