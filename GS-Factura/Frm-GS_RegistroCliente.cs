@@ -23,6 +23,7 @@ namespace GS_Factura
         string date = DateTime.UtcNow.ToString("yyyy-MM-dd");
         string sql = "";
         DataTable tb = new DataTable();
+        
 
         public GS_RegistroCliente()
         {
@@ -34,6 +35,7 @@ namespace GS_Factura
             dgvClientes.DataSource = tb;
             // Se establece el formato personalizado de la fecha en el control DateTimePicker para poderlo guardar
             dtpFechaCliente.CustomFormat = "yyyy-MM-dd";
+            dtpFechaCliente.Text = date.ToString();
         }
         public void BloqueoControlesInicial()
         {
