@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS-Factura", "GS-Factura\GS-Factura.csproj", "{E502A45F-E417-43CF-A049-9CBE0BE59469}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pruebas Unitarias", "Pruebas Unitarias\Pruebas Unitarias.csproj", "{09311BA0-B90A-417B-BEB3-C2428D930792}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E502A45F-E417-43CF-A049-9CBE0BE59469}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E502A45F-E417-43CF-A049-9CBE0BE59469}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E502A45F-E417-43CF-A049-9CBE0BE59469}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09311BA0-B90A-417B-BEB3-C2428D930792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09311BA0-B90A-417B-BEB3-C2428D930792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09311BA0-B90A-417B-BEB3-C2428D930792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09311BA0-B90A-417B-BEB3-C2428D930792}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -23,9 +23,6 @@ namespace GS_Factura
         private void GS_Factura_Load(object sender, EventArgs e)
         {
             int maxIdVenta = ObtenerMaxIdVenta();
-
-
-
             try
             {
                 string consulta = "Select  F.IDFACTURA, c.CEDULA, C.NOMBRE, C.APELLIDOS, " +
@@ -91,24 +88,10 @@ namespace GS_Factura
                 gS_GeneraFactura.tblVentayFactura.ColumnStyles[1].Width = 0.50f;
                 this.Close();
             }
-
-
-
-
         }
 
         internal class Clases
         {
-        }
-
-        internal class EllipseControlArtan
-        {
-            public EllipseControlArtan()
-            {
-            }
-
-            public int CournerRedius { get; internal set; }
-            public Notificaciones TargetControl { get; internal set; }
         }
     }
 }

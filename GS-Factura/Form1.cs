@@ -22,16 +22,11 @@ namespace GS_Factura
             lblEncabezadoGS.MouseMove += lblEncabezadoGS_MouseMove;
             lblEncabezadoGS.MouseUp += lblEncabezadoGS_MouseUp;
         }
-
-
         private void BtnVenta_Click(object sender, EventArgs e)
         {
             GS_GeneraFactura frmFactura = new GS_GeneraFactura();
             AbrirFormEnPanel(frmFactura);
-
         }
-
-
         private void AbrirFormEnPanel(object formHija)
         {
             // Cerrar formulario actual si hay uno
@@ -40,7 +35,6 @@ namespace GS_Factura
                 Form formularioActual = this.panelForms.Controls[0] as Form;
                 formularioActual.Close();
             }
-
             // Mostrar el nuevo formulario
             Form nuevoForm = formHija as Form;
             nuevoForm.TopLevel = false;
@@ -49,23 +43,18 @@ namespace GS_Factura
             this.panelForms.Tag = nuevoForm;
             nuevoForm.Show();
         }
-
-
         private void BtnProductos_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_RegistroProducto());
             return;
         }
-
         private void BtnRegistro_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_RegistroCliente());
             return;
         }
-
         private void BtnMenu_Click(object sender, EventArgs e)
         {
-
             if (panelLayoutMenu.Width == 48)
             {
                 panelLayoutMenu.Width = 149;
@@ -91,12 +80,10 @@ namespace GS_Factura
                 btnInformes.Text = "";
             }
         }
-
         private void Btn_cerrar_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void Btn_Maximizar_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
@@ -110,17 +97,14 @@ namespace GS_Factura
 
             }
         }
-
         private void Btn_Minimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
         private void BtnCerrarsesion_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             panelLayoutMenu.Width = 149;
@@ -129,27 +113,22 @@ namespace GS_Factura
             AbrirFormEnPanel(new GS_Inicio());
             return;
         }
-
         private void Ptmfotouser_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_Inicio());
             return;
         }
-
         private void BtnBuscaFactura_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_EliminaFactura());
             return;
-
         }
-
         private void Open_DropdownMenu(RJDropdownMenu dropdownMenu, object sender)
         {
             Control control = (Control)sender;
             dropdownMenu.VisibleChanged += new EventHandler((sender2, ev)
                 => DropdownMenu_VisibleChanged(sender2, ev, control));
             dropdownMenu.Show(control, control.Width, 0);
-
         }
         private void DropdownMenu_VisibleChanged(object sender, EventArgs e, Control ctrl)
         {
@@ -166,21 +145,11 @@ namespace GS_Factura
                 }
             }
         }
-
-        private void btnRJBuscarF_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-
-        
-
         private void lblEncabezadoGS_MouseDown(object sender, MouseEventArgs e)
         {
             dragging = true;
             dragStartPoint = new Point(e.X, e.Y);
         }
-
         private void lblEncabezadoGS_MouseMove(object sender, MouseEventArgs e)
         {
             // Si el mouse está siendo arrastrado
@@ -189,42 +158,34 @@ namespace GS_Factura
                 // Calcular la diferencia entre la posición actual y la posición inicial
                 int deltaX = e.X - dragStartPoint.X;
                 int deltaY = e.Y - dragStartPoint.Y;
-
                 // Mover el formulario
                 this.Location = new Point(this.Location.X + deltaX, this.Location.Y + deltaY);
             }
         }
-
         private void lblEncabezadoGS_MouseUp(object sender, MouseEventArgs e)
         {
             // Al soltar el botón del mouse, detener el arrastre
             dragging = false;
         }
-
         private void btnRJEliminar_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_EliminaFactura());
             return;
         }
-
         private void BtnIva_Click(object sender, EventArgs e)
         {
-
             AbrirFormEnPanel(new GS_Iva());
             return;
         }
-
         private void btnInformes_Click(object sender, EventArgs e)
         {
             Open_DropdownMenu(rjcIva, sender);
         }
-
         private void rjcBtnResumen_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_ResumenVentas());
             return;
         }
-
         private void rjcBtnDetallada_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new GS_DetalladoVenta());

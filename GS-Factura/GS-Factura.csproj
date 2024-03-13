@@ -112,9 +112,6 @@
   <ItemGroup>
     <Compile Include="Clases\AccesoDatos.cs" />
     <Compile Include="Clases\BD2.cs" />
-    <Compile Include="EllipseControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="GS-ClienteVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +152,12 @@
     </Compile>
     <Compile Include="GS-GeneraFactura.Designer.cs">
       <DependentUpon>GS-GeneraFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GS-Informacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GS-Informacion.Designer.cs">
+      <DependentUpon>GS-Informacion.cs</DependentUpon>
     </Compile>
     <Compile Include="GS-Inicio.cs">
       <SubType>Form</SubType>
@@ -198,12 +201,6 @@
     <Compile Include="GS_ResumenVentas.Designer.cs">
       <DependentUpon>GS_ResumenVentas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Notificaciones.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Notificaciones.Designer.cs">
-      <DependentUpon>Notificaciones.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualizaFacturaBorrar.cs">
@@ -233,6 +230,9 @@
     <EmbeddedResource Include="GS-GeneraFactura.resx">
       <DependentUpon>GS-GeneraFactura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GS-Informacion.resx">
+      <DependentUpon>GS-Informacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GS-Inicio.resx">
       <DependentUpon>GS-Inicio.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,9 +255,6 @@
       <DependentUpon>GS_ResumenVentas.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Notificaciones.resx">
-      <DependentUpon>Notificaciones.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -274,6 +271,7 @@
     <EmbeddedResource Include="VisualizaFacturaBorrar.resx">
       <DependentUpon>VisualizaFacturaBorrar.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DataSetFactura.xsc">
       <DependentUpon>DataSetFactura.xsd</DependentUpon>
     </None>

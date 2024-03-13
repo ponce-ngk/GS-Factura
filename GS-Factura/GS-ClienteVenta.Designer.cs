@@ -94,7 +94,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(901, 97);
             this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // panel2
             // 
@@ -484,6 +483,7 @@
             this.cmbitems.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.cmbitems.FormattingEnabled = true;
             this.cmbitems.Items.AddRange(new object[] {
+            "Mostrar Todo",
             "ID del Cliente",
             "Cédula",
             "Nombre",
@@ -534,10 +534,7 @@
             this.txtbuscarCliente.Name = "txtbuscarCliente";
             this.txtbuscarCliente.Size = new System.Drawing.Size(646, 29);
             this.txtbuscarCliente.TabIndex = 25;
-            this.txtbuscarCliente.Enter += new System.EventHandler(this.txtbuscarproducto_Enter);
-            this.txtbuscarCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtbuscarCliente_KeyDown);
             this.txtbuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscarCliente_KeyPress);
-            this.txtbuscarCliente.Leave += new System.EventHandler(this.txtbuscarproducto_Leave);
             // 
             // DgvClientes
             // 
@@ -606,7 +603,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ClienteVenta";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Añadir cliente para facturar";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

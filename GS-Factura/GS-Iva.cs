@@ -26,7 +26,7 @@ namespace GS_Factura
         {
             InitializeComponent();
         }
-
+        
         private void BtnGuardarIva_Click(object sender, EventArgs e)
         {
             try
@@ -35,7 +35,6 @@ namespace GS_Factura
                 if (dtpFechaFinal.Value.Date < dtpFechaInicio.Value.Date)
                 {
                     dtpFechaFinal.Value = DateTime.Now;
-
                     MessageBox.Show("La fecha final no puede ser menor que la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -56,7 +55,7 @@ namespace GS_Factura
                     par.Add(new SqlParameter("@FechaInicio", dtpFechaInicio.Value));
                     par.Add(new SqlParameter("@FechaFinal", dtpFechaFinal.Value));
                     verificarFecha = OAD.EscalarProcAlmBool("VerificarRangoFechaIVA", par, true);
-                    // Verificar si la cédula ya existe en la base de datos
+                    // Verificar si el rango de fechas ya existe en la base de datos.
                     if (verificarFecha)
                     {
                         MessageBox.Show("Ya existe una fecha registrada en emision.", "Fecha Duplicada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -66,7 +65,6 @@ namespace GS_Factura
                     {
                         // Se confirmar antes de agregar al cliente
                         DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres agregar este nuevo valor de IVA?", "Confirmar adición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
                         if (resultado == DialogResult.Yes)
                         {
                             sql = "";
@@ -77,7 +75,6 @@ namespace GS_Factura
                             sql = OAD.EscalarProcAlmString("InsertarIVA", par, true);
                             if (sql != null)
                             {
-                                //dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAPorFecha '" + dtpFechaFinal.Value + "'");
                                 BloqueoControles();
                                 txtIva.Text = "0";
                                 lblIdIva.Text = "0";
@@ -93,7 +90,6 @@ namespace GS_Factura
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -103,8 +99,6 @@ namespace GS_Factura
             Limpiar();
             BloqueoControles();
             dtgIva.CurrentCell = null;
-
-
         }
 
         public void BloqueoControles()
@@ -114,10 +108,8 @@ namespace GS_Factura
             lblTextoIva.Visible = false;
             lblIdIva.Visible = false;
             btnGuardarIva.Enabled = true;
-            //lblActualizar.Visible = false;
-            //lblEliminar.Visible = false;
-            //lblAgregar.Visible = true;
         }
+
         void Limpiar()
         {
             txtIva.Text = "0";
@@ -127,8 +119,8 @@ namespace GS_Factura
                 tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
                 dtgIva.DataSource = tb;
             }
-
         }
+
         private void BtnActualizarIva_Click(object sender, EventArgs e)
         {
             try
@@ -137,7 +129,6 @@ namespace GS_Factura
                 if (dtpFechaFinal.Value.Date < dtpFechaInicio.Value.Date)
                 {
                     dtpFechaFinal.Value = DateTime.Now;
-
                     MessageBox.Show("La fecha final no puede ser menor que la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -153,12 +144,9 @@ namespace GS_Factura
                 }
                 else
                 {
-
                     DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres actualizar estos datos?", "Confirmar modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (confirmacion == DialogResult.Yes)
                     {
-
-
                         sql = "";
                         par.Clear();
                         par.Add(new SqlParameter("@ID_IVA", int.Parse(lblIdIva.Text)));
@@ -178,13 +166,10 @@ namespace GS_Factura
                             MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                     }
-
                 }
-
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -202,7 +187,6 @@ namespace GS_Factura
                     sql = OAD.EscalarProcAlmString("InactivarIVA", par, true);
                     if (sql != null)
                     {
-                        //dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("EXEC sp_ObtenerIVAIDFecha '" + int.Parse(lblIdIva.Text) + "'");
                         BloqueoControles();
                         txtIva.Text = "0";
                         lblIdIva.Text = "0";
@@ -212,19 +196,12 @@ namespace GS_Factura
                     {
                         MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
-
                 }
-
-
-
             }
             catch (Exception)
             {
-
                 throw;
             }
-
-
         }
 
         private void TxtIva_KeyPress(object sender, KeyPressEventArgs e)
@@ -236,7 +213,7 @@ namespace GS_Factura
             }
             else if (e.KeyChar == ',')
             {
-                e.KeyChar = '.'; // Reemplazar la coma por un punto
+                e.KeyChar = '.';
             }
             else if (char.IsWhiteSpace(e.KeyChar))
             {
@@ -256,7 +233,6 @@ namespace GS_Factura
             try
             {
                 // Si el texto en txtcancelado es "0", lo cambia a vacío y establece el color del texto a negro
-
                 if (txtIva.Text == "0")
                 {
                     txtIva.Text = "";
@@ -292,8 +268,8 @@ namespace GS_Factura
             dtpSearchFechaInicio.Value = DateTime.Now;
             dtpSearchFechaFinal.Value = DateTime.Now;
             dtpFechaFinal.Value = DateTime.Now;
-
         }
+
         public void BloqueoClickDgv()
         {
             btnGuardarIva.Enabled = false;
@@ -302,6 +278,7 @@ namespace GS_Factura
             lblTextoIva.Visible = true;
             lblIdIva.Visible = true;
         }
+
         private void Btn_BuscarIva_Click(object sender, EventArgs e)
         {
             try
@@ -310,7 +287,6 @@ namespace GS_Factura
                 if (dtpSearchFechaFinal.Value.Date < dtpSearchFechaInicio.Value.Date)
                 {
                     MessageBox.Show("La fecha final no puede ser menor que la fecha inicial.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     return;
                 }
                 else if (dtpSearchFechaInicio.Value.Date > dtpSearchFechaFinal.Value.Date)
@@ -320,115 +296,133 @@ namespace GS_Factura
                 }
                 else
                 {
-                    dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAEntreFecha  '" + dtpSearchFechaInicio.Value + "', '" + dtpSearchFechaFinal.Value + "'");
+                    tb.Clear();
+                    par.Clear();
+                    par.Add(new SqlParameter("@FechaInicio", dtpSearchFechaInicio.Value));
+                    par.Add(new SqlParameter("@FechaFinal", dtpSearchFechaFinal.Value));
+                    tb = OAD.EscalarProcAlmTabla("sp_ObtenerIVAEntreFecha", par, true);
+                    dtgIva.DataSource = tb;
+                    if (tb.Rows.Count == 0)
+                    {
+                        MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
         private void cmbitemsIva_SelectedIndexChanged(object sender, EventArgs e)
         {
-            op = cmbitemsIva.SelectedIndex;
-            switch (op)
+            try
             {
-                case 0:
-                    txtbuscarIva.Enabled = false;
-                    tb.Clear();
-                    tb = OAD.EscalarProcAlmTablaSinPar("sp_FullObtenerIVA", true);
-                    dtgIva.DataSource = tb;
-                    if (txtbuscarIva.TextLength > 0)
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                op = cmbitemsIva.SelectedIndex;
+                switch (op)
+                {
+                    case 0:
+                        txtbuscarIva.Text = "";
+                        txtbuscarIva.Enabled = false;
+                        tb.Clear();
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_FullObtenerIVA", true);
                         dtgIva.DataSource = tb;
-                        MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        cmbitemsIva.SelectedIndex = -1;
-                    }
-                    break;
-                case 1:
-                    txtbuscarIva.Enabled = true;
-                    op = 1;
-                    tb.Clear();
-                    break;
-                case 2:
-                    txtbuscarIva.Enabled = true;
-                    op = 2;
-                    tb.Clear();
-                    break;
+                        if (txtbuscarIva.TextLength > 0)
+                        {
+                            tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                            dtgIva.DataSource = tb;
+                            MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            cmbitemsIva.SelectedIndex = -1;
+                        }
+                        break;
+                    case 1:
+                        txtbuscarIva.Enabled = true;
+                        op = 1;
+                        tb.Clear();
+                        break;
+                    case 2:
+                        txtbuscarIva.Enabled = true;
+                        op = 2;
+                        tb.Clear();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void txtbuscarIva_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            try
             {
-                if (txtbuscarIva.Text != null)
+                if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
                 {
-                    if (op == 0)
+                    if (txtbuscarIva.Text != null)
                     {
-
-                    }
-                    else if (op == 1)
-                    {
-                        if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
+                        if (op == 1)
                         {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Campo", "ID_IVA"));
-                            par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
-                            dtgIva.DataSource = tb;
-                            if (tb.Rows.Count == 0)
+                            if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
                             {
-                                MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "ID_IVA"));
+                                par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
+                                dtgIva.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                                dtgIva.DataSource = tb;
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
-                        else
+                        else if (op == 2)
                         {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
-                            dtgIva.DataSource = tb;
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                    else if (op == 2)
-                    {
-                        if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Campo", "ValorIVA"));
-                            par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
-                            dtgIva.DataSource = tb;
-                            if (tb.Rows.Count == 0)
+                            if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
                             {
-                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "ValorIVA"));
+                                par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
+                                dtgIva.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio ", true);
+                                dtgIva.DataSource = tb;
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio ", true);
-                            dtgIva.DataSource = tb;
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Seleccione al menos un campo");
                     }
                 }
-                else
+                else if (op == null && txtbuscarIva.Text == null)
                 {
-                    MessageBox.Show("Seleccione al menos un campo");
+                    MessageBox.Show("Por favor ingregse un carácter");
                 }
             }
-            else if (op == null && txtbuscarIva.Text == null)
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor ingregse un carácter");
+                MessageBox.Show(ex.Message);
             }
         }
-
         private void dtgIva_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -454,4 +448,3 @@ namespace GS_Factura
         }
     }
 }
-
