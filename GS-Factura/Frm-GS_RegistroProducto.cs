@@ -55,23 +55,31 @@ namespace GS_Factura
         }
         public bool Validar_Campos()
         {
-            bool verificar = true;
-            if (txtnombreproducto.Text == "")
+            try
             {
-                verificar = false;
-                errorProvider1.SetError(txtnombreproducto, "Ingrese El Nombre del producto");
+                bool verificar = true;
+                if (txtnombreproducto.Text == "")
+                {
+                    verificar = false;
+                    errorProvider1.SetError(txtnombreproducto, "Ingrese El Nombre del producto");
+                }
+                if (txtcantidadproducto.Text == "")
+                {
+                    verificar = false;
+                    errorProvider1.SetError(txtcantidadproducto, "Ingrese El Stock del Producto");
+                }
+                if (txtpreciounitario.Text == "")
+                {
+                    verificar = false;
+                    errorProvider1.SetError(txtpreciounitario, "Ingrese El Precio Unitario del Producto");
+                }
+                return verificar;
             }
-            if (txtcantidadproducto.Text == "")
+            catch (Exception ex)
             {
-                verificar = false;
-                errorProvider1.SetError(txtcantidadproducto, "Ingrese El Stock del Producto");
+                MessageBox.Show(ex.Message);
+                throw;
             }
-            if (txtpreciounitario.Text == "")
-            {
-                verificar = false;
-                errorProvider1.SetError(txtpreciounitario, "Ingrese El Precio Unitario del Producto");
-            }
-            return verificar;
         }
         public void BorrarMensajeError()
         {
@@ -116,110 +124,134 @@ namespace GS_Factura
         }
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
         {
-            //Ingreso de un nuevo producto
-            //Verifica si los txt no estan vacios
-            BorrarMensajeError();
-            if (Validar_Campos())
+            try
             {
-                //Pregunta si esta de acuerdo en agregar un nuevo producto
-                DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres agregar estos datos?", "Confirmar adición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                //si presiona si procede con la insersion 
-                if (confirmacion == DialogResult.Yes)
+                //Ingreso de un nuevo producto
+                //Verifica si los txt no estan vacios
+                BorrarMensajeError();
+                if (Validar_Campos())
                 {
-                    sql = "";
-                    par.Clear();
-                    par.Add(new SqlParameter("@PRODUCTO", txtnombreproducto.Text.Trim()));
-                    par.Add(new SqlParameter("@PRECIO_UNITARIO", txtpreciounitario.Text.Trim()));
-                    par.Add(new SqlParameter("@STOCK", txtcantidadproducto.Text.Trim()));
-                    sql = OAD.EscalarProcAlmString("sp_Insertar_PRODUCTO", par, true);
-                    if (sql != null)
+                    //Pregunta si esta de acuerdo en agregar un nuevo producto
+                    DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres agregar estos datos?", "Confirmar adición", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    //si presiona si procede con la insersion 
+                    if (confirmacion == DialogResult.Yes)
                     {
-                        MessageBox.Show("Los datos de Guardaron correctamente", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        sql = "";
+                        par.Clear();
+                        par.Add(new SqlParameter("@PRODUCTO", txtnombreproducto.Text.Trim()));
+                        par.Add(new SqlParameter("@PRECIO_UNITARIO", txtpreciounitario.Text.Trim()));
+                        par.Add(new SqlParameter("@STOCK", txtcantidadproducto.Text.Trim()));
+                        sql = OAD.EscalarProcAlmString("sp_Insertar_PRODUCTO", par, true);
+                        if (sql != null)
+                        {
+                            MessageBox.Show("Los datos de Guardaron correctamente", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        dgvProductos.CurrentCell = null;
+                        BloqueoControles();
+                        Limpiar();
                     }
-                    else
-                    {
-                        MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    dgvProductos.CurrentCell = null;
-                    BloqueoControles();
-                    Limpiar();
+                }
+                //caso contrario advierte que estan vacios los txt
+                else
+                {
+                    MessageBox.Show("Debe de llenar todos los Campos Requeridos para Agregar un Nuevo Producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            //caso contrario advierte que estan vacios los txt
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe de llenar todos los Campos Requeridos para Agregar un Nuevo Producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
         private void BtnEliminarProducto_Click(object sender, EventArgs e)
         {
-            //Eliminar un producto
-            //Verifica si los txt no estan vacios
-            if (lblIdProducto.Text != "")
+            try
             {
-                //Pregunta si esta de acuerdo en eliminar un producto
-                DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres eliminar estos datos?", "Confirmar eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirmacion == DialogResult.Yes)
+                //Eliminar un producto
+                //Verifica si los txt no estan vacios
+                if (lblIdProducto.Text != "")
                 {
-                    //si presiona si procede con la eliminacion 
-                    sql = "";
-                    par.Clear();
-                    par.Add(new SqlParameter("@IDPRODUCTO", int.Parse(lblIdProducto.Text.Trim())));
-                    sql = OAD.EscalarProcAlmString("sp_eliminar_PRODUCTO", par, true);
-                    if (sql != null)
+                    //Pregunta si esta de acuerdo en eliminar un producto
+                    DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres eliminar estos datos?", "Confirmar eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirmacion == DialogResult.Yes)
                     {
-                        MessageBox.Show("Los datos de Eliminaron correctamente", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //si presiona si procede con la eliminacion 
+                        sql = "";
+                        par.Clear();
+                        par.Add(new SqlParameter("@IDPRODUCTO", int.Parse(lblIdProducto.Text.Trim())));
+                        sql = OAD.EscalarProcAlmString("sp_eliminar_PRODUCTO", par, true);
+                        if (sql != null)
+                        {
+                            MessageBox.Show("Los datos de Eliminaron correctamente", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        dgvProductos.CurrentCell = null;
+                        BloqueoControles();
+                        Limpiar();
                     }
-                    else
-                    {
-                        MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    dgvProductos.CurrentCell = null;
-                    BloqueoControles();
-                    Limpiar();
+                }
+                //caso contrario advierte que estan vacios los txt
+                else
+                {
+                    MessageBox.Show("Debe de seleccionar un producto para ser Eliminando", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            //caso contrario advierte que estan vacios los txt
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe de seleccionar un producto para ser Eliminando", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
         private void BtnActualizarProducto_Click(object sender, EventArgs e)
         {
-            //Modificacion de un producto
-            //Verifica si los txt no estan vacios
-            if (txtnombreproducto.Text != "" && txtpreciounitario.Text != "" && txtcantidadproducto.Text != "")
+            try
             {
-                //Pregunta si esta de acuerdo en modificar un producto
-                DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres actualizar estos datos?", "Confirmar modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirmacion == DialogResult.Yes)
+                //Modificacion de un producto
+                //Verifica si los txt no estan vacios
+                if (txtnombreproducto.Text != "" && txtpreciounitario.Text != "" && txtcantidadproducto.Text != "")
                 {
-                    //si presiona si procede con la Modificacion
-                    sql = "";
-                    par.Clear();
-                    par.Add(new SqlParameter("@IDPRODUCTO", int.Parse(lblIdProducto.Text.Trim())));
-                    par.Add(new SqlParameter("@PRODUCTO", txtnombreproducto.Text.Trim()));
-                    par.Add(new SqlParameter("@PRECIO_UNITARIO", txtpreciounitario.Text.Trim()));
-                    par.Add(new SqlParameter("@STOCK", txtcantidadproducto.Text.Trim()));
-                    sql = OAD.EscalarProcAlmString("sp_actualizar_PRODUCTO", par, true);
-                    if (sql != null)
+                    //Pregunta si esta de acuerdo en modificar un producto
+                    DialogResult confirmacion = MessageBox.Show("¿Estás seguro de que quieres actualizar estos datos?", "Confirmar modificacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirmacion == DialogResult.Yes)
                     {
-                        MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //si presiona si procede con la Modificacion
+                        sql = "";
+                        par.Clear();
+                        par.Add(new SqlParameter("@IDPRODUCTO", int.Parse(lblIdProducto.Text.Trim())));
+                        par.Add(new SqlParameter("@PRODUCTO", txtnombreproducto.Text.Trim()));
+                        par.Add(new SqlParameter("@PRECIO_UNITARIO", txtpreciounitario.Text.Trim()));
+                        par.Add(new SqlParameter("@STOCK", txtcantidadproducto.Text.Trim()));
+                        sql = OAD.EscalarProcAlmString("sp_actualizar_PRODUCTO", par, true);
+                        if (sql != null)
+                        {
+                            MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        dgvProductos.CurrentCell = null;
+                        BloqueoControles();
+                        Limpiar();
                     }
-                    else
-                    {
-                        MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-                    dgvProductos.CurrentCell = null;
-                    BloqueoControles();
-                    Limpiar();
+                }
+                //caso contrario advierte que estan vacios los txt
+                else
+                {
+                    MessageBox.Show("Debe de seleccionar un producto para ser Actualizado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            //caso contrario advierte que estan vacios los txt
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe de seleccionar un producto para ser Actualizado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
         //Funcion para Limpiar todos los campos en caso de no querrer lo escrito.
@@ -250,32 +282,40 @@ namespace GS_Factura
         }
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            op = cmbitems.SelectedIndex;
-            switch (op)
+            try
             {
-                case 0:
-                    txtbuscarproducto.Enabled = false;
-                    tb.Clear();
-                    tb = OAD.EscalarProcAlmTablaSinPar("BuscarProductosFull", true);
-                    dgvProductos.DataSource = tb;
-                    if (txtbuscarproducto.TextLength > 0)
-                    {
+                op = cmbitems.SelectedIndex;
+                switch (op)
+                {
+                    case 0:
+                        txtbuscarproducto.Enabled = false;
                         tb.Clear();
-                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio", true);
-                        MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        cmbitems.SelectedIndex = -1;
-                    }
-                    break;
-                case 1:
-                    txtbuscarproducto.Enabled = true;
-                    op = 1;
-                    tb.Clear();
-                    break;
-                case 2:
-                    txtbuscarproducto.Enabled = true;
-                    op = 2;
-                    tb.Clear();
-                    break;
+                        tb = OAD.EscalarProcAlmTablaSinPar("BuscarProductosFull", true);
+                        dgvProductos.DataSource = tb;
+                        if (txtbuscarproducto.TextLength > 0)
+                        {
+                            tb.Clear();
+                            tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio", true);
+                            MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            cmbitems.SelectedIndex = -1;
+                        }
+                        break;
+                    case 1:
+                        txtbuscarproducto.Enabled = true;
+                        op = 1;
+                        tb.Clear();
+                        break;
+                    case 2:
+                        txtbuscarproducto.Enabled = true;
+                        op = 2;
+                        tb.Clear();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
         private void txtpreciounitario_KeyPress_1(object sender, KeyPressEventArgs e)
@@ -293,7 +333,78 @@ namespace GS_Factura
         }
         private void txtbuscarproducto_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            try
+            {
+                if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+                {
+                    if (txtbuscarproducto.Text != null)
+                    {
+                        if (op == 1)
+                        {
+                            if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "PRODUCTO"));
+                                par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("BuscarProductos", par, true);
+                                dgvProductos.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                                dgvProductos.DataSource = tb;
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (op == 2)
+                        {
+                            if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
+                                par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("BuscarProductos", par, true);
+                                dgvProductos.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
+                                dgvProductos.DataSource = tb;
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Seleccione al menos un campo");
+                        }
+                    }
+                    else if (op == null && txtbuscarproducto.Text == null)
+                    {
+                        MessageBox.Show("Por favor ingregse un carácter");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+        private void btn_Buscar_Click(object sender, EventArgs e)
+        {
+            try
             {
                 if (txtbuscarproducto.Text != null)
                 {
@@ -301,7 +412,6 @@ namespace GS_Factura
                     {
                         if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
-                            e.Handled = true;
                             tb.Clear();
                             par.Clear();
                             par.Add(new SqlParameter("@Campo", "PRODUCTO"));
@@ -324,7 +434,6 @@ namespace GS_Factura
                     {
                         if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
-                            e.Handled = true;
                             tb.Clear();
                             par.Clear();
                             par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
@@ -348,64 +457,11 @@ namespace GS_Factura
                         MessageBox.Show("Seleccione al menos un campo");
                     }
                 }
-                else if (op == null && txtbuscarproducto.Text == null)
-                {
-                    MessageBox.Show("Por favor ingregse un carácter");
-                }
             }
-        }
-        private void btn_Buscar_Click(object sender, EventArgs e)
-        {
-            if (txtbuscarproducto.Text != null)
+            catch (Exception ex)
             {
-                if (op == 1)
-                {
-                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Campo", "PRODUCTO"));
-                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("BuscarProductos", par, true);
-                        dgvProductos.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
-                        dgvProductos.DataSource = tb;
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else if (op == 2)
-                {
-                    if (txtbuscarproducto.TextLength != 0 || cmbitems.SelectedIndex == -1)
-                    {
-                        tb.Clear();
-                        par.Clear();
-                        par.Add(new SqlParameter("@Campo", "IDPRODUCTO"));
-                        par.Add(new SqlParameter("@Buscar", txtbuscarproducto.Text.Trim()));
-                        tb = OAD.EscalarProcAlmTabla("BuscarProductos", par, true);
-                        dgvProductos.DataSource = tb;
-                        if (tb.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
-                        dgvProductos.DataSource = tb;
-                        MessageBox.Show("Por favor ingregse al menos un carácter");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Seleccione al menos un campo");
-                }
+                MessageBox.Show(ex.Message);
+                throw;
             }
         }
         private void dgvProductos_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
