@@ -534,9 +534,7 @@
             this.txtbuscarCliente.Name = "txtbuscarCliente";
             this.txtbuscarCliente.Size = new System.Drawing.Size(646, 29);
             this.txtbuscarCliente.TabIndex = 25;
-            this.txtbuscarCliente.Enter += new System.EventHandler(this.txtbuscarproducto_Enter);
             this.txtbuscarCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbuscarCliente_KeyPress);
-            this.txtbuscarCliente.Leave += new System.EventHandler(this.txtbuscarproducto_Leave);
             // 
             // DgvClientes
             // 
@@ -605,7 +603,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ClienteVenta";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Añadir cliente para facturar";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
