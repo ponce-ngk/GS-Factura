@@ -384,7 +384,8 @@ namespace GS_Factura
                     txtcancelado.Enabled = true;
                     dtgVenta.Enabled = false;
                     btnañadirVenta.Enabled = false;
-                    btnConfirmarVenta.Text = "  Cancelar Proceso de Pago";
+                    btnConfirmarVenta.Text = "    Cancelar Proceso de Pago";
+                    btnConfirmarVenta.Font = new Font(btnConfirmarVenta.Font.FontFamily, 20f);
                     btnVender.Enabled = true;
                     btnvalidarCliente.Enabled = false;
                     btnConfirmarVenta.BackColor = Color.Red;
