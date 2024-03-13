@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -228,6 +229,7 @@ namespace GS_Factura
 
         private void dtgFactura_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            int index = e.RowIndex;
             if (e.RowIndex >= 0 && e.ColumnIndex == dtgFactura.Columns["VerFactura"].Index)
             {
                 try
@@ -267,6 +269,7 @@ namespace GS_Factura
                 {
                     try
                     {
+
                         int idFactura = Convert.ToInt32(dtgFactura.Rows[e.RowIndex].Cells["IDFACTURA"].Value);
 
                         // Llamada al método para eliminar la factura
@@ -289,7 +292,7 @@ namespace GS_Factura
                         //}
 
                         // Recargar los datos en el DataGridView u otras acciones según sea necesario
-                        CargarDatosFacturas();
+                        dtgFactura.Rows.RemoveAt(index);
                     }
                     catch (Exception ex)
                     {
@@ -310,12 +313,14 @@ namespace GS_Factura
 
                     if (resultado == DialogResult.Yes)
                     {
+                        //obtener posicion del data
+                        
                         // Abrir el formulario de edición de factura con el ID de la factura
                         GS_EditarFactura editarForm = new GS_EditarFactura(idFactura);
                         editarForm.ShowDialog();
 
                         // Recargar los datos en el DataGridView u otras acciones según sea necesario
-                        CargarDatosFacturas();
+                        dtgFactura.Rows.RemoveAt(index);
                     }
                 }
                 catch (Exception ex)
@@ -325,19 +330,7 @@ namespace GS_Factura
             }
         }
 
-        private void CargarDatosFacturas()
-        {
-            DataTable resultados;
-            try
-            {
-                resultados = AccesoDatos.BuscarFacturas(null, null);
-                dtgFactura.DataSource = resultados;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
 
         private void cmbitems_SelectedIndexChanged(object sender, EventArgs e)
         {
