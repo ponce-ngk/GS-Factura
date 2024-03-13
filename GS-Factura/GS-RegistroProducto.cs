@@ -439,7 +439,6 @@ namespace GS_Factura
                 }
             }
         }
-
         private void dgvProductos_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             //Asignacion de datos de la BD al DataGrid

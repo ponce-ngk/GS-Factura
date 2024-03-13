@@ -41,7 +41,8 @@ namespace GS_Factura
         {
             if (dataGridView.Rows.Count == 0)
             {
-                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "No hay datos para exportar.", Properties.Resources.Warning);
+                //MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             // Crear una instancia de Excel
@@ -215,7 +216,8 @@ namespace GS_Factura
                 workbook.SaveAs(fileName);
 
                 // Mostrar mensaje de éxito
-                MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Datos exportados correctamente a Excel.", Properties.Resources.Success);
+                //MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

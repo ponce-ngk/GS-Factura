@@ -53,7 +53,6 @@ namespace GS_Factura
             btnEditarCliente.Visible = true;
             btnEliminarCliente.Visible = true;
         }
-
         private void btnGuardarDueño_Click(object sender, EventArgs e)
         {            
             // Se valida si hay campos vacíos antes de continuar

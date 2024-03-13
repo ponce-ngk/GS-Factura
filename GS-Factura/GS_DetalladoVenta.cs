@@ -58,7 +58,8 @@ namespace GS_Factura
                 workbook.SaveAs(fileName);
 
                 // Mostrar mensaje de éxito
-                MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Datos exportados correctamente a Excel.", Properties.Resources.Success);
+                //MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -87,7 +88,8 @@ namespace GS_Factura
             {
                 if (dataGridView.Rows.Count == 0)
                 {
-                    MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "No hay datos para exportar.", Properties.Resources.Warning);
+                    //MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 // Crear una instancia de Excel
@@ -168,7 +170,6 @@ namespace GS_Factura
         {
             ExportarPDF();
         }
-
         private void cbxNombre_CheckedChanged(object sender, EventArgs e)
         {
             // Verificar si el CheckBox está marcado
@@ -191,7 +192,6 @@ namespace GS_Factura
                 cmbitemsClientes.SelectedIndex = -1;
             }
         }
-
         private void cbxProducto_CheckedChanged(object sender, EventArgs e)
         {
             // Verificar si el CheckBox está marcado
@@ -214,7 +214,6 @@ namespace GS_Factura
                 cmbitemsProductos.SelectedIndex = -1;
             }
         }
-
         private void cmbitemsClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             opClientes = cmbitemsClientes.SelectedIndex;
@@ -228,7 +227,6 @@ namespace GS_Factura
                     break;
             }
         }
-
         private void cmbitemsProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
             opProductos = cmbitemsProductos.SelectedIndex;
@@ -242,7 +240,6 @@ namespace GS_Factura
                     break;
             }
         }
-
         private void txtCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Validacion de que sea solo letras y espacio 
@@ -771,14 +768,13 @@ namespace GS_Factura
                 //MessageBox.Show("No se Permite el ingreso de  caracteres especiales");
             }
         }
-
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             tb.Clear();
             par.Clear();
             par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
             par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
-            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechas ", par, true);
+            tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechas", par, true);
             dgvDetalladoVenta.DataSource = tb;
             if (tb.Rows.Count == 0)
             {
@@ -786,7 +782,6 @@ namespace GS_Factura
                 //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnBuscarItems_Click(object sender, EventArgs e)
         {
             //CheckBox que indica que va a buscar solo por el lado del cliente
@@ -1034,7 +1029,6 @@ namespace GS_Factura
                 }
             }
         }
-
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -1049,12 +1043,12 @@ namespace GS_Factura
                 throw;
             }
         }
-
         private void ExportarPDF()
         {
             if (dgvDetalladoVenta.Rows.Count == 0)
             {
-                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "No hay datos para exportar.", Properties.Resources.Warning);
+                //MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             BaseFont fuente = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1250, true);
@@ -1107,7 +1101,8 @@ namespace GS_Factura
 
                     // Agregar la tabla al documento
                     doc.Add(table);
-                    MessageBox.Show("Datos exportados correctamente a PDF.");
+                    AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Datos exportados correctamente a PDF.", Properties.Resources.Success);
+                    //MessageBox.Show("Datos exportados correctamente a PDF.");
                 }
             }
             catch (Exception ex)
