@@ -106,16 +106,17 @@ namespace GS_Factura
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
+
         private void BtnLimpiarDatos_Click(object sender, EventArgs e)
         {
             Limpiar();
             BloqueoControles();
             dtgIva.CurrentCell = null;
         }
+
         public void BloqueoControles()
         {
             btnActualizarIva.Enabled = false;
@@ -123,8 +124,8 @@ namespace GS_Factura
             lblTextoIva.Visible = false;
             lblIdIva.Visible = false;
             btnGuardarIva.Enabled = true;
-
         }
+
         void Limpiar()
         {
             txtIva.Text = "0";
@@ -134,8 +135,8 @@ namespace GS_Factura
                 tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
                 dtgIva.DataSource = tb;
             }
-
         }
+
         private void BtnActualizarIva_Click(object sender, EventArgs e)
         {
             try
@@ -193,6 +194,7 @@ namespace GS_Factura
                 throw;
             }
         }
+
         private void BtnEliminarIva_Click(object sender, EventArgs e)
         {
             try
@@ -224,6 +226,7 @@ namespace GS_Factura
                 throw;
             }
         }
+
         private void TxtIva_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != ',' && e.KeyChar != ' ')
@@ -234,7 +237,7 @@ namespace GS_Factura
             }
             else if (e.KeyChar == ',')
             {
-                e.KeyChar = '.'; // Reemplazar la coma por un punto
+                e.KeyChar = '.';
             }
             else if (char.IsWhiteSpace(e.KeyChar))
             {
@@ -249,6 +252,7 @@ namespace GS_Factura
                 e.Handled = true;
             }
         }
+
         private void TxtIva_Enter(object sender, EventArgs e)
         {
             try
@@ -265,6 +269,7 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void TxtIva_Leave(object sender, EventArgs e)
         {
             try
@@ -281,14 +286,15 @@ namespace GS_Factura
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void GS_Iva_Load(object sender, EventArgs e)
         {
             dtpFechaInicio.Value = DateTime.Now;
             dtpSearchFechaInicio.Value = DateTime.Now;
             dtpSearchFechaFinal.Value = DateTime.Now;
             dtpFechaFinal.Value = DateTime.Now;
-
         }
+
         public void BloqueoClickDgv()
         {
             btnGuardarIva.Enabled = false;
@@ -297,6 +303,7 @@ namespace GS_Factura
             lblTextoIva.Visible = true;
             lblIdIva.Visible = true;
         }
+
         private void Btn_BuscarIva_Click(object sender, EventArgs e)
         {
             try
@@ -327,7 +334,6 @@ namespace GS_Factura
                         AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "IVA no encontrado.", Properties.Resources.Error);
                         //MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    //dtgIva.DataSource = AccesoDatos.LlenarTablaparaBuscar("exec sp_ObtenerIVAEntreFecha'" + dtpSearchFechaInicio.Value + "', '" + dtpSearchFechaFinal.Value + "'");
                 }
             }
             catch (Exception)
@@ -335,105 +341,121 @@ namespace GS_Factura
                 throw;
             }
         }
+
         private void cmbitemsIva_SelectedIndexChanged(object sender, EventArgs e)
         {
-            op = cmbitemsIva.SelectedIndex;
-            switch (op)
+            try
             {
-                case 0:
-                    txtbuscarIva.Text = "";
-                    txtbuscarIva.Enabled = false;
-                    tb.Clear();
-                    tb = OAD.EscalarProcAlmTablaSinPar("sp_FullObtenerIVA", true);
-                    dtgIva.DataSource = tb;
-                    if (txtbuscarIva.TextLength > 0)
-                    {
-                        tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
-                        dtgIva.DataSource = tb;
-                        AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
-                        //MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        cmbitemsIva.SelectedIndex = -1;
-                    }
-                    break;
-                case 1:
-                    txtbuscarIva.Enabled = true;
-                    op = 1;
-                    tb.Clear();
-                    break;
-                case 2:
-                    txtbuscarIva.Enabled = true;
-                    op = 2;
-                    tb.Clear();
-                    break;
-            }
-        }
-        private void txtbuscarIva_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
-            {
-                if (txtbuscarIva.Text != null)
+                op = cmbitemsIva.SelectedIndex;
+                switch (op)
                 {
-                    if (op == 1)
-                    {
-                        if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Campo", "ID_IVA"));
-                            par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
-                            dtgIva.DataSource = tb;
-                            if (tb.Rows.Count == 0)
-                            {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "IVA no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
+                    case 0:
+                        txtbuscarIva.Text = "";
+                        txtbuscarIva.Enabled = false;
+                        tb.Clear();
+                        tb = OAD.EscalarProcAlmTablaSinPar("sp_FullObtenerIVA", true);
+                        dtgIva.DataSource = tb;
+                        if (txtbuscarIva.TextLength > 0)
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
                             dtgIva.DataSource = tb;
-                            AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Por favor ingregse al menos un carácter.", Properties.Resources.Warning);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
+                            //MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            cmbitemsIva.SelectedIndex = -1;
                         }
-                    }
-                    else if (op == 2)
-                    {
-                        if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
-                        {
-                            e.Handled = true;
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Campo", "ValorIVA"));
-                            par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
-                            dtgIva.DataSource = tb;
-                            if (tb.Rows.Count == 0)
-                            {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "IVA no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio ", true);
-                            dtgIva.DataSource = tb;
-                            AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Por favor ingregse al menos un carácter.", Properties.Resources.Warning);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
-                }
-                else
-                {
-                    AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Seleccione al menos un campo.", Properties.Resources.Warning);
-                    //MessageBox.Show("Seleccione al menos un campo");
+                        break;
+                    case 1:
+                        txtbuscarIva.Enabled = true;
+                        op = 1;
+                        tb.Clear();
+                        break;
+                    case 2:
+                        txtbuscarIva.Enabled = true;
+                        op = 2;
+                        tb.Clear();
+                        break;
                 }
             }
-            else if (op == null && txtbuscarIva.Text == null)
+            catch (Exception ex)
             {
-                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Por favor ingregse al menos un carácter.", Properties.Resources.Warning);
-                //MessageBox.Show("Por favor ingregse un carácter");
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtbuscarIva_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!(char.IsLetter(e.KeyChar) || e.KeyChar == ' ' || char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+                {
+                    if (txtbuscarIva.Text != null)
+                    {
+                        if (op == 1)
+                        {
+                            if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "ID_IVA"));
+                                par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
+                                dtgIva.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "IVA no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("IVA no encontrado. \n\nSe sugiere al Usuario verificar el dato del IVA e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio", true);
+                                dtgIva.DataSource = tb;
+                                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Por favor ingregse al menos un carácter.", Properties.Resources.Warning);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                        else if (op == 2)
+                        {
+                            if (txtbuscarIva.TextLength != 0 || cmbitemsIva.SelectedIndex == -1)
+                            {
+                                e.Handled = true;
+                                tb.Clear();
+                                par.Clear();
+                                par.Add(new SqlParameter("@Campo", "ValorIVA"));
+                                par.Add(new SqlParameter("@Buscar", txtbuscarIva.Text.Trim()));
+                                tb = OAD.EscalarProcAlmTabla("sp_BuscarIVA ", par, true);
+                                dtgIva.DataSource = tb;
+                                if (tb.Rows.Count == 0)
+                                {
+                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "IVA no encontrado.", Properties.Resources.Error);
+                                    //MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                tb = OAD.EscalarProcAlmTablaSinPar("sp_IVAvacio ", true);
+                                dtgIva.DataSource = tb;
+                                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Por favor ingregse al menos un carácter.", Properties.Resources.Warning);
+                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Seleccione al menos un campo.", Properties.Resources.Warning);
+                        //MessageBox.Show("Seleccione al menos un campo");
+                    }
+                }
+                else if (op == null && txtbuscarIva.Text == null)
+                {
+                    AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Por favor ingregse al menos un carácter.", Properties.Resources.Warning);
+                    //MessageBox.Show("Por favor ingregse un carácter");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void dtgIva_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -461,4 +483,3 @@ namespace GS_Factura
         }
     }
 }
-

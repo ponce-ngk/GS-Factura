@@ -71,7 +71,7 @@
             this.tableLayoutPanel3.Controls.Add(this.dtgventaproducto, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.panel5, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(12, 66);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.80916F));
@@ -136,7 +136,6 @@
             this.dtgventaproducto.Size = new System.Drawing.Size(742, 160);
             this.dtgventaproducto.TabIndex = 19;
             this.dtgventaproducto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgventaProducto_CellDoubleClick);
-            this.dtgventaproducto.DoubleClick += new System.EventHandler(this.DtgventaProducto_DoubleClick);
             // 
             // panel5
             // 
@@ -168,10 +167,11 @@
             this.cmbitems.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.cmbitems.FormattingEnabled = true;
             this.cmbitems.Items.AddRange(new object[] {
+            "Mostrar todo",
             "Nombre del Producto",
             "ID del Producto"});
             this.cmbitems.Location = new System.Drawing.Point(596, 11);
-            this.cmbitems.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbitems.Margin = new System.Windows.Forms.Padding(2);
             this.cmbitems.MaxDropDownItems = 4;
             this.cmbitems.Name = "cmbitems";
             this.cmbitems.Size = new System.Drawing.Size(140, 29);
@@ -207,13 +207,11 @@
             this.txtbuscarproducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbuscarproducto.ForeColor = System.Drawing.Color.Gray;
             this.txtbuscarproducto.Location = new System.Drawing.Point(10, 11);
-            this.txtbuscarproducto.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.txtbuscarproducto.Margin = new System.Windows.Forms.Padding(10);
             this.txtbuscarproducto.Name = "txtbuscarproducto";
             this.txtbuscarproducto.Size = new System.Drawing.Size(547, 29);
             this.txtbuscarproducto.TabIndex = 25;
-            this.txtbuscarproducto.Enter += new System.EventHandler(this.TxtbuscarProducto_Enter);
             this.txtbuscarproducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtbuscarProducto_KeyPress);
-            this.txtbuscarproducto.Leave += new System.EventHandler(this.TxtbuscarProducto_Leave);
             // 
             // panel2
             // 
@@ -245,13 +243,12 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProductoVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Añadir porudcto a la factura";
-            this.Load += new System.EventHandler(this.ProductoVenta_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgventaproducto)).EndInit();
