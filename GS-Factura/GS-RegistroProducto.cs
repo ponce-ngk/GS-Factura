@@ -134,13 +134,13 @@ namespace GS_Factura
                     sql = OAD.EscalarProcAlmString("sp_Insertar_PRODUCTO", par, true);
                     if (sql != null)
                     {
-                        AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Los datos de Guardaron correctamente.", Properties.Resources.Success);
-                        //MessageBox.Show("Los datos de Guardaron correctamente", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Los datos de Guardaron correctamente.", Properties.Resources.Success);
+                        MessageBox.Show("Los datos de Guardaron correctamente", "Datos Guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "No se pudieron Guardar.", Properties.Resources.Error);
-                        //MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "No se pudieron Guardar.", Properties.Resources.Error);
+                        MessageBox.Show("No se pudieron Guardar", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     dgvProductos.CurrentCell = null;
                     BloqueoControles();
@@ -150,8 +150,8 @@ namespace GS_Factura
             //caso contrario advierte que estan vacios los txt
             else
             {
-                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Llenar Todos los Campos Requeridos.", Properties.Resources.Warning);
-                //MessageBox.Show("Debe de llenar todos los Campos Requeridos para Agregar un Nuevo Producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Llenar Todos los Campos Requeridos.", Properties.Resources.Warning);
+                MessageBox.Show("Debe de llenar todos los Campos Requeridos para Agregar un Nuevo Producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void BtnEliminarProducto_Click(object sender, EventArgs e)
@@ -171,13 +171,13 @@ namespace GS_Factura
                     sql = OAD.EscalarProcAlmString("sp_eliminar_PRODUCTO", par, true);
                     if (sql != null)
                     {
-                        AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Los datos de Eliminaron correctamente.", Properties.Resources.Success);
-                        //MessageBox.Show("Los datos de Eliminaron correctamente", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ///AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Los datos de Eliminaron correctamente.", Properties.Resources.Success);
+                        MessageBox.Show("Los datos de Eliminaron correctamente", "Datos Eliminados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "No se pudo Eliminar correctamente.", Properties.Resources.Error);
-                        //MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "No se pudo Eliminar correctamente.", Properties.Resources.Error);
+                        MessageBox.Show("No se pudieron Eliminar", "Error al Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     dgvProductos.CurrentCell = null;
                     BloqueoControles();
@@ -187,8 +187,8 @@ namespace GS_Factura
             //caso contrario advierte que estan vacios los txt
             else
             {
-                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Seleccionar un producto para Eliminar.", Properties.Resources.Warning);
-                //MessageBox.Show("Debe de seleccionar un producto para ser Eliminando", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Seleccionar un producto para Eliminar.", Properties.Resources.Warning);
+                MessageBox.Show("Debe de seleccionar un producto para ser Eliminando", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void BtnActualizarProducto_Click(object sender, EventArgs e)
@@ -211,13 +211,13 @@ namespace GS_Factura
                     sql = OAD.EscalarProcAlmString("sp_actualizar_PRODUCTO", par, true);
                     if (sql != null)
                     {
-                        AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Los datos de editaron correctamente.", Properties.Resources.Success);
-                        //MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Los datos de editaron correctamente.", Properties.Resources.Success);
+                        MessageBox.Show("Los datos de editaron correctamente", "Datos Editar", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "No se pudo Editar correctamente.", Properties.Resources.Error);
-                        //MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "No se pudo Editar correctamente.", Properties.Resources.Error);
+                        MessageBox.Show("No se pudieron Editar", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     dgvProductos.CurrentCell = null;
                     BloqueoControles();
@@ -227,8 +227,8 @@ namespace GS_Factura
             //caso contrario advierte que estan vacios los txt
             else
             {
-                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Seleccionar un producto para Actualizar.", Properties.Resources.Warning);
-                //MessageBox.Show("Debe de seleccionar un producto para ser Actualizado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "Seleccionar un producto para Actualizar.", Properties.Resources.Warning);
+                MessageBox.Show("Debe de seleccionar un producto para ser Actualizado", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //Funcion para Limpiar todos los campos en caso de no querrer lo escrito.
@@ -281,8 +281,8 @@ namespace GS_Factura
                     {
                         tb.Clear();
                         tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio", true);
-                        AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
-                        //MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Debe tener el campo de busqueda vacio.", Properties.Resources.Error);
+                        MessageBox.Show("Debe tener el campo de busqueda vacio ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         cmbitems.SelectedIndex = -1;
                     }
                     break;
@@ -330,16 +330,16 @@ namespace GS_Factura
                             dgvProductos.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
                             dgvProductos.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else if (op == 2)
@@ -355,28 +355,28 @@ namespace GS_Factura
                             dgvProductos.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
                             dgvProductos.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else
                     {
-                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
-                        //MessageBox.Show("Seleccione al menos un campo");
+                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                        MessageBox.Show("Seleccione al menos un campo");
                     }
                 }
                 else if (op == null && txtbuscarproducto.Text == null)
                 {
-                    AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
-                    //MessageBox.Show("Por favor ingregse un carácter");
+                    //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                    MessageBox.Show("Por favor ingregse un carácter");
                 }
             }
         }
@@ -396,16 +396,16 @@ namespace GS_Factura
                         dgvProductos.DataSource = tb;
                         if (tb.Rows.Count == 0)
                         {
-                            AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
-                            //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
+                            MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
                         tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
                         dgvProductos.DataSource = tb;
-                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
-                        //MessageBox.Show("Por favor ingregse al menos un carácter");
+                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
                 else if (op == 2)
@@ -420,22 +420,22 @@ namespace GS_Factura
                         dgvProductos.DataSource = tb;
                         if (tb.Rows.Count == 0)
                         {
-                            AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
-                            //MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Producto no encontrado.", Properties.Resources.Error);
+                            MessageBox.Show("Producto no encontrado. \n\nSe sugiere al Usuario verificar el dato del Producto e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
                         tb = OAD.EscalarProcAlmTablaSinPar("LeerProductoVacio ", true);
                         dgvProductos.DataSource = tb;
-                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
-                        //MessageBox.Show("Por favor ingregse al menos un carácter");
+                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingregse al menos un carácter.", Properties.Resources.Information);
+                        MessageBox.Show("Por favor ingregse al menos un carácter");
                     }
                 }
                 else
                 {
-                    AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
-                    //MessageBox.Show("Seleccione al menos un campo");
+                    //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                    MessageBox.Show("Seleccione al menos un campo");
                 }
             }
         }

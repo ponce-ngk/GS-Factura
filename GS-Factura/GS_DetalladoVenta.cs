@@ -58,8 +58,8 @@ namespace GS_Factura
                 workbook.SaveAs(fileName);
 
                 // Mostrar mensaje de éxito
-                AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Datos exportados correctamente a Excel.", Properties.Resources.Success);
-                //MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Datos exportados correctamente a Excel.", Properties.Resources.Success);
+                MessageBox.Show("El archivo Excel se ha creado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -88,8 +88,8 @@ namespace GS_Factura
             {
                 if (dataGridView.Rows.Count == 0)
                 {
-                    AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "No hay datos para exportar.", Properties.Resources.Warning);
-                    //MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "No hay datos para exportar.", Properties.Resources.Warning);
+                    MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 // Crear una instancia de Excel
@@ -266,15 +266,15 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
@@ -293,16 +293,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                     }
@@ -327,16 +327,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                         else if (opProductos == 1)
@@ -354,16 +354,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                     }
@@ -391,15 +391,15 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
@@ -420,15 +420,15 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
@@ -449,16 +449,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                         else if (opProductos == 1 && opClientes == 1)
@@ -478,30 +478,30 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                     }
                     else
                     {
-                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
-                        //MessageBox.Show("Seleccione al menos un campo");
+                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                        MessageBox.Show("Seleccione al menos un campo");
                     }
                 }
             }
             else if (opClientes == null && txtCliente.Text == null)
             {
-                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "No se admiten caracteres especiales.", Properties.Resources.Information);
-                //MessageBox.Show("No se Permite el ingreso de  caracteres especiales");
+                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "No se admiten caracteres especiales.", Properties.Resources.Information);
+                MessageBox.Show("No se Permite el ingreso de  caracteres especiales");
             }
         }
         private void txtProducto_KeyPress(object sender, KeyPressEventArgs e)
@@ -530,16 +530,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                         else if (opClientes == 1)
@@ -557,15 +557,15 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
                                 MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
@@ -591,16 +591,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                         else if (opProductos == 1)
@@ -618,16 +618,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                     }
@@ -655,16 +655,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                         else if (opProductos == 0 && opClientes == 1)
@@ -684,16 +684,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                         else if (opProductos == 1 && opClientes == 0)
@@ -713,16 +713,16 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                         else if (opProductos == 1 && opClientes == 1)
@@ -742,30 +742,30 @@ namespace GS_Factura
                                 dgvDetalladoVenta.DataSource = tb;
                                 if (tb.Rows.Count == 0)
                                 {
-                                    AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                    //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                                 dgvDetalladoVenta.DataSource = tb;
-                                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                                //MessageBox.Show("Por favor ingregse al menos un carácter");
+                                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                                MessageBox.Show("Por favor ingregse al menos un carácter");
                             }
                         }
                     }
                     else
                     {
-                        AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
-                        //MessageBox.Show("Seleccione al menos un campo");
+                        //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                        MessageBox.Show("Seleccione al menos un campo");
                     }
                 }
             }
             else if (opClientes == null && txtCliente.Text == null)
             {
-                AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "No se admiten caracteres especiales.", Properties.Resources.Information);
-                //MessageBox.Show("No se Permite el ingreso de  caracteres especiales");
+                //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "No se admiten caracteres especiales.", Properties.Resources.Information);
+                MessageBox.Show("No se Permite el ingreso de  caracteres especiales");
             }
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -778,8 +778,8 @@ namespace GS_Factura
             dgvDetalladoVenta.DataSource = tb;
             if (tb.Rows.Count == 0)
             {
-                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnBuscarItems_Click(object sender, EventArgs e)
@@ -804,16 +804,16 @@ namespace GS_Factura
                             dgvDetalladoVenta.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
                             dgvDetalladoVenta.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else if (opClientes == 1)
@@ -830,15 +830,15 @@ namespace GS_Factura
                             dgvDetalladoVenta.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
                             dgvDetalladoVenta.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
@@ -863,16 +863,16 @@ namespace GS_Factura
                             dgvDetalladoVenta.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("No se encontro reporte. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                             dgvDetalladoVenta.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else if (opProductos == 1)
@@ -889,16 +889,16 @@ namespace GS_Factura
                             dgvDetalladoVenta.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                             dgvDetalladoVenta.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                 }
@@ -925,16 +925,16 @@ namespace GS_Factura
                             dgvDetalladoVenta.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio ", true);
                             dgvDetalladoVenta.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else if (opProductos == 0 && opClientes == 1)
@@ -953,16 +953,16 @@ namespace GS_Factura
                             dgvDetalladoVenta.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                             dgvDetalladoVenta.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else if (opProductos == 1 && opClientes == 0)
@@ -981,16 +981,16 @@ namespace GS_Factura
                             dgvDetalladoVenta.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                             dgvDetalladoVenta.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                     else if (opProductos == 1 && opClientes == 1)
@@ -1009,23 +1009,23 @@ namespace GS_Factura
                             dgvDetalladoVenta.DataSource = tb;
                             if (tb.Rows.Count == 0)
                             {
-                                AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
-                                //MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //AlertlBoxArtan(Color.LightPink, Color.DarkRed, "Error", "Reporte no encontrado.", Properties.Resources.Error);
+                                MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
                             tb = OAD.EscalarProcAlmTablaSinPar("sp_DetalladoVentasVacio", true);
                             dgvDetalladoVenta.DataSource = tb;
-                            AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
-                            //MessageBox.Show("Por favor ingregse al menos un carácter");
+                            //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Por favor ingrese al menos un carácter.", Properties.Resources.Information);
+                            MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
                 }
                 else
                 {
-                    AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
-                    //MessageBox.Show("Seleccione al menos un campo");
+                    //AlertlBoxArtan(Color.LightBlue, Color.DodgerBlue, "Información", "Seleccione al menos un campo.", Properties.Resources.Information);
+                    MessageBox.Show("Seleccione al menos un campo");
                 }
             }
         }
@@ -1047,8 +1047,8 @@ namespace GS_Factura
         {
             if (dgvDetalladoVenta.Rows.Count == 0)
             {
-                AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "No hay datos para exportar.", Properties.Resources.Warning);
-                //MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //AlertlBoxArtan(Color.LightGoldenrodYellow, Color.DarkGoldenrod, "Advertencia", "No hay datos para exportar.", Properties.Resources.Warning);
+                MessageBox.Show("No hay datos para exportar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             BaseFont fuente = BaseFont.CreateFont(BaseFont.TIMES_BOLD, BaseFont.CP1250, true);
@@ -1101,8 +1101,8 @@ namespace GS_Factura
 
                     // Agregar la tabla al documento
                     doc.Add(table);
-                    AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Datos exportados correctamente a PDF.", Properties.Resources.Success);
-                    //MessageBox.Show("Datos exportados correctamente a PDF.");
+                    //AlertlBoxArtan(Color.LightGray, Color.SeaGreen, "Éxito", "Datos exportados correctamente a PDF.", Properties.Resources.Success);
+                    MessageBox.Show("Datos exportados correctamente a PDF.");
                 }
             }
             catch (Exception ex)

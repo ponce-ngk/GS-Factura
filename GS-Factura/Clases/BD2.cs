@@ -103,6 +103,7 @@ namespace GS_Factura.Clases
             // readability and maintainability.
             Dispose(false);
         }
+        
         public void Desconectar()
         {
             if (this.conexion.State != ConnectionState.Closed)
