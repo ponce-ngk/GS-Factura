@@ -26,6 +26,7 @@ namespace GS_Factura
         public GS_Iva()
         {
             InitializeComponent();
+            
         }
         
         private void BtnGuardarIva_Click(object sender, EventArgs e)
@@ -117,10 +118,12 @@ namespace GS_Factura
             lblTextoIva.Visible = false;
             lblIdIva.Visible = false;
             btnGuardarIva.Enabled = true;
+            btnInhabilitarIva.Enabled = false;
         }
 
         void Limpiar()
         {
+            txtbuscarIva.Text ="";
             txtIva.Text = "0";
             lblIdIva.Text = "0";
             cmbitemsIva.SelectedIndex = -1;
@@ -294,6 +297,7 @@ namespace GS_Factura
             btnEliminarIva.Enabled = true;
             lblTextoIva.Visible = true;
             lblIdIva.Visible = true;
+            btnInhabilitarIva.Enabled = true;
         }
 
         private void Btn_BuscarIva_Click(object sender, EventArgs e)
