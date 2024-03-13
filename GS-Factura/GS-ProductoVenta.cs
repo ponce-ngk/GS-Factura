@@ -121,7 +121,7 @@ namespace GS_Factura
 
             try
             {
-                if (txtbuscarproducto.TextLength == null)
+                if (txtbuscarproducto.TextLength != null)
                 {
                     if (op == 0 || op == 1 || op == 2) // No necesitas tres bloques idénticos, un solo bloque es suficiente para estas tres condiciones
                     {

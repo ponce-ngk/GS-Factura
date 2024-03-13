@@ -95,6 +95,7 @@ namespace GS_Factura
             foreach (Form form in Application.OpenForms)
             {
                 form.Enabled = false;
+                form.TopMost = false;
             }
         }
 
@@ -156,16 +157,20 @@ namespace GS_Factura
         {
             try
             {
-                if (this.dtgVenta.Columns[e.ColumnIndex].Name == "Eliminarfila")
-                {
-                    int index = e.RowIndex;
-                    if (index >= 0)
-                    {
-                        // Remueve la fila seleccionada de la DataGridView.
-                        dtgVenta.Rows.RemoveAt(index);
-                        this.GestionarFuncionalidadDtgVenta();
-                        this.VerificarFilasEnDataGridView();
+                DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres eliminar los datos de los campos de texto?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                if (resultado == DialogResult.Yes)
+                {
+                    if (this.dtgVenta.Columns[e.ColumnIndex].Name == "Eliminarfila")
+                    {
+                        int index = e.RowIndex;
+                        if (index >= 0)
+                        {
+                            // Remueve la fila seleccionada de la DataGridView.
+                            dtgVenta.Rows.RemoveAt(index);
+                            this.GestionarFuncionalidadDtgVenta();
+                            this.VerificarFilasEnDataGridView();
+                        }
                     }
                 }
             }

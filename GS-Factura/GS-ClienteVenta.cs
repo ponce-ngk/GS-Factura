@@ -174,6 +174,9 @@ namespace GS_Factura
                     case 3:
                         op = 3;
                         break;
+                    case 4:
+                        op = 4;
+                        break;
                 }
             }
             catch (Exception ex)

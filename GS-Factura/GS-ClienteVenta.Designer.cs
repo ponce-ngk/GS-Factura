@@ -483,6 +483,7 @@
             this.cmbitems.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
             this.cmbitems.FormattingEnabled = true;
             this.cmbitems.Items.AddRange(new object[] {
+            "Mostrar Todo",
             "ID del Cliente",
             "Cédula",
             "Nombre",
