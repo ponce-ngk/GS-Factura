@@ -13,6 +13,7 @@ using GS_Factura.Clases;
 using System.Xml.Linq;
 using FontAwesome.Sharp;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
 
 
 namespace GS_Factura
@@ -96,6 +97,7 @@ namespace GS_Factura
         private void BtnañadirVenta_Click(object sender, EventArgs e)
         {
             try
+            
             {
 
                 ProductoVenta formPRODUCT = new ProductoVenta();
@@ -604,24 +606,17 @@ namespace GS_Factura
                     cantidadStr = cantidadStr.Replace(",", ".");
                     dtgVenta.CurrentRow.Cells[3].Value = cantidadStr;
 
-
                     decimal stock;
                     int id_product = int.Parse(dtgVenta.CurrentRow.Cells[1].Value.ToString());
-                    //int id_fract = int.Parse(dtg_v_factura.CurrentRow.Cells[1].Value.ToString());  
-                    using (SqlCommand montrarprodC = new SqlCommand("SELECT STOCK FROM PRODUCTO WHERE IDPRODUCTO = @id_product", AccesoDatos.AbrirConexion()))
+                    stock = bD2.RetornarStock(id_product);
+                    if (decimal.Parse(dtgVenta.CurrentRow.Cells[3].Value.ToString().Replace(".", ",")) > stock)
                     {
-                        montrarprodC.Parameters.AddWithValue("@id_product", id_product);
-
-                        stock = Convert.ToDecimal(montrarprodC.ExecuteScalar());
-                        if (decimal.Parse(dtgVenta.CurrentRow.Cells[3].Value.ToString().Replace(".", ",")) > stock)
-                        {
-                            dtgVenta.CurrentRow.Cells[3].Value = 0;
-                            MessageBox.Show("Producto no dispone de ese stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else
-                        {
-                            this.CalcularCantidadData();
-                        }
+                        dtgVenta.CurrentRow.Cells[3].Value = 0;
+                        MessageBox.Show("Producto no dispone de ese stock", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        this.CalcularCantidadData();
                     }
                 }
             }

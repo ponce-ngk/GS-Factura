@@ -50,6 +50,8 @@
             this.panel11 = new System.Windows.Forms.Panel();
             this.cmbitems = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new FontAwesome.Sharp.IconButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbitems = new System.Windows.Forms.ComboBox();
             this.txtBuscaFacturaCliente = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -283,8 +285,9 @@
             // 
             // panel11
             // 
-            this.panel11.Controls.Add(this.cmbitems);
             this.panel11.Controls.Add(this.btnBuscar);
+            this.panel11.Controls.Add(this.label2);
+            this.panel11.Controls.Add(this.cmbitems);
             this.panel11.Controls.Add(this.txtBuscaFacturaCliente);
             this.panel11.Controls.Add(this.label9);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -314,12 +317,11 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.btnBuscar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
             this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
@@ -327,25 +329,59 @@
             this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBuscar.IconSize = 20;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(306, 22);
+            this.btnBuscar.Location = new System.Drawing.Point(5, 16);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(0);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(73, 22);
+            this.btnBuscar.Size = new System.Drawing.Size(97, 27);
             this.btnBuscar.TabIndex = 40;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(62, 2);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(15, 17);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "*";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cmbitems
+            // 
+            this.cmbitems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbitems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbitems.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.cmbitems.FormattingEnabled = true;
+            this.cmbitems.Items.AddRange(new object[] {
+            "Mostrar Todas",
+            "Cedula del Cliente",
+            "Numero de Factura"});
+            this.cmbitems.Location = new System.Drawing.Point(259, 17);
+            this.cmbitems.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbitems.MaxDropDownItems = 4;
+            this.cmbitems.Name = "cmbitems";
+            this.cmbitems.Size = new System.Drawing.Size(123, 29);
+            this.cmbitems.TabIndex = 41;
+            this.cmbitems.SelectedIndexChanged += new System.EventHandler(this.cmbitems_SelectedIndexChanged);
+            // 
             // txtBuscaFacturaCliente
             // 
             this.txtBuscaFacturaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBuscaFacturaCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBuscaFacturaCliente.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
             this.txtBuscaFacturaCliente.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.txtBuscaFacturaCliente.Location = new System.Drawing.Point(9, 23);
+            this.txtBuscaFacturaCliente.Location = new System.Drawing.Point(12, 28);
+            this.txtBuscaFacturaCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBuscaFacturaCliente.Name = "txtBuscaFacturaCliente";
-            this.txtBuscaFacturaCliente.Size = new System.Drawing.Size(168, 29);
+            this.txtBuscaFacturaCliente.Size = new System.Drawing.Size(223, 34);
             this.txtBuscaFacturaCliente.TabIndex = 4;
             this.txtBuscaFacturaCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaFacturaCliente_KeyPress);
             // 
@@ -353,11 +389,12 @@
             // 
             this.label9.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(34, 2);
+            this.label9.Location = new System.Drawing.Point(45, 2);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(269, 22);
+            this.label9.Size = new System.Drawing.Size(359, 27);
             this.label9.TabIndex = 36;
-            this.label9.Text = "*Selecciona el tipo de factura a buscar";
+            this.label9.Text = "Selecciona el tipo de factura a buscar";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel6
@@ -435,5 +472,6 @@
         private FontAwesome.Sharp.IconButton btnBuscar;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cmbitems;
+        private System.Windows.Forms.Label label2;
     }
 }
