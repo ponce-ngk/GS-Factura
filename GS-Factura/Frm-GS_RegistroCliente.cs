@@ -297,28 +297,6 @@ namespace GS_Factura
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
-                    else if (op == 2)
-                    {
-                        if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
-                        {
-                            tb.Clear();
-                            par.Clear();
-                            par.Add(new SqlParameter("@Campo", "CEDULA"));
-                            par.Add(new SqlParameter("@Buscar", txt_Buscar.Text.Trim()));
-                            tb = OAD.EscalarProcAlmTabla("BuscarClientes ", par, true);
-                            dgvClientes.DataSource = tb;
-                            if (tb.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Cliente no encontrado. \n\nSe sugiere al Usuario verificar el dato del cliente e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            tb = OAD.EscalarProcAlmTablaSinPar("sp_Listado_Clientes ", true);
-                            dgvClientes.DataSource = tb;
-                            MessageBox.Show("Por favor ingregse al menos un carácter");
-                        }
-                    }
                     else if (op == 3)
                     {
                         if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
