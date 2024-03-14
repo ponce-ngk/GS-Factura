@@ -71,7 +71,7 @@ namespace GS_Factura
                 if (string.IsNullOrWhiteSpace(txtcedulacliente.Text) ||
                 string.IsNullOrWhiteSpace(txtnombrescliente.Text) ||
                 string.IsNullOrWhiteSpace(txtapellidoscliente.Text) ||
-                dtpFechaCliente.Value.Date == DateTime.Today)
+                dtpFechaCliente.Value.Date >= DateTime.Today)
                 {
                     MessageBox.Show("Por favor, Verifica que todos los campos esten correctos.", "Campos Incorrectos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
