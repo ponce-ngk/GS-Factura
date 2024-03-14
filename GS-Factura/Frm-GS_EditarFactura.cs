@@ -523,6 +523,53 @@ namespace GS_Factura
             }
 
         }
+
+        private void txtSearchCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+                {
+                    if (txtSearchCliente.Text != null)
+                    {
+                        e.Handled = true;
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Cedula", txtSearchCliente.Text.Trim()));
+                        tb = bD2.EscalarProcAlmTabla("BuscarClientePorCedula ", par, true);
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Cliente no encontrado. \n\nSe sugiere el registro del Cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            DataRow row = tb.Rows[0];
+                            lblcedulacliente.Text = row["CEDULA"].ToString();
+                            lblnombrecliente.Text = row["NOMBRE"].ToString();
+                            lblApellidocliente.Text = row["APELLIDOS"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor ingrese un carácter");
+                    }
+                }
+                else if (txtSearchCliente.Text == null)
+                {
+                    MessageBox.Show("Por favor ingrese un carácter");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+        }
+
+        private void txtSearchCliente_TextChanged(object sender, EventArgs e)
+        {
+            this.lblcontadorcedulaCliente.Text = txtSearchCliente.Text.Length.ToString();
+        }
     }
 
 }

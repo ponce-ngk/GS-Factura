@@ -59,8 +59,11 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.btncancelarventa = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtcancelado = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.txtcambioVenta = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblValorIva = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -90,6 +93,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btnAñadirCliente = new FontAwesome.Sharp.IconButton();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.txtSearchCliente = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblcontadorcedulaCliente = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -103,10 +107,6 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.panelFactura = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblValorIva = new System.Windows.Forms.Label();
-            this.txtcancelado = new System.Windows.Forms.TextBox();
-            this.txtSearchCliente = new System.Windows.Forms.TextBox();
             this.tblVentayFactura.SuspendLayout();
             this.panelFondo.SuspendLayout();
             this.tbLayoutProduct.SuspendLayout();
@@ -554,6 +554,23 @@
             this.panel3.Size = new System.Drawing.Size(226, 155);
             this.panel3.TabIndex = 0;
             // 
+            // txtcancelado
+            // 
+            this.txtcancelado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtcancelado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtcancelado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtcancelado.ForeColor = System.Drawing.Color.DimGray;
+            this.txtcancelado.Location = new System.Drawing.Point(87, 89);
+            this.txtcancelado.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtcancelado.MaxLength = 25;
+            this.txtcancelado.Name = "txtcancelado";
+            this.txtcancelado.Size = new System.Drawing.Size(129, 29);
+            this.txtcancelado.TabIndex = 44;
+            this.txtcancelado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtcancelado.TextChanged += new System.EventHandler(this.Txtcancelado_TextChanged);
+            this.txtcancelado.Enter += new System.EventHandler(this.Txtcancelado_Enter);
+            this.txtcancelado.Leave += new System.EventHandler(this.Txtcancelado_Leave);
+            // 
             // label29
             // 
             this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -581,6 +598,32 @@
             this.txtcambioVenta.TabIndex = 28;
             this.txtcambioVenta.Text = "00,00";
             this.txtcambioVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(65, 37);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(17, 14);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "%";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblValorIva
+            // 
+            this.lblValorIva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblValorIva.AutoSize = true;
+            this.lblValorIva.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValorIva.ForeColor = System.Drawing.Color.Black;
+            this.lblValorIva.Location = new System.Drawing.Point(29, 37);
+            this.lblValorIva.Name = "lblValorIva";
+            this.lblValorIva.Size = new System.Drawing.Size(39, 14);
+            this.lblValorIva.TabIndex = 34;
+            this.lblValorIva.Text = "12.00";
+            this.lblValorIva.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
@@ -978,6 +1021,22 @@
             this.panel18.Size = new System.Drawing.Size(187, 56);
             this.panel18.TabIndex = 0;
             // 
+            // txtSearchCliente
+            // 
+            this.txtSearchCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearchCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchCliente.ForeColor = System.Drawing.Color.DimGray;
+            this.txtSearchCliente.Location = new System.Drawing.Point(26, 23);
+            this.txtSearchCliente.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtSearchCliente.MaxLength = 10;
+            this.txtSearchCliente.Name = "txtSearchCliente";
+            this.txtSearchCliente.Size = new System.Drawing.Size(155, 29);
+            this.txtSearchCliente.TabIndex = 50;
+            this.txtSearchCliente.TextChanged += new System.EventHandler(this.txtSearchCliente_TextChanged);
+            this.txtSearchCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchCliente_KeyPress);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -1137,65 +1196,6 @@
             this.panelFactura.Name = "panelFactura";
             this.panelFactura.Size = new System.Drawing.Size(4, 584);
             this.panelFactura.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(65, 37);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(17, 14);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "%";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblValorIva
-            // 
-            this.lblValorIva.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblValorIva.AutoSize = true;
-            this.lblValorIva.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorIva.ForeColor = System.Drawing.Color.Black;
-            this.lblValorIva.Location = new System.Drawing.Point(29, 37);
-            this.lblValorIva.Name = "lblValorIva";
-            this.lblValorIva.Size = new System.Drawing.Size(39, 14);
-            this.lblValorIva.TabIndex = 34;
-            this.lblValorIva.Text = "12.00";
-            this.lblValorIva.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtcancelado
-            // 
-            this.txtcancelado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtcancelado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtcancelado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcancelado.ForeColor = System.Drawing.Color.DimGray;
-            this.txtcancelado.Location = new System.Drawing.Point(87, 89);
-            this.txtcancelado.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtcancelado.MaxLength = 25;
-            this.txtcancelado.Name = "txtcancelado";
-            this.txtcancelado.Size = new System.Drawing.Size(129, 29);
-            this.txtcancelado.TabIndex = 44;
-            this.txtcancelado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtcancelado.TextChanged += new System.EventHandler(this.Txtcancelado_TextChanged);
-            this.txtcancelado.Enter += new System.EventHandler(this.Txtcancelado_Enter);
-            this.txtcancelado.Leave += new System.EventHandler(this.Txtcancelado_Leave);
-            // 
-            // txtSearchCliente
-            // 
-            this.txtSearchCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearchCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearchCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchCliente.ForeColor = System.Drawing.Color.DimGray;
-            this.txtSearchCliente.Location = new System.Drawing.Point(26, 23);
-            this.txtSearchCliente.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtSearchCliente.MaxLength = 10;
-            this.txtSearchCliente.Name = "txtSearchCliente";
-            this.txtSearchCliente.Size = new System.Drawing.Size(155, 29);
-            this.txtSearchCliente.TabIndex = 50;
-            //this.txtSearchCliente.TextChanged += new System.EventHandler(this.txtSearchCliente_TextChanged);
-            //this.txtSearchCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchCliente_KeyPress);
             // 
             // GS_EditarFactura
             // 
