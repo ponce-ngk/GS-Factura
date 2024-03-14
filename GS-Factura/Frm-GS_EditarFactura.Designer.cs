@@ -1209,7 +1209,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GS_EditarFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "GS_EditarFactura";
+            this.Text = "Edicion de la Factura";
             this.Load += new System.EventHandler(this.GS_EditarFactura_Load);
             this.tblVentayFactura.ResumeLayout(false);
             this.panelFondo.ResumeLayout(false);
