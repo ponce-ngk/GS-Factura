@@ -254,7 +254,10 @@ namespace GS_Factura
                     // Crea un elemento XML para representar la factura de la venta.
                     if (!string.IsNullOrEmpty(txtcancelado.Text) && decimal.Parse(txtcancelado.Text.Replace(".", ",")) >= decimal.Parse(txtTotalVenta.Text.Replace(".",",")))
                     {
-                        DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                        DateTime fecha = DateTime.Now;
+
+                        lblFingresoVenta.Text = fecha.ToString("dd/MM/yyyy");
+                        //DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
                         bD2.XmlVenta(int.Parse(lblidcliente.Text), decimal.Parse(txtsubtotalventa.Text.Replace(".", ",")), decimal.Parse(lblValorIva.Text.Replace(".", ",")), decimal.Parse(txtivaVenta.Text.Replace(".", ",")), decimal.Parse(txtTotalVenta.Text.Replace(".", ",")), dtgVenta);
                         this.LimpiarDatosVenta();
                         this.Cargarnumerofactura();
@@ -660,6 +663,30 @@ namespace GS_Factura
             {
                 MessageBox.Show(ex.Message);
                 throw;
+            }
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            DateTime fecha = DateTime.Now;
+
+            lblFingresoVenta.Text = fecha.ToString("dd/MM/yyyy");
+            if (!string.IsNullOrEmpty(lblFingresoVenta.Text))
+            {
+                DateTime fechaIngreso;
+                if (DateTime.TryParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out fechaIngreso))
+                {
+                    // El formato de fecha es válido, ahora puedes utilizar fechaIngreso
+                    // Tu lógica aquí...
+                }
+                else
+                {
+                    MessageBox.Show("El formato de fecha ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("El campo de fecha está vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
