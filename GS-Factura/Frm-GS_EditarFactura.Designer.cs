@@ -1056,6 +1056,7 @@
             this.lblcontadorcedulaCliente.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblcontadorcedulaCliente.AutoSize = true;
             this.lblcontadorcedulaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblcontadorcedulaCliente.ForeColor = System.Drawing.Color.Transparent;
             this.lblcontadorcedulaCliente.Location = new System.Drawing.Point(148, 8);
             this.lblcontadorcedulaCliente.Name = "lblcontadorcedulaCliente";
             this.lblcontadorcedulaCliente.Size = new System.Drawing.Size(14, 13);
