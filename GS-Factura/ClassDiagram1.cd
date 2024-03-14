@@ -9,22 +9,9 @@
   </Class>
   <Class Name="GS_Factura.DataSetFactura" Collapsed="true">
     <Position X="5.75" Y="0.5" Width="1.5" />
-    <NestedTypes>
-      <Delegate Name="GS_Factura.DataSetFactura.DataTable1RowChangeEventHandler" Collapsed="true">
-        <TypeIdentifier />
-      </Delegate>
-      <Class Name="GS_Factura.DataSetFactura.DataTable1DataTable" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GS_Factura.DataSetFactura.DataTable1Row" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GS_Factura.DataSetFactura.DataTable1RowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAwAAAALABAAAQAAAAAgCQBgAAAAAAgEABBA=</HashCode>
+      <FileName>DataSetFactura.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.EllipseControl" Collapsed="true">
@@ -37,130 +24,150 @@
   <Class Name="GS_Factura.Form1" Collapsed="true">
     <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAgBQAQAiCAQCwIogCIAgBDCAQCAKIGBSVQGVAoQBA=</HashCode>
-      <FileName>Form1.cs</FileName>
+      <HashCode>AgAgBQAQAiAAQCwIogCIAgBDCAQCAKIGBSVQGVAoQBA=</HashCode>
+      <FileName>Frm-GS_Dashboard.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.ClienteVenta" Collapsed="true">
-    <Position X="4" Y="0.5" Width="1.5" />
+    <Position X="5.25" Y="1.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="GS_Factura.ClienteVenta.pasarformFactura" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Frm-GS_ClienteVenta.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AIAIIAQWCaAAkJQAAACAQEICAAAACABAgICIIZcMACA=</HashCode>
-      <FileName>GS-ClienteVenta.cs</FileName>
+      <FileName>Frm-GS_ClienteVenta.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GS_Factura.GS_EditarFactura">
-    <Position X="9.25" Y="1.25" Width="2.25" />
+  <Class Name="GS_Factura.GS_EditarFactura" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>/xSYAgRBICAAAFGBAKmCgQEigxEECBEZBsEgAQDzUyg=</HashCode>
-      <FileName>GS-EditarFactura.cs</FileName>
+      <HashCode>/5SYAoRDICAAAFGRAKmSgQEigxEECBEZBsEgAQDzUyg=</HashCode>
+      <FileName>Frm-GS_EditarFactura.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_EliminaFactura" Collapsed="true">
     <Position X="7.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAQKDCAiABAACBCAgEAKAAwDCIAIAAAIIRACAiA=</HashCode>
-      <FileName>GS-EliminaFactura.cs</FileName>
+      <HashCode>AAAAAAQCDCAiABAAABCAgEAKAAgDCIAIAAAIIRACAiA=</HashCode>
+      <FileName>Frm-GS_GestionFactura.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_Factura" Collapsed="true">
     <Position X="0.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAAAAICAAAACAAAAAAAAABgAgEAAAAA=</HashCode>
-      <FileName>GS-Factura.cs</FileName>
+      <HashCode>AAQAAAAAACAAAAAAAICAAAACAAAAAAAAAAgAAEAAAAA=</HashCode>
+      <FileName>Frm-GS-GeneraFacturaVenta.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_GeneraFactura" Collapsed="true">
-    <Position X="2.25" Y="2.5" Width="1.5" />
+    <Position X="2" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>/5w4MiBAICAAEFOQAOiSgYEGwwGECBEbBuMgIQT3Uyg=</HashCode>
-      <FileName>GS-GeneraFactura.cs</FileName>
+      <HashCode>/5w4IiBCICAAAFOQAOiSgcEGwwUEAJMbBuMoIQTzUyg=</HashCode>
+      <FileName>Frm-GS_GeneraFactura.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_Informacion" Collapsed="true">
-    <Position X="4" Y="2.5" Width="1.5" />
+    <Position X="10" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAABAAAACAAAACAAAAAAAAAAAAAABAAAA=</HashCode>
-      <FileName>GS-Informacion.cs</FileName>
+      <FileName>Frm-GS_Informacion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_Inicio" Collapsed="true">
-    <Position X="5.75" Y="2.5" Width="1.5" />
+    <Position X="7.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAABAAAACAAAACAAAAAAAAAAAAAQBAACA=</HashCode>
-      <FileName>GS-Inicio.cs</FileName>
+      <FileName>Frm-GS_Inicio.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_Iva" Collapsed="true">
     <Position X="7.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>cCBEIWUSCLAAABAWAMSQQFgCgAQASIAA4EQICaQeAqA=</HashCode>
-      <FileName>GS-Iva.cs</FileName>
+      <HashCode>cCBEIWUSiLAAABAWAMWQQFgCgAAASIAA4GQICaQeAqA=</HashCode>
+      <FileName>Frm-GS_Iva.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.ProductoVenta" Collapsed="true">
-    <Position X="7.5" Y="3.5" Width="1.5" />
+    <Position X="3.75" Y="0.75" Width="2" />
+    <NestedTypes>
+      <Delegate Name="GS_Factura.ProductoVenta.pasarformFactura" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Frm-GS_ProductoVenta.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AIAAAAQCDiAAADAAAACIAEICAAAEAAABgAAKIQAAAAA=</HashCode>
-      <FileName>GS-ProductoVenta.cs</FileName>
+      <HashCode>AIAAAAQCDCAAADAAAACIAEICAAAEAAABgAAKIQAAAAA=</HashCode>
+      <FileName>Frm-GS_ProductoVenta.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_RegistroCliente" Collapsed="true">
     <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>UGRAICQSCCAA0NQACACAgEECBAAQQQDYgAKIoYT/ACA=</HashCode>
-      <FileName>GS-RegistroCliente.cs</FileName>
+      <HashCode>UGBAICQSCCAQ0NQACACAgEECAAAQQQDYgAKIoYT/ACA=</HashCode>
+      <FileName>Frm-GS_RegistroCliente.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_RegistroProducto" Collapsed="true">
-    <Position X="2.25" Y="3.5" Width="1.5" />
+    <Position X="10" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>FkFC4CUyCCBCCTkBAACAAFECIAwwUQAAgEYKIQiHECA=</HashCode>
-      <FileName>GS-RegistroProducto.cs</FileName>
+      <HashCode>FkFC4CUyCCBCCTkBAACAAFECIAgwUQAAgEYKIQiHECA=</HashCode>
+      <FileName>Frm-GS_RegistroProducto.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_DetalladoVenta" Collapsed="true">
-    <Position X="4" Y="1.5" Width="1.5" />
+    <Position X="5.25" Y="2" Width="3.25" />
     <TypeIdentifier>
       <HashCode>ABBiAAYSAGAGQBACwQGIAHAGgARAEJlAwHAoAQCfACA=</HashCode>
-      <FileName>GS_DetalladoVenta.cs</FileName>
+      <FileName>Frm-GS_DetalladoVenta.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.GS_ResumenVentas" Collapsed="true">
-    <Position X="4" Y="3.5" Width="1.5" />
+    <Position X="10.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABBiACYSAGAEQBACwQGIAHAGgARAEBkAwHAoAQCfBCA=</HashCode>
-      <FileName>GS_ResumenVentas.cs</FileName>
+      <FileName>Frm-GS_ResumenVentas.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.Notificaciones" Collapsed="true">
-    <Position X="5.75" Y="3.5" Width="1.5" />
+    <Position X="7.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAgACAAAFAQMECACAAKAAAAIAAAQgAABBgAAgA=</HashCode>
       <FileName>Notificaciones.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GS_Factura.Program" Collapsed="true">
-    <Position X="0.5" Y="4.5" Width="1.5" />
+  <Class Name="GS_Factura.Program">
+    <Position X="4" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.VisualizaFacturaBorrar" Collapsed="true">
-    <Position X="7.5" Y="4.5" Width="1.5" />
+    <Position X="4.5" Y="3" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAABACAAAAAAAICAAAACAAAAAAAAAAAAAAAQAAA=</HashCode>
-      <FileName>VisualizaFacturaBorrar.cs</FileName>
+      <FileName>Frm-GS_VisualizaFacturaBorrar.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GS_Factura.Clases.BD2" Collapsed="true">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+  <Class Name="GS_Factura.Clases.AccesoDatos" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAIAEgAQACAAAhAIAACAACAAAhAAiABYEMACAQIEwAk=</HashCode>
-      <FileName>Clases\BD2.cs</FileName>
+      <HashCode>gAIEEgAQACAAAhgIAACAACAIAhIAiAAYEMACAQIEwAk=</HashCode>
+      <FileName>Clases\AccesoDatos.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.DataSetFacturaTableAdapters.DataTable1TableAdapter" Collapsed="true">
@@ -170,19 +177,19 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.DataSetFacturaTableAdapters.TableAdapterManager" Collapsed="true">
-    <Position X="5.75" Y="4.5" Width="1.5" />
+    <Position X="3.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAACAAAABABAEBAAAAMAAgAAACgAAAAAQAAAAABAQ=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.Properties.Resources" Collapsed="true">
-    <Position X="2.25" Y="4.5" Width="1.5" />
+    <Position X="6.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAEAAAAAAAAQAEACABFBAAAwCAAAAAAAAAAgCAAIA=</HashCode>
+      <HashCode>IAAAEAAAAAAAAQAEACABFBAAAwCAAAAAAAAAAgCAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="GS_Factura.Properties.Settings" Collapsed="true">
-    <Position X="4" Y="4.5" Width="1.5" />
+    <Position X="10" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAgAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
