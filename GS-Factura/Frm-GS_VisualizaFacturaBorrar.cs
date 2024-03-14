@@ -46,6 +46,10 @@ namespace GS_Factura
                     ReportDataSource dataSource = new ReportDataSource("DataSet1", datos); // Reemplaza "DataSet1" con el nombre de tu conjunto de datos en el informe
                     reporteFactura.LocalReport.DataSources.Add(dataSource);
 
+                    // Cambiar el zoom del informe
+                    reporteFactura.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.Percent;
+                    reporteFactura.ZoomPercent = 75; // Establecer el zoom al 75%
+
                     // Actualizar el informe
                     reporteFactura.RefreshReport();
                 }
