@@ -77,7 +77,7 @@ namespace GS_Factura.Clases
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return null; // Devuelve null en caso de error.
+                return null;
             }
         }
         public void Desconectar()
@@ -167,7 +167,7 @@ namespace GS_Factura.Clases
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ret = 0; // Indicar que ocurrió un error
+                ret = 0;
             }
             if (cerrar_conexion_al_terminar)
                 this.Desconectar();
@@ -189,7 +189,7 @@ namespace GS_Factura.Clases
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ret = null; // Indicar que ocurrió un error
+                ret = null;
             }
             if (cerrar_conexion_al_terminar)
                 this.Desconectar();
@@ -198,28 +198,47 @@ namespace GS_Factura.Clases
         public DataTable EscalarProcAlmTabla(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
         {
             DataTable ret = new DataTable();
-            CrearComandoStoredProcedure(sentenciaSQL);
-            SqlDataAdapter adapter = new SqlDataAdapter(this.comando);
-            foreach (SqlParameter p in parametros)
+            try
             {
-                this.comando.Parameters.Add(p);
-            };
-            this.ConectarSiDesconectado();
-            adapter.Fill(ret);
-            if (cerrar_conexion_al_terminar)
-                this.Desconectar();
+                CrearComandoStoredProcedure(sentenciaSQL);
+                SqlDataAdapter adapter = new SqlDataAdapter(this.comando);
+                foreach (SqlParameter p in parametros)
+                {
+                    this.comando.Parameters.Add(p);
+                }
+                this.ConectarSiDesconectado();
+                adapter.Fill(ret);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+            }
+            finally
+            {
+                if (cerrar_conexion_al_terminar)
+                    this.Desconectar();
+            }
             return ret;
         }
         public DataTable EscalarProcAlmTablaSinPar(string sentenciaSQL, bool cerrar_conexion_al_terminar)
         {
             DataTable ret = new DataTable();
-            CrearComandoStoredProcedure(sentenciaSQL);
-            SqlDataAdapter adapter = new SqlDataAdapter(this.comando);
-            this.ConectarSiDesconectado();
-            adapter.Fill(ret);
-            //ret = this.EjecutarEscalar();
-            if (cerrar_conexion_al_terminar)
-                this.Desconectar();
+            try
+            {
+                CrearComandoStoredProcedure(sentenciaSQL);
+                SqlDataAdapter adapter = new SqlDataAdapter(this.comando);
+                this.ConectarSiDesconectado();
+                adapter.Fill(ret);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+            }
+            finally
+            {
+                if (cerrar_conexion_al_terminar)
+                    this.Desconectar();
+            }
             return ret;
         }
         public bool EscalarProcAlmBool(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
@@ -238,7 +257,7 @@ namespace GS_Factura.Clases
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                ret = false; // Indicar que ocurrió un error
+                ret = false;
             }
             if (cerrar_conexion_al_terminar)
                 this.Desconectar();
@@ -306,8 +325,15 @@ namespace GS_Factura.Clases
             {
                  new SqlParameter("@IDFactura", idFactura)
             };
-
-            return EscalarProcAlmTabla(sentenciaSQL, parametros, true);
+            try
+            {
+                return EscalarProcAlmTabla(sentenciaSQL, parametros, true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al ejecutar el procedimiento almacenado: " + ex.Message);                
+                return null;
+            }
         }
         public void XmlVenta(int idCliente, decimal subtotal, decimal iva, decimal valoriva, decimal total, DataGridView detalleVenta)
         {
@@ -335,28 +361,36 @@ namespace GS_Factura.Clases
         }
         private String CrearElementoVenta(int idCliente, decimal subtotal, decimal iva, decimal valoriva, decimal total, DataGridView detalleVenta)
         {
-            XElement venta = new XElement("FACTURA");
-            venta.Add(new XElement("item",
-                new XElement("IDCLIENTE", idCliente),
-                new XElement("FECHA", DateTime.Now.ToString("yyyy-MM-dd")), 
-                new XElement("SUBTOTAL", subtotal),
-                new XElement("IVA", iva),
-                new XElement("VALORIVA", valoriva),
-                new XElement("TOTAL", total)
-            ));
-            XElement detalle_venta = new XElement("DETALLE_FACTURA");
-            foreach (DataGridViewRow row in detalleVenta.Rows)
+            try
             {
-
-                detalle_venta.Add(new XElement("item",
-                new XElement("IDPRODUCTO", row.Cells["IdProducto"].Value),
-                new XElement("CANTIDAD", Convert.ToDecimal(row.Cells["StockProducto"].Value.ToString().Replace(".", ","))),
-                new XElement("PRECIO_UNITARIO", Convert.ToDecimal(row.Cells["PrecioVenta"].Value.ToString().Replace(".", ","))),
-                new XElement("SUBTOTAL", Convert.ToDecimal(row.Cells["TotalProducto"].Value.ToString().Replace(".", ",")))
+                XElement venta = new XElement("FACTURA");
+                venta.Add(new XElement("item",
+                    new XElement("IDCLIENTE", idCliente),
+                    new XElement("FECHA", DateTime.Now.ToString("yyyy-MM-dd")),
+                    new XElement("SUBTOTAL", subtotal),
+                    new XElement("IVA", iva),
+                    new XElement("VALORIVA", valoriva),
+                    new XElement("TOTAL", total)
                 ));
+                XElement detalle_venta = new XElement("DETALLE_FACTURA");
+                foreach (DataGridViewRow row in detalleVenta.Rows)
+                {
+
+                    detalle_venta.Add(new XElement("item",
+                        new XElement("IDPRODUCTO", row.Cells["IdProducto"].Value),
+                        new XElement("CANTIDAD", Convert.ToDecimal(row.Cells["StockProducto"].Value.ToString().Replace(".", ","))),
+                        new XElement("PRECIO_UNITARIO", Convert.ToDecimal(row.Cells["PrecioVenta"].Value.ToString().Replace(".", ","))),
+                        new XElement("SUBTOTAL", Convert.ToDecimal(row.Cells["TotalProducto"].Value.ToString().Replace(".", ",")))
+                    ));
+                }
+                string consulta = venta.ToString() + detalle_venta.ToString();
+                return consulta;
             }
-            string consulta = venta.ToString() + detalle_venta.ToString();
-            return consulta;
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al crear el elemento de venta: " + ex.Message);
+                return string.Empty;
+            }
         }
         public decimal RetornarStock(int idProducto)
         {
@@ -404,31 +438,43 @@ namespace GS_Factura.Clases
     }
         private String EditarElementoFactura(int idFactura, int idCliente, decimal subtotal, decimal iva, decimal valoriva, decimal total, DataGridView detalleVenta)
         {
-            XElement factura = new XElement("FACTURA",
-                new XElement("item",
-                    new XElement("IDFACTURA", idFactura),
-                    new XElement("IDCLIENTE", idCliente),
-                    new XElement("FECHA", DateTime.Now),
-                    new XElement("SUBTOTAL", subtotal),
-                    new XElement("IVA", iva),
-                    new XElement("VALORIVA", valoriva),
-                    new XElement("TOTAL", total)
-                )
-            );
-
-            XElement detalleFactura = new XElement("DETALLE_FACTURA");
-            foreach (DataGridViewRow row in detalleVenta.Rows)
+            try
             {
-                detalleFactura.Add(new XElement("item",
-                    new XElement("IDPRODUCTO", row.Cells["IDPRODUCTO"].Value),
-                    new XElement("CANTIDAD", Convert.ToDecimal(row.Cells["CANTIDAD"].Value.ToString().Replace(".", ","))),
-                    new XElement("PRECIO_UNITARIO", Convert.ToDecimal(row.Cells["PRECIO_UNITARIO"].Value.ToString().Replace(".", ","))),
-                    new XElement("SUBTOTAL", Convert.ToDecimal(row.Cells["TotalProducto"].Value.ToString().Replace(".", ",")))
-                ));
-            }
+                XElement factura = new XElement("FACTURA",
+                    new XElement("item",
+                        new XElement("IDFACTURA", idFactura),
+                        new XElement("IDCLIENTE", idCliente),
+                        new XElement("FECHA", DateTime.Now),
+                        new XElement("SUBTOTAL", subtotal),
+                        new XElement("IVA", iva),
+                        new XElement("VALORIVA", valoriva),
+                        new XElement("TOTAL", total)
+                    )
+                );
 
-            string xmlFactura = factura.ToString() + detalleFactura.ToString();
-            return xmlFactura;
+                XElement detalleFactura = new XElement("DETALLE_FACTURA");
+                foreach (DataGridViewRow row in detalleVenta.Rows)
+                {
+                    detalleFactura.Add(new XElement("item",
+                        new XElement("IDPRODUCTO", row.Cells["IDPRODUCTO"].Value),
+                        new XElement("CANTIDAD", Convert.ToDecimal(row.Cells["CANTIDAD"].Value.ToString().Replace(".", ","))),
+                        new XElement("PRECIO_UNITARIO", Convert.ToDecimal(row.Cells["PRECIO_UNITARIO"].Value.ToString().Replace(".", ","))),
+                        new XElement("SUBTOTAL", Convert.ToDecimal(row.Cells["TotalProducto"].Value.ToString().Replace(".", ",")))
+                    ));
+                }
+
+                string xmlFactura = factura.ToString() + detalleFactura.ToString();
+                return xmlFactura;
+            }
+            catch (Exception ex)
+            {
+                // Aquí puedes manejar la excepción de la manera que prefieras,
+                // ya sea registrándola, lanzando una nueva excepción, o simplemente
+                // imprimiendo un mensaje de error.
+                Console.WriteLine("Error al editar el elemento de factura: " + ex.Message);
+                // En caso de error, devuelve algo que indique un valor por defecto
+                return string.Empty;
+            }
         }
         public void EliminarFactura(int idFactura)
         {
@@ -485,7 +531,6 @@ namespace GS_Factura.Clases
             {
                 this.Desconectar();
             }
-
             return maxIdFactura;
         }
     }
