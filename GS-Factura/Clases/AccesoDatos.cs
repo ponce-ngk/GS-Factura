@@ -82,11 +82,19 @@ namespace GS_Factura.Clases
         }
         public void Desconectar()
         {
-            if (this.conexion.State != ConnectionState.Closed)
+            try
             {
-                this.conexion.Close();
-                cont_conex--;
+                if (this.conexion.State != ConnectionState.Closed)
+                {
+                    this.conexion.Close();
+                    cont_conex--;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
         public void Conectar()
         {
@@ -127,10 +135,18 @@ namespace GS_Factura.Clases
         }
         public void CrearComandoStoredProcedure(string sentenciaSQL)
         {
-            this.comando = new SqlCommand();
-            this.comando.Connection = this.conexion;
-            this.comando.CommandType = CommandType.StoredProcedure;
-            this.comando.CommandText = sentenciaSQL;
+            try
+            {
+                this.comando = new SqlCommand();
+                this.comando.Connection = this.conexion;
+                this.comando.CommandType = CommandType.StoredProcedure;
+                this.comando.CommandText = sentenciaSQL;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
         public int EscalarProcAlm(string sentenciaSQL, List<SqlParameter> parametros, bool cerrar_conexion_al_terminar)
         {
@@ -144,7 +160,15 @@ namespace GS_Factura.Clases
                 this.comando.Parameters.Add(p);
             };
             this.ConectarSiDesconectado();
-            ret = this.EjecutarEscalar();
+            try
+            {
+                ret = this.EjecutarEscalar();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ret = 0; // Indicar que ocurrió un error
+            }
             if (cerrar_conexion_al_terminar)
                 this.Desconectar();
             return ret;
@@ -182,7 +206,6 @@ namespace GS_Factura.Clases
             };
             this.ConectarSiDesconectado();
             adapter.Fill(ret);
-            //ret = this.EjecutarEscalar();
             if (cerrar_conexion_al_terminar)
                 this.Desconectar();
             return ret;
@@ -208,7 +231,15 @@ namespace GS_Factura.Clases
                 this.comando.Parameters.Add(p);
             };
             this.ConectarSiDesconectado();
-            ret = this.EjecutarEscalarBool();
+            try
+            {
+                ret = this.EjecutarEscalarBool();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ret = false; // Indicar que ocurrió un error
+            }
             if (cerrar_conexion_al_terminar)
                 this.Desconectar();
             return ret;
