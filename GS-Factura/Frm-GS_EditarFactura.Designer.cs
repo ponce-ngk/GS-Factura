@@ -568,7 +568,7 @@
             this.txtcancelado.TabIndex = 44;
             this.txtcancelado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtcancelado.TextChanged += new System.EventHandler(this.Txtcancelado_TextChanged);
-            this.txtcancelado.Enter += new System.EventHandler(this.Txtcancelado_Enter);
+            this.txtcancelado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcancelado_KeyPress);
             this.txtcancelado.Leave += new System.EventHandler(this.Txtcancelado_Leave);
             // 
             // label29
@@ -1208,7 +1208,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GS_EditarFactura";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edicion de la Factura";
             this.Load += new System.EventHandler(this.GS_EditarFactura_Load);
             this.tblVentayFactura.ResumeLayout(false);
