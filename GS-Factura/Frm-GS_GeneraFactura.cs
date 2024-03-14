@@ -36,7 +36,7 @@ namespace GS_Factura
         {
             try
             {
-                int maxIdVenta = bD2.ObtenerMaxIdFactura();
+                int maxIdVenta = bD2.ObtenerMaxIdFactura() + 1;
                 string numeroFactura = maxIdVenta.ToString().PadLeft(6, '0');
                 lblnumerofactura.Text = "001-" + numeroFactura;
             }
@@ -668,26 +668,7 @@ namespace GS_Factura
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
-            DateTime fecha = DateTime.Now;
-
-            lblFingresoVenta.Text = fecha.ToString("dd/MM/yyyy");
-            if (!string.IsNullOrEmpty(lblFingresoVenta.Text))
-            {
-                DateTime fechaIngreso;
-                if (DateTime.TryParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out fechaIngreso))
-                {
-                    // El formato de fecha es válido, ahora puedes utilizar fechaIngreso
-                    // Tu lógica aquí...
-                }
-                else
-                {
-                    MessageBox.Show("El formato de fecha ingresado no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("El campo de fecha está vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
         }
     }
 }
