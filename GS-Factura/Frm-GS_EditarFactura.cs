@@ -240,7 +240,18 @@ namespace GS_Factura
         }
         private void Txtcancelado_Enter(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (txtcancelado.Text == "0")
+                {
+                    txtcancelado.Text = "";
+                    txtcancelado.ForeColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void Txtcancelado_Leave(object sender, EventArgs e)
         {
@@ -521,65 +532,6 @@ namespace GS_Factura
                 else if (txtSearchCliente.Text == null)
                 {
                     MessageBox.Show("Por favor ingrese un carácter");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                throw;
-            }
-        }
-
-        private void txtcancelado_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (!(char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar == (char)Keys.Back))
-                {
-                    e.Handled = true;
-                    if (txtcancelado.Text != null)
-                    {
-                        DialogResult respuesta = MessageBox.Show("Deseas realizar esta venta? Por favor, confirma tu elección.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (respuesta == DialogResult.Yes)
-                        {
-                            try
-                            {
-                                if (!string.IsNullOrEmpty(txtcancelado.Text) && decimal.Parse(txtcancelado.Text.Replace(".", ",")) >= decimal.Parse(txtTotalVenta.Text.Replace(".", ",")))
-                                {
-                                    DateTime fechaIngreso = DateTime.ParseExact(lblFingresoVenta.Text, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                                    bD2.XmlVenta(int.Parse(lblidcliente.Text), decimal.Parse(txtsubtotalventa.Text.Replace(".", ",")), decimal.Parse(lblValorIva.Text.Replace(".", ",")), decimal.Parse(txtivaVenta.Text.Replace(".", ",")), decimal.Parse(txtTotalVenta.Text.Replace(".", ",")), dtgVenta);
-                                    float tamañoColumna1 = tblVentayFactura.ColumnStyles[0].Width;
-                                    float tamañoColumna2 = tblVentayFactura.ColumnStyles[1].Width;
-
-                                    tblVentayFactura.ColumnStyles[0].Width = tamañoColumna2;
-                                    tblVentayFactura.ColumnStyles[1].Width = tamañoColumna1;
-                                    GS_Factura frmFactura = new GS_Factura();
-                                    frmFactura.TopLevel = false;
-                                    frmFactura.Dock = DockStyle.Fill;
-                                    panelFactura.Controls.Add(frmFactura);
-                                    frmFactura.Show();
-                                }
-                                else MessageBox.Show("El usuario no ha cancelado. Por favor, ingrese un valor.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Por favor ingrese un carácter");
-                    }
-                }
-                else if (txtSearchCliente.Text == null)
-                {
-                    MessageBox.Show("Por favor ingregse un carácter");
-                }
-
-                if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
-                {
-                    e.Handled = true;
                 }
             }
             catch (Exception ex)
