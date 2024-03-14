@@ -16,7 +16,7 @@ namespace GS_Factura
     {
         private int idFactura;
         DataTable datosFactura;
-        BD2 OAD = new BD2();
+        AccesoDatos OAD = new AccesoDatos();
 
         public GS_EditarFactura(int idFactura)
         {
@@ -27,7 +27,7 @@ namespace GS_Factura
         {
             try
             {
-                datosFactura = new BD2().ObtenerDatosFactura(idFactura);
+                datosFactura = new AccesoDatos().ObtenerDatosFactura(idFactura);
                 if (datosFactura.Rows.Count > 0)
                 {
                     lblcedulacliente.Text = datosFactura.Rows[0]["CEDULA"].ToString();

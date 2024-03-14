@@ -17,7 +17,7 @@ namespace Pruebas_Unitarias
         public void EscalarProcAlm_DeberiaRetornarEscalarCorrecto()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             bd.Conectar();
             string sentenciaSQL = "sp_PruebaUnitaria1";
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -34,13 +34,14 @@ namespace Pruebas_Unitarias
         public void XmlVenta_DeberiaGenerarXmlCorrecto()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             int idCliente = 1;
             decimal subtotal = 100;
             decimal iva = 10;
-            decimal valoriva = 115;
             decimal total = 110;
+            decimal valoriva = 135;
             DataGridView detalleVenta = new DataGridView(); // Simula un DataGridView con datos
+
             // Act & Assert
             try
             {
@@ -61,7 +62,7 @@ namespace Pruebas_Unitarias
         public void ObtenerDatosFactura_DeberiaRetornarTablaNoVacia()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             int idFactura = 2;
 
             // Act
@@ -77,7 +78,7 @@ namespace Pruebas_Unitarias
         public void RetornarStock_DeberiaRetornarStockCorrecto()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             int idProducto = 1;
 
             // Act
@@ -92,7 +93,7 @@ namespace Pruebas_Unitarias
         public void XmlEditarFactura_DeberiaEditarFacturaCorrectamente()
         {
             // Arrange
-            BD2 bd = new BD2();
+            AccesoDatos bd = new AccesoDatos();
             int idFactura = 1;
             int idCliente = 1;
             decimal subtotal = 22.3000m;
