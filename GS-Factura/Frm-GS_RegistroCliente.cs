@@ -252,7 +252,7 @@ namespace GS_Factura
             {
                 if (txt_Buscar.Text != null)
                 {
-                    if (op == 0)
+                    if (op == 1)
                     {
                         if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
@@ -275,7 +275,7 @@ namespace GS_Factura
                             MessageBox.Show("Por favor ingregse al menos un carácter");
                         }
                     }
-                    else if (op == 1)
+                    else if (op == 2)
                     {
                         if (txt_Buscar.TextLength != 0 || cmbitems.SelectedIndex == -1)
                         {
