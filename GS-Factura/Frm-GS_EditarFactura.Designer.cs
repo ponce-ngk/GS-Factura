@@ -1208,7 +1208,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GS_EditarFactura";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edicion de la Factura";
             this.Load += new System.EventHandler(this.GS_EditarFactura_Load);
             this.tblVentayFactura.ResumeLayout(false);
