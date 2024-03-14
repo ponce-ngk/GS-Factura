@@ -201,7 +201,7 @@ namespace GS_Factura
                     sql = "";
                     par.Clear();
                     par.Add(new SqlParameter("@ID_iva", int.Parse(lblIdIva.Text)));
-                    sql = OAD.EscalarProcAlmString("InactivarIVA", par, true);
+                    sql = OAD.EscalarProcAlmString("EliminarIVA", par, true);
                     cmbitemsIva.SelectedIndex = -1;
                     if (sql != null)
                     {

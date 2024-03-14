@@ -38,6 +38,8 @@
             this.btnVenta = new FontAwesome.Sharp.IconButton();
             this.btnProductos = new FontAwesome.Sharp.IconButton();
             this.btnRegistro = new FontAwesome.Sharp.IconButton();
+            this.panelDashHead = new System.Windows.Forms.Panel();
+            this.ptmfotouser = new System.Windows.Forms.PictureBox();
             this.panelDashOut = new System.Windows.Forms.Panel();
             this.btnCerrarsesion = new FontAwesome.Sharp.IconButton();
             this.panelLayoutForms = new System.Windows.Forms.TableLayoutPanel();
@@ -54,10 +56,10 @@
             this.rjcIva = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.rjcBtnResumen = new System.Windows.Forms.ToolStripMenuItem();
             this.rjcBtnDetallada = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelDashHead = new System.Windows.Forms.Panel();
-            this.ptmfotouser = new System.Windows.Forms.PictureBox();
             this.panelLayoutMenu.SuspendLayout();
             this.panelDashCenter.SuspendLayout();
+            this.panelDashHead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).BeginInit();
             this.panelDashOut.SuspendLayout();
             this.panelLayoutForms.SuspendLayout();
             this.panelLayoutFormsHead.SuspendLayout();
@@ -65,8 +67,6 @@
             this.panelButtomDash.SuspendLayout();
             this.panelLayourMaximizar.SuspendLayout();
             this.rjcIva.SuspendLayout();
-            this.panelDashHead.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLayoutMenu
@@ -257,6 +257,30 @@
             this.btnRegistro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRegistro.UseVisualStyleBackColor = false;
             this.btnRegistro.Click += new System.EventHandler(this.BtnRegistro_Click);
+            // 
+            // panelDashHead
+            // 
+            this.panelDashHead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(17)))), ((int)(((byte)(91)))));
+            this.panelDashHead.Controls.Add(this.ptmfotouser);
+            this.panelDashHead.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDashHead.Location = new System.Drawing.Point(0, 0);
+            this.panelDashHead.Margin = new System.Windows.Forms.Padding(0);
+            this.panelDashHead.Name = "panelDashHead";
+            this.panelDashHead.Size = new System.Drawing.Size(149, 93);
+            this.panelDashHead.TabIndex = 1;
+            // 
+            // ptmfotouser
+            // 
+            this.ptmfotouser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ptmfotouser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptmfotouser.Image = ((System.Drawing.Image)(resources.GetObject("ptmfotouser.Image")));
+            this.ptmfotouser.Location = new System.Drawing.Point(0, 0);
+            this.ptmfotouser.Name = "ptmfotouser";
+            this.ptmfotouser.Size = new System.Drawing.Size(149, 93);
+            this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptmfotouser.TabIndex = 0;
+            this.ptmfotouser.TabStop = false;
+            this.ptmfotouser.Click += new System.EventHandler(this.Ptmfotouser_Click);
             // 
             // panelDashOut
             // 
@@ -516,30 +540,6 @@
             this.rjcBtnDetallada.Text = "Detalles de Ventas";
             this.rjcBtnDetallada.Click += new System.EventHandler(this.rjcBtnDetallada_Click);
             // 
-            // panelDashHead
-            // 
-            this.panelDashHead.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(17)))), ((int)(((byte)(91)))));
-            this.panelDashHead.Controls.Add(this.ptmfotouser);
-            this.panelDashHead.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDashHead.Location = new System.Drawing.Point(0, 0);
-            this.panelDashHead.Margin = new System.Windows.Forms.Padding(0);
-            this.panelDashHead.Name = "panelDashHead";
-            this.panelDashHead.Size = new System.Drawing.Size(149, 93);
-            this.panelDashHead.TabIndex = 1;
-            // 
-            // ptmfotouser
-            // 
-            this.ptmfotouser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ptmfotouser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptmfotouser.Image = ((System.Drawing.Image)(resources.GetObject("ptmfotouser.Image")));
-            this.ptmfotouser.Location = new System.Drawing.Point(0, 0);
-            this.ptmfotouser.Name = "ptmfotouser";
-            this.ptmfotouser.Size = new System.Drawing.Size(149, 93);
-            this.ptmfotouser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ptmfotouser.TabIndex = 0;
-            this.ptmfotouser.TabStop = false;
-            this.ptmfotouser.Click += new System.EventHandler(this.Ptmfotouser_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,6 +557,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelLayoutMenu.ResumeLayout(false);
             this.panelDashCenter.ResumeLayout(false);
+            this.panelDashHead.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).EndInit();
             this.panelDashOut.ResumeLayout(false);
             this.panelLayoutForms.ResumeLayout(false);
             this.panelLayoutFormsHead.ResumeLayout(false);
@@ -564,8 +566,6 @@
             this.panelButtomDash.ResumeLayout(false);
             this.panelLayourMaximizar.ResumeLayout(false);
             this.rjcIva.ResumeLayout(false);
-            this.panelDashHead.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ptmfotouser)).EndInit();
             this.ResumeLayout(false);
 
         }

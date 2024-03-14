@@ -1032,7 +1032,24 @@ namespace GS_Factura
                 }
                 else if (cbxNombre.Checked == false && cbxProducto.Checked == false)
                 {
-                    MessageBox.Show("Por favor habilite los campos de busqueda");
+                    try
+                    {
+                        tb.Clear();
+                        par.Clear();
+                        par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                        par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                        tb = OAD.EscalarProcAlmTabla("sp_ResumenVentasFechas ", par, true);
+                        dgvResumenVenta.DataSource = tb;
+                        if (tb.Rows.Count == 0)
+                        {
+                            MessageBox.Show("Reporte no Encontrado en ese rango de fechas. \n\nSe sugiere verificar el rango de fechas.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        throw;
+                    }
                 }
             }
             catch (Exception ex)

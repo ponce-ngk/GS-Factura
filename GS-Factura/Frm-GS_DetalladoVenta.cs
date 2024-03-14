@@ -958,7 +958,16 @@ namespace GS_Factura
             }
             else if (cbxNombre.Checked == false && cbxProducto.Checked == false)
             {
-                MessageBox.Show("Por favor habilite los campos de busqueda");
+                tb.Clear();
+                par.Clear();
+                par.Add(new SqlParameter("@Fecha_Inicio", dateTimePicker1.Text.Trim()));
+                par.Add(new SqlParameter("@Fecha_Fin", dateTimePicker2.Text.Trim()));
+                tb = OAD.EscalarProcAlmTabla("sp_DetalladoVentasFechas", par, true);
+                dgvDetalladoVenta.DataSource = tb;
+                if (tb.Rows.Count == 0)
+                {
+                    MessageBox.Show("Reporte no encontrado. \n\nSe sugiere al Usuario verificar los dato proporcionados e intentarlo nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void btnBuscar_Click(object sender, EventArgs e)
