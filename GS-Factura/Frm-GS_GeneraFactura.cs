@@ -33,12 +33,14 @@ namespace GS_Factura
             this.Cargarnumerofactura();
         }
 
+
         public void Cargarnumerofactura()
         {
             try
             {
-                string result = bD2.ObetnerDatosFactura("SELECT ISNULL(MAX(IDFACTURA), 0) FROM FACTURA").PadLeft(6, '0');
-                lblnumerofactura.Text = "001-" + result;
+                int maxIdVenta = bD2.ObtenerMaxIdFactura();
+                string numeroFactura = maxIdVenta.ToString().PadLeft(6, '0'); 
+                lblnumerofactura.Text = "001-" + numeroFactura;
             }
             catch (Exception ex)
             {
